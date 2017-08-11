@@ -12,7 +12,7 @@
 
 <link rel="shortcut icon" href="/images/favicon.ico?v=2" />
 <link rel="stylesheet" type="text/css"  href="/adminfiles/css/select2.css"/>
-<link href="../css/admin/jquery-ui-1.8.16.custom.css" media="screen" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" href="/adminfiles/css/jquery-ui-1.8.16.custom.css" media="screen" type="text/css" >
 <link rel="stylesheet" type="text/css" href="/adminfiles/css/tablecss.css" />
 <link href="/adminfiles/css/jquery.alert.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="/adminfiles/css/fonts.css" />
@@ -52,7 +52,7 @@
 <script type="text/javascript" language="javascript" src="/adminfiles/js/jquery.maxlength.js"></script>
 <script type="text/javascript" src="/adminfiles/js/jquery.simplyscroll.js"></script> 
 <script type="text/javascript" language="javascript" src="/adminfiles/js/jquery.alert.js"></script>
-<link href="../css/jquery.ui.timepicker.css?v=0.3.2" rel="stylesheet" type="text/css" />
+<link href="/adminfiles/css/jquery.ui.timepicker.css" rel="stylesheet" type="text/css" />
 <!-- end of time picker -->
 <script  language="JavaScript" type="text/javascript" src="/adminfiles/js/select2.js" ></script>
 <!-- <script type="text/javascript" language="javascript" src="js/facescroll.js"></script>-->
@@ -65,7 +65,9 @@
 function checkisactivestatus()
 {       
     $.ajax({
-        type:"post",        /adminfiles/jsl:base_url+'/index/checkisactivestatus',
+        url:'https://gapapi-100.appspot.com/api/checkisactivestatus/',
+        type:"post",        
+        // /adminfiles/jsl:base_url+'/index/checkisactivestatus',
         dataType:'json',
         success: function(response)
         {

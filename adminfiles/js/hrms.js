@@ -1359,21 +1359,17 @@ function checkradio_child_roles_original(class_name)
 function displaydeptform(url,menuname)
 {
 	$.ajax({
-		type:'post',		
+		type:"post",		
 		url:'https://gapapi-100.appspot.com/api/checkisactivestatus/',
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json',
+		dataType:'json',
 		success: function(response)
 		{  
-			alert(response);
 			if(typeof (response['result']) == 'undefined' || response['result'] == 'false' || response['result'] == '')
 			 {
 				window.location.href = base_url+'/index';
-				alert("index");
 			 }
 			else if(response['result'] == 'true')
 			{
-				alert(response);
 				var urlArr = url.split('/');   
 				var baseurlArr = base_url.split('/');
 				var request_hostname = window.location.hostname;
@@ -1502,15 +1498,15 @@ function displaydeptform(url,menuname)
 						}
 						else
 						{
-							if(round_status == '' && round_count != 0)
-							{ 
-								flag = 'no';
-								jAlert('The candidate is not scheduled to the next round. So you cannot assign a new round to the candidate.');
-							}
-							else
-							{
-								flag = 'yes';
-							}
+										if(round_status == '' && round_count != 0)
+										{ 
+											flag = 'no';
+											jAlert('The candidate is not scheduled to the next round. So you cannot assign a new round to the candidate.');
+										}
+										else
+										{
+											flag = 'yes';
+										}
 						}
 					}
 					else
@@ -1541,29 +1537,28 @@ function displaydeptform(url,menuname)
 																	open:function(){
 																																$('#'+controllername+'Container').css('display','block');
 						$('#'+controllername+'Cont').attr('src', url);
-							  $(document).bind('keydown',function(e) {
-								
-								if (e.keyCode === 8) {
-									return false;
-								};
-							});														  
-							},
-								close: function() {
-								 $('#blockingdiv').remove();
-								 $('#'+controllername+'Cont').attr('src', '');
-								 $(document).unbind('keydown');
-								},
-								title: capitalizedtitle,
-								height:'auto',
-								draggable:false,
-								width: 780
-								});
+																	  $(document).bind('keydown',function(e) {
+																		
+																		if (e.keyCode === 8) {
+																			return false;
+																		};
+																	});														  
+																	},
+											close: function() {
+											 $('#blockingdiv').remove();
+											 $('#'+controllername+'Cont').attr('src', '');
+											 $(document).unbind('keydown');
+											},
+											title: capitalizedtitle,
+											height:'auto',
+											draggable:false,
+											width: 780
+											});
 						$('#processesCont').contents().find('input[name="bg-check-details-id"]').val(urlsplitArr[5]);
 					}
 			}else
 			{
 				window.location.href = base_url+'/index';
-				//window.location.href = '/admin/popup';
 			}
 		},
 		global: false
@@ -1855,8 +1850,8 @@ function displayCityCode(ele)
 		}	
 }
 function displayParticularState(ele,con,eleId,countryid){
-	
 	var id;
+
 	if(countryid !='')
 	{
 	  id = countryid;
@@ -1871,23 +1866,25 @@ function displayParticularState(ele,con,eleId,countryid){
 	if(id !='')
 	{
 		var sendData = {
-                	"countryId":id
-                }
-		$.ajax({
-                // url: base_url+"/index/getstates/format/html",
+              "countryId":id
+            }
                 
+		$.ajax({
                 url: "https://gapapi-100.appspot.com/api/country/states/",				
-				type : 'POST',	
-				// data : 'countryId='+id,
-				data : sendData,
+				type : 'POST',
+				data:JSON.stringify(sendData),
+				contentType: 'application/json; charset=utf-8',
 				dataType: 'json',
 				beforeSend: function () {
 				$("#"+eleId).before("<div id='loader'></div>");
 				$("#loader").html("<img src="+domain_data+"public/media/images/loaderwhite_21X21.gif>");
 				},
+
 				success : function(response){	
 				        if($.trim(response) == 'nostates')
-						{
+					{
+						console.log(response);
+
                           $("#loader").remove();
 						  $("#errors-"+eleId).remove();
 						 if(con == 'otheroption')
@@ -1899,23 +1896,41 @@ function displayParticularState(ele,con,eleId,countryid){
 						}
 						  else 
 						  {
-						                                if($('#'+eleId).parent().find("span.add-coloum").length > 0)
-                                                            $('#'+eleId).parent().find("span.add-coloum").prepend("<span class='errors' id='errors-"+eleId+"'>States are not configured yet.</span>");
-                                                        else
-                                                            $('#'+eleId).parent().append("<span class='errors' id='errors-"+eleId+"'>States are not configured yet.</span>");
+                            if($('#'+eleId).parent().find("span.add-coloum").length > 0)
+                                $('#'+eleId).parent().find("span.add-coloum").prepend("<span class='errors' id='errors-"+eleId+"'>States are not configured yet.</span>");
+                            else
+                                $('#'+eleId).parent().append("<span class='errors' id='errors-"+eleId+"'>States are not configured yet.</span>");
 							$("#"+eleId).find('option').remove();
 							$("#s2id_"+eleId).find("span").html("Select State");
 							$("#"+eleId).prepend("<option value='' label='select state'>Select State</option>");
 						  }
                         }
+                        
                         if(response != '' && response != 'null' && $.trim(response) != 'nostates')
 						{ 	
+							
+							var responsedata = [];
+							 var options = "";
+							for(i = 0; i< response.state_data.length; i++){
+								// options= options+ "<option value='"+response['stateId]+"!@#"+response['stateName']+ title='' jobtitle_id='' jobtitlename='' employee_id='' reporting_manager_id='' reporting_manager_name=''>response['stateName']</option>
+								
+								var state_dict = response.state_data[i]['state'];
+								//var stid = response.state_data[i]['id']+'!@#'+state_dict;
+								var stid = response.state_data[i]['id'];
+								console.log(stid);
+								// options = "<option>"+state_dict+"</option>";
+								options = "<option value='"+stid+"'>"+state_dict+"</option>";
+								responsedata.push(options);
+							}
+							console.log(responsedata);
+
 							$('#s2id_'+eleId+' .select2-choice span').html('Select state');
 							$("#"+eleId).parent().find('.select2-container').find('.select2-search-choice').remove();									
 							$("#loader").remove();
 							if($("#errors-"+eleId).is(':visible'))
 		                     $("#errors-"+eleId).hide();
-							$("#"+eleId).html(response);	 
+							// $("#"+eleId).html(response);	 
+							$("#"+eleId).html(responsedata);
 							if($("#otherstatediv").is(':visible'))
 							 $('#otherstatediv').hide();
 							if(countryid!='')
@@ -2142,6 +2157,7 @@ function displayParticularCandidates(ele,flag)
 function displayParticularCity(ele,con,eleId,stateid)
 {
   var id;
+
   if(stateid != '')
   {
     id = stateid;
@@ -2156,11 +2172,14 @@ function displayParticularCity(ele,con,eleId,stateid)
 	
 	if(id !='')
 	{
+		var sendData = {"stateId":id}
 		$.ajax({
-				url: base_url+"",				
+				//url: base_url+"",
+				url: 'https://gapapi-100.appspot.com/api/state/main_cities/',				
 				type : 'POST',	
-				data : 'state_id='+id+'&con='+con,
-				dataType: 'html',
+				data:JSON.stringify(sendData),
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
 				beforeSend: function () {
 				$("#"+eleId).before("<div id='loader'></div>");
 				$("#loader").html("<img src="+domain_data+"public/media/images/loaderwhite_21X21.gif>");
@@ -2191,13 +2210,29 @@ function displayParticularCity(ele,con,eleId,stateid)
                         }
 						 if(response != '' && response != 'null' && $.trim(response) != 'nocities')
 						{
+							
+							var responsedata = [];
+							 var options = "";
+							for(i = 0; i< response.citi_data.length; i++){
+								// options= options+ "<option value='"+response['stateId]+"!@#"+response['stateName']+ title='' jobtitle_id='' jobtitlename='' employee_id='' reporting_manager_id='' reporting_manager_name=''>response['stateName']</option>
+								
+								var city_dict = response.citi_data[i]['cityName'];
+								//var stid = response.state_data[i]['id']+'!@#'+state_dict;
+								var stid = response.citi_data[i]['cityId'];
+								console.log(stid);
+								// options = "<option>"+state_dict+"</option>";
+								options = "<option value='"+stid+"'>"+city_dict+"</option>";
+								responsedata.push(options);
+							}
+							console.log(responsedata);
+
 							if(stateid =='') 
 							 $('#s2id_'+eleId+' .select2-choice span').html('Select city');
 							$("#"+eleId).parent().find('.select2-container').find('.select2-search-choice').remove();					
 							$("#loader").remove();
 							if($("#errors-"+eleId).is(':visible'))
 		                     $("#errors-"+eleId).hide();
-							$("#"+eleId).html(response);	 
+							$("#"+eleId).html(responsedata);	 
 							if($("#otherstatediv").is(':visible'))
 							 $('#otherstatediv').hide();
 							if(stateid!='')
