@@ -1,0 +1,114 @@
+<div class="sidebar-inner c-overflow ng-scope mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;">
+    <div class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" id="mCSB_1" tabindex="0">
+        <div class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" dir="ltr" id="mCSB_1_container" style="position: relative; top: 0px; left: 0px; width: 100%;">
+            <div class="profile-menu">
+                <a href="" toggle-submenu="">
+                    <div class="profile-pic"><img alt="" class="" src="img/profile-pics/16.png"></div>
+                    <div class="profile-info">
+                    Gagan Chaturvedi<i class="zmdi zmdi-caret-down"></i>
+                    </div>
+                </a>
+
+                <ul class="main-menu">
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" href="#/pages/profile/profile-about"><i class="zmdi zmdi-account"></i> View Profile</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+        <ul class="main-menu">
+                
+            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>SELF SERVICES</a>
+                <ul>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.attendance" data-ui-sref-active="active" href="#/photo-gallery/attendance">PunchINOUT Raw</a>
+                    </li>
+                    <li><a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.regularization" data-ui-sref-active="active" href="#/photo-gallery/regularization">My Regularization</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.myshift" data-ui-sref-active="active" href="#/photo-gallery/myshift">My Shift Details</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.myattendance" data-ui-sref-active="active" href="#/photo-gallery/myattendance">My Attendance</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.shiftrequest" data-ui-sref-active="active" href="#/photo-gallery/shiftrequest">Shift Request</a>
+                    </li>
+<!--                     <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu="">CONFIGURE</a>
+                    <ul>
+
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.simulator" data-ui-sref-active="active" href="#/user-interface/simulator">Shift</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.simulator" data-ui-sref-active="active" href="#/user-interface/simulator">Rosters</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.simulator" data-ui-sref-active="active" href="#/user-interface/simulator">Assign Roster by Employee</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.simulator" data-ui-sref-active="active" href="#/user-interface/simulator">Upload Shift Details</a>
+                    </li>
+                </ul> -->
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.task" data-ui-sref-active="active" href="#/photo-gallery/task">Task Reassignment</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.proxy" data-ui-sref-active="active" href="#/photo-gallery/proxy">Proxy Attendance</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.bulk" data-ui-sref-active="active" href="#/photo-gallery/bulk">BUlk Approval- Attendance</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.attendancedetails" data-ui-sref-active="active" href="#/photo-gallery/attendancedetails">Attendance Detail</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.attendanceReport" data-ui-sref-active="active" href="#/photo-gallery/attendanceReport">Attendance Reports</a>
+                    </li>
+                    
+
+                </ul>
+            </li>
+        </ul>
+
+        </div>
+    </div>
+
+    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" id="mCSB_1_scrollbar_vertical">
+        <div class="mCSB_draggerContainer">
+            <div class="mCSB_dragger" id="mCSB_1_dragger_vertical" oncontextmenu="return false;" style="position: absolute; min-height: 50px; display: block; height: 447px; max-height: 587px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;">
+                </div>
+            </div>
+
+
+            <div class="mCSB_draggerRail"></div>
+        </div>
+    </div>
+
+
+    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" id="mCSB_1_scrollbar_horizontal" >
+        <div class="mCSB_draggerContainer">
+            <div class="mCSB_dragger" id="mCSB_1_dragger_horizontal" oncontextmenu="return false;" style="position: absolute; min-width: 50px; width: 0px; left: 0px;">
+                <div class="mCSB_dragger_bar"></div>
+            </div>
+
+
+            <div class="mCSB_draggerRail"></div>
+        </div>
+    </div>
+</div>

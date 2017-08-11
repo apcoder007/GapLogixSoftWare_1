@@ -1,0 +1,198 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
+  <div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
+<span id="include" class="center-body-false">
+
+
+
+    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
+    <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel" id="newLeaveRequestForm:mainPanel">
+  <div class="ui-panel-content ui-widget-content" id="newLeaveRequestForm:mainPanel_content">
+    <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId" id="newLeaveRequestForm:reqFldId">
+      <div class="ui-panel-content ui-widget-content" id="newLeaveRequestForm:reqFldId_content">
+        <div aria-live="polite" class="ui-messages ui-widget" id="newLeaveRequestForm:errorMessages">
+        </div>
+      </div>
+    </div>
+    <span id="newLeaveRequestForm:newLeaveRequestPanel1"><span id="newLeaveRequestForm:newLeaveRequestPanel12"></span></span>
+
+    <div class="form_content fax_m">
+      <span id="newLeaveRequestForm:newLeaveRequestPanel1"></span>
+
+      <div class="panel_title">
+        <span id="newLeaveRequestForm:newLeaveRequestPanel1"><span title="">SELECT EMPLOYEE</span></span>
+      </div>
+
+
+      <div class="form_content_inner">
+        <table>
+          <tbody>
+            <tr>
+              <td class="td_labelCol"><label class="redColor">*</label><label for="newLeaveRequestForm:startdate_input" title="">Start Date:</label>
+              </td>
+
+              <td class="td_outputCol">
+                <span class="leaveStartDate" id="newLeaveRequestForm:startdate"><input class="datepicker" type="text"></span>
+
+                <div aria-live="polite" class="ui-message" id="newLeaveRequestForm:selectDateMessage">
+                </div>
+              </td>
+
+              <td class="td_labelCol"><label class="redColor">*</label><label for="newLeaveRequestForm:enddate_input" title="">End Date:</label>
+              </td>
+
+              <td class="td_outputCol"><span class="leaveStartDate" id="newLeaveRequestForm:startdate"><input class="datepicker" type="text"></span>
+              </td>
+            </tr>
+
+
+            <tr>
+              <td><button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success mrg ui-state-hover" id="searchForm:refresh" name="searchForm:refresh" role="button" type="submit"><span class="ui-button-text ui-c">refresh</span></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="listing_kb">
+      <table width="100%">
+        <tbody>
+          <tr>
+            <td align="left" class="titleTBnone" width="49%"><span class="heading-style"><span title="">LEAVE HISTORY</span></span>
+            </td>
+
+            <td align="right" width="49%">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="listing_kb_inner">
+        <span id="newLeaveRequestForm:entitlementPanel22"></span>
+
+        <table class="table-header" id="newLeaveRequestForm:leaveQuotaDetail" summary="Leave Quota Detail">
+          <thead>
+            <tr>
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px;">Select</p>
+                  <input name="" style="border-radius: 2px; padding: 2px" type="checkbox">
+                </div>
+              </th>
+
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px;">Task Code</p>
+                  <input name="" style="border-radius: 2px;width:130px; padding: 2px"  type="text">
+                </div>
+              </th>
+
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px;">Employee Name</p>
+                  <input name="" style="border-radius: 2px; width:130px; padding: 2px" type="text">
+                </div>
+              </th>
+
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px; ">Employee Code</p>
+                  <input name="" style="border-radius: 2px; width:130px; padding: 2px" type="text">
+                </div>
+              </th>
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px;">Stage</p>
+                  <input name="" style="border-radius: 2px; width:130px;padding: 2px" type="text">
+                </div>
+              </th>
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px;">Status</p>
+                  <input name="" style="border-radius: 2px;width:130px; padding: 2px" type="text">
+                </div>
+              </th>
+              <th scope="col">
+                <div>
+                  <p style="color: white; margin-bottom: -0.5px;">MoreInfo</p>
+                  <input name="" style="border-radius: 2px; width:130px;padding: 2px" type="text">
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+
+              <td>EL</td>
+
+              <td>15.0</td>
+
+              <td>Pending</td>
+              <td>Pending</td>
+              <td>Pending</td>
+              <td>Pending</td>
+
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+
+              <td>EL</td>
+
+              <td>15.0</td>
+
+              <td>Pending</td>
+              <td>Pending</td>
+              <td>Pending</td>
+              <td>Pending</td>
+
+            </tr>
+
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form_content RemarksBK">
+      <h3 style="font-size:14px;">Remarks</h3>
+      <div class="form_content_inner"><table>
+<tbody>
+<tr>
+<td><label>
+Approver Comments</label></td>
+<td><textarea id="bulkTaskForm:remarksMsg" name="bulkTaskForm:remarksMsg" cols="40" rows="4" maxlength="2147483647" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all ui-inputtextarea-resizable" role="textbox" aria-disabled="false" aria-readonly="false" aria-multiline="true"></textarea></td>
+<td><div id="bulkTaskForm:j_idt16075" aria-live="polite" class="ui-message"></div></td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="bulkTaskForm:j_idt16081" class="ui-outputpanel ui-widget"><button id="bulkTaskForm:j_idt16082" name="bulkTaskForm:j_idt16082" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Approve</span></button><button id="bulkTaskForm:j_idt16084" name="bulkTaskForm:j_idt16084" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Reject</span></button></div>
+
+   
+
+       
+
+
+      
+          
+          
+          
+
+
+          

@@ -1,0 +1,1385 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
+
+
+<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
+<span id="include" class="center-body-false">
+
+
+
+<div class="fliter_layout_block">
+  <div class="fliter_block" style="display: none;">
+    <div class="left_report_inner">
+      <div class="ui-outputpanel ui-widget" id="altReport:altReportParamPanel">
+        <div aria-live="polite" class="ui-messages ui-widget" id="altReport:reportMessageDisplay">
+        </div>
+
+
+        <h3 class="heading-style">Report Filters</h3>
+
+
+        <div class="filters_scroll" style="display: ;">
+        </div>
+
+
+        <div class="row filters_scroll2">
+          <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success btn_sm" id="altReport:j_idt16819" name="altReport:j_idt16819" onclick="scrollUp();;PrimeFaces.ab({s:&quot;altReport:j_idt16819&quot;,p:&quot;altReport:altReportParamPanel altReport:altReportParamPanel1&quot;,u:&quot;altReport&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">Submit</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="fliter_block_adhoc" style="display: none;">
+    <div class="left_report_inner">
+      <div class="ui-outputpanel ui-widget" id="altReport:altReportParamPanel1">
+        <div aria-live="polite" class="ui-messages ui-widget" id="altReport:reportMessageDisplay1">
+        </div>
+
+
+        <h3 class="heading-style">Report Filters</h3>
+
+
+        <div class="filters_scroll" style="display: none;">
+        </div>
+
+
+        <div class="row filters_scroll2">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="report_block" style="display: ;">
+    <h3 class="heading-style">Standard Report</h3>
+
+
+    <div class="report_title_block">
+      <div class="report_cell_one">
+        Report Name
+      </div>
+
+
+      <div class="report_cell_two">
+        Description
+      </div>
+
+
+      <div class="report_cell_three">
+        Options
+      </div>
+    </div>
+
+
+    <div class="report_content_block">
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt16831">OT_Hours_Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt16833">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt16835">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt16837" name="altReport:j_idt16837" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt16837&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt16840">Attendance Payroll Input Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt16842">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt16844">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt16846" name="altReport:j_idt16846" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt16846&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt16849">Attendance Part Timer Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt16851">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt16853">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt16855" name="altReport:j_idt16855" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt16855&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt16858">Calculate OT Hours Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt16860">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt16862">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt16864" name="altReport:j_idt16864" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt16864&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt16867">Paid holiday Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt16869">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt16871">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt16873" name="altReport:j_idt16873" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt16873&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt22380">Attendance Payroll Input Datewise Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt22382">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt22384">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt22386" name="altReport:j_idt22386" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt22386&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt22622">Attendance Master -All Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt22624">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt22626">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt22628" name="altReport:j_idt22628" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt22628&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt22631">Master Attendance Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt22633">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt22635">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt22637" name="altReport:j_idt22637" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt22637&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26754">First In Last Out Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26756">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26758">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26760" name="altReport:j_idt26760" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26760&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26763">Attendance_Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26765">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26767">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26769" name="altReport:j_idt26769" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26769&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26772">Regularization Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26774">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26776">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26778" name="altReport:j_idt26778" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26778&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26781">My Team Attendance Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26783">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26785">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26787" name="altReport:j_idt26787" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26787&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26790">Time And Attendance Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26792">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26794">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26796" name="altReport:j_idt26796" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26796&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26799">Shift Detail Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26801">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26803">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26805" name="altReport:j_idt26805" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26805&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26808">Attendance Master Report_LateComers</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26810">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26812">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26814" name="altReport:j_idt26814" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26814&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26817">Absence Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26819">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26821">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26823" name="altReport:j_idt26823" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26823&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26826">Attendance Report - Capacity Team</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26828">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26830">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26832" name="altReport:j_idt26832" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26832&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26835">Maersk Regularization Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26837">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26839">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26841" name="altReport:j_idt26841" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26841&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26844">Timesheet utilization Report(Task Wise)</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26846">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26848">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26850" name="altReport:j_idt26850" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26850&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26853">Timesheet utilization Report(Project Wise)</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26855">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26857">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26859" name="altReport:j_idt26859" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26859&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26862">Timesheet_Work_Utilization</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26864">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26866">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26868" name="altReport:j_idt26868" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26868&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26871">Timesheet_Project_Details</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26873">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26875">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26877" name="altReport:j_idt26877" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26877&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26880">Timesheet_Default</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26882">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26884">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26886" name="altReport:j_idt26886" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26886&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26889">ReversalDetails_Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26891">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26893">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26895" name="altReport:j_idt26895" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26895&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26898">ReporteesTimesheetStatusReportForProject_Owner</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26900">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26902">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26904" name="altReport:j_idt26904" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26904&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26907">NewTimesheet_DefaulterList</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26909">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26911">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26913" name="altReport:j_idt26913" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26913&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26916">TaskWiseWorkHoursTimesheetReport_ForProjectOwner</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26918">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26920">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26922" name="altReport:j_idt26922" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26922&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26925">ReporteesTimesheetStatusReport_ForProjectOwnerCustomer</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26927">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26929">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26931" name="altReport:j_idt26931" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26931&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26934">ProjectNotAssignedTimesheet_Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26936">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26938">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26940" name="altReport:j_idt26940" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26940&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26943">ProjectNotAssignedTimesheetReport_ForHRManager</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26945">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26947">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26949" name="altReport:j_idt26949" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26949&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26952">TimesheetNotSubmitted_Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26954">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26956">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26958" name="altReport:j_idt26958" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26958&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26961">Payroll Attendance Report with status</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26963">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26965">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26967" name="altReport:j_idt26967" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26967&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26970">TeamTimesheet_Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26972">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26974">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26976" name="altReport:j_idt26976" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26976&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26979">First In Last Out Report HrMgrView</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26981">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26983">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26985" name="altReport:j_idt26985" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26985&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26988">First In Last Out Report Mgrview</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26990">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt26992">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt26994" name="altReport:j_idt26994" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt26994&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt26997">First In Last Out Report HrOpsView</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt26999">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27001">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27003" name="altReport:j_idt27003" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27003&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27006">Time And Attendance (Manager View)</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27008">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27010">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27012" name="altReport:j_idt27012" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27012&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27015">Additional Inputs Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27017">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27019">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27021" name="altReport:j_idt27021" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27021&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27024">Payroll Input Report By Date</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27026">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27028">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27030" name="altReport:j_idt27030" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27030&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27033">Compass Attendance Report with status</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27035">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27037">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27039" name="altReport:j_idt27039" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27039&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27042">Maersk New Roster Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27044">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27046">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27048" name="altReport:j_idt27048" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27048&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27051">Timesheet utilization taskwise_rolewise</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27053">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27055">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27057" name="altReport:j_idt27057" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27057&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27060">Compass Attendance Report with status New</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27062">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27064">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27066" name="altReport:j_idt27066" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27066&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27069">TimeSheet Office Vs Work Hours Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27071">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27073">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27075" name="altReport:j_idt27075" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27075&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27078">Mobile Attendance Punch-in &amp; Punch-out Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27080">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27082">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27084" name="altReport:j_idt27084" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27084&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27087">Attendance summary Report</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27089">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27091">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27093" name="altReport:j_idt27093" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27093&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="report_content_row">
+        <div class="report_cell_one">
+          <h3><label class="ui-outputlabel ui-widget" id="altReport:j_idt27096">TimeSheet_Task_Details</label>
+          </h3>
+
+
+          <div>
+            <label class="ui-outputlabel ui-widget" id="altReport:j_idt27098">Attendance Reports</label>
+          </div>
+        </div>
+
+
+        <div class="report_cell_two">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt27100">Alt Reports</label>
+        </div>
+
+
+        <div class="report_cell_three">
+          <div>
+            <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="altReport:j_idt27102" name="altReport:j_idt27102" onclick="setReport('report');;PrimeFaces.ab({s:&quot;altReport:j_idt27102&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">View Report</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="fliter_contentReport fliter_contentReport_adoc" style="display: none;">
+    <div class="heading-style">
+      <div class="div_filterString" style="display: none;">
+        <div class="selectedFilterName">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt24288">Role:</label>
+        </div>
+
+
+        <div class="selectedFilterLabel">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt24291">L1 Manager</label>
+        </div>
+
+
+        <div class="selectedFilterName">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt24294">Start Date:</label>
+        </div>
+
+
+        <div class="selectedFilterLabel">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt24297">12-Jul-2017</label>
+        </div>
+
+
+        <div class="selectedFilterName">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt24300">End Date:</label>
+        </div>
+
+
+        <div class="selectedFilterLabel">
+          <label class="ui-outputlabel ui-widget" id="altReport:j_idt24303">20-Jul-2017</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="report_records_top_adhoc row" style="display: none;">
+      <div class="report_records_left">
+      </div>
+
+
+      <div class="report_records_right">
+      </div>
+    </div>
+
+
+    <div class="div_filterString" style="display: none;">
+      <div class="selectedFilterLabel">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt24312">Role</label>
+      </div>
+
+
+      <div class="selectedFilterLabel">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt24315">L1 Manager</label>
+      </div>
+
+
+      <div class="selectedFilterLabel">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt24318">Start Date</label>
+      </div>
+
+
+      <div class="selectedFilterLabel">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt24321">12-Jul-2017</label>
+      </div>
+
+
+      <div class="selectedFilterLabel">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt24324">End Date</label>
+      </div>
+
+
+      <div class="selectedFilterLabel">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt24327">20-Jul-2017</label>
+      </div>
+    </div>
+
+
+    <div class="report_records_block" style="display: none;">
+      <div class="OverflowReport_Width">
+        <div class="ui-datatable ui-widget reportData altHeader" id="altReport:reportData">
+          <div class="ui-datatable-tablewrapper">
+            <table role="grid">
+              <thead id="altReport:reportData_head">
+                <tr role="row">
+                  <td>
+                  </td>
+                </tr>
+              </thead>
+
+
+              <tbody class="ui-datatable-data ui-widget-content" id="altReport:reportData_data">
+                <tr class="ui-widget-content ui-datatable-empty-message">
+                  <td colspan="0">No record found</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="report_records_bottom" style="display: none;">
+      <div class="report_records_left">
+        <label class="ui-outputlabel ui-widget" id="altReport:j_idt16903">Reporting Data Last Updated on :- 21-Jul-2017, 16:08:01 PM</label>
+      </div>
+
+
+      <div class="report_records_right">
+        <label class="ui-outputlabel ui-widget altReport_timeStamp" id="altReport:j_idt16905">Report Generated on: 21-Jul-2017, 17:38:26 PM</label>
+      </div>
+    </div>
+    <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-gray ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="altReport:j_idt16908" name="altReport:j_idt16908" onclick="scrollUp();;PrimeFaces.ab({s:&quot;altReport:j_idt16908&quot;,u:&quot;altReport leftPanel&quot;});return false;" role="button" type="submit"><span class="ui-button-text ui-c">Back</span></button>
+  </div>
+</div>
+
+   
+
+       
+
+
+      
+          
+          
+          
+
+
+          

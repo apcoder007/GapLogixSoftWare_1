@@ -1,0 +1,43 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<div ng-controller="loginController">
+<div class="bacgr_image sw-toggled': mactrl.layoutType === '1'" id="loginPage">
+	<div class="login-page">
+		<!-- logo image -->
+		<div class="log_ht"><img class="log_img" src="images/logo.png"></div><!-- logo-image -->
+		<!-- login-form -->
+		<form class="form_setup" id="loginForm" method="post" name="loginForm" ng-submit="submitLogin(loginForm)">
+			<div>
+				<div class="group">
+					<input id="email" ng-model="user.username" name="username" required type="text"> <span class="highlight"></span> <span class="bar"></span> <label>Email</label>
+				</div>
+			</div>
+			<div>
+				<div class="group1">
+					<input id="password" name="password" ng-model="user.password" required type="password"> <span class="highlight"></span> <span class="bar"></span> <label>Password</label>
+				</div>
+			</div>
+			
+			<div class="form-actions">
+                <button type="submit" ng-disabled="form.$invalid || this.dataLoading" class="btn btn-primary">Login</button>
+				<img ng-if="this.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+				
+			</div>
+		</form>
+	</div>
+	<div class="section-footer" style="position: fixed;z-index: 4;bottom: 0;right: 0;left: 0;text-align: center;">
+		<div class="row footerInner" style=" margin-top:-79px;">
+			<div class="footer-logo"><img alt="" id="j_idt54" src="images/logo.png" style="height:33px;margin-bottom:14px;"></div>
+			<div class="copy-right" style="color:#FFF;font-size:12px;">
+				<span class="poweredBy">Powered by</span> Gaplogix © 2017 <span>Gaplogix india Pvt Ltd.</span>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script src="vendors/bower_components/jquery/dist/jquery.min.js">
+	</script>
+  

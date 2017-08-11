@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="no-cache" http-equiv="Pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="no" name="msapplication-tap-highlight">
+    <title>Gaplogix - We Create Expreance</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type">
+    <meta content="en-us" http-equiv="Content-Language">
+    <link href="/images/favicon.ico?v=2" rel="shortcut icon">
+    <link href="/adminfiles/css/select2.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery-ui-1.8.16.custom.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/tablecss.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery.alert.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/wizard_css.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery.maxlength.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/uniform.css" media="screen" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'><!--[if IE 9]>  
+<link rel="stylesheet" type="text/css" href="http://192.168.1.85/gaplogix/public/media/css/ie9.css">  
+<![endif]--><!--[if IE 8]>  
+<link rel="stylesheet" type="text/css" href="http://192.168.1.85/gaplogix/public/media/css/ie8.css">  
+<![endif]--><!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+    <script src="/adminfiles/js/jquery-1.7.1.min.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery-1.10.2.min.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery-ui-1.10.3.custom.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/hrms.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/hrmsv2.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/ajaxupload.3.5.js" type="text/javascript">
+    </script><!-- start of time picker -->
+
+    <script language="javascript" src="/adminfiles/js/jquery.ui.timepicker.js?v=0.3.2" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.plugin.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.maxlength.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery.simplyscroll.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.alert.js" type="text/javascript">
+    </script><!-- end of time picker -->
+
+    <script language="JavaScript" src="/adminfiles/js/select2.js" type="text/javascript">
+    </script>
+    <script language="JavaScript" src="/adminfiles/js/CustomeChecker.js" type="text/javascript">
+    </script>
+
+    <link href="/adminfiles/css/jquery.ui.timepicker.css?v=0.3.2" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/custom.css" rel="stylesheet" type="text/css">
+    <script charset="utf-8" type="text/javascript">
+
+
+
+
+    function checkisactivestatus()
+    {       
+       $.ajax({
+           type:"post",        
+           url:base_url+'/index/checkisactivestatus',
+           dataType:'json',
+           success: function(response)
+           {
+               if(response['result'] == 'false')
+               {
+                   window.location.href = base_url+'/index/';
+               }
+           }
+       });
+    }
+
+    function configlater()
+    {
+       var URL = '';
+               URL = base_url+'/wizard/updatewizardcompletion';
+           
+       $.ajax({
+           type:"post",        
+           url:URL,
+           dataType:'json',
+           beforeSend: function () {
+               $.blockUI({ width:'50px',message: $("#spinner").html() });
+           },
+           success: function(response)
+           {
+               if(response['result'] == 'success')
+               {
+                   window.location.href = base_url+'/welcome/';
+               }
+               else
+               {
+                   $.unblockUI();
+                   jAlert('Something went wrong.');
+               }    
+           }
+       });
+       
+    }
+
+    function displayPopup(id,title)
+    {
+       apply_select2();
+       $("#unit_id").val('');
+       $("#street_address").val('');
+       $("#errors-unit_id").html('');
+       $("#errors-street_address").remove();
+       $("#successdiv").hide();
+       $("#contentdiv").show();
+       $("#errors-holidaygroup").remove();
+       $("#errors-category_name").remove();
+       $("#errors-category").remove();
+       //var title = $("#"+id).html();
+       $("#category_name").val('');
+       $("#holidaygroup").val('');
+       $("#category").val('');
+       $("#description").val('');
+       $("#"+id).dialog({
+           draggable:false, 
+           resizable: false,
+           width: 500,
+           title: title,
+           modal: true,
+           close: function() {
+               closeDialogPopup('bunitdiv');
+           }
+       });
+    }
+
+    function closeDialogPopup(id) {
+       $("#"+id).dialog('close');
+    }
+
+    </script>
+    <script charset="utf-8" type="text/javascript">
+    $(function() {
+       setTimeout('hideMessg()',3000);
+    });
+    function hideMessg() {
+       if($("#dispmsgmenu").is(":visible"))
+         $('#dispmsgmenu').fadeOut('slow','swing');
+    }
+    // defining the project name for using in js files
+    var projectPath =  '/Gaplogix/';
+    var application_name = 'Gaplogix';
+
+    $(document).ready(function(){
+     
+     /* Making window responsive*/
+     
+       var window_width = $(window).width();
+       
+       var content_inners_width = window_width*(99/100);
+       $('.content_inners').css("width", content_inners_width);
+       $('.wrapperdivleft').css("width", "250");
+       $('.wrapperdivright').css("width", (content_inners_width-250));
+           
+       
+       function checkmainWidth() 
+       {
+           var window_width = $(window).width();
+           var content_inners_width = window_width*(99/100);
+           $('.content_inners').css("width", content_inners_width);
+
+           $('.wrapperdivleft').css("width", "250");
+           $('.wrapperdivright').css("width", (content_inners_width-250));     
+       }   
+       $(window).resize(function() 
+       {       
+                   checkmainWidth();
+
+           $("#scroller").simplyScroll({
+                          auto: false,
+                          speed: 10
+                  });
+       });
+     /* End of Making window responsive */         
+       
+    });//end of ready function
+
+    $(document).ready(function(e){
+        $("#submitbutton").click(function(){ 
+               $.blockUI({ width:'50px',message: $("#spinner").html() });
+           });   
+        $("#prev,#next,#backtosite,.logo").click(function(e){ 
+               if(parseFloat($.trim(e.which)) != 2 && !e.ctrlKey)
+               { 
+                   $.blockUI({ width:'50px',message: $("#spinner").html() });
+               } 
+               if(parseFloat($.trim(e.which)) == 2 || parseFloat($.trim(e.which)) == 0)
+               {
+                   $.unblockUI();
+               } 
+           }); 
+
+        $(".wrapper ul li").click(function(e){ 
+               if(parseFloat($.trim(e.which)) != 2 && !e.ctrlKey)
+               { 
+                   $.blockUI({ width:'50px',message: $("#spinner").html() });
+               } 
+               if(parseFloat($.trim(e.which)) == 2 || parseFloat($.trim(e.which)) == 0)
+               {
+                   $.unblockUI();
+               } 
+           });   
+              
+       
+
+       $(document).ajaxStart(function(){       
+           checkisactivestatus();
+       });     
+       $(document).ajaxSuccess(function(event, request, settings)
+       {               
+           var response = request.responseText;
+           if(response == '{"login":"failed"}')
+           {
+               window.location.href = '/admin/trail';
+           }
+       }); 
+       $(document).ajaxStop($.unblockUI); 
+       $(document).ajaxError($.unblockUI);
+           
+       $("select:not(.not_appli)").select2({
+           formatResult: format_select,            
+           escapeMarkup: function(m) { return m; }
+       });
+       function format_select(selData) 
+       {
+       var parent_id = selData.element[0].parentElement.id;
+       
+           var sel_array = new Array('approver1','approver2','approver3','reporting_id','interviewer_id','reporting_manager','employee');
+           if(jQuery.inArray(parent_id,sel_array) >=0)
+           {
+               if(parent_id == 'employee')
+               {
+                   var title = '';
+                   var emp_split = selData.id.split('-');
+                   var textData = selData.text;
+
+                   if (selData.id == 0) return selData.text; 
+                   if(emp_split[0] == 'cand')
+                   {
+                       title = 'candidate-profile_pic.jpg';                    
+                   }
+                   else if(emp_split[0] == 'emp')
+                   {
+                       title = $('#'+parent_id+' option[value="'+selData.id+'"]').attr('title');
+                   }
+                   else 
+                       title = '';
+                   return "<img class='flag' src='" + domain_data + "public/uploads/profile/"+title+"' onerror=\"this.src='"+domain_data+"/public/uploads/profile/profile_pic.png'\" />" + "<span>" + textData + "<\/span><div class='seldivimg'><\/div>";
+               }
+               else
+               {
+                   var title = $('#'+parent_id+' option[value="'+selData.id+'"]').attr('title');
+                   if (!selData.id) return selData.text; 
+               
+                   if(title == '')
+                       title = "profile_pic.png";
+                   return "<img class='flag' src='" + domain_data + "public/uploads/profile/"+title+"' onerror=\"this.src='"+domain_data+"/public/uploads/profile/profile_pic.png'\" />" + "<span>" + selData.text + "<\/span><div class='seldivimg'><\/div>";
+               }
+           }
+           else 
+           {
+               return  "<span>" + selData.text + "<\/span><div class='seldivimg'><\/div>";
+           }            
+       }
+
+
+       });
+
+
+
+    </script>
+</head>
+<body>
+    <form>
+        <input id="baseurl" type="hidden" value="/admin/trail"> <input id="dateformatjs" type="hidden" value="dd MM yy"> <input id="loginuserId" name="loginuserId" type="hidden" value="1"> <input id="dragid" type="hidden" value="">
+    </form>
+    <div id="container">
+        <div class="ajax-loader" id="spinner" style="display:none;"><img alt="Loading" id="img-spinner" src="/images/loader2.gif"></div>
+        <div class="container">
+            <div class="top_wrapper">
+                <div class="sitedivclass" id="sitediv">
+                    <div class="backtosite">
+                        <a class="back-btn" href="#" id="backtosite" title="Redirect to application">Back To Site</a>
+                    </div>
+                    <div class="configlater backtosite" style="display:none;">
+                        <a class="back-btn" href="javascript:void(0)" onclick="configlater();" title="Configure wizard configuration later">Configure Later</a>
+                    </div>
+                </div>
+                <div class="logo" onclick="window.location='#'"></div>
+                <div class="wizard_info">
+                    Configuration Wizard allows you to configure settings that reflect requirements unique to your organization and make your application ready to use.
+                </div>
+            </div>
+            <div class="wrapper">
+                <ul class="left_steps">
+                    <li class="manage_modules inactive" id="manage_modules" onclick="window.location='/admin/trail';">
+                        <div class="circle">
+                            1
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Modules</h4><span>Enable the modules that are essential to your human resource process by selecting or deselecting them.</span>
+                        <div class="manage_menu progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="site_config inactive" id="site_config" onclick="window.location='/admin/configure';">
+                        <div class="circle">
+                            2
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Site Config</h4><span>Configure the standards used in your organization by providing the site preferences.</span>
+                        <div class="config_site progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="organization inactive" id="organization" onclick="window.location='/admin/organisation';">
+                        <div class="circle">
+                            3
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Organization</h4><span>Provide your organization information to get your system up and running.</span>
+                        <div class="config_organization progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="businessunit inactive" id="business_unit" onclick="window.location='/admin/bussiness';">
+                        <div class="circle">
+                            4
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Business Units</h4><span>Configure business unit and departments in your organization.</span>
+                        <div class="config_dept progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="servicerequest inactive" id="service_request" onclick="window.location='/admin/services';">
+                        <div class="circle">
+                            5
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Service Request</h4><span>Configure service request settings used in your organization.</span>
+                        <div class="config_request progress">
+                            In Progress
+                        </div>
+                    </li><!--  <li class="management_details inactive">
+                    <div class="circle">4</div>
+                    <div class="circle cir_completed"></div>
+                    <h4 class="step_title">Management Details</h4>
+                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text
+                    of the printing.</span>
+                </li>
+                <li class="hr_manager inactive">
+                    <div class="circle">5</div>
+                    <div class="circle cir_completed"></div>
+                    <h4 class="step_title">HR Manager</h4>
+                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text
+                    of the printing.</span>
+                </li>-->
+                </ul>
+                <div class="content_wrapper">
+                    <div class="total-form-controller">
+                        <h3 class="step_main_title">Manage Modules</h3>
+                        <div class='add_emp_new'>
+                            <a href='#'>Add Employee</a>
+                        </div>
+                        <div class="manage-menu-circuit">
+                            <div class="manage-menu-level-1">
+                                <div class="hrms-text">
+                                    Gaplogix
+                                </div>
+                                <div class="service-request-inactive">
+                                    <div class="service-request-menu" id="menu_143" title="Service Request"></div>
+                                </div>
+                                <div class="report-inactive">
+                                    <div class="reports-menu" id="menu_8" title="Analytics"></div>
+                                </div>
+                                <div class="times-inactive">
+                                    <div class="times-active-menu" id="menu_130" title="Time"></div>
+                                </div>
+                                <div class="performance-inactive">
+                                    <div class="performance-active-menu" id="menu_149" title="Appraisals"></div>
+                                </div>
+                                <div class="resources-inactive">
+                                    <div class="resources-active-menu" id="menu_19" title="Talent Acquisition"></div>
+                                </div>
+                                <div class="bc-inactive">
+                                    <div class="bc-active-menu" id="menu_5" title=" Background Check"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-explain-data">
+                            <div class="menu-text" style="display:none;">
+                                You can manage your Gaplogix system by selecting or de-selecting the below modules.
+                            </div>
+                            <div class="diagram-details">
+                                <div class="active-label">
+                                    <b></b><span>Active</span>
+                                </div>
+                                <div class="inactive-label">
+                                    <b></b><span>Inactive</span>
+                                </div>
+                                <div class="disable-label">
+                                    <b></b><span>Not Available</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit-explain-data">
+                            <form action="#" id="formid" method="post" name="managemenu">
+                                <input id="chk_menu" name="chk_menu" type="hidden" value="">
+                                <div class="new-form-ui-submit" id="savebuttondiv" style="display: none; position: absolute; margin-left: 30px;">
+                                    <input id="submitbutton" name="submit" type="submit" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="nxt_pre_button nxt_pre_button2">
+                            <button class="next_butt" id="next" name="next" onclick="window.location='/admin/configure';" type="button">Next</button>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                    var checkmenu  = '';
+                    $(document).ready(function() {
+
+                                   checkmenu += '5,';
+                               $('#menu_5').parent().removeClass('bc-inactive');
+                               $('#menu_5').parent().addClass('bc-active');
+                                   checkmenu += '8,';
+                               $('#menu_8').parent().removeClass('report-inactive');
+                               $('#menu_8').parent().addClass('report-active');
+                                   checkmenu += '19,';
+                               $('#menu_19').parent().removeClass('resources-inactive');
+                               $('#menu_19').parent().addClass('resources-active');
+                                   checkmenu += '130,';
+                               $('#menu_130').parent().removeClass('times-inactive');
+                               $('#menu_130').parent().addClass('times-active');
+                               checkmenu += '143,';
+                           $('#menu_143').parent().removeClass('service-request-inactive');
+                           $('#menu_143').parent().addClass('service-request-active');
+                                   checkmenu += '149,';
+                               $('#menu_149').parent().removeClass('performance-inactive');
+                               $('#menu_149').parent().addClass('performance-active');
+                       $('#chk_menu').val(checkmenu);
+                    $('#menu_7').on('click',function() {
+                           if($('#menu_7').parent().hasClass('compli-active')) 
+                           {               
+                               checkmenu = checkmenu.replace(/7,/,"");     
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_7').parent().removeClass('compli-active');
+                               $('#menu_7').parent().addClass('compli-inactive');
+                           }else if($('#menu_7').parent().hasClass('compli-inactive')) 
+                           {
+                               checkmenu = checkmenu+'7,';             
+                               $('#chk_menu').val(checkmenu);              
+                               $('#menu_7').parent().removeClass('compli-inactive');
+                               $('#menu_7').parent().addClass('compli-active');
+                           }
+                    });
+                    $('#menu_8').on('click',function() {
+                           if($('#menu_8').parent().hasClass('report-active')) 
+                           {               
+                               checkmenu = checkmenu.replace(/8,/,"");             
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_8').parent().removeClass('report-active');
+                               $('#menu_8').parent().addClass('report-inactive');
+                           }else if($('#menu_8').parent().hasClass('report-inactive')) 
+                           {
+                               checkmenu = checkmenu+'8,';             
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_8').parent().removeClass('report-inactive');
+                               $('#menu_8').parent().addClass('report-active');
+                           }
+                    });
+                    $('#menu_130').on('click',function() {  
+                           if($('#menu_130').parent().hasClass('times-active')) 
+                           {
+                               checkmenu = checkmenu.replace(/130,/,"");               
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_130').parent().removeClass('times-active');
+                               $('#menu_130').parent().addClass('times-inactive');
+                           }else if($('#menu_130').parent().hasClass('times-inactive')) 
+                           {
+                               checkmenu = checkmenu+'130,';               
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_130').parent().removeClass('times-inactive');
+                               $('#menu_130').parent().addClass('times-active');
+                           }
+                    });
+                    $('#menu_15').on('click',function() {   
+                           if($('#menu_15').parent().hasClass('benefits-active')) 
+                           {
+                               checkmenu = checkmenu.replace(/15,/,"");                
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_15').parent().removeClass('benefits-active');
+                               $('#menu_15').parent().addClass('benefits-inactive');
+                           }else if($('#menu_15').parent().hasClass('benefits-inactive')) 
+                           {
+                               checkmenu = checkmenu+'15,';                
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_15').parent().removeClass('benefits-inactive');
+                               $('#menu_15').parent().addClass('benefits-active');
+                           }           
+                    });
+                    $('#menu_149').on('click',function() {
+                           if($('#menu_149').parent().hasClass('performance-active')) 
+                           {
+                               checkmenu = checkmenu.replace(/149,/,"");               
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_149').parent().removeClass('performance-active');
+                               $('#menu_149').parent().addClass('performance-inactive');
+                           }else if($('#menu_149').parent().hasClass('performance-inactive')) 
+                           {
+                               checkmenu = checkmenu+'149,';               
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_149').parent().removeClass('performance-inactive');
+                               $('#menu_149').parent().addClass('performance-active');
+                           }
+                    });
+                    $('#menu_19').on('click',function() {
+                           if($('#menu_19').parent().hasClass('resources-active')) 
+                           {
+                               checkmenu = checkmenu.replace(/19,/,"");                
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_19').parent().removeClass('resources-active');
+                               $('#menu_19').parent().addClass('resources-inactive');
+                           }else if($('#menu_19').parent().hasClass('resources-inactive')) 
+                           {
+                               checkmenu = checkmenu+'19,';                
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_19').parent().removeClass('resources-inactive');
+                               $('#menu_19').parent().addClass('resources-active');
+                           }
+                    });
+
+                    $('#menu_5').on('click',function() {
+                       if($('#menu_5').parent().hasClass('bc-active')) 
+                       {   
+                           checkmenu = checkmenu.replace(/5,/,"");             
+                           $('#chk_menu').val(checkmenu);
+                           $('#menu_5').parent().removeClass('bc-active');
+                           $('#menu_5').parent().addClass('bc-inactive');
+                       }else if($('#menu_5').parent().hasClass('bc-inactive')) 
+                       {
+                           checkmenu = checkmenu+'5,';             
+                           $('#chk_menu').val(checkmenu);
+                           $('#menu_5').parent().removeClass('bc-inactive');
+                           $('#menu_5').parent().addClass('bc-active');
+                       }
+                    });
+                    $('#menu_6').on('click',function() {
+                           if($('#menu_6').parent().hasClass('staffing-active')) 
+                           {
+                               checkmenu = checkmenu.replace(/6,/,"");             
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_6').parent().removeClass('staffing-active');
+                               $('#menu_6').parent().addClass('staffing-inactive');
+                           }else if($('#menu_6').parent().hasClass('staffing-inactive')) 
+                           {
+                               checkmenu = checkmenu+'6,';             
+                               $('#chk_menu').val(checkmenu);
+                               $('#menu_6').parent().removeClass('staffing-inactive');
+                               $('#menu_6').parent().addClass('staffing-active');
+                           }
+                           
+                       });
+
+                    $('#menu_143').on('click',function() {
+                       if($('#menu_143').parent().hasClass('service-request-active')) 
+                       {   
+                           checkmenu = checkmenu.replace(/143,/,"");               
+                           $('#chk_menu').val(checkmenu);
+                           $('#menu_143').parent().removeClass('service-request-active');
+                           $('#menu_143').parent().addClass('service-request-inactive');
+                       }else if($('#menu_143').parent().hasClass('service-request-inactive')) 
+                       {
+                           checkmenu = checkmenu+'143,';               
+                           $('#chk_menu').val(checkmenu);
+                           $('#menu_143').parent().removeClass('service-request-inactive');
+                           $('#menu_143').parent().addClass('service-request-active');
+                       }
+                    });
+
+                    $('[id^="menu"]').on('click',function() {
+                       
+                       $('#savebuttondiv').show();
+                    });
+                       
+
+                           
+                                               
+                                                                           $(".manage_modules").removeClass('inactive').addClass('completed inactive');
+                                       $(".manage_menu").removeClass('progress').addClass('completed_show');
+                                       $(".manage_menu").html('Completed');
+                                                                               $(".site_config").removeClass('inactive').addClass('completed inactive');
+                                       $(".config_site").removeClass('progress').addClass('completed_show');
+                                       $(".config_site").html('Completed');
+                                                                               $(".organization").removeClass('inactive').addClass('completed inactive');
+                                       $(".config_organization").removeClass('progress').addClass('completed_show');
+                                       $(".config_organization").html('Completed');
+                                                                                                   $(".servicerequest").removeClass('inactive').addClass('completed inactive');
+                                       $(".config_request").removeClass('progress').addClass('completed_show');
+                                       $(".config_request").html('Completed');
+                                                       
+                                                           $(".manage_modules").removeClass('inactive');
+                                       $("#manage_modules").removeAttr("onclick");
+                                       $( "#manage_modules" ).unbind( "click");
+                                                       
+                                   });
+
+                    </script>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <script src="../js/admin/jquery.form_3.39.js" type="text/javascript">
+        </script><!-- added on 07-aug-2013 by rama krishna -->
+        <script src="../js/admin/jquery.blockUI_2.64.js" type="text/javascript">
+        </script><!-- added on 07-aug-2013 by rama krishna -->
+        <script language="javascript" type="text/javascript">
+        $(document).ready(function() {
+        /* Making window responsive*/
+          var complete_empwidth = $('.emp-screen-view').width();
+          $('#displayimg').css("width", "150");
+          $('#personalDetailsDiv').css("width", (complete_empwidth-(152)));   
+              
+           function checkempWidth() {
+              var complete_empwidth = $('.emp-screen-view').width();      
+              $('#displayimg').css("width", "150");
+              $('#personalDetailsDiv').css("width", (complete_empwidth-(152)));       
+          }
+          
+          /* Making window responsive*/
+          var complete_width = $('.poc-ui-data-control').width();
+          $('.left-block-ui-data').css("width", "230");
+          $('.right-block-data').css("width", (complete_width-(263)));    
+              
+           function checkWidth() {
+              var complete_width = $('.poc-ui-data-control').width();     
+              $('.left-block-ui-data').css("width", "230");
+              $('.right-block-data').css("width", (complete_width-(263)));        
+          }
+          
+          
+          function checknew1Width() {
+              var complete_width = $('.short-ui-full-1').width();     
+              $('.short-ui-full-1 label').css("width", "160");
+              $('.short-ui-full-1 .division1').css("width", (complete_width-(190)));  
+          }
+
+          /* Making window responsive*/
+          var complete_width = $('.short-ui-full-1').width();
+          $('.short-ui-full-1 label').css("width", "160");
+          $('.short-ui-full-1 .division1').css("width", (complete_width-(190)));  
+          
+           
+          $(window).resize(function() {
+              checkWidth();
+              checkempWidth();
+              checknew1Width();
+          });
+
+          //$('.step_form').alternateScroll({ 'horizontal-bar-class': 'styled-h-bar'});
+          
+        }); 
+          
+        </script> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+    <div class="mdl-grid demo-content">
+      <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col" style="height:630px;">
+        <span id="include" class="center-body-false">
+          <div class="form_content">
+            <h3 style="font-size:12px;">Punch IN-OUT</h3>
+            <div class="form_content_inner"><table id="tmshiftEdit:officeInfoPanelGrid">
+              <tbody>
+                <tr>
+                  <td>
+                    <span style="font-weight:bold;padding-left:11px">Your last Punch time is  2017-07-21  11:00</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div id="tmshiftEdit:punchOutPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all punchInOutPanel" data-widget="widget_tmshiftEdit_punchOutPanel"><div id="tmshiftEdit:punchOutPanel_content" class="ui-panel-content ui-widget-content">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td class="td_labelCol"></td>
+                              <td><span class="ToolTip"></span></td>
+                              <td class="td_labelCol"></td>
+                              <td><span class="ToolTip"></span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table style="width:500px;">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <span class="ToolTip">
+                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchIn"  title="" type="submit"  role="button" aria-disabled="false"><span class="ui-button-text ui-c">Punch In</span></button>
+                                </span>
+                              </td>
+                              <td>
+                                <span class="ToolTip">
+                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchOut"  title="" type="submit"  role="button" aria-disabled="false">
+                                    <span class="ui-button-text ui-c">Punch Out</span>
+                                  </button>
+                                </span>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<script>
+    $('.ui-button').click(function(){
+    $(this).addClass("ui-state-disabled");
+})
+
+</script>

@@ -1,0 +1,96 @@
+application: gaplogix-164309
+version: beta
+runtime: python27
+threadsafe: true
+api_version: 1
+
+handlers:
+# Endpoints handler
+
+
+- url: /admin/.*
+  script: main.app
+
+
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /js
+  static_dir: js
+
+- url: /adminfiles
+  static_dir: adminfiles
+
+- url: /admindata
+  static_dir: admindata
+
+- url: /data
+  static_dir: data
+
+- url: /vendors
+  static_dir: vendors
+
+- url: /css
+  static_dir: css
+
+
+
+- url: /media
+  static_dir: media
+
+- url: /fonts
+  static_dir: fonts
+
+
+- url: /img
+  static_dir: img
+
+- url: /flask
+  static_dir: flask
+
+- url: /werkzeug
+  static_dir: werkzeug
+
+- url: /views
+  static_dir: views
+
+
+- url: /template
+  static_dir: template
+
+- url: /images
+  static_dir: images
+
+- url: /admin
+  static_dir: admin
+
+- url: /auth
+  static_dir: auth
+
+- url: /api/.*
+  script: api.app
+
+- url: /
+  static_files: index.html
+  upload: index\.html
+
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+
+- name: jinja2
+  version: latest
+
+- name: pycrypto
+  version: "2.6"
+
+- name: MySQLdb
+  version: latest
+
+
+inbound_services:
+- warmup
+

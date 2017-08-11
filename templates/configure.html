@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="no-cache" http-equiv="Pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="no" name="msapplication-tap-highlight">
+    <title>Gaplogix - Open Source HRMS</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type">
+    <meta content="en-us" http-equiv="Content-Language">
+    <link href="..../images/favicon.ico?v=2" rel="shortcut icon">
+    <link href="../images/favicon.ico?v=2" rel="shortcut icon">
+    <link href="/images/favicon.ico?v=2" rel="shortcut icon">
+    <link href="/adminfiles/css/select2.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery-ui-1.8.16.custom.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/tablecss.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery.alert.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/wizard_css.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery.maxlength.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+
+    <script src="/adminfiles/js/jquery-1.7.1.min.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery-1.10.2.min.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery-ui-1.10.3.custom.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/hrms.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/hrmsv2.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/ajaxupload.3.5.js" type="text/javascript">
+    </script><!-- start of time picker -->
+
+    <script language="javascript" src="/adminfiles/js/jquery.ui.timepicker.js?v=0.3.2" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.plugin.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.maxlength.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery.simplyscroll.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.alert.js" type="text/javascript">
+    </script>
+    <link href="/adminfiles/css/jquery.ui.timepicker.css?v=0.3.2" rel="stylesheet" type="text/css"><!-- end of time picker -->
+
+    <script language="JavaScript" src="/adminfiles/js/select2.js" type="text/javascript">
+    </script>
+
+    <link href="/adminfiles/css/custom.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/uniform.css" media="screen" rel="stylesheet" type="text/css">
+
+    <script charset="utf-8" type="text/javascript" src="/adminfiles/js/config/first.js"> </script>
+    <script charset="utf-8" type="text/javascript" src="/adminfiles/js/config/second.js"></script>
+    <script type="text/javascript" charset="utf-8">
+var domain_data = "http://192.168.1.25/gaplogix/";
+var base_url = "http://localhost:8080/admin";
+function checkisactivestatus()
+{   
+    $.ajax({
+        type:"post",    
+        url:"https://gapapi-100.appspot.com/api/checkisactivestatus/",
+        dataType:'json',
+        success: function(response)
+        {
+            if(response['result'] == 'false')
+            {
+                window.location.href = base_url+'/index/';
+            }
+        }
+    });
+}
+
+function configlater()
+{
+  var URL = '';
+      URL = base_url+'/wizard/updatewizardcompletion';
+    
+  $.ajax({
+        type:"post",    
+        url:URL,
+        dataType:'json',
+        beforeSend: function () {
+          $.blockUI({ width:'50px',message: $("#spinner").html() });
+    },
+        success: function(response)
+        {
+            if(response['result'] == 'success')
+            {
+                window.location.href = base_url+'/welcome/';
+            }
+            else
+            {
+              $.unblockUI();
+                jAlert('Something went wrong.');
+            }    
+        }
+    });
+  
+}
+
+function displayPopup(id,title)
+{
+  apply_select2();
+  $("#unit_id").val('');
+  $("#street_address").val('');
+  $("#errors-unit_id").html('');
+  $("#errors-street_address").remove();
+  $("#successdiv").hide();
+  $("#contentdiv").show();
+  $("#errors-holidaygroup").remove();
+  $("#errors-category_name").remove();
+  $("#errors-category").remove();
+  //var title = $("#"+id).html();
+  $("#category_name").val('');
+  $("#holidaygroup").val('');
+  $("#category").val('');
+  $("#description").val('');
+  $("#"+id).dialog({
+    draggable:false, 
+    resizable: false,
+    width: 500,
+    title: title,
+    modal: true,
+    close: function() {
+      closeDialogPopup('bunitdiv');
+    }
+  });
+}
+
+function closeDialogPopup(id) {
+  $("#"+id).dialog('close');
+}
+
+</script>
+</head>
+<body>
+    <form>
+        <input id="baseurl" type="hidden" value="/admin/managemenu"> <input id="dateformatjs" type="hidden" value="dd MM yy"> <input id="loginuserId" name="loginuserId" type="hidden" value="1"> <input id="dragid" type="hidden" value="">
+    </form>
+    <div id="container">
+        <div class="ajax-loader" id="spinner" style="display:none;"><img alt="Loading" id="img-spinner" src="/images/loader2.gif"></div>
+        <div class="container">
+            <div class="top_wrapper">
+                <div class="sitedivclass" id="sitediv">
+                    <div class="backtosite">
+                        <a class="back-btn" href="#" id="backtosite" title="Redirect to application">Back To Site</a>
+                    </div>
+                    <div class="configlater backtosite" style="display:none;">
+                        <a class="back-btn" href="javascript:void(0)" onclick="configlater();" title="Configure wizard configuration later">Configure Later</a>
+                    </div>
+                </div>
+                <div class="logo" onclick="window.location='#'"></div>
+                <div class="wizard_info">
+                    Configuration Wizard allows you to configure settings that reflect requirements unique to your organization and make your application ready to use.
+                </div>
+            </div>
+            <div class="wrapper">
+                <ul class="left_steps">
+                    <li class="manage_modules inactive" id="manage_modules" onclick="window.location='/admin/managemenu';">
+                        <div class="circle">
+                            1
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Modules</h4><span>Enable the modules that are essential to your human resource process by selecting or deselecting them.</span>
+                        <div class="manage_menu progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="site_config inactive" id="site_config" onclick="window.location='/admin/configure';">
+                        <div class="circle">
+                            2
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Site Config</h4><span>Configure the standards used in your organization by providing the site preferences.</span>
+                        <div class="config_site progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="organization inactive" id="organization" onclick="window.location='/admin/organisation';">
+                        <div class="circle">
+                            3
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Organization</h4><span>Provide your organization information to get your system up and running.</span>
+                        <div class="config_organization progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="businessunit inactive" id="business_unit" onclick="window.location='/admin/bussiness';">
+                        <div class="circle ">
+                            4
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Business Units</h4><span>Configure business unit and departments in your organization.</span>
+                        <div class="config_dept progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="servicerequest inactive" id="service_request" onclick="window.location='/admin/services';">
+                        <div class="circle">
+                            5
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Service Request</h4><span>Configure service request settings used in your organization.</span>
+                        <div class="config_request progress">
+                            In Progress
+                        </div>
+                    </li><!--  <li class="management_details inactive">
+                    <div class="circle">4</div>
+                    <div class="circle cir_completed"></div>
+                    <h4 class="step_title">Management Details</h4>
+                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text
+                    of the printing.</span>
+                </li>
+                <li class="hr_manager inactive">
+                    <div class="circle">5</div>
+                    <div class="circle cir_completed"></div>
+                    <h4 class="step_title">HR Manager</h4>
+                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text
+                    of the printing.</span>
+                </li>-->
+                </ul>
+                <div class="content_wrapper">
+                    <script language="javascript" type="text/javascript">
+                           $(document).ready(function(){
+                           
+                           
+
+                             $('#s2id_timezoneid').blur(function(){ 
+                                 $('#errors-timezoneid').remove();
+                                 
+                                 if($.trim($('#timezoneid').val()) == '')
+                                  {
+
+                                     // To place error messages after Add Link
+                                     $('#timezoneid').after("<span class='errors' id='errors-timezoneid'>Please select time zone preference.<\/span>");
+                                  }
+                                  else 
+                                  {
+                                      $('#errors-timezoneid').remove();   
+
+                                  }
+                                 });
+                                       
+                                          
+                                   
+
+                                 $('#s2id_dateformatid').blur(function(){ 
+                                     $('#errors-dateformatid').remove();
+                                     
+                                     if($.trim($('#dateformatid').val()) == '')
+                                      {
+
+                                         // To place error messages after Add Link
+                                         $('#dateformatid').after("<span class='errors' id='errors-dateformatid'>Please select date format.<\/span>");
+                                      }
+                                      else 
+                                      {
+                                          $('#errors-dateformatid').remove();   
+
+                                      }
+                                     });
+                                       
+                                          
+                                   
+
+                                     $('#s2id_timeformatid').blur(function(){ 
+                                         $('#errors-timeformatid').remove();
+                                         
+                                         if($.trim($('#timeformatid').val()) == '')
+                                          {
+
+                                             // To place error messages after Add Link
+                                             $('#timeformatid').after("<span class='errors' id='errors-timeformatid'>Please select time format.<\/span>");
+                                          }
+                                          else 
+                                          {
+                                              $('#errors-timeformatid').remove();   
+
+                                          }
+                                         });
+                                       
+                                          
+                                             
+
+                                       $('#othercurrencycode').blur(function(){                                   
+                                           $('#errors-othercurrencycode').remove();                                    
+                                           if($.trim($(this).val()) == '')
+                                            { 
+                                               $(this).parent().append("<span class='errors' id='errors-othercurrencycode'>Please enter currency code.<\/span>");
+                                               
+                                               $(this).val('');                                
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-othercurrencycode').remove();   
+                                                
+                                                 $('#othercurrencycode').trigger('keyup');
+                                               $('#othercurrencycode').trigger('change'); 
+                                            }
+                                            
+                                           });
+                                           
+                                           
+                                          
+                                             
+                                       $('#othercurrencycode').keyup(function(){
+                                            var expr = /^[a-zA-Z][a-zA-Z0-9\s]*$/;
+                                            $('#errors-othercurrencycode').remove(); 
+                                            $('.errors-othercurrencycode').remove(); 
+                                           
+                                            if($(this).val() != '')
+                                            { 
+                                                if(!expr.test($(this).val()))
+                                                 {
+                                                     $('#errors-othercurrencycode').remove();                                    
+                                                     $(this).parent().append("<span class='errors' id='errors-othercurrencycode'>Please enter valid currency code.<\/span>");
+                                                     
+                                                 }
+                                            }
+                                            else
+                                            {
+                                                $('#errors-othercurrencycode').remove();                                    
+                                            }
+                                       }); 
+                                       
+                                     
+
+                                       $('#othercurrencyname').blur(function(){                                   
+                                           $('#errors-othercurrencyname').remove();                                    
+                                           if($.trim($(this).val()) == '')
+                                            { 
+                                               $(this).parent().append("<span class='errors' id='errors-othercurrencyname'>Please enter currency name.<\/span>");
+                                               
+                                               $(this).val('');                                
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-othercurrencyname').remove();   
+                                                
+                                                 $('#othercurrencyname').trigger('keyup');
+                                               $('#othercurrencyname').trigger('change'); 
+                                            }
+                                            
+                                           });
+                                           
+                                           
+                                          
+                                             
+                                       $('#othercurrencyname').keyup(function(){
+                                            var expr = /^[a-zA-Z][a-zA-Z0-9\s]*$/;
+                                            $('#errors-othercurrencyname').remove(); 
+                                            $('.errors-othercurrencyname').remove(); 
+                                           
+                                            if($(this).val() != '')
+                                            { 
+                                                if(!expr.test($(this).val()))
+                                                 {
+                                                     $('#errors-othercurrencyname').remove();                                    
+                                                     $(this).parent().append("<span class='errors' id='errors-othercurrencyname'>Please enter valid currency name.<\/span>");
+                                                     
+                                                 }
+                                            }
+                                            else
+                                            {
+                                                $('#errors-othercurrencyname').remove();                                    
+                                            }
+                                       }); 
+                                       
+                           
+
+                                       $('#s2id_currencyname').blur(function(){ 
+                                           $('#errors-currencyname').remove();
+                                           
+                                           if($.trim($('#currencyname').val()) == '')
+                                            {
+
+                                               // To place error messages after Add Link
+                                               $('#currencyname').after("<span class='errors' id='errors-currencyname'>Please select currency.<\/span>");
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-currencyname').remove();   
+
+                                            }
+                                           });
+                                       
+                                          
+                                   
+
+                                       $('#s2id_passwordid').blur(function(){ 
+                                           $('#errors-passwordid').remove();
+                                           
+                                           if($.trim($('#passwordid').val()) == '')
+                                            {
+
+                                               // To place error messages after Add Link
+                                               $('#passwordid').after("<span class='errors' id='errors-passwordid'>Please select default password.<\/span>");
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-passwordid').remove();   
+
+                                            }
+                                           });
+                                       
+                                          
+                                   
+
+                                       $('#s2id_perm_country').blur(function(){ 
+                                           $('#errors-perm_country').remove();
+                                           
+                                           if($.trim($('#perm_country').val()) == '')
+                                            {
+
+                                               // To place error messages after Add Link
+                                               $('#perm_country').after("<span class='errors' id='errors-perm_country'>Please select country.<\/span>");
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-perm_country').remove();   
+
+                                            }
+                                           });
+                                       
+                                          
+                                   
+
+                                       $('#s2id_perm_state').blur(function(){ 
+                                           $('#errors-perm_state').remove();
+                                           
+                                           if($.trim($('#perm_state').val()) == '')
+                                            {
+
+                                               // To place error messages after Add Link
+                                               $('#perm_state').after("<span class='errors' id='errors-perm_state'>Please select state.<\/span>");
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-perm_state').remove();   
+
+                                            }
+                                           });
+                                       
+                                          
+                                   
+
+                                       $('#s2id_perm_city').blur(function(){ 
+                                           $('#errors-perm_city').remove();
+                                           
+                                           if($.trim($('#perm_city').val()) == '')
+                                            {
+
+                                               // To place error messages after Add Link
+                                               $('#perm_city').after("<span class='errors' id='errors-perm_city'>Please select city.<\/span>");
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-perm_city').remove();   
+
+                                            }
+                                           });
+                                       
+                                          
+                                   
+
+                                       $('#s2id_workcodename').blur(function(){ 
+                                           $('#errors-workcodename').remove();
+                                           
+                                           if($.trim($('#workcodename').val()) == '')
+                                            {
+
+                                               // To place error messages after Add Link
+                                               $('#workcodename').after("<span class='errors' id='errors-workcodename'>Please select employment status.<\/span>");
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-workcodename').remove();   
+
+                                            }
+                                           });
+                                       
+                                          
+                                             
+
+                                       $('#employee_code').blur(function(){                                   
+                                           $('#errors-employee_code').remove();                                    
+                                           if($.trim($(this).val()) == '')
+                                            { 
+                                               $(this).parent().append("<span class='errors' id='errors-employee_code'>Please enter employee code.<\/span>");
+                                               
+                                               $(this).val('');                                
+                                            }
+                                            else 
+                                            {
+                                                $('#errors-employee_code').remove();   
+                                                
+                                                 $('#employee_code').trigger('keyup');
+                                               $('#employee_code').trigger('change'); 
+                                            }
+                                            
+                                           });
+                                           
+                                           
+                                          
+                                           
+                                          $('#employee_code').blur(function(){
+                                        
+                                           if($.trim($(this).val()) != '')
+                                            {
+                                               var minlength = 1;
+                                               var maxlength = 5;    
+                                               var label = $(this).parent().parent().find('label').text(); 
+                                               label = $.trim(label);
+                                               
+                                               if(label== 'Secondary Phone') 
+                                                 label = 'Secondary phone number';
+                                               if(label== 'Mobile') 
+                                                  label = 'Mobile number';
+                                               if(label == 'Primary Phone') 
+                                                  label = 'Primary phone number';
+                                                  
+                                               label = label.substr(0, 1).toUpperCase() + label.substr(1,label.length).toLowerCase();
+                                               
+                                               if(minlength != '')
+                                               {
+                                                   if($.trim($(this).val().length) < minlength)
+                                                   {                               
+                                                                    
+                                                       $('#errors-employee_code').remove();                                                                 
+                                                       $(this).parent().append("<span class='errors' id='errors-employee_code'>"+label+" must contain at least "+minlength+" characters.<\/span>");
+                                                   }
+                                               }
+                                               if(maxlength != '')
+                                               {                               
+                                                   if($.trim($(this).val().length) > maxlength)
+                                                   {
+                                                       $('#errors-employee_code').remove();                                                                 
+                                                       $(this).parent().append("<span class='errors' id='errors-employee_code'>"+label+" must contain at most "+maxlength+" characters.<\/span>");
+                                                   } 
+                                               }                                   
+                                            } 
+                                       });  
+                                     
+                                       $('#employee_code').keyup(function(){
+                                            var expr = /^[A-Za-z][a-zA-Z@\-]*$/;
+                                            $('#errors-employee_code').remove(); 
+                                            $('.errors-employee_code').remove(); 
+                                           
+                                            if($(this).val() != '')
+                                            { 
+                                                if(!expr.test($(this).val()))
+                                                 {
+                                                     $('#errors-employee_code').remove();                                    
+                                                     $(this).parent().append("<span class='errors' id='errors-employee_code'>Please enter valid employee code.<\/span>");
+                                                     
+                                                 }
+                                            }
+                                            else
+                                            {
+                                                $('#errors-employee_code').remove();                                    
+                                            }
+                                       }); 
+                                       
+                       }); //end of ready function.
+                    </script>
+                    <div class="total-form-controller">
+                        <div id="error_message" style="display:none;"></div>
+                        <h3 class="step_main_title">Site Configuration</h3>
+                        <div class='add_emp_new'>
+                            <a href='http://192.168.1.85/gaplogix/index.php/employee'>Add Employee</a>
+                        </div>
+                        <form action="http://192.168.1.85/gaplogix/index.php/wizard/configuresite" class="step_form" id="formid" method="post" name="systempreference">
+                            <input id="id" name="id" type="hidden" value="1"><input id="currencyid" name="currencyid" type="hidden" value=""><input id="organisationid" name="organisationid" type="hidden" value="1"><input id="empcodeid" name="empcodeid" type="hidden" value="1">
+                            <div class="form-ui">
+                                <label class="required">Employee Code <img class="tooltip" src="../images/help.png" title="Provide the employee code followed by your organization. Ex: EMPP001"></label> <input id="employee_code" maxlength="5" name="employee_code" type="text" value="GTL">
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">Currency <img class="tooltip" src="../images/help.png" title="Currency followed by your organization. Ex: US Dollar, Indian Rupee"></label> <select id="currencyname" name="currencyname" onchange="displayOtherCurrency(this)">
+                                    <option label="Select Currency" value="">
+                                        Select Currency
+                                    </option>
+                                    <option label="European Euro (EUR)" value="2">
+                                        European Euro (EUR)
+                                    </option>
+                                    <option label="Indian Rupee (INR)" selected="selected" value="4">
+                                        Indian Rupee (INR)
+                                    </option>
+                                    <option label="Pound Sterling (GBP)" value="3">
+                                        Pound Sterling (GBP)
+                                    </option>
+                                    <option label="US Dollar (USD)" value="1">
+                                        US Dollar (USD)
+                                    </option>
+                                    <option label="Other" value="other">
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-ui" id="othercurrencydiv" style=" display:none;">
+                                <label class="required">Other Currencyname</label> <input id="othercurrencyname" maxlength="50" name="othercurrencyname" type="text" value="">
+                            </div>
+                            <div class="form-ui" id="othercurrencycodediv" style="display:none;">
+                                <label class="required">Other Currencycode</label> <input id="othercurrencycode" maxlength="50" name="othercurrencycode" type="text" value="">
+                            </div>
+                            <div class="form-ui">
+        <label class="required">Date Format <img class="tooltip" title="Set the Date Format followed by your organization. Ex: 16/12/2014, 2014/12/16" src="../images/help.png"></label>
+            <select name="dateformatid" id="dateformatid">
+                <option value="" example="">Select Date Format</option>
+                <option  value="2" example="01/01/2013" >American month, day and year</option>
+                <option  value="3" example="2013/10/01" >Four digit year, month and day with slashes</option>
+                <option  value="4" example="2013-03-31" >Year, month and day with dashes</option>
+                <option  value="5" example="10.01.2013" >Day, month and four digit year with dots</option>
+                <option  value="6" example="10-01-2013" >Day, month and four digit year with dashes</option>
+                <option selected='selected' value="9" example="04 October 2013" >Day, textual month and year</option>
+                <option  value="10" example="July 1st, 2008" >Textual month, day and year</option>
+                <option  value="11" example="Apr-17-2012" >Month abbreviation, day and year</option>
+                <option  value="12" example="2013-Dec-22" >Year, month abbreviation and day</option>
+            </select>               
+            <span id="id_date_format_example" class="hint-new"></span>
+      </div>
+                            <div class="form-ui">
+        <label class="required">Time Format <img class="tooltip" title="Set the Time Format followed by your organization. Ex: 21:10, 21:10:10" src="../images/help.png"></label>
+                        <select name="timeformatid" id="timeformatid">
+                            <option value="" example="">Select Time Format</option>
+                            <option  value="1" example="9 AM" >Hour only, with meridian</option>
+                            <option selected='selected' value="2" example="9:10 AM" >Hour and minutes, with meridian</option>
+                            <option  value="3" example="9:10:10 AM" >Hour, minutes and seconds, with meridian</option>
+                            <option  value="5" example="22:10" >Hour and minutes, 24 Hours Notation</option>
+                            <option  value="6" example="15:10:55" >Hour, minutes and seconds, 24 Hours Notation</option>
+                        </select>
+                     <span id="id_time_format_example" class="hint-new"></span>            
+      </div>
+                            <div class="form-ui">
+                                <label class="required">Default Time Zone <img class="tooltip" src="../images/help.png" title="Set the Default Time Zone. Ex: Asia/Kolkata[IST], America/New_York[EDT]"></label> <select class="selectoption" id="timezoneid" name="timezoneid">
+                                    <option label="Select Time zone" value="">
+                                        Select Time zone
+                                    </option>
+                                    <option label="Asia/Kolkata [IST]" selected="selected" value="1">
+                                        Asia/Kolkata [IST]
+                                    </option>
+                                </select> <span class="add-coloum" onclick="displaydeptform('/admin/popup','Timezone');">Add Time zone</span>
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">Country <img class="tooltip" src="../images/help.png" title="Select a Country in which your organization is located. Ex: India, United Kingdom"></label> 
+                                <select id="perm_country" name="perm_country" onchange='displayParticularState(this,"","perm_state","")'>
+                                    <option label="Select Country" value="">
+                                        Select Country
+                                    </option>
+                                    
+                                </select>
+                                <script type="text/javascript">
+                                  $(document).ready(function(){
+
+                                    var listarea = $("#perm_country");
+
+                                    var xhttp = new XMLHttpRequest();
+                                    xhttp.open("GET", "https://gapapi-100.appspot.com/api/country/details/", false);
+                                    xhttp.setRequestHeader("Content-type", "application/json");
+                                    xhttp.send();
+                                    empl = JSON.parse(xhttp.responseText);
+                                    employee = empl.country_data;
+
+                                    $.each(employee, function(index, value) {
+                                      var optinons = new Option(value['country_name']);
+                                      optinons.setAttribute('value', value['id']);
+                                      optinons.setAttribute('label', value['country_name']);
+                                      listarea.append(optinons);
+                                    });
+
+
+                                    });
+                                </script>
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">State <img class="tooltip" src="../images/help.png" title="Select a State in which your organization is located. Ex: Alaska, Alabama"></label>
+                                <select id="perm_state" name="perm_state" onchange='displayParticularCity(this,"","perm_city","")'>
+                                    <!-- <option label="Select State" value="">
+                                        Select State
+                                    </option> -->
+                                    <!-- <option label="Andhra Pradesh" value="493!@#Andhra Pradesh">
+                                        Andhra Pradesh
+                                    </option>
+                                    <option label="Assam" value="494!@#Assam">
+                                        Assam
+                                    </option>
+                                    <option label="Bihar" value="495!@#Bihar">
+                                        Bihar
+                                    </option>
+                                    <option label="Chandigarh" value="496!@#Chandigarh">
+                                        Chandigarh
+                                    </option>
+                                    <option label="Chhatisgarh" value="497!@#Chhatisgarh">
+                                        Chhatisgarh
+                                    </option>
+                                    <option label="Delhi" value="498!@#Delhi">
+                                        Delhi
+                                    </option>
+                                    <option label="Gujarat" value="499!@#Gujarat">
+                                        Gujarat
+                                    </option>
+                                    <option label="Haryana" value="500!@#Haryana">
+                                        Haryana
+                                    </option>
+                                    <option label="Jammu and Kashmir" value="501!@#Jammu and Kashmir">
+                                        Jammu and Kashmir
+                                    </option>
+                                    <option label="Jharkhand" value="502!@#Jharkhand">
+                                        Jharkhand
+                                    </option>
+                                    <option label="Karnataka" value="503!@#Karnataka">
+                                        Karnataka
+                                    </option>
+                                    <option label="Kerala" value="504!@#Kerala">
+                                        Kerala
+                                    </option>
+                                    <option label="Madhya Pradesh" value="505!@#Madhya Pradesh">
+                                        Madhya Pradesh
+                                    </option>
+                                    <option label="Maharashtra" value="506!@#Maharashtra">
+                                        Maharashtra
+                                    </option>
+                                    <option label="Manipur" value="507!@#Manipur">
+                                        Manipur
+                                    </option>
+                                    <option label="Meghalaya" value="508!@#Meghalaya">
+                                        Meghalaya
+                                    </option>
+                                    <option label="Mizoram" value="509!@#Mizoram">
+                                        Mizoram
+                                    </option>
+                                    <option label="Orissa" value="510!@#Orissa">
+                                        Orissa
+                                    </option>
+                                    <option label="Pondicherry" value="511!@#Pondicherry">
+                                        Pondicherry
+                                    </option>
+                                    <option label="Punjab" value="512!@#Punjab">
+                                        Punjab
+                                    </option>
+                                    <option label="Rajasthan" value="513!@#Rajasthan">
+                                        Rajasthan
+                                    </option>
+                                    <option label="Tamil Nadu" value="514!@#Tamil Nadu">
+                                        Tamil Nadu
+                                    </option>
+                                    <option label="Tripura" value="515!@#Tripura">
+                                        Tripura
+                                    </option>
+                                    <option label="Uttar Pradesh" selected="selected" value="516!@#Uttar Pradesh">
+                                        Uttar Pradesh
+                                    </option>
+                                    <option label="Uttaranchal" value="517!@#Uttaranchal">
+                                        Uttaranchal
+                                    </option>
+                                    <option label="West Bengal" value="518!@#West Bengal">
+                                        West Bengal
+                                    </option> -->
+                                </select> <span class="errors" id="errors-perm_state" style="display:none;"></span>
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">City <img class="tooltip" src="../images/help.png" title="Select a City in which your organization is located. Ex: Buffalo, New York"></label> <select id="perm_city" name="perm_city">
+                                    <option label="Select City" value="">
+                                        Select City
+                                    </option>
+                                    <option label="Agra" value="1047!@#Agra">
+                                        Agra
+                                    </option>
+                                    <option label="Aligarh" value="1075!@#Aligarh">
+                                        Aligarh
+                                    </option>
+                                    <option label="Allahabad" value="1050!@#Allahabad">
+                                        Allahabad
+                                    </option>
+                                    <option label="Amroha" value="1228!@#Amroha">
+                                        Amroha
+                                    </option>
+                                    <option label="Bahraich" value="1236!@#Bahraich">
+                                        Bahraich
+                                    </option>
+                                    <option label="Banda" value="1340!@#Banda">
+                                        Banda
+                                    </option>
+                                    <option label="Bareilly" value="1063!@#Bareilly">
+                                        Bareilly
+                                    </option>
+                                    <option label="Budaun" value="1282!@#Budaun">
+                                        Budaun
+                                    </option>
+                                    <option label="Bulandshahr" value="1250!@#Bulandshahr">
+                                        Bulandshahr
+                                    </option>
+                                    <option label="Etawah" value="1262!@#Etawah">
+                                        Etawah
+                                    </option>
+                                    <option label="Faizabad" value="1261!@#Faizabad">
+                                        Faizabad
+                                    </option>
+                                    <option label="Farrukhabad-cum-Fatehgarh" value="1157!@#Farrukhabad-cum-Fatehgarh">
+                                        Farrukhabad-cum-Fatehgarh
+                                    </option>
+                                    <option label="Fatehpur" value="1280!@#Fatehpur">
+                                        Fatehpur
+                                    </option>
+                                    <option label="Firozabad" value="1143!@#Firozabad">
+                                        Firozabad
+                                    </option>
+                                    <option label="Ghaziabad" value="1078!@#Ghaziabad">
+                                        Ghaziabad
+                                    </option>
+                                    <option label="Gonda" value="1312!@#Gonda">
+                                        Gonda
+                                    </option>
+                                    <option label="Gorakhpur" value="1072!@#Gorakhpur">
+                                        Gorakhpur
+                                    </option>
+                                    <option label="Hapur" value="1217!@#Hapur">
+                                        Hapur
+                                    </option>
+                                    <option label="Hathras" value="1291!@#Hathras">
+                                        Hathras
+                                    </option>
+                                    <option label="Jaunpur" value="1234!@#Jaunpur">
+                                        Jaunpur
+                                    </option>
+                                    <option label="Jhansi" value="1110!@#Jhansi">
+                                        Jhansi
+                                    </option>
+                                    <option label="Kanpur" value="1031!@#Kanpur">
+                                        Kanpur
+                                    </option>
+                                    <option label="Kanpur Cantonment" value="1355!@#Kanpur Cantonment">
+                                        Kanpur Cantonment
+                                    </option>
+                                    <option label="Lucknow" value="1033!@#Lucknow">
+                                        Lucknow
+                                    </option>
+                                    <option label="Mathura" value="1135!@#Mathura">
+                                        Mathura
+                                    </option>
+                                    <option label="Maunath Bhanjan" value="1232!@#Maunath Bhanjan">
+                                        Maunath Bhanjan
+                                    </option>
+                                    <option label="Meerut" value="1051!@#Meerut">
+                                        Meerut
+                                    </option>
+                                    <option label="Meerut Cantonment" value="1349!@#Meerut Cantonment">
+                                        Meerut Cantonment
+                                    </option>
+                                    <option label="Mirzapur-cum-Vindhyachal" value="1183!@#Mirzapur-cum-Vindhyachal">
+                                        Mirzapur-cum-Vindhyachal
+                                    </option>
+                                    <option label="Modinagar" value="1323!@#Modinagar">
+                                        Modinagar
+                                    </option>
+                                    <option label="Moradabad" value="1081!@#Moradabad">
+                                        Moradabad
+                                    </option>
+                                    <option label="Muzaffarnagar" value="1128!@#Muzaffarnagar">
+                                        Muzaffarnagar
+                                    </option>
+                                    <option label="Noida" selected="selected" value="1216!@#Noida">
+                                        Noida
+                                    </option>
+                                    <option label="Orai" value="1335!@#Orai">
+                                        Orai
+                                    </option>
+                                    <option label="Pilibhit" value="1310!@#Pilibhit">
+                                        Pilibhit
+                                    </option>
+                                    <option label="Rae Bareli" value="1246!@#Rae Bareli">
+                                        Rae Bareli
+                                    </option>
+                                    <option label="Rampur" value="1124!@#Rampur">
+                                        Rampur
+                                    </option>
+                                    <option label="Saharanpur" value="1094!@#Saharanpur">
+                                        Saharanpur
+                                    </option>
+                                    <option label="Sambhal" value="1205!@#Sambhal">
+                                        Sambhal
+                                    </option>
+                                    <option label="Shahjahanpur" value="1130!@#Shahjahanpur">
+                                        Shahjahanpur
+                                    </option>
+                                    <option label="Sitapur" value="1269!@#Sitapur">
+                                        Sitapur
+                                    </option>
+                                    <option label="Unnao" value="1306!@#Unnao">
+                                        Unnao
+                                    </option>
+                                    <option label="Varanasi (Benares)" value="1044!@#Varanasi (Benares)">
+                                        Varanasi (Benares)
+                                    </option>
+                                </select> <span class="errors" id="errors-perm_city" style="display:none;"></span>
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">Default Password <img class="tooltip" src="../images/help.png" title="Default password format applicable to entire organization."></label> <select class="selectoption" id="passwordid" name="passwordid" onchange="displayPasswordDesc(this)">
+                                    <option label="Select Password Preference" value="">
+                                        Select Password Preference
+                                    </option>
+                                    <option label="Alphanumeric" selected="selected" value="1">
+                                        Alphanumeric
+                                    </option>
+                                    <option label="Alphanumeric and Special Characters" value="2">
+                                        Alphanumeric and Special Characters
+                                    </option>
+                                    <option label="Only Numbers" value="3">
+                                        Only Numbers
+                                    </option>
+                                    <option label="Numbers and Special Characters" value="4">
+                                        Numbers and Special Characters
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="password_hint" id="password_1" style="display:none; margin-top: -36px;">
+                                The password should contain atleast one alphabet and one number. The minimum length should be 6 characters and maximum length should be 15 characters. Eg: myname123
+                            </div>
+                            <div class="password_hint" id="password_2" style="display:none; margin-top: -36px;">
+                                The password should contain atleast one alphabet, one number and one special character. The minimum length should be 6 characters and maximum length should be 15 characters. Allowed special characters are .-#$@&_* Example: myname123@#
+                            </div>
+                            <div class="password_hint" id="password_3" style="display:none; margin-top: -36px;">
+                                The password should contain only numbers. The minimum length should be 6 characters and maximum length should be 15 characters. Eg: 123456
+                            </div>
+                            <div class="password_hint" id="password_4" style="display:none; margin-top: -36px;">
+                                The password should contain atleast one number and one special character. The minimum length should be 6 characters and maximum length should be 15 characters. Allowed special characters are .-#$@&_* Example: 1234@#$
+                            </div>
+                            <div class="form-ui form-ui-textarea">
+                                <label class="required">Employment Status <img class="tooltip" src="../images/help.png" title="Employment status of the employees. Ex: permanent, temporary, probation"></label> <select id="workcodename" multiple="multiple" name="workcodename[]">
+                                    <option label="Contract" value="6">
+                                        Contract
+                                    </option>
+                                    <option label="Deputation" value="7">
+                                        Deputation
+                                    </option>
+                                    <option label="Full Time" value="1">
+                                        Full Time
+                                    </option>
+                                    <option label="Left" value="9">
+                                        Left
+                                    </option>
+                                    <option label="Part Time" value="2">
+                                        Part Time
+                                    </option>
+                                    <option label="Permanent" value="3">
+                                        Permanent
+                                    </option>
+                                    <option label="Probationary" value="5">
+                                        Probationary
+                                    </option>
+                                    <option label="Resigned" value="8">
+                                        Resigned
+                                    </option>
+                                    <option label="Suspended" value="10">
+                                        Suspended
+                                    </option>
+                                    <option label="Temporary" value="4">
+                                        Temporary
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="new-form-ui-submit">
+                                <input id="submitbutton" name="submit" type="submit" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="currencyContainer" style="display: none; overflow: auto;">
+                        <div class="heading">
+                            <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="../images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                        </div><iframe class="business_units_iframe" frameborder="0" id="currencyCont" name="currencyCont"></iframe>
+                    </div>
+                    <div id="timezoneContainer" style="display: none; overflow: auto;">
+                        <div class="heading">
+                            <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="../images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                        </div><iframe class="business_units_iframe" frameborder="0" id="timezoneCont" name="timezoneCont"></iframe>
+                    </div>
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                    $('#dateformatid').change(function(){
+                       var val = $(this).val();
+                       $('#id_date_format_example').html('');
+                       var example = $('#dateformatid option[value="'+val+'"]').attr('example');
+                       if(example!='')
+                       $('#id_date_format_example').html("Example: "+example);
+                    });
+
+                    $('#timeformatid').change(function(){
+                       var val = $(this).val();
+                       $('#id_time_format_example').html('');
+                       var example = $('#timeformatid option[value="'+val+'"]').attr('example');
+                       if(example!='')
+                       $('#id_time_format_example').html("Example: "+example);
+                    });
+
+                    $('#dateformatid').trigger('change');
+                    $('#timeformatid').trigger('change');
+                    $('#passwordid').trigger('change');
+
+                           
+                                               
+                                                                           $(".manage_modules").removeClass('inactive').addClass('completed inactive');
+                                       $(".manage_menu").removeClass('progress').addClass('completed_show');
+                                       $(".manage_menu").html('Completed');
+                                                                               $(".site_config").removeClass('inactive').addClass('completed inactive');
+                                       $(".config_site").removeClass('progress').addClass('completed_show');
+                                       $(".config_site").html('Completed');
+                                                                               $(".organization").removeClass('inactive').addClass('completed inactive');
+                                       $(".config_organization").removeClass('progress').addClass('completed_show');
+                                       $(".config_organization").html('Completed');
+                                                                                                   $(".servicerequest").removeClass('inactive').addClass('completed inactive');
+                                       $(".config_request").removeClass('progress').addClass('completed_show');
+                                       $(".config_request").html('Completed');
+                                                       
+                                                           $(".site_config").removeClass('inactive');
+                                       $("#site_config").removeAttr("onclick");
+                                       $("#site_config" ).unbind( "click");
+                                                       
+                                   });
+
+                    var workcodename = '1,3,4,5,6';
+                    var errorMsg = "";
+                    var workcodenameArr = workcodename.split(",");
+                    var workcodenameData = document.getElementById('workcodename');
+                    for(var j = 0 ; j <= workcodenameArr.length ; j++)
+                    {   
+                    for(var i = 0 ; i <= workcodenameData.length ; i++)
+                    {
+                       if(workcodenameData.options[i] !== undefined)
+                       {
+                           if(workcodenameData.options[i].value === workcodenameArr[j]) 
+                           {
+                               if(errorMsg != '' && errorMsg != 'undefined')
+                               workcodenameData.options[i].selected = false;
+                               else workcodenameData.options[i].selected = true;
+                               break;
+                           }
+                       }
+                    }
+                    }
+
+
+
+                    </script>
+                    <div class="nxt_pre_button">
+                        <button class="Prev_butt" id="prev" name="prev" onclick="window.location='/admin/managemenu';" type="button">Prev</button> <button class="next_butt" id="next" name="next" onclick="window.location='/admin/organisation';" type="button">Next</button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <script src="../js/admin/jquery.form_3.39.js" type="text/javascript">
+        </script><!-- added on 07-aug-2013 by rama krishna -->
+        <script src="../js/admin/jquery.blockUI_2.64.js" type="text/javascript">
+        </script> 
+        <script src="../js/admin/hrms.js" type="text/javascript">
+        </script><!-- added on 07-aug-2013 by rama krishna -->
+        <!-- added on 07-aug-2013 by rama krishna -->
+        <script language="javascript" type="text/javascript">
+        $(document).ready(function() {
+        /* Making window responsive*/
+          var complete_empwidth = $('.emp-screen-view').width();
+          $('#displayimg').css("width", "150");
+          $('#personalDetailsDiv').css("width", (complete_empwidth-(152)));   
+              
+           function checkempWidth() {
+              var complete_empwidth = $('.emp-screen-view').width();      
+              $('#displayimg').css("width", "150");
+              $('#personalDetailsDiv').css("width", (complete_empwidth-(152)));       
+          }
+          
+          /* Making window responsive*/
+          var complete_width = $('.poc-ui-data-control').width();
+          $('.left-block-ui-data').css("width", "230");
+          $('.right-block-data').css("width", (complete_width-(263)));    
+              
+           function checkWidth() {
+              var complete_width = $('.poc-ui-data-control').width();     
+              $('.left-block-ui-data').css("width", "230");
+              $('.right-block-data').css("width", (complete_width-(263)));        
+          }
+          
+          
+          function checknew1Width() {
+              var complete_width = $('.short-ui-full-1').width();     
+              $('.short-ui-full-1 label').css("width", "160");
+              $('.short-ui-full-1 .division1').css("width", (complete_width-(190)));  
+          }
+
+          /* Making window responsive*/
+          var complete_width = $('.short-ui-full-1').width();
+          $('.short-ui-full-1 label').css("width", "160");
+          $('.short-ui-full-1 .division1').css("width", (complete_width-(190)));  
+          
+           
+          $(window).resize(function() {
+              checkWidth();
+              checkempWidth();
+              checknew1Width();
+          });
+
+          //$('.step_form').alternateScroll({ 'horizontal-bar-class': 'styled-h-bar'});
+          
+        }); 
+          
+        </script> 
+    </div>
+</body>
+</html>

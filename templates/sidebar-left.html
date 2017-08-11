@@ -1,0 +1,318 @@
+<div class="sidebar-inner c-overflow ng-scope mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;">
+    <div class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" id="mCSB_1" tabindex="0">
+        <div class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" dir="ltr" id="mCSB_1_container" style="position: relative; top: 0px; left: 0px; width: 100%;">
+            <div class="profile-menu">
+                <a href="" toggle-submenu="">
+                    <div class="profile-pic">
+                        <img alt="" class="" src="img/profile-pics/16.png">
+                    </div>
+                    <div class="profile-info">
+                        Gagan Chaturvedi<i class="zmdi zmdi-caret-down"></i>
+                    </div>
+                </a>
+                <ul class="main-menu">
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" href="#/pages/profile/profile-about">
+                            <i class="zmdi zmdi-account"></i>
+                            View Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-input-antenna"></i>
+                            Privacy Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-settings"></i>
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="zmdi zmdi-time-restore"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="main-menu">
+                <li class="active" data-ui-sref-active="active">
+                    <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="home" href="#/home">
+                        <i class="zmdi zmdi-home"></i>
+                        Home
+                    </a>
+                </li>
+                <!--                             <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('headers') }">
+                                <a href="" toggle-submenu=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
+
+                                <ul>
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="headers.textual-menu" data-ui-sref-active="active" href="#/headers/textual-menu">Textual menu</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="headers.image-logo" data-ui-sref-active="active" href="#/headers/image-logo">Image logo</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="headers.mainmenu-on-top" data-ui-sref-active="active" href="#/headers/mainmenu-on-top">Mainmenu on top</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li data-ui-sref-active="active">
+                                <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="typography" href="#/typography"><i class="zmdi zmdi-format-underlined"></i> Typography</a>
+                            </li>
+
+
+                            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('widgets') }">
+                                <a href="" toggle-submenu=""><i class="zmdi zmdi-widgets"></i> Widgets</a>
+
+                                <ul>
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="widgets.widget-templates" data-ui-sref-active="active" href="#/widgets/widget-templates">Templates</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="widgets.widgets" data-ui-sref-active="active" href="#/widgets/widgets">Widgets</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('tables') }">
+                                <a href="" toggle-submenu=""><i class="zmdi zmdi-view-list"></i> Tables</a>
+
+                                <ul>
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="tables.tables" data-ui-sref-active="active" href="#/tables/tables">Tables</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="tables.data-table" data-ui-sref-active="active" href="#/tables/data-table">Data Tables</a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('form') }">
+                    <a href="" toggle-submenu="">
+                        <i class="zmdi zmdi-collection-text"></i>
+                        HIRS
+                    </a>
+                    <ul>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" data-ui-sref-active="active" href="#/pages/profile/profile-about">Basic Details</a>
+                        </li>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="prof.employee.employee-about" data-ui-sref-active="active" href="#/prof/employee/employee-about">Employment Details</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu="">
+                        <i class="zmdi zmdi-trending-up"></i>
+                        LEAVE
+                    </a>
+                    <ul>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="charts.flot-charts" data-ui-sref-active="active" href="#/charts/flot-charts">New Leave</a>
+                        </li>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="charts.other-charts" data-ui-sref-active="active" href="#/charts/other-charts">My Leaves</a>
+                        </li>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="charts.leave-charts" data-ui-sref-active="active" href="#/charts/leave-charts">Holiday Calendar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('user-interface') }">
+                    <a href="" toggle-submenu="">
+                        <i class="zmdi zmdi-swap-alt"></i>
+                        ADMIN
+                    </a>
+                    <ul>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.ui-bootstrap" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/ui-bootstrap">My Pay Slip</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.colors" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/colors">FBP Planner</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.animations" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/animations">Investment Declaration</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.box-shadow" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/box-shadow">New CTC Claim</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.buttons" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/buttons">My Claim</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.icons" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/icons">Tax Simulator</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.alerts" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/alerts">Investment Submission</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.preloaders" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/preloaders">Form16</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.notifications-dialogs" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/notifications-dialogs">Voluntary Submission</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.media" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/media">Reimbursement Slip</a>
+                        </li>
+                        <li>
+                            <a data-ui-sref-active="active" data-ui-sref="user-interface.other-components" data-ng-click="mactrl.sidebarStat($event)" href="#/user-interface/other-components">My12BB</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li data-ui-sref-active="active">
+                                <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="calendar" href="#/calendar"><i class="zmdi zmdi-calendar"></i> Calendar</a>
+                            </li>
+
+
+                            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('photo-gallery') }">
+                                <a href="" toggle-submenu=""><i class="zmdi zmdi-image"></i>Photo Gallery</a>
+
+                                <ul>
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.photos" data-ui-sref-active="active" href="#/photo-gallery/photos">Default</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.timeline" data-ui-sref-active="active" href="#/photo-gallery/timeline">Timeline</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li data-ui-sref-active="active">
+                                <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="generic-classes" href="#/generic-classes"><i class="zmdi zmdi-layers"></i> Generic Classes</a>
+                            </li>
+
+
+                            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('pages') }">
+                                <a href="" toggle-submenu=""><i class="zmdi zmdi-collection-item"></i> Sample Pages</a>
+
+                                <ul>
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" data-ui-sref-active="active" href="#/pages/profile/profile-about">Profile</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.listview" data-ui-sref-active="active" href="#/pages/listview">List View</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.messages" data-ui-sref-active="active" href="#/pages/messages">Messages</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.pricing-table" data-ui-sref-active="active" href="#/pages/pricing-table">Pricing Table</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.contacts" data-ui-sref-active="active" href="#/pages/contacts">Contacts</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.invoice" data-ui-sref-active="active" href="#/pages/invoice">Invoice</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.wall" data-ui-sref-active="active" href="#/pages/wall">Wall</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="login.html">Login and Sign Up</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="lockscreen.html">Lockscreen</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="404.html">Error 404</a>
+                                    </li>
+                                </ul>
+                            </li>
+ -->
+                <!--                             <li class="sub-menu">
+                                <a href="" toggle-submenu=""><i class="zmdi zmdi-menu"></i> 3 Level Menu</a>
+
+                                <ul>
+                                    <li>
+                                        <a href="">Level 2 link</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="">Another level 2 Link</a>
+                                    </li>
+
+
+                                    <li class="sub-menu">
+                                        <a href="" toggle-submenu="">I have children too</a>
+
+                                        <ul>
+                                            <li>
+                                                <a href="">Level 3 link</a>
+                                            </li>
+
+
+                                            <li>
+                                                <a href="">Another Level 3 link</a>
+                                            </li>
+
+
+                                            <li>
+                                                <a href="">Third one</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+
+                                    <li>
+                                        <a href="">One more 2</a>
+                                    </li>
+                                </ul>
+                            </li> -->
+                <!-- <li>
+                                <a href="https://wrapbootstrap.com/theme/material-admin-responsive-angularjs-WB011H985"><i class="zmdi zmdi-money"></i> Buy this template</a>
+                            </li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" id="mCSB_1_scrollbar_vertical">
+        <div class="mCSB_draggerContainer">
+            <div class="mCSB_dragger" id="mCSB_1_dragger_vertical" oncontextmenu="return false;" style="position: absolute; min-height: 50px; display: block; height: 447px; max-height: 587px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+            </div>
+            <div class="mCSB_draggerRail"></div>
+        </div>
+    </div>
+    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" id="mCSB_1_scrollbar_horizontal">
+        <div class="mCSB_draggerContainer">
+            <div class="mCSB_dragger" id="mCSB_1_dragger_horizontal" oncontextmenu="return false;" style="position: absolute; min-width: 50px; width: 0px; left: 0px;">
+                <div class="mCSB_dragger_bar"></div>
+            </div>
+            <div class="mCSB_draggerRail"></div>
+        </div>
+    </div>
+</div>

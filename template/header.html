@@ -1,0 +1,368 @@
+<style type="text/css">
+   .top-menu-header li.ui-tabmenuitem a.active span.ui-menuitem-text{
+        background-color: red;
+   }
+ 
+@media only screen and (max-device-width:480px){
+        
+        .top-menu-header{
+            display:block;
+        }
+       /* styles for mobile browsers smaller than 480px; (iPhone) */
+    }
+ 
+
+
+.sidenav {
+    height: 100%;
+    width: 300px;
+    margin-top: 60px;
+    transition: 0.5s;
+    
+}
+
+
+ 
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    z-index: 9999;
+}
+
+.super{
+float: left;
+ padding-left:20px;
+ padding-top: 8px;
+ color: #ffffff;
+ display:none;
+}
+@media screen and (max-width:720px) {
+  .super{
+ 
+ display:block;
+} 
+
+.hideen{
+ display:none;
+}
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+
+<div id="top">
+
+    <div class="top-header">
+
+
+       
+<div class="row announcement">
+</div>
+            
+            <div class="header_left"><img id="formIdForRoles:j_idt12" src="images/tl_logo.png" alt="logo">
+            </div>
+
+            <div class="second_logo"></div>
+<span class="RecruterInfer">
+                
+                    <img src="images/logo2.png"></span>
+            
+            <div class="matteroff">
+                <div class="matteron"><img id="formIdForRoles:j_idt26" src="images/user.png" class="matteronUserPic" alt="user photo">
+                    <div class="nameLoginBlock">
+                    <span class="givenName">Gagan Chaturvedi</span><span class="last_login">Last Login : 28 Jun 2017, 10:34</span>
+                </div>
+
+                    <div class="headright" style="display: none;">
+                        <div class="first"></div>
+                        <ul>
+                            <li><span class="lion45"></span><a id="formIdForRoles:j_idt33" href="#" class="ui-commandlink ui-widget preferences" >Preferences</a></li>
+                            <li><span class="lion45"></span><a id="formIdForRoles:j_idt35" href="#" class="ui-commandlink ui-widget password" >Change Password</a></li>                                  
+                            <li><span class="lion45"></span><a id="formIdForRoles:j_idt39" href="#" class="ui-commandlink ui-widget logout" >Logout</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                
+            </div>
+</form>
+
+
+    </div>
+
+       
+ <div class="top-menu-header ">
+            <div id="secondLevelMenu:secondLevelMenuContent" class="ui-tabmenu ui-widget ui-widget-content ui-corner-all">
+
+                <ul class="nav navbar-nav hideen" role="tablist">
+
+                    <li class="ui-tabmenuitem ui-state-default ui-corner-top ui-tabmenuitem-hasicon ui-state-active" role="tab" aria-expanded="false">
+                        <a tabindex="-1" class="ui-menuitem-link ui-corner-all" href="#/home" ui-sref-active="active">
+                            <span class="ui-menuitem-icon ui-icon tp-icon-home"></span>
+                            <span class="ui-menuitem-text">HOME</span>
+                        </a>
+                    </li>
+                    <li class="ui-tabmenuitem ui-state-default ui-corner-top ui-tabmenuitem-hasicon" role="tab" aria-expanded="true">
+                        <a tabindex="-1" class="ui-menuitem-link ui-corner-all" href="#/pages/profile/profile-about" ui-sref-active="active">
+                            <span class="ui-menuitem-icon ui-icon tp-icon-hris"></span>
+                            <span class="ui-menuitem-text">HRIS</span>
+                        </a>
+                    </li>
+                    <li class="ui-tabmenuitem ui-state-default ui-corner-top ui-tabmenuitem-hasicon" role="tab" aria-expanded="false">
+                        <a tabindex="-1" class="ui-menuitem-link ui-corner-all" href="#/charts/flot-charts" ui-sref-active="active">
+                            <span class="ui-menuitem-icon ui-icon /images/leave_icon_active.png"></span>
+                            <span class="ui-menuitem-text">Leave</span>
+                        </a>
+                    </li>
+                    <li class="ui-tabmenuitem ui-state-default ui-corner-top ui-tabmenuitem-hasicon" role="tab" aria-expanded="false">
+                        <a tabindex="-1" class="ui-menuitem-link ui-corner-all" href="#/photo-gallery/attendance" ui-sref-active="active">
+                            <span class="/images/attendance_icon_active.png"></span>
+                            <span class="ui-menuitem-text">Attendance</span>
+                        </a>
+                    </li>
+                    <li class="ui-tabmenuitem ui-state-default ui-corner-top ui-tabmenuitem-hasicon" role="tab" aria-expanded="false">
+                        <a tabindex="-1" class="ui-menuitem-link ui-corner-all" href="#/user-interface/payslip" ui-sref-active="active">
+                            <span class="ui-menuitem-icon ui-icon /images/attendance_icon_active.png"></span>
+                            <span class="ui-menuitem-text">Payroll</span>
+                        </a>
+                    </li>
+
+                </ul>
+<ul class="nav navbar-nav super"  ><span  id="clickrun" style="font-size:30px;cursor:pointer,color:white;" >&#9776;</span></ul>
+            </div>
+        </div>
+
+
+
+<script>
+
+    $(".nav li").bind("click", function() {
+      $(".nav li").removeClass("ui-state-active");
+      $(this).addClass("ui-state-active");
+    });
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#clickrun").click(function(){
+        $(".sidebar-inner").toggle();
+    });
+});
+</script>
+<div id="mySidenav" class="sidenav" >
+    <div class="sidebar-inner c-overflow ng-scope mCustomScrollbar _mCS_1 mCS-autoHide" style="position: absolute;left: 0;right: 0;width:250px; display: none; overflow: visible; background: #ffffff">
+        <div class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" id="mCSB_1" tabindex="0">
+            <div class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" dir="ltr" id="mCSB_1_container" style="position: relative; top: 0px; left: 0px; ">
+                <div class="profile-menu">
+                    <a href="" toggle-submenu="">
+                        <div class="profile-pic">
+                            <img alt="" class="" src="img/profile-pics/16.png">
+                        </div>
+                        <div class="profile-info">
+                            Gagan Chaturvedi<i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </a>
+                    <ul class="main-menu">
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" href="#/pages/profile/profile-about"><i class="zmdi zmdi-account"></i> View Profile</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                    </li>
+
+                    <li>
+                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+        <ul class="main-menu">
+            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>HOME</a>
+            </li>
+                
+            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>HIRS</a>
+                    <ul>
+                        <li class="active" data-ui-sref-active="active">
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="typography" href="#/typography"><i class="zmdi zmdi-home"></i> My Document</a>
+                        </li>
+                        <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('form') }">
+                            <a href="" toggle-submenu=""><i class="zmdi zmdi-collection-text"></i>My Details</a>
+                            <ul>
+                                <li>
+                                    <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" data-ui-sref-active="active" href="#/pages/profile/profile-about">Basic Details</a>
+                                </li>
+                                <li>
+                                    <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="prof.employee.employee-about" data-ui-sref-active="active" href="#/prof/employee/employee-about">Employment Details</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+            </li>
+            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>LEAVE</a>
+                    <ul>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="charts.flot-charts" data-ui-sref-active="active" href="#/charts/flot-charts">New Leave</a>
+                        </li>
+
+
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="charts.other-charts" data-ui-sref-active="active" href="#/charts/other-charts">My Leaves</a>
+                        </li>
+                        <li>
+                            <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="charts.holiday-charts" data-ui-sref-active="active" href="#/charts/holiday-charts">Holiday Calendar</a>
+                        </li>
+                    </ul>
+                </li>
+            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>ATTENDANCE</a>
+                <ul>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.attendance" data-ui-sref-active="active" href="#/photo-gallery/attendance">PunchINOUT Raw</a>
+                    </li>
+                    <li><a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.regularization" data-ui-sref-active="active" href="#/photo-gallery/regularization">My Regularization</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.myshift" data-ui-sref-active="active" href="#/photo-gallery/myshift">My Shift Details</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.myattendance" data-ui-sref-active="active" href="#/photo-gallery/myattendance">My Attendance</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.shiftrequest" data-ui-sref-active="active" href="#/photo-gallery/shiftrequest">Shift Request</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.task" data-ui-sref-active="active" href="#/photo-gallery/task">Task Reassignment</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.proxy" data-ui-sref-active="active" href="#/photo-gallery/proxy">Proxy Attendance</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.bulk" data-ui-sref-active="active" href="#/photo-gallery/bulk">BUlk Approval- Attendance</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.attendancedetails" data-ui-sref-active="active" href="#/photo-gallery/attendancedetails">Attendance Detail</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="photo-gallery.attendanceReport" data-ui-sref-active="active" href="#/photo-gallery/attendanceReport">Attendance Reports</a>
+                    </li>
+                    
+
+                </ul>
+            </li>
+
+            <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">
+                    <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>PAYROLL</a>
+                <ul>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.payslip" data-ui-sref-active="active" href="#/user-interface/payslip">Payslip</a>
+                    </li>
+                    <li><a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.fbpplanner" data-ui-sref-active="active" href="#/user-interface/fbpplanner">FBP Planner</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.investment" data-ui-sref-active="active" href="#/user-interface/investment">Investment Declaration</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.ctcclaim" data-ui-sref-active="active" href="#/user-interface/ctcclaim">New CTC Claim</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.myclaims" data-ui-sref-active="active" href="#/user-interface/myclaims">My Claims</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.simulator" data-ui-sref-active="active" href="#/user-interface/simulator">Tax Simulator</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.submission" data-ui-sref-active="active" href="#/user-interface/submission">Investment Submission</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.form16" data-ui-sref-active="active" href="#/user-interface/form16">Form 16</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.voluntry" data-ui-sref-active="active" href="#/user-interface/voluntry">Voluntary Contribution</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.slip" data-ui-sref-active="active" href="#/user-interface/slip">Reimbursement Slip</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.hire" data-ui-sref-active="active" href="#/user-interface/hire">Car Hire</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.my12bb" data-ui-sref-active="active" href="#/user-interface/my12bb">My 12BB</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.payrollreport" data-ui-sref-active="active" href="#/user-interface/payrollreport">Payroll Report</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.viewpayslip" data-ui-sref-active="active" href="#/user-interface/viewpayslip">View PaySlip</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.16admin" data-ui-sref-active="active" href="#/user-interface/16admin">Form 16Admin</a>
+                    </li>
+                    <li>
+                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.carlease" data-ui-sref-active="active" href="#/user-interface/carlease">Car Lease</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        </div>
+    </div>
+
+    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" id="mCSB_1_scrollbar_vertical">
+        <div class="mCSB_draggerContainer">
+            <div class="mCSB_dragger" id="mCSB_1_dragger_vertical" oncontextmenu="return false;" style="position: absolute; min-height: 50px; display: block; height: 447px; max-height: 587px;">
+                <div class="mCSB_dragger_bar" style="line-height: 50px;">
+                </div>
+            </div>
+
+
+            <div class="mCSB_draggerRail"></div>
+        </div>
+    </div>
+
+
+    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" id="mCSB_1_scrollbar_horizontal" >
+        <div class="mCSB_draggerContainer">
+            <div class="mCSB_dragger" id="mCSB_1_dragger_horizontal" oncontextmenu="return false;" style="position: absolute; min-width: 50px; width: 0px; left: 0px;">
+                <div class="mCSB_dragger_bar"></div>
+            </div>
+
+
+            <div class="mCSB_draggerRail"></div>
+        </div>
+    </div>
+</div>
+</div>
+
+ 
+
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "400px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>

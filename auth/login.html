@@ -1,0 +1,53 @@
+
+<div class="login-page">
+<!-- logo image -->
+<div class="log_ht">
+  <img class="log_img"  src="images/logo.png">
+</div>
+<!-- logo-image -->
+<!-- login-form --> 
+<form method="POST" name="loginForm" class="form_setup" ng-submit="loginForm.$valid && submitLogin(loginForm)" >
+  <div><div class="group">  
+     
+      <input type="text"  id="username" name="username"  required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Email</label>
+    </div></div>
+
+  <div><div class="group1">      
+      <input type="password"  id="password" name="password"   required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Password</label>
+    </div></div>
+
+  <div class="text-set">Forget Password</div>
+
+  <div><button type="submit" ng-model="password"  name="action" class="btn_success">Login</button></div>
+</form>
+
+
+
+</div>
+<div class="section-footer" style="
+    position: fixed;
+    z-index: 4;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+
+
+
+">
+    <div class="row footerInner" style=" margin-top:-79px;">
+      <div class="footer-logo"><img id="j_idt54" src="images/logo.png" style="height:33px;margin-bottom:14px;"alt="">
+      </div>
+      <div class="copy-right" style="color:#FFF;font-size:12px;"><span class="poweredBy">Powered by </span>Gaplogix © 2017
+        Gaplogix india Pvt Ltd.</div>
+
+      
+    </div>
+  </div>
+</div>

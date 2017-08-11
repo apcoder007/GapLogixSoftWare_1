@@ -1,0 +1,269 @@
+
+<div class="pmb-block ng-scope">
+    <div class="pmbb-header">
+        <h2><i class="zmdi zmdi-person m-r-5"></i> Basic Information</h2>
+
+        <!-- ngIf: pctrl.editInfo === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editInfo === 0">
+            <li class="dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a data-ng-click="pctrl.editInfo = 1" href="">Edit</a>
+                    </li>
+                </ul>
+            </li>
+        </ul><!-- end ngIf: pctrl.editInfo === 0 -->
+    </div>
+    <div class="pmbb-body p-l-30">
+        <!-- ngIf: pctrl.editInfo === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editInfo === 0">
+            <dl class="dl-horizontal">
+                <dt>Company Name</dt>
+                <dd class="ng-binding">Mallinda Hollaway</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Employee Code</dt>
+                <dd class="ng-binding">female</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Title</dt>
+                <dd class="ng-binding">23/06/1988</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Start Date</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>End Date</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Employee Type</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+
+        </div><!-- end ngIf: pctrl.editInfo === 0 -->
+        <form data-ng-submit="pctrl.submit('profileInfo', 'Profile Information')" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="pctrl.editInfo === 1">
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Company Name</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.fullName" type="text" class="form-control ng-pristine ng-untouched ng-valid" value="Mallinda Hollaway" placeholder="eg. Mallinda Hollaway">
+                    </div>
+
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Gender</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.fullName" type="text" class="form-control ng-pristine ng-untouched ng-valid" value="Mallinda Hollaway" placeholder="eg. Mallinda Hollaway">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">End Date</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" data-dt-picker="DD/MM/YYYY" uib-dropdown-toggle="" placeholder="eg. 23/06/1988">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Employement type</dt>
+                <dd>
+                    <div class="fg-line">
+                        <select class="form-control">
+                            <option value="onroll">Onroll</option>
+                            <option value="offroll">OffRoll</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </dd>
+            </dl>
+
+            <div class="m-t-30">
+                <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="pctrl.editInfo = 0">Cancel</button>
+            </div>
+        </form>
+
+        <!-- ngIf: pctrl.editInfo === 1 -->
+    </div>
+</div>
+
+
+<div class="pmb-block ng-scope">
+    <div class="pmbb-header">
+        <h2><i class="zmdi zmdi-phone m-r-5"></i> Contact Information</h2>
+
+        <!-- ngIf: pctrl.editContact === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editContact === 0">
+            <li class="dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a data-ng-click="pctrl.editContact = 1" href="">Edit</a>
+                    </li>
+                </ul>
+            </li>
+        </ul><!-- end ngIf: pctrl.editContact === 0 -->
+    </div>
+    <div class="pmbb-body p-l-30">
+        <!-- ngIf: pctrl.editContact === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editContact === 0">
+            <dl class="dl-horizontal">
+                <dt>Mobile Phone</dt>
+                <dd class="ng-binding">00971123456789</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Email Address</dt>
+                <dd class="ng-binding">malinda.h@gmail.com</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Twitter</dt>
+                <dd class="ng-binding">@malinda</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Skype</dt>
+                <dd class="ng-binding">malinda.hollaway</dd>
+            </dl>
+        </div><!-- end ngIf: pctrl.editContact === 0 -->
+        <form data-ng-submit="pctrl.submit('profileContact', 'Profile Contact Information')" class="pmbb-edit ng-pristine ng-valid ng-scope ng-valid-email" data-ng-if="pctrl.editContact === 1" style="">
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Mobile Phone</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.mobileNumber" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. 00971 12345678 9">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Email Address</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.emailAddress" type="email" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email" placeholder="eg. malinda.h@gmail.com">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Twitter</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.twitter" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. @malinda">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Skype</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.skype" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. malinda.hollaway">
+                    </div>
+                </dd>
+            </dl>
+
+            <div class="m-t-30">
+                <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="pctrl.editContact = 0">Cancel</button>
+            </div>
+        </form>
+
+        <!-- ngIf: pctrl.editContact === 1 -->
+    </div>
+</div>
+<div class="pmb-block ng-scope">
+    <div class="pmbb-header">
+        <h2><i class="zmdi zmdi-phone m-r-5"></i> ID Information</h2>
+
+        <!-- ngIf: pctrl.editContact === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editContact === 0">
+            <li class="dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a data-ng-click="pctrl.editContact = 1" href="">Edit</a>
+                    </li>
+                </ul>
+            </li>
+        </ul><!-- end ngIf: pctrl.editContact === 0 -->
+    </div>
+    <div class="pmbb-body p-l-30">
+        <!-- ngIf: pctrl.editContact === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editContact === 0">
+            <dl class="dl-horizontal">
+                <dt>PAN Number</dt>
+                <dd class="ng-binding">00971123456789</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>UAN Number</dt>
+                <dd class="ng-binding">Demo123</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>PF Account</dt>
+                <dd class="ng-binding">@malinda</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Aadhar Number</dt>
+                <dd class="ng-binding">40012526</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>ESI Number</dt>
+                <dd class="ng-binding">40012526</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Voter ID</dt>
+                <dd class="ng-binding">40012526</dd>
+            </dl>
+
+        </div><!-- end ngIf: pctrl.editContact === 0 -->
+        <form data-ng-submit="pctrl.submit('profileContact', 'Profile Contact Information')" class="pmbb-edit ng-pristine ng-valid ng-scope ng-valid-email" data-ng-if="pctrl.editContact === 1" style="">
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">PAN Number</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.mobileNumber" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. 00971 12345678 9">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">UAN NUmber</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.emailAddress" type="email" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email" placeholder="eg. malinda.h@gmail.com">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">PF Account</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.twitter" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. @malinda">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">ESI NUmber</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.skype" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. malinda.hollaway">
+                    </div>
+                </dd>
+            </dl>
+
+            <div class="m-t-30">
+                <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="pctrl.editContact = 0">Cancel</button>
+            </div>
+        </form>
+
+        <!-- ngIf: pctrl.editContact === 1 -->
+    </div>
+</div>
+
+
+</data>

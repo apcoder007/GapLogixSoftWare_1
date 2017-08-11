@@ -1,0 +1,104 @@
+
+<div class="pmb-block ng-scope">
+    <div class="pmbb-header">
+        <h2><i class="zmdi zmdi-equalizer m-r-5"></i> Personal Information</h2>
+
+        <!-- ngIf: pctrl.editSummary === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editSummary === 0">
+            <li class="dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a data-ng-click="pctrl.editSummary = 1" href="">Edit</a>
+                    </li>
+                </ul>
+            </li>
+        </ul><!-- end ngIf: pctrl.editSummary === 0 -->
+    </div>
+        <div class="pmbb-body p-l-30">
+        <!-- ngIf: pctrl.editInfo === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editInfo === 0">
+            
+            <dl class="dl-horizontal">
+                <dt>Company Name</dt>
+                <dd class="ng-binding">Mallinda Hollaway</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Employee Code</dt>
+                <dd class="ng-binding">female</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Title</dt>
+                <dd class="ng-binding">23/06/1988</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Start Date</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>End Date</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Role</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Employement Type</dt>
+                <dd class="ng-binding">Single</dd>
+            </dl>
+
+            
+
+        </div><!-- end ngIf: pctrl.editInfo === 0 -->
+
+        <!-- ngIf: pctrl.editInfo === 1 -->
+    </div>
+</div>
+
+
+
+
+<div class="pmb-block ng-scope">
+    <div class="pmbb-header">
+        <h2><i class="zmdi zmdi-phone m-r-5"></i> Contact Information</h2>
+
+        <!-- ngIf: pctrl.editContact === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editContact === 0">
+            <li class="dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a data-ng-click="pctrl.editContact = 1" href="">Edit</a>
+                    </li>
+                </ul>
+            </li>
+        </ul><!-- end ngIf: pctrl.editContact === 0 -->
+    </div>
+    <div class="pmbb-body p-l-30">
+        <!-- ngIf: pctrl.editContact === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editContact === 0">
+            <dl class="dl-horizontal">
+                <dt>Mobile Phone</dt>
+                <dd class="ng-binding">00971123456789</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Email Address</dt>
+                <dd class="ng-binding">malinda.h@gmail.com</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Twitter</dt>
+                <dd class="ng-binding">@malinda</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Skype</dt>
+                <dd class="ng-binding">malinda.hollaway</dd>
+            </dl>
+        </div><!-- end ngIf: pctrl.editContact === 0 -->
+
+        <!-- ngIf: pctrl.editContact === 1 -->
+    </div>
+</div>
+</data>

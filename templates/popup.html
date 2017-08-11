@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="no-cache" http-equiv="Pragma">
+  <meta content="0" http-equiv="expires">
+  <title>Sapplica-Gaplogix</title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-type">
+  <meta content="en-us" http-equiv="Content-Language">
+  <link href="http://192.168.1.25/gaplogix/public/media/images/favicon.ico" rel="shortcut icon">
+  <link href="/adminfiles/css/fonts.css" rel="stylesheet" type="text/css">
+  <link href="/adminfiles/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/adminfiles/css/select2.css" rel="stylesheet" type="text/css">
+  <link href="/adminfiles/css/tablecss.css" rel="stylesheet" type="text/css">
+  <link href="/adminfiles/css/jquery.maxlength.css" rel="stylesheet" type="text/css">
+
+
+  <link href="/adminfiles/css/jquery.alert.css" rel="stylesheet" type="text/css">
+  <link href="/adminfiles/css/cupertino/jquery-ui-1.8.16.custom.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="/adminfiles/js/jquery-1.7.1.min.js" type="text/javascript">
+  </script><!--  original-->
+
+  <script src="/adminfiles/js/jquery-1.10.2.min.js" type="text/javascript">
+  </script><!-- added on 07-aug-2013 by rama krishna -->
+
+  <script src="/adminfiles/js/jquery-ui-1.10.3.custom.js" type="text/javascript">
+  </script><!-- added on 07-aug-2013 by rama krishna -->
+
+  <script src="/adminfiles/js/hrms.js" type="text/javascript">
+  </script>
+  <script src="/adminfiles/js/hrmsv2.js" type="text/javascript">
+  </script>
+  <script language="javascript" src="/adminfiles/js/ajaxupload.3.5.js" type="text/javascript">
+  </script>
+  <script language="javascript" src="/adminfiles/js/jquery.alert.js" type="text/javascript">
+  </script>
+  <script language="JavaScript" src="/adminfiles/js/slimScrollHorizontal.js" type="text/javascript">
+  </script>
+  <script language="JavaScript" src="/adminfiles/js/jquery.slimscroll.min.js" type="text/javascript">
+  </script>
+  <script language="javascript" src="/adminfiles/jquery.plugin.js" type="text/javascript">
+  </script>
+  <script language="javascript" src="/adminfiles/js/jquery.maxlength.js" type="text/javascript">
+  </script>
+  <link href="/adminfiles/css/uniform.css" media="screen" rel="stylesheet" type="text/css"><!-- start of time picker -->
+
+  <script language="javascript" src="/adminfiles/js/jquery.ui.timepicker.js" type="text/javascript">
+  </script>
+  <link href="/adminfiles/css/jquery.ui.timepicker.css" rel="stylesheet" type="text/css">
+  <!-- end of time picker -->
+  <!-- start of jq pagination -->
+
+  <script language="javascript" src="/adminfiles/js/jquery.jqpagination.js" type="text/javascript">
+  </script>
+  <link href="/adminfiles/css/jqpagination.css" rel="stylesheet" type="text/css"><!-- end of jq pagination -->
+
+  <script charset="utf-8" type="text/javascript">
+  //defining the project name for using in js files
+  var projectPath =  'http://192.168.1.25/gaplogix/';
+  var BASE_URL = "http://192.168.1.25/gaplogix";
+  var base_url = "http://192.168.1.25/gaplogix/index.php";
+
+  $(document).ready(function(){
+         $("select:not(.not_appli)").select2({
+       formatResult: format_select,            
+       escapeMarkup: function(m) { return m; }
+   });
+   
+   function format_select(selData) {
+     var parent_id = selData.element[0].parentElement.id;
+         var sel_array = new Array('approver1','approver2','approver3','reporting_id','interviewer_id','levelselect','reporting_manager');
+         if(jQuery.inArray(parent_id,sel_array) >=0)
+         {
+             var title = $('#'+parent_id+' option[value="'+selData.id+'"]').attr('title');
+             if (!selData.id) return selData.text; 
+             if(title == '')
+                 title = "profile_pic.png";
+             return "<img style='margin-right: 5px;height:30px;width:30px;' class='flag' src='"+projectPath+"public/uploads/profile/"+title+"' onerror=\"this.src='"+projectPath+"/public/uploads/profile/profile_pic.png'\" />" + "<span>" + selData.text + "<\/span><div class='seldivimg'><\/div>";
+         }
+         else 
+         {
+             return  "<span>" + selData.text + "<\/span><div class='seldivimg'><\/div>";
+         }
+   }
+   
+   
+   $("#submitbutton").click(function(){ 
+             $.blockUI({ width:'50px',message: $("#spinnerpopup").html() });
+           });
+  });
+  $(function(){
+   // Maxlength Attributes
+     $('#special_training').maxlength({max: 400});
+   $('#awards').maxlength({max: 400})
+   $('#description').maxlength();
+   $('#cand_location').maxlength({max: 150});
+   $('#interview_feedback').maxlength();
+   $('#interview_comments').maxlength();
+   $('#jobdescription').maxlength();
+   $('#comments').maxlength({max: 50});
+   $('#reason').maxlength({max: 400});
+   $('#freqdescription').maxlength();
+   $('#remdesc').maxlength();
+   $('#req_skills').maxlength({max: 400});
+   $('#additional_info').maxlength({max: 400});
+   $('#roledescription').maxlength({max: 100});
+     // Removing maxlength attributes in grids
+   $("table th .maxlength-feedback").remove();
+   
+  function destroyandcreateCombobox(ele){
+   $(ele).trigger("liszt:updated");
+  }
+  });
+   $(function(){
+     $('.newframe-div').slimScroll({
+        
+     });
+  });
+  $(document).ready(function(){
+
+     navigator.sayswho= (function(){
+     var N= navigator.appName, ua= navigator.userAgent, tem;
+     var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+     if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+     M= M? [M[1], M[2]]: [N, navigator.appVersion, '-?'];
+
+     return M;
+  })();
+  var version = parseInt(navigator.sayswho[1]);
+    if(navigator.userAgent.match(/firefox/i) == 'Firefox')
+     {
+     if(version<5)
+     window.location.href = "http://192.168.1.25/gaplogix/index.php/index/browserfailure";
+     }
+     else if(navigator.userAgent.match(/msie/i) == 'MSIE')
+     {        
+          if(version<8)      
+             window.location.href = "http://192.168.1.25/gaplogix/index.php/index/browserfailure";
+     }
+     else if(navigator.userAgent.match(/chrome/i) == 'Chrome')
+     {
+        if(version<13)
+             window.location.href = "http://192.168.1.25/gaplogix/index.php/index/browserfailure";
+     }
+     else if(navigator.userAgent.match(/safari/i) == 'Safari')
+     {
+        if(version<5)
+             window.location.href = "http://192.168.1.25/gaplogix/index.php/index/browserfailure";
+     }
+     else if(navigator.userAgent.match(/opera/i) == 'Opera')
+     {
+        if(version<12)
+             window.location.href = "http://192.168.1.25/gaplogix/index.php/index/browserfailure";
+     }
+   
+   if(navigator.userAgent.match(/msie/i) == 'MSIE')
+   {
+     $('#password,#username').keydown(function(e) {
+        var code = e.keyCode || e.which;
+        if(code == 13) { //Enter keycode
+          $('#loginsubmit').trigger('click');
+        }
+     });
+   }
+
+     
+   });
+   
+   /* Code to disable backspace key in popups based on active element id in firefox and other browsers */
+  if(navigator.userAgent.match(/firefox/i) == 'Firefox')
+     {
+   $(document).bind('keypress',function(e) {
+   
+      if (e.keyCode == 8 || e.keyCode == '') {
+         if(this.activeElement.id == 'new-iframe')
+        return false;
+     }
+   });
+   }else
+   {
+     $(document).bind('keydown',function(e) {
+   
+      if (e.keyCode == 8 || e.keyCode == '') {
+        if(this.activeElement.id == 'new-iframe') 
+        return false;
+     }
+   });
+   
+   }
+
+
+  </script>
+  <script type='text/javascript'>
+          var msg = '';  
+      var loginUserId = $('#loginuserId').val();
+      var domain_data = "http://192.168.1.25/gaplogix/";
+      var management_group = "1";
+      var superAdmin_id = "1";
+      var clicked = '';
+  </script>
+</head>
+<body class="business_units_iframe" id="new-iframe">
+  <form>
+    <input id="baseurl" type="hidden" value="http://192.168.1.25/gaplogix/index.php">
+  </form>
+  <div class="ajax-loader" id="spinner" style="display:none;"><img alt="Loading" id="img-spinner" src="http://192.168.1.25/gaplogix/public/media/images/loader2.gif"></div>
+  <script type='text/javascript'>
+  var base_url = $('#baseurl').val();
+  </script>
+  <div class="newframe-div">
+    <script language="javascript" type="text/javascript">
+              $(document).ready(function(){
+        
+              
+
+                          $('#s2id_timezone').blur(function(){ 
+                              $('#errors-timezone').remove();
+                              
+                              if($.trim($('#timezone').val()) == '')
+                               {
+
+                                  // To place error messages after Add Link
+                                  $('#timezone').after("<span class='errors' id='errors-timezone'>Please select time zone.<\/span>");
+                               }
+                               else 
+                               {
+                                   $('#errors-timezone').remove();   
+
+                               }
+                              });
+              
+                             
+                  }); //end of ready function.
+    </script>
+    <div id="error_message" style="display:none;"></div>
+    <form action="http://192.168.1.25/gaplogix/index.php/timezone/addpopup" id="formid" method="post" name="timezone">
+      <input id="id" name="id" type="hidden" value="">
+      <div class="total-form-controller">
+        <div class="new-form-ui-multi clearb">
+          <label class="required">Time zone <img class="tooltip" src="/gaplogix/public/media/images/help.png" title="Ex: America/Atikokan [EST]"></label>
+          <div class="division">
+            <select id="timezone" multiple="multiple" name="timezone[]">
+              <option label="Africa/Abidjan [GMT]" value="1">
+                Africa/Abidjan [GMT]
+              </option>
+              <option label="Africa/Accra [GMT]" value="2">
+                Africa/Accra [GMT]
+              </option>
+              <option label="Africa/Addis_Ababa [EAT]" value="3">
+                Africa/Addis_Ababa [EAT]
+              </option>
+              <option label="Africa/Algiers [CET]" value="4">
+                Africa/Algiers [CET]
+              </option>
+              <option label="Africa/Asmara [EAT]" value="5">
+                Africa/Asmara [EAT]
+              </option>
+              <option label="Africa/Bamako [GMT]" value="6">
+                Africa/Bamako [GMT]
+              </option>
+              <option label="Africa/Bangui [WAT]" value="7">
+                Africa/Bangui [WAT]
+              </option>
+              <option label="Africa/Banjul [GMT]" value="8">
+                Africa/Banjul [GMT]
+              </option>
+              <option label="Africa/Bissau [GMT]" value="9">
+                Africa/Bissau [GMT]
+              </option>
+              <option label="Africa/Blantyre [CAT]" value="10">
+                Africa/Blantyre [CAT]
+              </option>
+              <option label="Africa/Brazzaville [WAT]" value="11">
+                Africa/Brazzaville [WAT]
+              </option>
+              <option label="Africa/Bujumbura [CAT]" value="12">
+                Africa/Bujumbura [CAT]
+              </option>
+              <option label="Africa/Cairo [EET]" value="13">
+                Africa/Cairo [EET]
+              </option>
+              <option label="Africa/Casablanca [WET]" value="14">
+                Africa/Casablanca [WET]
+              </option>
+              <option label="Africa/Ceuta [CET]" value="15">
+                Africa/Ceuta [CET]
+              </option>
+              <option label="Africa/Conakry [GMT]" value="16">
+                Africa/Conakry [GMT]
+              </option>
+              <option label="Africa/Dakar [GMT]" value="17">
+                Africa/Dakar [GMT]
+              </option>
+              <option label="Africa/Dar_es_Salaam [EAT]" value="18">
+                Africa/Dar_es_Salaam [EAT]
+              </option>
+              <option label="Africa/Djibouti [EAT]" value="19">
+                Africa/Djibouti [EAT]
+              </option>
+              <option label="Africa/Douala [WAT]" value="20">
+                Africa/Douala [WAT]
+              </option>
+              <option label="Africa/El_Aaiun [WET]" value="21">
+                Africa/El_Aaiun [WET]
+              </option>
+              <option label="Africa/Freetown [GMT]" value="22">
+                Africa/Freetown [GMT]
+              </option>
+              <option label="Africa/Gaborone [CAT]" value="23">
+                Africa/Gaborone [CAT]
+              </option>
+              <option label="Africa/Harare [CAT]" value="24">
+                Africa/Harare [CAT]
+              </option>
+              <option label="Africa/Johannesburg [SAST]" value="25">
+                Africa/Johannesburg [SAST]
+              </option>
+              <option label="Africa/Juba [EAT]" value="26">
+                Africa/Juba [EAT]
+              </option>
+              <option label="Africa/Kampala [EAT]" value="27">
+                Africa/Kampala [EAT]
+              </option>
+              <option label="Africa/Khartoum [EAT]" value="28">
+                Africa/Khartoum [EAT]
+              </option>
+              <option label="Africa/Kigali [CAT]" value="29">
+                Africa/Kigali [CAT]
+              </option>
+              <option label="Africa/Kinshasa [WAT]" value="30">
+                Africa/Kinshasa [WAT]
+              </option>
+              <option label="Africa/Lagos [WAT]" value="31">
+                Africa/Lagos [WAT]
+              </option>
+              <option label="Africa/Libreville [WAT]" value="32">
+                Africa/Libreville [WAT]
+              </option>
+              <option label="Africa/Lome [GMT]" value="33">
+                Africa/Lome [GMT]
+              </option>
+              <option label="Africa/Luanda [WAT]" value="34">
+                Africa/Luanda [WAT]
+              </option>
+              <option label="Africa/Lubumbashi [CAT]" value="35">
+                Africa/Lubumbashi [CAT]
+              </option>
+              <option label="Africa/Lusaka [CAT]" value="36">
+                Africa/Lusaka [CAT]
+              </option>
+              <option label="Africa/Malabo [WAT]" value="37">
+                Africa/Malabo [WAT]
+              </option>
+              <option label="Africa/Maputo [CAT]" value="38">
+                Africa/Maputo [CAT]
+              </option>
+              <option label="Africa/Maseru [SAST]" value="39">
+                Africa/Maseru [SAST]
+              </option>
+              <option label="Africa/Mbabane [SAST]" value="40">
+                Africa/Mbabane [SAST]
+              </option>
+              <option label="Africa/Mogadishu [EAT]" value="41">
+                Africa/Mogadishu [EAT]
+              </option>
+              <option label="Africa/Monrovia [GMT]" value="42">
+                Africa/Monrovia [GMT]
+              </option>
+              <option label="Africa/Nairobi [EAT]" value="43">
+                Africa/Nairobi [EAT]
+              </option>
+              <option label="Africa/Ndjamena [WAT]" value="44">
+                Africa/Ndjamena [WAT]
+              </option>
+              <option label="Africa/Niamey [WAT]" value="45">
+                Africa/Niamey [WAT]
+              </option>
+              <option label="Africa/Nouakchott [GMT]" value="46">
+                Africa/Nouakchott [GMT]
+              </option>
+              <option label="Africa/Ouagadougou [GMT]" value="47">
+                Africa/Ouagadougou [GMT]
+              </option>
+              <option label="Africa/Porto-Novo [WAT]" value="48">
+                Africa/Porto-Novo [WAT]
+              </option>
+              <option label="Africa/Sao_Tome [GMT]" value="49">
+                Africa/Sao_Tome [GMT]
+              </option>
+              <option label="Africa/Tripoli [EET]" value="50">
+                Africa/Tripoli [EET]
+              </option>
+              <option label="Africa/Tunis [CET]" value="51">
+                Africa/Tunis [CET]
+              </option>
+              <option label="Africa/Windhoek [WAST]" value="52">
+                Africa/Windhoek [WAST]
+              </option>
+              <option label="America/Adak [HADT]" value="53">
+                America/Adak [HADT]
+              </option>
+              <option label="America/Anchorage [AKDT]" value="54">
+                America/Anchorage [AKDT]
+              </option>
+              <option label="America/Anguilla [AST]" value="55">
+                America/Anguilla [AST]
+              </option>
+              <option label="America/Antigua [AST]" value="56">
+                America/Antigua [AST]
+              </option>
+              <option label="America/Araguaina [BRT]" value="57">
+                America/Araguaina [BRT]
+              </option>
+              <option label="America/Argentina/Buenos_Aires [ART]" value="58">
+                America/Argentina/Buenos_Aires [ART]
+              </option>
+              <option label="America/Argentina/Catamarca [ART]" value="59">
+                America/Argentina/Catamarca [ART]
+              </option>
+              <option label="America/Argentina/Cordoba [ART]" value="60">
+                America/Argentina/Cordoba [ART]
+              </option>
+              <option label="America/Argentina/Jujuy [ART]" value="61">
+                America/Argentina/Jujuy [ART]
+              </option>
+              <option label="America/Argentina/La_Rioja [ART]" value="62">
+                America/Argentina/La_Rioja [ART]
+              </option>
+              <option label="America/Argentina/Mendoza [ART]" value="63">
+                America/Argentina/Mendoza [ART]
+              </option>
+              <option label="America/Argentina/Rio_Gallegos [ART]" value="64">
+                America/Argentina/Rio_Gallegos [ART]
+              </option>
+              <option label="America/Argentina/Salta [ART]" value="65">
+                America/Argentina/Salta [ART]
+              </option>
+              <option label="America/Argentina/San_Juan [ART]" value="66">
+                America/Argentina/San_Juan [ART]
+              </option>
+              <option label="America/Argentina/San_Luis [WARST]" value="67">
+                America/Argentina/San_Luis [WARST]
+              </option>
+              <option label="America/Argentina/Tucuman [ART]" value="68">
+                America/Argentina/Tucuman [ART]
+              </option>
+              <option label="America/Argentina/Ushuaia [ART]" value="69">
+                America/Argentina/Ushuaia [ART]
+              </option>
+              <option label="America/Aruba [AST]" value="70">
+                America/Aruba [AST]
+              </option>
+              <option label="America/Asuncion [PYST]" value="71">
+                America/Asuncion [PYST]
+              </option>
+              <option label="America/Atikokan [EST]" value="72">
+                America/Atikokan [EST]
+              </option>
+              <option label="America/Bahia [BRT]" value="73">
+                America/Bahia [BRT]
+              </option>
+              <option label="America/Bahia_Banderas [CST]" value="74">
+                America/Bahia_Banderas [CST]
+              </option>
+              <option label="America/Barbados [AST]" value="75">
+                America/Barbados [AST]
+              </option>
+              <option label="America/Belem [BRT]" value="76">
+                America/Belem [BRT]
+              </option>
+              <option label="America/Belize [CST]" value="77">
+                America/Belize [CST]
+              </option>
+              <option label="America/Blanc-Sablon [AST]" value="78">
+                America/Blanc-Sablon [AST]
+              </option>
+              <option label="America/Boa_Vista [AMT]" value="79">
+                America/Boa_Vista [AMT]
+              </option>
+              <option label="America/Bogota [COT]" value="80">
+                America/Bogota [COT]
+              </option>
+              <option label="America/Boise [MDT]" value="81">
+                America/Boise [MDT]
+              </option>
+              <option label="America/Cambridge_Bay [MDT]" value="82">
+                America/Cambridge_Bay [MDT]
+              </option>
+              <option label="America/Campo_Grande [AMT]" value="83">
+                America/Campo_Grande [AMT]
+              </option>
+              <option label="America/Cancun [CST]" value="84">
+                America/Cancun [CST]
+              </option>
+              <option label="America/Caracas [VET]" value="85">
+                America/Caracas [VET]
+              </option>
+              <option label="America/Cayenne [GFT]" value="86">
+                America/Cayenne [GFT]
+              </option>
+              <option label="America/Cayman [EST]" value="87">
+                America/Cayman [EST]
+              </option>
+              <option label="America/Chicago [CDT]" value="88">
+                America/Chicago [CDT]
+              </option>
+              <option label="America/Chihuahua [MST]" value="89">
+                America/Chihuahua [MST]
+              </option>
+              <option label="America/Costa_Rica [CST]" value="90">
+                America/Costa_Rica [CST]
+              </option>
+              <option label="America/Cuiaba [AMT]" value="91">
+                America/Cuiaba [AMT]
+              </option>
+              <option label="America/Curacao [AST]" value="92">
+                America/Curacao [AST]
+              </option>
+              <option label="America/Danmarkshavn [GMT]" value="93">
+                America/Danmarkshavn [GMT]
+              </option>
+              <option label="America/Dawson [PDT]" value="94">
+                America/Dawson [PDT]
+              </option>
+              <option label="America/Dawson_Creek [MST]" value="95">
+                America/Dawson_Creek [MST]
+              </option>
+              <option label="America/Denver [MDT]" value="96">
+                America/Denver [MDT]
+              </option>
+              <option label="America/Detroit [EDT]" value="97">
+                America/Detroit [EDT]
+              </option>
+              <option label="America/Dominica [AST]" value="98">
+                America/Dominica [AST]
+              </option>
+              <option label="America/Edmonton [MDT]" value="99">
+                America/Edmonton [MDT]
+              </option>
+              <option label="America/Eirunepe [AMT]" value="100">
+                America/Eirunepe [AMT]
+              </option>
+              <option label="America/El_Salvador [CST]" value="101">
+                America/El_Salvador [CST]
+              </option>
+              <option label="America/Fortaleza [BRT]" value="102">
+                America/Fortaleza [BRT]
+              </option>
+              <option label="America/Glace_Bay [ADT]" value="103">
+                America/Glace_Bay [ADT]
+              </option>
+              <option label="America/Godthab [WGT]" value="104">
+                America/Godthab [WGT]
+              </option>
+              <option label="America/Goose_Bay [ADT]" value="105">
+                America/Goose_Bay [ADT]
+              </option>
+              <option label="America/Grand_Turk [EDT]" value="106">
+                America/Grand_Turk [EDT]
+              </option>
+              <option label="America/Grenada [AST]" value="107">
+                America/Grenada [AST]
+              </option>
+              <option label="America/Guadeloupe [AST]" value="108">
+                America/Guadeloupe [AST]
+              </option>
+              <option label="America/Guatemala [CST]" value="109">
+                America/Guatemala [CST]
+              </option>
+              <option label="America/Guayaquil [ECT]" value="110">
+                America/Guayaquil [ECT]
+              </option>
+              <option label="America/Guyana [GYT]" value="111">
+                America/Guyana [GYT]
+              </option>
+              <option label="America/Halifax [ADT]" value="112">
+                America/Halifax [ADT]
+              </option>
+              <option label="America/Havana [CDT]" value="113">
+                America/Havana [CDT]
+              </option>
+              <option label="America/Hermosillo [MST]" value="114">
+                America/Hermosillo [MST]
+              </option>
+              <option label="America/Indiana/Indianapolis [EDT]" value="115">
+                America/Indiana/Indianapolis [EDT]
+              </option>
+              <option label="America/Indiana/Knox [CDT]" value="116">
+                America/Indiana/Knox [CDT]
+              </option>
+              <option label="America/Indiana/Marengo [EDT]" value="117">
+                America/Indiana/Marengo [EDT]
+              </option>
+              <option label="America/Indiana/Petersburg [EDT]" value="118">
+                America/Indiana/Petersburg [EDT]
+              </option>
+              <option label="America/Indiana/Tell_City [CDT]" value="119">
+                America/Indiana/Tell_City [CDT]
+              </option>
+              <option label="America/Indiana/Vevay [EDT]" value="120">
+                America/Indiana/Vevay [EDT]
+              </option>
+              <option label="America/Indiana/Vincennes [EDT]" value="121">
+                America/Indiana/Vincennes [EDT]
+              </option>
+              <option label="America/Indiana/Winamac [EDT]" value="122">
+                America/Indiana/Winamac [EDT]
+              </option>
+              <option label="America/Inuvik [MDT]" value="123">
+                America/Inuvik [MDT]
+              </option>
+              <option label="America/Iqaluit [EDT]" value="124">
+                America/Iqaluit [EDT]
+              </option>
+              <option label="America/Jamaica [EST]" value="125">
+                America/Jamaica [EST]
+              </option>
+              <option label="America/Juneau [AKDT]" value="126">
+                America/Juneau [AKDT]
+              </option>
+              <option label="America/Kentucky/Louisville [EDT]" value="127">
+                America/Kentucky/Louisville [EDT]
+              </option>
+              <option label="America/Kentucky/Monticello [EDT]" value="128">
+                America/Kentucky/Monticello [EDT]
+              </option>
+              <option label="America/Kralendijk [AST]" value="129">
+                America/Kralendijk [AST]
+              </option>
+              <option label="America/La_Paz [BOT]" value="130">
+                America/La_Paz [BOT]
+              </option>
+              <option label="America/Lima [PET]" value="131">
+                America/Lima [PET]
+              </option>
+              <option label="America/Los_Angeles [PDT]" value="132">
+                America/Los_Angeles [PDT]
+              </option>
+              <option label="America/Lower_Princes [AST]" value="133">
+                America/Lower_Princes [AST]
+              </option>
+              <option label="America/Maceio [BRT]" value="134">
+                America/Maceio [BRT]
+              </option>
+              <option label="America/Managua [CST]" value="135">
+                America/Managua [CST]
+              </option>
+              <option label="America/Manaus [AMT]" value="136">
+                America/Manaus [AMT]
+              </option>
+              <option label="America/Marigot [AST]" value="137">
+                America/Marigot [AST]
+              </option>
+              <option label="America/Martinique [AST]" value="138">
+                America/Martinique [AST]
+              </option>
+              <option label="America/Matamoros [CDT]" value="139">
+                America/Matamoros [CDT]
+              </option>
+              <option label="America/Mazatlan [MST]" value="140">
+                America/Mazatlan [MST]
+              </option>
+              <option label="America/Menominee [CDT]" value="141">
+                America/Menominee [CDT]
+              </option>
+              <option label="America/Merida [CST]" value="142">
+                America/Merida [CST]
+              </option>
+              <option label="America/Metlakatla [MeST]" value="143">
+                America/Metlakatla [MeST]
+              </option>
+              <option label="America/Mexico_City [CST]" value="144">
+                America/Mexico_City [CST]
+              </option>
+              <option label="America/Miquelon [PMDT]" value="145">
+                America/Miquelon [PMDT]
+              </option>
+              <option label="America/Moncton [ADT]" value="146">
+                America/Moncton [ADT]
+              </option>
+              <option label="America/Monterrey [CST]" value="147">
+                America/Monterrey [CST]
+              </option>
+              <option label="America/Montevideo [UYT]" value="148">
+                America/Montevideo [UYT]
+              </option>
+              <option label="America/Montreal [EDT]" value="149">
+                America/Montreal [EDT]
+              </option>
+              <option label="America/Montserrat [AST]" value="150">
+                America/Montserrat [AST]
+              </option>
+              <option label="America/Nassau [EDT]" value="151">
+                America/Nassau [EDT]
+              </option>
+              <option label="America/New_York [EDT]" value="152">
+                America/New_York [EDT]
+              </option>
+              <option label="America/Nipigon [EDT]" value="153">
+                America/Nipigon [EDT]
+              </option>
+              <option label="America/Nome [AKDT]" value="154">
+                America/Nome [AKDT]
+              </option>
+              <option label="America/Noronha [FNT]" value="155">
+                America/Noronha [FNT]
+              </option>
+              <option label="America/North_Dakota/Beulah [CDT]" value="156">
+                America/North_Dakota/Beulah [CDT]
+              </option>
+              <option label="America/North_Dakota/Center [CDT]" value="157">
+                America/North_Dakota/Center [CDT]
+              </option>
+              <option label="America/North_Dakota/New_Salem [CDT]" value="158">
+                America/North_Dakota/New_Salem [CDT]
+              </option>
+              <option label="America/Ojinaga [MDT]" value="159">
+                America/Ojinaga [MDT]
+              </option>
+              <option label="America/Panama [EST]" value="160">
+                America/Panama [EST]
+              </option>
+              <option label="America/Pangnirtung [EDT]" value="161">
+                America/Pangnirtung [EDT]
+              </option>
+              <option label="America/Paramaribo [SRT]" value="162">
+                America/Paramaribo [SRT]
+              </option>
+              <option label="America/Phoenix [MST]" value="163">
+                America/Phoenix [MST]
+              </option>
+              <option label="America/Port-au-Prince [EST]" value="164">
+                America/Port-au-Prince [EST]
+              </option>
+              <option label="America/Port_of_Spain [AST]" value="165">
+                America/Port_of_Spain [AST]
+              </option>
+              <option label="America/Porto_Velho [AMT]" value="166">
+                America/Porto_Velho [AMT]
+              </option>
+              <option label="America/Puerto_Rico [AST]" value="167">
+                America/Puerto_Rico [AST]
+              </option>
+              <option label="America/Rainy_River [CDT]" value="168">
+                America/Rainy_River [CDT]
+              </option>
+              <option label="America/Rankin_Inlet [CDT]" value="169">
+                America/Rankin_Inlet [CDT]
+              </option>
+              <option label="America/Recife [BRT]" value="170">
+                America/Recife [BRT]
+              </option>
+              <option label="America/Regina [CST]" value="171">
+                America/Regina [CST]
+              </option>
+              <option label="America/Resolute [CDT]" value="172">
+                America/Resolute [CDT]
+              </option>
+              <option label="America/Rio_Branco [AMT]" value="173">
+                America/Rio_Branco [AMT]
+              </option>
+              <option label="America/Santa_Isabel [PST]" value="174">
+                America/Santa_Isabel [PST]
+              </option>
+              <option label="America/Santarem [BRT]" value="175">
+                America/Santarem [BRT]
+              </option>
+              <option label="America/Santiago [CLT]" value="176">
+                America/Santiago [CLT]
+              </option>
+              <option label="America/Santo_Domingo [AST]" value="177">
+                America/Santo_Domingo [AST]
+              </option>
+              <option label="America/Sao_Paulo [BRT]" value="178">
+                America/Sao_Paulo [BRT]
+              </option>
+              <option label="America/Scoresbysund [EGT]" value="179">
+                America/Scoresbysund [EGT]
+              </option>
+              <option label="America/Shiprock [MDT]" value="180">
+                America/Shiprock [MDT]
+              </option>
+              <option label="America/Sitka [AKDT]" value="181">
+                America/Sitka [AKDT]
+              </option>
+              <option label="America/St_Barthelemy [AST]" value="182">
+                America/St_Barthelemy [AST]
+              </option>
+              <option label="America/St_Johns [NDT]" value="183">
+                America/St_Johns [NDT]
+              </option>
+              <option label="America/St_Kitts [AST]" value="184">
+                America/St_Kitts [AST]
+              </option>
+              <option label="America/St_Lucia [AST]" value="185">
+                America/St_Lucia [AST]
+              </option>
+              <option label="America/St_Thomas [AST]" value="186">
+                America/St_Thomas [AST]
+              </option>
+              <option label="America/St_Vincent [AST]" value="187">
+                America/St_Vincent [AST]
+              </option>
+              <option label="America/Swift_Current [CST]" value="188">
+                America/Swift_Current [CST]
+              </option>
+              <option label="America/Tegucigalpa [CST]" value="189">
+                America/Tegucigalpa [CST]
+              </option>
+              <option label="America/Thule [ADT]" value="190">
+                America/Thule [ADT]
+              </option>
+              <option label="America/Thunder_Bay [EDT]" value="191">
+                America/Thunder_Bay [EDT]
+              </option>
+              <option label="America/Tijuana [PDT]" value="192">
+                America/Tijuana [PDT]
+              </option>
+              <option label="America/Toronto [EDT]" value="193">
+                America/Toronto [EDT]
+              </option>
+              <option label="America/Tortola [AST]" value="194">
+                America/Tortola [AST]
+              </option>
+              <option label="America/Vancouver [PDT]" value="195">
+                America/Vancouver [PDT]
+              </option>
+              <option label="America/Whitehorse [PDT]" value="196">
+                America/Whitehorse [PDT]
+              </option>
+              <option label="America/Winnipeg [CDT]" value="197">
+                America/Winnipeg [CDT]
+              </option>
+              <option label="America/Yakutat [AKDT]" value="198">
+                America/Yakutat [AKDT]
+              </option>
+              <option label="America/Yellowknife [MDT]" value="199">
+                America/Yellowknife [MDT]
+              </option>
+              <option label="Antarctica/Casey [WST]" value="200">
+                Antarctica/Casey [WST]
+              </option>
+              <option label="Antarctica/Davis [DAVT]" value="201">
+                Antarctica/Davis [DAVT]
+              </option>
+              <option label="Antarctica/DumontDUrville [DDUT]" value="202">
+                Antarctica/DumontDUrville [DDUT]
+              </option>
+              <option label="Antarctica/Macquarie [MIST]" value="203">
+                Antarctica/Macquarie [MIST]
+              </option>
+              <option label="Antarctica/Mawson [MAWT]" value="204">
+                Antarctica/Mawson [MAWT]
+              </option>
+              <option label="Antarctica/McMurdo [NZDT]" value="205">
+                Antarctica/McMurdo [NZDT]
+              </option>
+              <option label="Antarctica/Palmer [CLT]" value="206">
+                Antarctica/Palmer [CLT]
+              </option>
+              <option label="Antarctica/Rothera [ROTT]" value="207">
+                Antarctica/Rothera [ROTT]
+              </option>
+              <option label="Antarctica/South_Pole [NZDT]" value="208">
+                Antarctica/South_Pole [NZDT]
+              </option>
+              <option label="Antarctica/Syowa [SYOT]" value="209">
+                Antarctica/Syowa [SYOT]
+              </option>
+              <option label="Antarctica/Vostok [VOST]" value="210">
+                Antarctica/Vostok [VOST]
+              </option>
+              <option label="Arctic/Longyearbyen [CET]" value="211">
+                Arctic/Longyearbyen [CET]
+              </option>
+              <option label="Asia/Aden [AST]" value="212">
+                Asia/Aden [AST]
+              </option>
+              <option label="Asia/Almaty [ALMT]" value="213">
+                Asia/Almaty [ALMT]
+              </option>
+              <option label="Asia/Amman [EET]" value="214">
+                Asia/Amman [EET]
+              </option>
+              <option label="Asia/Anadyr [ANAT]" value="215">
+                Asia/Anadyr [ANAT]
+              </option>
+              <option label="Asia/Aqtau [AQTT]" value="216">
+                Asia/Aqtau [AQTT]
+              </option>
+              <option label="Asia/Aqtobe [AQTT]" value="217">
+                Asia/Aqtobe [AQTT]
+              </option>
+              <option label="Asia/Ashgabat [TMT]" value="218">
+                Asia/Ashgabat [TMT]
+              </option>
+              <option label="Asia/Baghdad [AST]" value="219">
+                Asia/Baghdad [AST]
+              </option>
+              <option label="Asia/Bahrain [AST]" value="220">
+                Asia/Bahrain [AST]
+              </option>
+              <option label="Asia/Baku [AZT]" value="221">
+                Asia/Baku [AZT]
+              </option>
+              <option label="Asia/Bangkok [ICT]" value="222">
+                Asia/Bangkok [ICT]
+              </option>
+              <option label="Asia/Beirut [EET]" value="223">
+                Asia/Beirut [EET]
+              </option>
+              <option label="Asia/Bishkek [KGT]" value="224">
+                Asia/Bishkek [KGT]
+              </option>
+              <option label="Asia/Brunei [BNT]" value="225">
+                Asia/Brunei [BNT]
+              </option>
+              <option label="Asia/Choibalsan [CHOT]" value="226">
+                Asia/Choibalsan [CHOT]
+              </option>
+              <option label="Asia/Chongqing [CST]" value="227">
+                Asia/Chongqing [CST]
+              </option>
+              <option label="Asia/Colombo [IST]" value="228">
+                Asia/Colombo [IST]
+              </option>
+              <option label="Asia/Damascus [EET]" value="229">
+                Asia/Damascus [EET]
+              </option>
+              <option label="Asia/Dhaka [BDT]" value="230">
+                Asia/Dhaka [BDT]
+              </option>
+              <option label="Asia/Dili [TLT]" value="231">
+                Asia/Dili [TLT]
+              </option>
+              <option label="Asia/Dubai [GST]" value="232">
+                Asia/Dubai [GST]
+              </option>
+              <option label="Asia/Dushanbe [TJT]" value="233">
+                Asia/Dushanbe [TJT]
+              </option>
+              <option label="Asia/Gaza [EET]" value="234">
+                Asia/Gaza [EET]
+              </option>
+              <option label="Asia/Harbin [CST]" value="235">
+                Asia/Harbin [CST]
+              </option>
+              <option label="Asia/Hebron [EET]" value="236">
+                Asia/Hebron [EET]
+              </option>
+              <option label="Asia/Ho_Chi_Minh [ICT]" value="237">
+                Asia/Ho_Chi_Minh [ICT]
+              </option>
+              <option label="Asia/Hong_Kong [HKT]" value="238">
+                Asia/Hong_Kong [HKT]
+              </option>
+              <option label="Asia/Hovd [HOVT]" value="239">
+                Asia/Hovd [HOVT]
+              </option>
+              <option label="Asia/Irkutsk [IRKT]" value="240">
+                Asia/Irkutsk [IRKT]
+              </option>
+              <option label="Asia/Jakarta [WIT]" value="241">
+                Asia/Jakarta [WIT]
+              </option>
+              <option label="Asia/Jayapura [EIT]" value="242">
+                Asia/Jayapura [EIT]
+              </option>
+              <option label="Asia/Jerusalem [IST]" value="243">
+                Asia/Jerusalem [IST]
+              </option>
+              <option label="Asia/Kabul [AFT]" value="244">
+                Asia/Kabul [AFT]
+              </option>
+              <option label="Asia/Kamchatka [PETT]" value="245">
+                Asia/Kamchatka [PETT]
+              </option>
+              <option label="Asia/Karachi [PKT]" value="246">
+                Asia/Karachi [PKT]
+              </option>
+              <option label="Asia/Kashgar [CST]" value="247">
+                Asia/Kashgar [CST]
+              </option>
+              <option label="Asia/Kathmandu [NPT]" value="248">
+                Asia/Kathmandu [NPT]
+              </option>
+              <option label="Asia/Krasnoyarsk [KRAT]" value="250">
+                Asia/Krasnoyarsk [KRAT]
+              </option>
+              <option label="Asia/Kuala_Lumpur [MYT]" value="251">
+                Asia/Kuala_Lumpur [MYT]
+              </option>
+              <option label="Asia/Kuching [MYT]" value="252">
+                Asia/Kuching [MYT]
+              </option>
+              <option label="Asia/Kuwait [AST]" value="253">
+                Asia/Kuwait [AST]
+              </option>
+              <option label="Asia/Macau [CST]" value="254">
+                Asia/Macau [CST]
+              </option>
+              <option label="Asia/Magadan [MAGT]" value="255">
+                Asia/Magadan [MAGT]
+              </option>
+              <option label="Asia/Makassar [CIT]" value="256">
+                Asia/Makassar [CIT]
+              </option>
+              <option label="Asia/Manila [PHT]" value="257">
+                Asia/Manila [PHT]
+              </option>
+              <option label="Asia/Muscat [GST]" value="258">
+                Asia/Muscat [GST]
+              </option>
+              <option label="Asia/Nicosia [EET]" value="259">
+                Asia/Nicosia [EET]
+              </option>
+              <option label="Asia/Novokuznetsk [NOVT]" value="260">
+                Asia/Novokuznetsk [NOVT]
+              </option>
+              <option label="Asia/Novosibirsk [NOVT]" value="261">
+                Asia/Novosibirsk [NOVT]
+              </option>
+              <option label="Asia/Omsk [OMST]" value="262">
+                Asia/Omsk [OMST]
+              </option>
+              <option label="Asia/Oral [ORAT]" value="263">
+                Asia/Oral [ORAT]
+              </option>
+              <option label="Asia/Phnom_Penh [ICT]" value="264">
+                Asia/Phnom_Penh [ICT]
+              </option>
+              <option label="Asia/Pontianak [WIT]" value="265">
+                Asia/Pontianak [WIT]
+              </option>
+              <option label="Asia/Pyongyang [KST]" value="266">
+                Asia/Pyongyang [KST]
+              </option>
+              <option label="Asia/Qatar [AST]" value="267">
+                Asia/Qatar [AST]
+              </option>
+              <option label="Asia/Qyzylorda [QYZT]" value="268">
+                Asia/Qyzylorda [QYZT]
+              </option>
+              <option label="Asia/Rangoon [MMT]" value="269">
+                Asia/Rangoon [MMT]
+              </option>
+              <option label="Asia/Riyadh [AST]" value="270">
+                Asia/Riyadh [AST]
+              </option>
+              <option label="Asia/Sakhalin [SAKT]" value="271">
+                Asia/Sakhalin [SAKT]
+              </option>
+              <option label="Asia/Samarkand [UZT]" value="272">
+                Asia/Samarkand [UZT]
+              </option>
+              <option label="Asia/Seoul [KST]" value="273">
+                Asia/Seoul [KST]
+              </option>
+              <option label="Asia/Shanghai [CST]" value="274">
+                Asia/Shanghai [CST]
+              </option>
+              <option label="Asia/Singapore [SGT]" value="275">
+                Asia/Singapore [SGT]
+              </option>
+              <option label="Asia/Taipei [CST]" value="276">
+                Asia/Taipei [CST]
+              </option>
+              <option label="Asia/Tashkent [UZT]" value="277">
+                Asia/Tashkent [UZT]
+              </option>
+              <option label="Asia/Tbilisi [GET]" value="278">
+                Asia/Tbilisi [GET]
+              </option>
+              <option label="Asia/Tehran [IRST]" value="279">
+                Asia/Tehran [IRST]
+              </option>
+              <option label="Asia/Thimphu [BTT]" value="280">
+                Asia/Thimphu [BTT]
+              </option>
+              <option label="Asia/Tokyo [JST]" value="281">
+                Asia/Tokyo [JST]
+              </option>
+              <option label="Asia/Ulaanbaatar [ULAT]" value="282">
+                Asia/Ulaanbaatar [ULAT]
+              </option>
+              <option label="Asia/Urumqi [CST]" value="283">
+                Asia/Urumqi [CST]
+              </option>
+              <option label="Asia/Vientiane [ICT]" value="284">
+                Asia/Vientiane [ICT]
+              </option>
+              <option label="Asia/Vladivostok [VLAT]" value="285">
+                Asia/Vladivostok [VLAT]
+              </option>
+              <option label="Asia/Yakutsk [YAKT]" value="286">
+                Asia/Yakutsk [YAKT]
+              </option>
+              <option label="Asia/Yekaterinburg [YEKT]" value="287">
+                Asia/Yekaterinburg [YEKT]
+              </option>
+              <option label="Asia/Yerevan [AMT]" value="288">
+                Asia/Yerevan [AMT]
+              </option>
+              <option label="Atlantic/Azores [AZOT]" value="289">
+                Atlantic/Azores [AZOT]
+              </option>
+              <option label="Atlantic/Bermuda [ADT]" value="290">
+                Atlantic/Bermuda [ADT]
+              </option>
+              <option label="Atlantic/Canary [WET]" value="291">
+                Atlantic/Canary [WET]
+              </option>
+              <option label="Atlantic/Cape_Verde [CVT]" value="292">
+                Atlantic/Cape_Verde [CVT]
+              </option>
+              <option label="Atlantic/Faroe [WET]" value="293">
+                Atlantic/Faroe [WET]
+              </option>
+              <option label="Atlantic/Madeira [WET]" value="294">
+                Atlantic/Madeira [WET]
+              </option>
+              <option label="Atlantic/Reykjavik [GMT]" value="295">
+                Atlantic/Reykjavik [GMT]
+              </option>
+              <option label="Atlantic/South_Georgia [GST]" value="296">
+                Atlantic/South_Georgia [GST]
+              </option>
+              <option label="Atlantic/St_Helena [GMT]" value="297">
+                Atlantic/St_Helena [GMT]
+              </option>
+              <option label="Atlantic/Stanley [FKST]" value="298">
+                Atlantic/Stanley [FKST]
+              </option>
+              <option label="Australia/Adelaide [CST]" value="299">
+                Australia/Adelaide [CST]
+              </option>
+              <option label="Australia/Brisbane [EST]" value="300">
+                Australia/Brisbane [EST]
+              </option>
+              <option label="Australia/Broken_Hill [CST]" value="301">
+                Australia/Broken_Hill [CST]
+              </option>
+              <option label="Australia/Currie [EST]" value="302">
+                Australia/Currie [EST]
+              </option>
+              <option label="Australia/Darwin [CST]" value="303">
+                Australia/Darwin [CST]
+              </option>
+              <option label="Australia/Eucla [CWST]" value="304">
+                Australia/Eucla [CWST]
+              </option>
+              <option label="Australia/Hobart [EST]" value="305">
+                Australia/Hobart [EST]
+              </option>
+              <option label="Australia/Lindeman [EST]" value="306">
+                Australia/Lindeman [EST]
+              </option>
+              <option label="Australia/Lord_Howe [LHST]" value="307">
+                Australia/Lord_Howe [LHST]
+              </option>
+              <option label="Australia/Melbourne [EST]" value="308">
+                Australia/Melbourne [EST]
+              </option>
+              <option label="Australia/Perth [WST]" value="309">
+                Australia/Perth [WST]
+              </option>
+              <option label="Australia/Sydney [EST]" value="310">
+                Australia/Sydney [EST]
+              </option>
+              <option label="Europe/Amsterdam [CET]" value="311">
+                Europe/Amsterdam [CET]
+              </option>
+              <option label="Europe/Andorra [CET]" value="312">
+                Europe/Andorra [CET]
+              </option>
+              <option label="Europe/Athens [EET]" value="313">
+                Europe/Athens [EET]
+              </option>
+              <option label="Europe/Belgrade [CET]" value="314">
+                Europe/Belgrade [CET]
+              </option>
+              <option label="Europe/Berlin [CET]" value="315">
+                Europe/Berlin [CET]
+              </option>
+              <option label="Europe/Bratislava [CET]" value="316">
+                Europe/Bratislava [CET]
+              </option>
+              <option label="Europe/Brussels [CET]" value="317">
+                Europe/Brussels [CET]
+              </option>
+              <option label="Europe/Bucharest [EET]" value="318">
+                Europe/Bucharest [EET]
+              </option>
+              <option label="Europe/Budapest [CET]" value="319">
+                Europe/Budapest [CET]
+              </option>
+              <option label="Europe/Chisinau [EET]" value="320">
+                Europe/Chisinau [EET]
+              </option>
+              <option label="Europe/Copenhagen [CET]" value="321">
+                Europe/Copenhagen [CET]
+              </option>
+              <option label="Europe/Dublin [GMT]" value="322">
+                Europe/Dublin [GMT]
+              </option>
+              <option label="Europe/Gibraltar [CET]" value="323">
+                Europe/Gibraltar [CET]
+              </option>
+              <option label="Europe/Guernsey [GMT]" value="324">
+                Europe/Guernsey [GMT]
+              </option>
+              <option label="Europe/Helsinki [EET]" value="325">
+                Europe/Helsinki [EET]
+              </option>
+              <option label="Europe/Isle_of_Man [GMT]" value="326">
+                Europe/Isle_of_Man [GMT]
+              </option>
+              <option label="Europe/Istanbul [EET]" value="327">
+                Europe/Istanbul [EET]
+              </option>
+              <option label="Europe/Jersey [GMT]" value="328">
+                Europe/Jersey [GMT]
+              </option>
+              <option label="Europe/Kaliningrad [FET]" value="329">
+                Europe/Kaliningrad [FET]
+              </option>
+              <option label="Europe/Kiev [FET]" value="330">
+                Europe/Kiev [FET]
+              </option>
+              <option label="Europe/Lisbon [WET]" value="331">
+                Europe/Lisbon [WET]
+              </option>
+              <option label="Europe/Ljubljana [CET]" value="332">
+                Europe/Ljubljana [CET]
+              </option>
+              <option label="Europe/London [GMT]" value="333">
+                Europe/London [GMT]
+              </option>
+              <option label="Europe/Luxembourg [CET]" value="334">
+                Europe/Luxembourg [CET]
+              </option>
+              <option label="Europe/Madrid [CET]" value="335">
+                Europe/Madrid [CET]
+              </option>
+              <option label="Europe/Malta [CET]" value="336">
+                Europe/Malta [CET]
+              </option>
+              <option label="Europe/Mariehamn [EET]" value="337">
+                Europe/Mariehamn [EET]
+              </option>
+              <option label="Europe/Minsk [FET]" value="338">
+                Europe/Minsk [FET]
+              </option>
+              <option label="Europe/Monaco [CET]" value="339">
+                Europe/Monaco [CET]
+              </option>
+              <option label="Europe/Moscow [MSK]" value="340">
+                Europe/Moscow [MSK]
+              </option>
+              <option label="Europe/Oslo [CET]" value="341">
+                Europe/Oslo [CET]
+              </option>
+              <option label="Europe/Paris [CET]" value="342">
+                Europe/Paris [CET]
+              </option>
+              <option label="Europe/Podgorica [CET]" value="343">
+                Europe/Podgorica [CET]
+              </option>
+              <option label="Europe/Prague [CET]" value="344">
+                Europe/Prague [CET]
+              </option>
+              <option label="Europe/Riga [EET]" value="345">
+                Europe/Riga [EET]
+              </option>
+              <option label="Europe/Rome [CET]" value="346">
+                Europe/Rome [CET]
+              </option>
+              <option label="Europe/Samara [SAMT]" value="347">
+                Europe/Samara [SAMT]
+              </option>
+              <option label="Europe/San_Marino [CET]" value="348">
+                Europe/San_Marino [CET]
+              </option>
+              <option label="Europe/Sarajevo [CET]" value="349">
+                Europe/Sarajevo [CET]
+              </option>
+              <option label="Europe/Simferopol [FET]" value="350">
+                Europe/Simferopol [FET]
+              </option>
+              <option label="Europe/Skopje [CET]" value="351">
+                Europe/Skopje [CET]
+              </option>
+              <option label="Europe/Sofia [EET]" value="352">
+                Europe/Sofia [EET]
+              </option>
+              <option label="Europe/Stockholm [CET]" value="353">
+                Europe/Stockholm [CET]
+              </option>
+              <option label="Europe/Tallinn [EET]" value="354">
+                Europe/Tallinn [EET]
+              </option>
+              <option label="Europe/Tirane [CET]" value="355">
+                Europe/Tirane [CET]
+              </option>
+              <option label="Europe/Uzhgorod [FET]" value="356">
+                Europe/Uzhgorod [FET]
+              </option>
+              <option label="Europe/Vaduz [CET]" value="357">
+                Europe/Vaduz [CET]
+              </option>
+              <option label="Europe/Vatican [CET]" value="358">
+                Europe/Vatican [CET]
+              </option>
+              <option label="Europe/Vienna [CET]" value="359">
+                Europe/Vienna [CET]
+              </option>
+              <option label="Europe/Vilnius [EET]" value="360">
+                Europe/Vilnius [EET]
+              </option>
+              <option label="Europe/Volgograd [VOLT]" value="361">
+                Europe/Volgograd [VOLT]
+              </option>
+              <option label="Europe/Warsaw [CET]" value="362">
+                Europe/Warsaw [CET]
+              </option>
+              <option label="Europe/Zagreb [CET]" value="363">
+                Europe/Zagreb [CET]
+              </option>
+              <option label="Europe/Zaporozhye [FET]" value="364">
+                Europe/Zaporozhye [FET]
+              </option>
+              <option label="Europe/Zurich [CET]" value="365">
+                Europe/Zurich [CET]
+              </option>
+              <option label="Indian/Antananarivo [EAT]" value="366">
+                Indian/Antananarivo [EAT]
+              </option>
+              <option label="Indian/Christmas [CXT]" value="368">
+                Indian/Christmas [CXT]
+              </option>
+              <option label="Indian/Cocos [CCT]" value="369">
+                Indian/Cocos [CCT]
+              </option>
+              <option label="Indian/Comoro [EAT]" value="370">
+                Indian/Comoro [EAT]
+              </option>
+              <option label="Indian/Kerguelen [TFT]" value="371">
+                Indian/Kerguelen [TFT]
+              </option>
+              <option label="Indian/Mahe [SCT]" value="372">
+                Indian/Mahe [SCT]
+              </option>
+              <option label="Indian/Maldives [MVT]" value="373">
+                Indian/Maldives [MVT]
+              </option>
+              <option label="Indian/Mauritius [MUT]" value="374">
+                Indian/Mauritius [MUT]
+              </option>
+              <option label="Indian/Mayotte [EAT]" value="375">
+                Indian/Mayotte [EAT]
+              </option>
+              <option label="Indian/Reunion [RET]" value="376">
+                Indian/Reunion [RET]
+              </option>
+              <option label="Pacific/Apia [WST]" value="377">
+                Pacific/Apia [WST]
+              </option>
+              <option label="Pacific/Auckland [NZDT]" value="378">
+                Pacific/Auckland [NZDT]
+              </option>
+              <option label="Pacific/Chatham [CHADT]" value="379">
+                Pacific/Chatham [CHADT]
+              </option>
+              <option label="Pacific/Chuuk [CHUT]" value="380">
+                Pacific/Chuuk [CHUT]
+              </option>
+              <option label="Pacific/Easter [EAST]" value="381">
+                Pacific/Easter [EAST]
+              </option>
+              <option label="Pacific/Efate [VUT]" value="382">
+                Pacific/Efate [VUT]
+              </option>
+              <option label="Pacific/Enderbury [PHOT]" value="383">
+                Pacific/Enderbury [PHOT]
+              </option>
+              <option label="Pacific/Fakaofo [TKT]" value="384">
+                Pacific/Fakaofo [TKT]
+              </option>
+              <option label="Pacific/Fiji [FJT]" value="385">
+                Pacific/Fiji [FJT]
+              </option>
+              <option label="Pacific/Funafuti [TVT]" value="386">
+                Pacific/Funafuti [TVT]
+              </option>
+              <option label="Pacific/Galapagos [GALT]" value="387">
+                Pacific/Galapagos [GALT]
+              </option>
+              <option label="Pacific/Gambier [GAMT]" value="388">
+                Pacific/Gambier [GAMT]
+              </option>
+              <option label="Pacific/Guadalcanal [SBT]" value="389">
+                Pacific/Guadalcanal [SBT]
+              </option>
+              <option label="Pacific/Guam [ChST]" value="390">
+                Pacific/Guam [ChST]
+              </option>
+              <option label="Pacific/Honolulu [HST]" value="391">
+                Pacific/Honolulu [HST]
+              </option>
+              <option label="Pacific/Johnston [HST]" value="392">
+                Pacific/Johnston [HST]
+              </option>
+              <option label="Pacific/Kiritimati [LINT]" value="393">
+                Pacific/Kiritimati [LINT]
+              </option>
+              <option label="Pacific/Kosrae [KOST]" value="394">
+                Pacific/Kosrae [KOST]
+              </option>
+              <option label="Pacific/Kwajalein [MHT]" value="395">
+                Pacific/Kwajalein [MHT]
+              </option>
+              <option label="Pacific/Majuro [MHT]" value="396">
+                Pacific/Majuro [MHT]
+              </option>
+              <option label="Pacific/Marquesas [MART]" value="397">
+                Pacific/Marquesas [MART]
+              </option>
+              <option label="Pacific/Midway [SST]" value="398">
+                Pacific/Midway [SST]
+              </option>
+              <option label="Pacific/Nauru [NRT]" value="399">
+                Pacific/Nauru [NRT]
+              </option>
+              <option label="Pacific/Niue [NUT]" value="400">
+                Pacific/Niue [NUT]
+              </option>
+              <option label="Pacific/Norfolk [NFT]" value="401">
+                Pacific/Norfolk [NFT]
+              </option>
+              <option label="Pacific/Noumea [NCT]" value="402">
+                Pacific/Noumea [NCT]
+              </option>
+              <option label="Pacific/Pago_Pago [SST]" value="403">
+                Pacific/Pago_Pago [SST]
+              </option>
+              <option label="Pacific/Palau [PWT]" value="404">
+                Pacific/Palau [PWT]
+              </option>
+              <option label="Pacific/Pitcairn [PST]" value="405">
+                Pacific/Pitcairn [PST]
+              </option>
+              <option label="Pacific/Pohnpei [PONT]" value="406">
+                Pacific/Pohnpei [PONT]
+              </option>
+              <option label="Pacific/Port_Moresby [PGT]" value="407">
+                Pacific/Port_Moresby [PGT]
+              </option>
+              <option label="Pacific/Rarotonga [CKT]" value="408">
+                Pacific/Rarotonga [CKT]
+              </option>
+              <option label="Pacific/Saipan [ChST]" value="409">
+                Pacific/Saipan [ChST]
+              </option>
+              <option label="Pacific/Tahiti [TAHT]" value="410">
+                Pacific/Tahiti [TAHT]
+              </option>
+              <option label="Pacific/Tarawa [GILT]" value="411">
+                Pacific/Tarawa [GILT]
+              </option>
+              <option label="Pacific/Tongatapu [TOT]" value="412">
+                Pacific/Tongatapu [TOT]
+              </option>
+              <option label="Pacific/Wake [WAKT]" value="413">
+                Pacific/Wake [WAKT]
+              </option>
+              <option label="Pacific/Wallis [WFT]" value="414">
+                Pacific/Wallis [WFT]
+              </option>
+              <option label="UTC [UTC]" value="415">
+                UTC [UTC]
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="new-form-ui clearb textareaheight">
+          <label>Description</label>
+          <div class="division">
+            <textarea cols="50" id="description" maxlength="200" name="description" rows="10"></textarea>
+          </div>
+        </div>
+        <div class="new-form-ui-submit">
+          <input id="submitbutton" name="submit" type="submit" value="Save"><button onclick="closeiframepopup('timezone','cancel');" type="button">Cancel</button>
+        </div>
+      </div>
+    </form>
+    <script language='javascript' type='text/javascript'>
+    </script> 
+    <script type='text/javascript'>
+    $(document).ready(function() { 
+        });
+    </script>
+    <div class="ajax-loader" id="spinnerpopup" style="display:none;"><img alt="Loading" id="img-spinner" src="http://192.168.1.25/gaplogix/public/media/images/loader2.gif"></div>
+  </div>
+  <script src="http://192.168.1.25/gaplogix/public/media/jquery/js/jquery.form_3.39.js" type="text/javascript">
+  </script> 
+  <script src="http://192.168.1.25/gaplogix/public/media/jquery/js/jquery.blockUI_2.64.js" type="text/javascript">
+  </script> 
+  <script language="JavaScript" src="http://192.168.1.25/gaplogix/public/media/jquery/js/select2.js" type="text/javascript">
+  </script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
+
+
+
+<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> <span id="include" class="center-body-false" style="height:880px;">
+<form id="newLeaveRequestForm" name="newLeaveRequestForm" method="post" action="/home.jsf?cid=2" class="colorBackground" enctype="multipart/form-data">
+<input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
+
+
+    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
+    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel"><div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:reqFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId"><div id="newLeaveRequestForm:reqFldId_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:errorMessages" class="ui-messages ui-widget" aria-live="polite"></div></div></div><span id="newLeaveRequestForm:newLeaveRequestPanel1"><span id="newLeaveRequestForm:newLeaveRequestPanel12">
+    <div class="form_content">
+
+      <h3>
+        Car Owner Details
+
+        <button id="carHireView:j_idt28941" name="carHireView:j_idt28941" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only hideOnFBPPage carHireIcon FR" onclick="PrimeFaces.ab({s:&quot;carHireView:j_idt28941&quot;,p:&quot;carHireView:j_idt28941&quot;,u:&quot;carHireView:carOwnerDetails&quot;});return false;" title="Reset" type="submit" role="button" aria-disabled="false"><span class="ui-button-icon-left ui-icon ui-c ui-icon-arrowreturnthick-1-w"></span><span class="ui-button-text ui-c">ui-button</span></button>
+
+      </h3>
+
+      <div class="form_content_inner"><table id="carHireView:carOwnerDetails" class="margin_bottom_20">
+<tbody>
+
+  <tr>
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" id="carHire">
+        <div class="ui-panel-content ui-widget-content" id="content">
+          <label>Name of Car Owner:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28946" id="carHireView:j_idt28946">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28946_content">
+          <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt28947" maxlength="50" name="carHireView:j_idt28947" role="textbox" type="text"><span class="TipContent">Name of Car Owner</span>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28949" id="carHireView:j_idt28949">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28949_content">
+          <label>Father's / Husband's Name:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28952" id="carHireView:j_idt28952">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28952_content">
+          <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt28953" maxlength="50" name="carHireView:j_idt28953" role="textbox" type="text"><span class="TipContent">Father's / Husband's Name</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28955" id="carHireView:j_idt28955">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28955_content">
+          <label>Relationship with you:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      
+            
+
+
+           
+              <select id="carHireView:j_idt28959_input" style="width:177px;height:25px;">
+                <option selected="selected" value="">
+                  Select
+                </option>
+
+                <option value="259">
+                  Father
+                </option>
+
+                <option value="260">
+                  Mother
+                </option>
+
+                <option value="261">
+                  Brother
+                </option>
+
+                <option value="262">
+                  Sister
+                </option>
+
+                <option value="263">
+                  Son
+                </option>
+
+                <option value="264">
+                  Daughter
+                </option>
+
+                <option value="381">
+                  Parents
+                </option>
+
+                <option value="432">
+                  Wife
+                </option>
+
+                <option value="433">
+                  Husband
+                </option>
+
+                <option value="1592">
+                  Father in law
+                </option>
+
+                <option value="1593">
+                  Mother in law
+                </option>
+              </select>
+            </div>
+            
+
+            
+          </div>
+          <span class="TipContent">Relationship with you</span>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28963" id="carHireView:j_idt28963">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28963_content">
+          <label>Full Residential Address:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28966" id="carHireView:j_idt28966">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28966_content">
+          <textarea aria-disabled="false" aria-multiline="true" aria-readonly="false" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all ui-inputtextarea-resizable" cols="20" id="carHireView:j_idt28967" maxlength="500" name="carHireView:j_idt28967" role="textbox" rows="3"></textarea><span class="TipContent">Full Residential Address</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28969" id="carHireView:j_idt28969">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28969_content">
+          <label>Car Owner's Pan Number:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28972" id="carHireView:j_idt28972">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28972_content">
+          <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt28973" maxlength="10" name="carHireView:j_idt28973" role="textbox" type="text"><span class="TipContent">Car Owner's Pan Number</span>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28975" id="carHireView:j_idt28975">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28975_content">
+          <label>Car Owner's Bank Name &amp; Address:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28978" id="carHireView:j_idt28978">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28978_content">
+          <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt28979" maxlength="100" name="carHireView:j_idt28979" role="textbox" type="text"><span class="TipContent">Car Owner's Bank Name &amp; Address</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28981" id="carHireView:j_idt28981">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28981_content">
+          <label>Type of A/C:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      
+
+
+            
+              <select id="carHireView:j_idt28985_input" style="width:177px;height:25px;">
+                <option selected="selected" value="">
+                  Select
+                </option>
+
+                <option value="7419">
+                  Saving
+                </option>
+
+                <option value="7764">
+                  Current Account
+                </option>
+              </select>
+            </div>
+            
+          </div>
+          <span class="TipContent">Type of A/C</span>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28989" id="carHireView:j_idt28989">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28989_content">
+          <label>Car Onwer's Bank Account Number:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28992" id="carHireView:j_idt28992">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28992_content">
+          <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt28993" maxlength="50" name="carHireView:j_idt28993" onkeypress="return NumericOnly(event, false);" role="textbox" type="text"><span class="TipContent">Car Onwer's Bank Account Number</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt28995" id="carHireView:j_idt28995">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28995_content">
+          <label>Bank IFSC Code:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt28998" id="carHireView:j_idt28998">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt28998_content">
+          <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt28999" maxlength="11" name="carHireView:j_idt28999" role="textbox" type="text"><span class="TipContent">Bank IFSC Code</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+<div class="row margin_top_20 margin_bottom_20 border_top_solid">
+  <span class="heading-style margin_top_10">Car Details <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only hideOnFBPPage carHireIcon FR" id="carHireView:j_idt29002" name="carHireView:j_idt29002" onclick="PrimeFaces.ab({s:&quot;carHireView:j_idt29002&quot;,p:&quot;carHireView:j_idt29002&quot;,u:&quot;carHireView:carDetails&quot;});return false;" role="button" title="Reset" type="submit"><span class="heading-style margin_top_10"><span class="ui-button-icon-left ui-icon ui-c ui-icon-arrowreturnthick-1-w"></span><span class="ui-button-text ui-c">ui-button</span></span></button></span>
+</div>
+
+
+<table class="" id="carHireView:carDetails">
+  <tbody>
+    <tr>
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29004" id="carHireView:j_idt29004">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29004_content">
+            <label>Car Make and Model:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29007" id="carHireView:j_idt29007">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29007_content">
+            <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt29008" maxlength="50" name="carHireView:j_idt29008" role="textbox" type="text"><span class="TipContent">Car Make and Model</span>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29010" id="carHireView:j_idt29010">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29010_content">
+            <label>MANUFACTURING DATE:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29013" id="carHireView:j_idt29013">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29013_content">
+            <span id="newLeaveRequestForm:startdate" class="leaveStartDate">
+<input type="text" class="datepicker">
+</span><span class="ui-button-icon-left ui-icon ui-icon-calendar"></span>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29016" id="carHireView:j_idt29016">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29016_content">
+            <label>Registration Date in Car Owner's Name:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29019" id="carHireView:j_idt29019">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29019_content">
+            <span id="newLeaveRequestForm:startdate" class="leaveStartDate">
+              <input type="text" class="datepicker">
+            </span><span class="TipContent">Registration Date in Car Owner's Name</span>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29022" id="carHireView:j_idt29022">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29022_content">
+            <label>Registration Number:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29025" id="carHireView:j_idt29025">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29025_content">
+            <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:j_idt29026" maxlength="50" name="carHireView:j_idt29026" role="textbox" type="text"><span class="TipContent">Registration Number</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+
+    <span class="TipContent">Car CC</span>
+
+
+  <tr>
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29028" id="carHireView:j_idt29028">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29028_content">
+          <span class="redColor">*</span><label>Actual Car CC:</label>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_outputCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29031" id="carHireView:j_idt29031">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29031_content">
+          <input aria-disabled="false" aria-readonly="false" aria-required="true" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:actualCarCCId" maxlength="8" name="carHireView:actualCarCCId" onchange="PrimeFaces.ab({s:&quot;carHireView:actualCarCCId&quot;,e:&quot;change&quot;,f:&quot;carHireView&quot;,p:&quot;carHireView:j_idt29031&quot;,u:&quot;carHireView:serviceTaxId carHireView:amountPerCCId carHireView:totalAmountId carHireView:carccId&quot;});" onkeypress="return NumericOnly(event, false);" role="textbox" type="text" value="0"><span class="TipContent">Actual Car CC</span>
+        </div>
+      </div>
+    </td>
+
+    <td class="td_labelCol3">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29033" id="carHireView:j_idt29033">
+        <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29033_content">
+          <label>Car CC:</label>
+        </div>
+      </div>
+    </td>
+    <td class="td_outputCol3"><select id="carHireView:j_idt28985_input" style="width:177px;height:25px;">
+      <option selected="selected" value="">
+        Select
+      </option>
+
+      <option value="7419">
+        0-1200
+      </option>
+
+      <option value="7764">
+        1201-1600
+      </option>
+
+      <option value="7764">
+        above 1800
+      </option>
+    </select> <span class="TipContent">Type of A/C</span> </td>
+  </tr>
+
+
+    <tr>
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29040" id="carHireView:j_idt29040">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29040_content">
+            <label>Amount (as per Car CC):</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29043" id="carHireView:j_idt29043">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29043_content">
+            <input aria-disabled="false" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" id="carHireView:amountPerCCId" maxlength="8" name="carHireView:amountPerCCId" onchange="PrimeFaces.ab({s:&quot;carHireView:amountPerCCId&quot;,e:&quot;change&quot;,f:&quot;carHireView&quot;,p:&quot;carHireView:amountPerCCId&quot;,u:&quot;carHireView:serviceTaxId carHireView:totalAmountId carHireView:amountPerCCId&quot;});" role="textbox" type="text"><span class="TipContent">Amount (As per Car CC)</span>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29045" id="carHireView:j_idt29045">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29045_content">
+            <label>Service Tax(7.5 % of Amount):</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29048" id="carHireView:j_idt29048">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29048_content">
+            <input aria-disabled="true" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled" disabled="disabled" id="carHireView:serviceTaxId" maxlength="8" name="carHireView:serviceTaxId" role="textbox" type="text"><span class="TipContent">Service Tax(7.5 % of Amount)</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29050" id="carHireView:j_idt29050">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29050_content">
+            <label>Total Amount:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29053" id="carHireView:j_idt29053">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29053_content">
+            <input aria-disabled="true" aria-readonly="false" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-disabled" disabled="disabled" id="carHireView:totalAmountId" maxlength="8" name="carHireView:totalAmountId" role="textbox" type="text"><span class="TipContent">Total Amount</span>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29055" id="carHireView:j_idt29055">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29055_content">
+            <label>REMARK:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_j_idt29058" id="carHireView:j_idt29058">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29058_content">
+            <textarea aria-disabled="false" aria-multiline="true" aria-readonly="false" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all ui-inputtextarea-resizable" cols="20" id="carHireView:j_idt29059" maxlength="200" name="carHireView:j_idt29059" role="textbox" rows="3"></textarea><span class="TipContent">REMARK</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td class="td_labelCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_carHireView_j_idt29061" id="carHireView:j_idt29061">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:j_idt29061_content">
+            <label>Attachment:</label>
+          </div>
+        </div>
+      </td>
+
+      <td class="td_outputCol3">
+        <div class="ui-panel ui-widget ui-widget-content ui-corner-all ToolTip" data-widget="widget_carHireView_docCarHire" id="carHireView:docCarHire">
+          <div class="ui-panel-content ui-widget-content" id="carHireView:docCarHire_content">
+            <a class="ui-commandlink ui-widget" href="#" id="carHireView:j_idt29064" onclick="PF('uploadDocument').show();;PrimeFaces.ab({s:&quot;carHireView:j_idt29064&quot;,u:&quot;documentUpload&quot;});return false;">Upload</a><span class="TipContent">Attachment</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+</tbody>
+</table>
+
+
+      </div>
+    </div>
+    <div class="row margin_bottom_10"><button id="carHireView:j_idt29068" name="carHireView:j_idt29068" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success"  title="Submit" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Submit</span></button><button id="carHireView:j_idt29069" name="carHireView:j_idt29069" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="PrimeFaces.ab({s:&quot;carHireView:j_idt29069&quot;,u:&quot;include leftMenu secondLevelMenu rightPanel&quot;});return false;" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Cancel</span></button>
+    </div>
+
+
+
+        </span>

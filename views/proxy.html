@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+  </script>
+
+
+<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
+<span id="include" class="center-body-false" style="height:660px;">
+
+
+
+    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
+    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel"><div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:reqFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId"><div id="newLeaveRequestForm:reqFldId_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:errorMessages" class="ui-messages ui-widget" aria-live="polite"></div></div></div><span id="newLeaveRequestForm:newLeaveRequestPanel1"><span id="newLeaveRequestForm:newLeaveRequestPanel12">
+          <div class="form_content fax_m">
+            <div class="panel_title"><span title="">SELECT EMPLOYEE</span>
+            </div>
+
+            <div class="form_content_inner"><table>
+<tbody>
+<tr>
+<td class="td_labelCol"><label title="">
+EmployeeName:</label></td>
+<td class="td_outputCol"><span id="newLeaveRequestForm:applicationdate">Demo</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
+<td class="td_labelCol"><label class="redColor">
+</label><label for="newLeaveRequestForm:leaveReasondropDown2_focus" title="">
+</label></td>
+<td class="td_outputCol">
+
+
+
+
+
+</td>
+</tr>
+<tr>
+
+<td class="td_labelCol"><label class="redColor">
+*</label><label for="newLeaveRequestForm:startdate_input" title="">
+Start Date:</label>
+</td>
+<td class="td_outputCol">
+
+<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
+<input type="text" class="datepicker">
+</span>
+
+<div id="newLeaveRequestForm:selectDateMessage" aria-live="polite" class="ui-message"></div></td>
+
+<td class="td_labelCol"><label class="redColor">
+*</label><label for="newLeaveRequestForm:enddate_input" title="">
+End Date:</label>
+</td>
+<td class="td_outputCol">
+  <span id="newLeaveRequestForm:startdate" class="leaveStartDate">
+<input type="text" class="datepicker">
+</span>
+</td>
+</tr>
+<tr>
+<td>
+  <button id="searchForm:refresh" name="searchForm:refresh" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success mrg ui-state-hover" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">refresh</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+            </div>
+          </div></span></span>
+          <span id="searchForm:attendanceDtls"></span>
+
+<div class="listing_kb attendance_status">
+  <span id="searchForm:attendanceDtls"></span>
+
+  <table width="100%">
+    <tbody>
+      <tr>
+        <td align="left" class="titleTBnone" width="50%"><span class="heading-style"><label>ATTENDANCE DETAILS</label></span>
+        </td>
+
+        <td align="right" class="titleTBnone" width="50%">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="listing_kb_inner">
+    <span id="searchForm:attendanceDetailInner"></span>
+
+    <div class="ui-datatable ui-widget table-header employeeAttendanceReport-dataTable" id="searchForm:attendanceDetail">
+      <span id="searchForm:attendanceDetailInner"></span>
+
+      <div class="ui-datatable-tablewrapper">
+        <span id="searchForm:attendanceDetailInner"></span>
+
+        <table role="grid">
+          <thead id="searchForm:attendanceDetail_head">
+            <tr>
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11504" role="columnheader" style="min-width:30px;"><span class="ui-column-title">DTCHECKBOX</span>
+              </th>
+
+              <th class="ui-state-default ui-sortable-column" id="searchForm:attendanceDetail:j_idt11505" role="columnheader" tabindex="0"><span class="ui-column-title">Date</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+              </th>
+
+              <th class="ui-state-default ui-sortable-column" id="searchForm:attendanceDetail:j_idt11506" role="columnheader" tabindex="0"><span class="ui-column-title">Shift</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11507" role="columnheader"><span class="ui-column-title">Exp InTime</span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11508" role="columnheader"><span class="ui-column-title">Actual InTime</span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11509" role="columnheader"><span class="ui-column-title">Exp OutTime</span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11510" role="columnheader"><span class="ui-column-title">Actual OutTime</span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11511" role="columnheader"><span class="ui-column-title">Work Hours</span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11512" role="columnheader"><span class="ui-column-title">Extra Hours</span>
+              </th>
+
+              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt11514" role="columnheader"><span class="ui-column-title">Status</span>
+              </th>
+            </tr>
+          </thead>
+
+
+          <tbody class="ui-datatable-data ui-widget-content" id="searchForm:attendanceDetail_data">
+            <tr class="ui-widget-content ui-datatable-empty-message">
+              <td colspan="10">No records found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="row margin_top_10">
+      <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="searchForm:j_idt11567" name="searchForm:j_idt11567"  role="button" title="" type="submit"><span class="ui-button-text ui-c">Regularize</span></button>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_searchForm_attendanceError" id="searchForm:attendanceError">
+  <div class="ui-panel-content ui-widget-content" id="searchForm:attendanceError_content">
+    <b><font color="red"></font></b>
+  </div>
+</div>
+        
+          </div>
+        </div>
+        
+          </div>
+        </div>
+
+
+
+      
+
+        </span>
+
+
+   
+
+       
+
+
+      
+          
+          
+          
+
+
+          
