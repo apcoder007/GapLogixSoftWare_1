@@ -1,5 +1,5 @@
 application: gaplogix-164309
-version: beta
+version: device
 runtime: python27
 threadsafe: true
 api_version: 1

@@ -1,0 +1,138 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 95%;
+    }
+
+</style>
+
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        <form ng-submit="addPastEmployeeDetails()">
+            <p class="c-black f-500 m-b-5 m-t-20">PAST EMPLOYMENT DETAILS</p>
+            <hr>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-phone"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Company Name" ng-model="companyname">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Employee Code" ng-model="employeecode">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Title" ng-model="title">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span> 
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Role" ng-model="role">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="sctr">
+                            <option value="">Start Date</option>
+                            <option value="contractual">Contractual </option>
+                            <option value="trainee">Trainee </option>
+                            <option value="regular">Regular </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="jobtype">
+                            <option value="">Full Time/Part Time</option>
+                            <option value="fulltime">Full Time </option>
+                            <option value="parttime">Part Time </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-event"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control date-picker" placeholder="Start Date" ng-model="startdate">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <!-- <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="End Date">
+                    </div> -->
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="md m d-event"></i></span>
+                            <div class="dtp-container dropdown fg-line">
+                            <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="End Date" aria-expanded="false" ng-model="enddate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+
+        </form>
+
+        <br><br>
+
+
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    <div class="card-body card-padding">
+        <table width="100%" border="1px gray">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Employee Code</th>
+                    <th>Title</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Role</th>
+                    <th>Employment Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

@@ -1,6 +1,12 @@
 materialAdmin
-    .config(function ($stateProvider, $urlRouterProvider){
+    .config(function ($stateProvider, $urlRouterProvider, $compileProvider, $mdThemingProvider){
         $urlRouterProvider.otherwise("/");
+
+        $compileProvider.debugInfoEnabled(false);
+    
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('pink');
 
 
         $stateProvider
@@ -10,14 +16,23 @@ materialAdmin
             //------------------------------
             .state('login', {
                 url:'/',
-                templateUrl:'views/login.html'
+                templateUrl:'views/login.html',
+                controller:'loginController'
                 
-            
             })
+
+            .state('resetpassword', {
+                url:'/reset/password',
+                templateUrl:'views/resetpassword.html',
+                controller:'resetPasswordController'
+                
+            })
+            
             
             .state ('home', {
                 url: '/home',
-                templateUrl: 'views/home1.html'
+                templateUrl: 'views/home1.html',
+                controller:'homeCtrl'
                 
             })
 
@@ -119,7 +134,8 @@ materialAdmin
 
             .state ('user-interface.payslip', {
                 url: '/payslip',
-                templateUrl: 'views/payslip.html'
+                templateUrl: 'views/payslip.html',
+                controller: 'payrollController'
             })
 
             .state ('user-interface.fbpplanner', {
@@ -209,6 +225,7 @@ materialAdmin
             .state ('charts.flot-charts', {
                 url: '/flot-charts',
                 templateUrl: 'views/flot-charts.html',
+                controller:'leaveController'
             })
             .state ('charts.holiday-charts', {
                 url: '/holiday-charts',
@@ -257,19 +274,22 @@ materialAdmin
             //------------------------------
             
              .state ('photo-gallery', {
-                url: '/photo-gallery',
-                templateUrl: 'views/common.html'
+                url: '/punch',
+                templateUrl: 'views/common.html',
+                controller:'punchController'
             })
 
             //Default
         
             .state ('photo-gallery.attendance', {
                 url: '/attendance',
-                templateUrl: 'views/attendance.html'
+                templateUrl: 'views/attendance.html',
+                controller:'attendanceController'
             })
             .state ('photo-gallery.regularization', {
                 url: '/regularization',
-                templateUrl: 'views/regularization.html'
+                templateUrl: 'views/regularization.html',
+                controller:'regularizeCtrl'
             })
             .state ('photo-gallery.myshift', {
                 url: '/myshift',
@@ -277,7 +297,13 @@ materialAdmin
             })
             .state ('photo-gallery.myattendance', {
                 url: '/myattendance',
-                templateUrl: 'views/myattendance.html'
+                templateUrl: 'views/myattendance.html',
+                controller: 'myattendanceCtrl'
+            })
+            .state ('photo-gallery.myregularization', {
+                url: '/myregularization',
+                templateUrl: 'views/myregularization.html',
+                controller: 'myregularizationCtrl'
             })
             .state ('photo-gallery.shiftrequest', {
                 url: '/shiftrequest',
@@ -328,7 +354,8 @@ materialAdmin
             
             .state ('pages', {
                 url: '/pages',
-                templateUrl: 'views/common-2.html'
+                templateUrl: 'views/common-2.html',
+                controller:'pagesCtrl'
             })
             
         
@@ -336,17 +363,20 @@ materialAdmin
         
             .state ('pages.profile', {
                 url: '/profile',
-                templateUrl: 'views/profile.html'
+                templateUrl: 'views/profile.html',
+                controller:'profileCtrl'
             })
         
             .state ('pages.profile.profile-about', {
                 url: '/profile-about',
-                templateUrl: 'views/profile-about.html'
+                templateUrl: 'views/profile-about.html',
+                controller:'profileaboutCtrl'
             })
         
             .state ('pages.profile.profile-timeline', {
                 url: '/profile-timeline',
                 templateUrl: 'views/profile-timeline.html',
+                controller:'profileTimelineCtrl',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -371,6 +401,7 @@ materialAdmin
             .state ('pages.profile.profile-photos', {
                 url: '/profile-photos',
                 templateUrl: 'views/profile-photos.html',
+                controller:'profilephotoCtrl',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -394,7 +425,8 @@ materialAdmin
         
             .state ('pages.profile.profile-connections', {
                 url: '/profile-connections',
-                templateUrl: 'views/profile-connections.html'
+                templateUrl: 'views/profile-connections.html',
+                controller:'loginProfileConnectionCtrl'
             })
             .state ('prof', {
                 url: '/prof',
@@ -406,17 +438,20 @@ materialAdmin
         
             .state ('prof.employee', {
                 url: '/employee',
-                templateUrl: 'views/employee.html'
+                templateUrl: 'views/employee.html',
+                controller:'employeeCtrl'
             })
         
             .state ('prof.employee.employee-about', {
                 url: '/employee-about',
-                templateUrl: 'views/employee-about.html'
+                templateUrl: 'views/employee-about.html',
+                controller:'pastEmpCtrl'
             })
-        
+
             .state ('prof.employee.employee-education', {
                 url: '/employee-education',
                 templateUrl: 'views/employee-education.html',
+                controller: 'employeeEduCtrl',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -439,8 +474,9 @@ materialAdmin
             })
 
             .state ('prof.employee.employee-bank', {
-                url: '/profile-photos',
+                url: '/bank-info',
                 templateUrl: 'views/employee-bank.html',
+                controller:'bankCtrl',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -464,8 +500,134 @@ materialAdmin
         
             .state ('prof.employee.employee-id', {
                 url: '/employee-id',
-                templateUrl: 'views/employee-id.html'
+                templateUrl: 'views/employee-id.html',
+                controller:'idDetailsCtrl'
             })
+
+            //emplist
+
+            .state ('prof.employeelist', {
+                url: '/employee-list',
+                templateUrl: 'views/employee-list.html'
+            })
+
+            .state ('prof.employeelist.menu', {
+                url: '/employee-list-menu',
+                templateUrl: 'views/employee-list-menu2.html',
+                controller: 'employeelistCtrl',
+                resolve:{
+                    empList: function(Data){
+                    return Data.empList();
+                    }
+                }
+            })
+
+            .state ('prof.employeelist.edit', {
+                url: '/employee-list-edit/:id',
+                templateUrl: 'views/employees/profile.html',
+                controller: 'employeeEditCtrl'
+            })
+
+            .state ('prof.employeelist.edit.basic', {
+                url: '/basic',
+                templateUrl: 'views/employees/profile-about.html',
+                controller: 'employeeBasicEditCtrl'
+            })
+
+            .state ('prof.employeelist.edit.profile-timeline', {
+                url: '/profile-timeline',
+                templateUrl: 'views/employees/profile-timeline.html',
+                controller: 'employeeProfileEditCtrl'
+            })
+
+            .state ('prof.employeelist.edit.profile-contact', {
+                url: '/profile-contact',
+                templateUrl: 'views/employees/profile-photos.html',
+                controller: 'employeeContactEditCtrl'
+            })
+
+            .state ('prof.employeelist.edit.profile-connections', {
+                url: '/profile-connections',
+                templateUrl: 'views/employees/profile-connections.html',
+                controller: 'employeeConnectionEditCtrl'
+            })
+
+             //add emp
+
+            .state ('prof.employeelist.addemployee', {
+                url: '/addemployee',
+                templateUrl: 'views/addEmployee.html',
+                controller:'addEmpMainCtrl'
+            })
+
+            .state ('prof.employeelist.addemployee.basic', {
+                url: '/basicdetails',
+                templateUrl: 'views/basicemp.html',
+                controller: 'addEmployeeController',
+                resolve:{
+                    l1managerList: function(Data){
+                        return Data.l1Manager();
+                    },
+
+                    l2managerList: function(Data){
+                        return Data.l2Manager();
+                    },
+
+                    hrmanagerList: function(Data){
+                        return Data.hrManager();
+                    },
+
+                    designationList: function(Data){
+                        return Data.Designation();
+                    }
+                }
+            })
+
+            .state ('prof.employeelist.addemployee.contact', {
+                url: '/contactdetails',
+                templateUrl: 'views/contactemp.html',
+                controller: 'contactEmployeeController'
+            })
+
+            .state ('prof.employeelist.addemployee.family', {
+                url: '/familydetails',
+                templateUrl: 'views/familyemp.html',
+                controller: 'familyEmployeeController'
+            })
+
+            .state ('prof.employeelist.addemployee.pastemp', {
+                url: '/pastempdetails',
+                templateUrl: 'views/pastemp.html',
+                controller: 'addPastEmployeeController'
+            })
+
+            .state ('prof.employeelist.addemployee.educationemp', {
+                url: '/educationdetails',
+                templateUrl: 'views/educationemp.html',
+                controller: 'employeeEducationController'
+            })
+
+            .state ('prof.employeelist.addemployee.bankemp', {
+                url: '/bankdetails',
+                templateUrl: 'views/bankemp.html',
+                controller: 'employeeBankController'
+            })
+
+            .state ('prof.employeelist.addemployee.idemp', {
+                url: '/iddetails',
+                templateUrl: 'views/idemp.html',
+                controller: 'employeeIdController'
+            })
+
+            .state ('prof.employeelist.addemployee.salaryemp', {
+                url: '/salarydetails',
+                templateUrl: 'views/salaryemp.html',
+                controller: 'employeeSalaryController'
+            })
+
+
+        
+            
 
 
 

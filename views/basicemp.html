@@ -1,0 +1,492 @@
+<script>
+    $( function() {
+        $( ".date-picker" ).datepicker();
+    } );
+</script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 100%;
+    } 
+     
+
+    .ProfilePic {
+        width: 110px;
+        position: relative;
+    }
+
+    .ProfilePic .uploadLink{
+        width: 35px;
+        height: 35px;
+        top:60%;
+        cursor: pointer;
+        display: inline-block;
+        background: url(https://g-trans.peoplestrong.com/img/edit_icon.png) no-repeat;
+        cursor: pointer;
+    }
+
+    .starval::before{
+        content: '*'
+    }
+    
+   .start-lite{
+    position: absolute;
+    z-index: 999;
+    left: 5px;
+    top: 10px;
+    color: red;
+   }
+   .designation{
+    left: -10px;
+   }
+   
+</style>
+
+<div class="card" id="basicinfocard">
+
+    <div class="card-body card-padding">
+        
+        <p class="c-black f-500 m-b-5 m-t-20">Personal Informations</p>
+
+       <!--  <form role="form" ng-submit="basicInput()" name="basicempdetails" enctype="multipart/form-data"> -->
+        <form role="form" ng-submit="basicInput()" name="basicempdetails" enctype="multipart/form-data">
+        <hr>
+        <div class="input-group">
+           <div class="col-sm-4">
+               
+                <div class="ProfilePic">
+                    <img src="https://g-trans.peoplestrong.com/img/profile_pic.jpg" id="blah">
+                    <label for="file-input">
+                        <span class="uploadLink" id="org_image" title="Change Profile Image"></span>
+                    </label>
+                    <input id="file-input" type="file" name="imagefile" accept="image/*" style=" display: none;" onchange="readURL(this);" ng-model="imageurl" fileread="vm.uploadme" />
+                </div>
+           </div> 
+        </div>
+
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md-person-add"></i></span>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line select starval">    
+                    <select class="form-control" autofocus ng-model="sirname" required>
+                        <option value="">Select Title</option>
+                        <option value="mr">Mr. </option>
+                        <option value="mrs">Mrs. </option>
+                        <option value="ms">Ms. </option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line">    
+                    <input type="text" required class="form-control" placeholder="First Name" ng-model="firstname">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Middle Name" ng-model="middlename">
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-person"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Last Name" ng-model="lastname">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line">    
+                    <input type="text" required class="form-control" placeholder="Father's Name" ng-model="fathername">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <!-- <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Date Of Birth" ng-model="dob">
+                </div> -->
+                <div class="input-group form-group">
+                        <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="Date Of Birth" aria-expanded="false" id="datepicker" ng-model="dob">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="gender">
+                        <option value="">Gender</option>
+                        <option value="male">Male </option>
+                        <option value="female">Female </option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="maritalstatus" required>
+                        <option value="">Marital Status</option>
+                        <option value="devorced">Devorced </option>
+                        <option value="married">Married </option>
+                        <option value="single">Single </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line">    
+                    <input type="text" required class="form-control" placeholder="Mobile" ng-model="mobile">
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-email"></i></span>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line">    
+                    <input type="text" required class="form-control" placeholder="Personal Email" ng-model="pemail">
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <p class="c-black f-500 m-b-5 m-t-20">ID INFORMATION</p>
+        <hr>
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-person"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="PAN Number" ng-model="pannumber">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="UAN Number" ng-model="uannumber">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="PF Account" ng-model="pfaccount">
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-person"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Aadhar Number" ng-model="adharno">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="ESI Number" ng-model="esinumber">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Voter ID" ng-model="voterid">
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <p class="c-black f-500 m-b-5 m-t-20">ETHNICITY INFORMATION</p>
+        <hr>
+
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md  md-people"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="nationality">
+                        <option value="">Select One</option>
+                        <option value="indian">Indian </option>
+                        <option value="canadian">Canadian </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <p class="c-black f-500 m-b-5 m-t-20">HEALTH INFORMATION</p>
+        <hr>
+
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="blood" required>
+                        <option value="">Select One</option>
+                        <option value="A+">A+</option>
+                        <option value="B+">B+</option>
+                        <option value="AB+">AB+</option>
+                        <option value="O">O+</option>
+                        <option value="A">A-</option>
+                        <option value="B">B-</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <p class="c-black f-500 m-b-5 m-t-20">POSITION INFORMATION</p>
+        <hr>
+
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-person"></i></span>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line">    
+                    <input type="text" required class="form-control" placeholder="Employee Code" ng-model="empcode">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line">    
+                    <input type="text" required class="form-control" placeholder="Official Email" ng-model="officialemail">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <!-- <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Date Of Joining" ng-model="doj">
+                </div> -->
+                <label class="start-lite">*</label>
+                <div class="input-group form-group">
+                        <div class="dtp-container dropdown fg-line">
+                        <input type="text" required class="form-control date-picker" data-toggle="dropdown" placeholder="Date Of Joining" aria-expanded="false" ng-model="doj">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="grade" required>
+                        <option value="">Grade</option>
+                        <option value="l1">L1</option>
+                        <option value="l2">L2</option>
+                        <option value="l3">L3</option>
+                        <option value="l4">L4</option>
+                        <option value="l5">L5</option>
+                        <option value="l6">L6</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line select">
+                    <label class="start-lite designation">*</label>    
+                    <select class="form-control" ng-model="designation" id="designation" required>
+                        <option value="">Designation</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="l1_manager" id="l1mnager">
+                        <option value="">L1 Manager</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="l2_manager" id="l2manager">
+                        <option value="">L2 Manager</option>
+                    </select>
+                </div>
+            </div> 
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="hrmanager" id="hrmanager">
+                        <option value="">Hr Manager</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="employeetype">
+                        <option value="">Employee Type</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="empstatus">
+                        <option value="">Employment Status</option>
+                        <option value="">Actived</option>
+                        <option value="">Exited</option>
+                        <option value="">Serving Notice Period</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Probation Period" ng-model="prob_period">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Notice Period" ng-model="notice_period">
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <label class="start-lite">*</label>
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="confirmstatus" required>
+                        <option value="">Confirmation Status</option>
+                        <option value="">Confirmed</option>
+                        <option value="">OnProbation</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <!-- <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Confirmation Due Date" ng-model="confirmdate">
+                </div> -->
+                <label class="start-lite">*</label>
+                <div class="input-group form-group">
+                        <div class="dtp-container dropdown fg-line">
+                        <input type="text" required class="form-control date-picker" data-toggle="dropdown" placeholder="Confirmation Due Date" aria-expanded="false" ng-model="confirm_date">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <!-- <div class="fg-line">    
+                    <input type="text" class="form-control" placeholder="Relieving Date" ng-model="relievingdate">
+                </div> -->
+                <div class="input-group form-group">
+                        <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="Relieving Date" aria-expanded="false" ng-model="relieve_date">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <p class="c-black f-500 m-b-5 m-t-20">WORK INFORMATION</p>
+        <hr>
+
+        <br>
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="department">
+                        <option value="">Department</option>
+                        <option value="">Managment</option>
+                        <option value="">Admin</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr style="border-top: dotted 1px;" />
+
+        <div class="input-group">
+            <span class="input-group-addon"><i class="md md-phone"></i></span>
+            <div class="col-sm-4">
+                <div class="fg-line select">    
+                    <select class="form-control" ng-model="country">
+                        <option value="">Country</option>
+                        <option value="">India</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="input-group">
+            <div class="col-sm-4 col-sm-offset-6">
+                <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+            </div>
+        </div>
+
+        </form>
+
+    </div>
+
+    <br>
+</div>
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+                    // .width(150)
+                    // .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+

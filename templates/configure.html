@@ -59,7 +59,8 @@
 </head>
 <body>
   <form>
-      <input id="baseurl" type="hidden" value="/admin/managemenu"> <input id="dateformatjs" type="hidden" value="dd MM yy"> <input id="loginuserId" name="loginuserId" type="hidden" value="1"> <input id="dragid" type="hidden" value="">
+      <input id="baseurl" type="hidden" value="/admin/managemenu"> 
+      <input id="dateformatjs" type="hidden" value="dd MM yy"> <input id="loginuserId" name="loginuserId" type="hidden" value="1"> <input id="dragid" type="hidden" value="">
   </form>
   <div id="container">
     <div class="ajax-loader" id="spinner" style="display:none;"><img alt="Loading" id="img-spinner" src="/images/loader2.gif"></div>
@@ -122,14 +123,14 @@
               <div class='add_emp_new'>
                   <a href='http://192.168.1.85/gaplogix/index.php/employee'>Add Employee</a>
               </div>
-              <form action="http://192.168.1.85/gaplogix/index.php/wizard/configuresite" class="step_form" id="formid" method="post" name="systempreference">
+              <form onSubmit="configData()" class="step_form" id="formid" name="systempreference">
                 <input id="id" name="id" type="hidden" value="1">
                 <input id="currencyid" name="currencyid" type="hidden" value="">
                 <input id="organisationid" name="organisationid" type="hidden" value="1">
-                <input id="empcodeid" name="empcodeid" type="hidden" value="1">
+                <input id="empcodeid" name="empcodeid" type="hidden" >
                 <div class="form-ui">
-                  <label class="required">Employee Code <img class="tooltip" src="../images/help.png" title="Provide the employee code followed by your organization. Ex: EMPP001"></label> 
-                  <input id="employee_code" maxlength="5" name="employee_code" type="text" value="GTL">
+                  <label class="required">Employee Code <img class="tooltip" src="/adminfiles/images/help.png" title="Provide the employee code followed by your organization. Ex: EMPP001"></label> 
+                  <input id="employee_code" maxlength="5" name="employee_code" type="text">
                 </div>
                 <div class="form-ui">
                   <label class="required">Currency <img class="tooltip" src="../images/help.png" title="Currency followed by your organization. Ex: US Dollar, Indian Rupee"></label> 
@@ -140,7 +141,7 @@
                     <option label="European Euro (EUR)" value="2">
                         European Euro (EUR)
                     </option>
-                    <option label="Indian Rupee (INR)" selected="selected" value="4">
+                    <option label="Indian Rupee (INR)" value="4">
                         Indian Rupee (INR)
                     </option>
                     <option label="Pound Sterling (GBP)" value="3">
@@ -170,7 +171,7 @@
                     <option  value="4" example="2013-03-31" >Year, month and day with dashes</option>
                     <option  value="5" example="10.01.2013" >Day, month and four digit year with dots</option>
                     <option  value="6" example="10-01-2013" >Day, month and four digit year with dashes</option>
-                    <option selected='selected' value="9" example="04 October 2013" >Day, textual month and year</option>
+                    <option  value="9" example="04 October 2013" >Day, textual month and year</option>
                     <option  value="10" example="July 1st, 2008" >Textual month, day and year</option>
                     <option  value="11" example="Apr-17-2012" >Month abbreviation, day and year</option>
                     <option  value="12" example="2013-Dec-22" >Year, month abbreviation and day</option>
@@ -183,7 +184,7 @@
                   <select name="timeformatid" id="timeformatid">
                     <option value="" example="">Select Time Format</option>
                     <option  value="1" example="9 AM" >Hour only, with meridian</option>
-                    <option selected='selected' value="2" example="9:10 AM" >Hour and minutes, with meridian</option>
+                    <option  value="2" example="9:10 AM" >Hour and minutes, with meridian</option>
                     <option  value="3" example="9:10:10 AM" >Hour, minutes and seconds, with meridian</option>
                     <option  value="5" example="22:10" >Hour and minutes, 24 Hours Notation</option>
                     <option  value="6" example="15:10:55" >Hour, minutes and seconds, 24 Hours Notation</option>
@@ -197,29 +198,34 @@
                     <option label="Select Time zone" value="">
                         Select Time zone
                     </option>
-                    <option label="Asia/Kolkata [IST]" selected="selected" value="1">
+                    <option label="Asia/Kolkata [IST]" value="1">
                         Asia/Kolkata [IST]
                     </option>
-                  </select> <span class="add-coloum" onclick="displaydeptform('/admin/popup','Timezone');">Add Time zone</span>
+                  </select> 
+                  <!-- <span class="add-coloum" onclick="displaydeptform('/popup','Timezone');">Add Time zone</span> -->
+                  <span class="add-coloum" onclick="displayPopup('hello','Timezone');">Add Time zone</span>
+                  
                 </div>
+                <!-- country section -->
                 <div class="form-ui">
-                  <label class="required">Country <img class="tooltip" src="../images/help.png" title="Select a Country in which your organization is located. Ex: India, United Kingdom">
+                  <label class="required">Country <img class="tooltip" src="/adminfiles/images/help.png" title="Select a Country in which your organization is located. Ex: India, United Kingdom">
                   </label> 
                   <select id="perm_country" name="perm_country" onchange='displayParticularState(this,"","perm_state","")'>
-                      <option label="Select Country" value="">
+                      <!-- <option label="Select Country" value="">
                           Select Country
-                      </option>
-                  </select>
-                  <script type="text/javascript" src="/adminfiles/js/config/config3.js"></script>
-                  <!-- added on 11-aug-2017 by abhay prakash -->
+                      </option> -->
+                  </select>  
                 </div>
+                <!-- state section -->
                 <div class="form-ui">
-                  <label class="required">State <img class="tooltip" src="../images/help.png" title="Select a State in which your organization is located. Ex: Alaska, Alabama">
+                  <label class="required">State <img class="tooltip" src="/adminfiles/images/help.png" title="Select a State in which your organization is located. Ex: Alaska, Alabama">
                   </label>
                   <select id="perm_state" name="perm_state" onchange='displayParticularCity(this,"","perm_city","")'>
+
                   </select> 
                   <span class="errors" id="errors-perm_state" style="display:none;"></span>
                 </div>
+
                 <div class="form-ui">
                   <label class="required">City <img class="tooltip" src="../images/help.png" title="Select a City in which your organization is located. Ex: Buffalo, New York"></label> 
                   <select id="perm_city" name="perm_city">
@@ -235,7 +241,7 @@
                     <option label="Select Password Preference" value="">
                         Select Password Preference
                     </option>
-                    <option label="Alphanumeric" selected="selected" value="1">
+                    <option label="Alphanumeric" value="1">
                         Alphanumeric
                     </option>
                     <option label="Alphanumeric and Special Characters" value="2">
@@ -298,13 +304,14 @@
                   </select>
                 </div>
                 <div class="new-form-ui-submit">
-                    <input id="submitbutton" name="submit" type="submit" value="Save">
+                    <input name="submit" type="submit" value="Save">
                 </div>
               </form>
+              <script type="text/javascript" src="/adminfiles/js/config/config6.js"></script>
             </div>
             <div id="currencyContainer" style="display: none; overflow: auto;">
               <div class="heading">
-                <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="../images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="/adminfiles/images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
               </div>
               <iframe class="business_units_iframe" frameborder="0" id="currencyCont" name="currencyCont"></iframe>
             </div>
@@ -315,6 +322,8 @@
               <iframe class="business_units_iframe" frameborder="0" id="timezoneCont" name="timezoneCont"></iframe>
             </div>
 
+            <script type="text/javascript" src="/adminfiles/js/config/config3.js"></script>
+            <!-- added on 11-aug-2017 by abhay prakash -->
             <script type="text/javascript" src="/adminfiles/js/config/config4.js"></script>
             <!-- added on 11-aug-2017 by abhay prakash -->
 
@@ -334,6 +343,78 @@
       <script src="/adminfiles/js/hrms.js" type="text/javascript"></script>
       <!-- added on 11-aug-2017 by abhay prakash -->
       <script language="javascript" type="text/javascript" src="/adminfiles/js/config/config5.js"></script><!-- added on 11-aug-2017 by abhay prakash -->
+    </div>
+
+
+    <!-- popup div -->
+    <div id="hello">
+      <div id="error_message" style="display:none;"></div>
+    <!-- <form action="http://192.168.1.25/gaplogix/index.php/timezone/addpopup" id="formid" method="post" name="timezone"> -->
+    <form onsubmit="addtimeZone()" id="formtimezonis">
+      <input id="id" name="id" type="hidden" value="">
+      <div class="total-form-controller">
+        <div class="new-form-ui-multi clearb">
+          <label class="required">Time zone <img class="tooltip" src="/gaplogix/public/media/images/help.png" title="Ex: America/Atikokan [EST]"></label>
+          <div class="division">
+            <select id="timezone" multiple="multiple" name="timezone[]">
+              
+            </select>
+          </div>
+        </div>
+        <div class="new-form-ui clearb textareaheight">
+          <label>Description</label>
+          <div class="division">
+            <textarea cols="50" id="description" maxlength="200" name="description" rows="10"></textarea>
+          </div>
+        </div>
+        <div class="new-form-ui-submit">
+          <input id="submittimezone" name="submit" type="submit" value="Save">
+          <button onclick="closeDialogPopup('hello');" type="button">Cancel</button>
+        </div>
+      </div>
+    </form>
+    <script type="text/javascript">
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "https://gapapi-100.appspot.com/api/main/timezone/", false);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send();
+      timedata = JSON.parse(xhttp.responseText).timezone_data;
+
+      var timezone = $("#timezone");
+
+      $.each(timedata, function(index, value) {
+        var optinons = new Option(value['timezone']+" ["+value['timezone_abbr']+"]");
+        optinons.setAttribute('value', value['id']);
+        optinons.setAttribute('label', value['timezone']+" ["+value['timezone_abbr']+"]");
+        timezone.append(optinons);
+      });
+
+      var addtimeZone = function(){
+        var tzones = $("#timezone").val();
+        var description = $("#description").val();
+        var tz = tzones.join();
+
+        var senData = {'timeZoneId':tz, 'description':description}
+        console.log(senData);
+        var xhttpd = new XMLHttpRequest();
+        xhttpd.open("POST", "https://gapapi-100.appspot.com/api/add/new/timezone/", false);
+        xhttpd.setRequestHeader("Content-type", "application/json");
+        xhttpd.send(JSON.stringify(senData));
+        successdata = JSON.parse(xhttp.responseText).success;
+        console.log(successdata)
+
+        // $.each(tzones, function(index, value){
+        //   var senData = {'timeZoneId':value, 'description':description}
+        //   console.log(senData);
+        //   var xhttpd = new XMLHttpRequest();
+        //   xhttpd.open("POST", "https://gapapi-100.appspot.com/api/add/new/timezone/", false);
+        //   xhttpd.setRequestHeader("Content-type", "application/json");
+        //   xhttpd.send(JSON.stringify(senData));
+        //   successdata = JSON.parse(xhttp.responseText).success;
+        //   console.log(successdata)
+        // });
+      }
+    </script>
     </div>
   </body>
 </html>

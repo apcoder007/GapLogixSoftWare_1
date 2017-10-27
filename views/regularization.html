@@ -1,91 +1,154 @@
  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
-  <script>
+<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+<script>
   $( function() {
     $( ".datepicker" ).datepicker();
   } );
-  </script>
- 
+</script>
+<style type="text/css">
+  .lhpara{
+    color: white;  
+    margin-bottom: -0.5px;
+  }
+  .lhinput{
+    border-radius: 2px;
+    width:145px; 
+    padding: 2px
+  }
+  #popupDiv{
+    margin: auto; 
+    width: 80%; 
+    background: transparent; 
+    z-index: 99999; 
+    position: fixed; 
+    padding: 5%
+  }
+
+  #popupDiv div{
+
+  }
+
+   #regAttend{
+    background-color: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #e7e7e8;
+  }
+  #regAttend thead{
+    background-color: rgba(178, 178, 189, 0.5);
+    line-height: 2;
+  }
+  #regAttend tbody{
+    line-height: 2;
+  }
+  #regAttend thead th, #regAttend tbody tr{
+    text-align: center !important;
+  }
+
+</style>
+ <div id="popupDiv" ng-hide="hidpopup">
+  <div style="background-color:white; height: 230px; box-shadow: 2px 2px 10px #888888;">
+    <div style="background-color:#4f88c7; color: white; padding: 1%; font-weight: bold">
+      Regularize Attendance
+      <span class="ui-icon ui-icon-closethick" style="background-color: white; float: right; margin-top: auto" ng-click="hidepopup()"></span>
+    </div>
+    <div style="padding: 2%">
+      <table id="regAttend">
+        <thead>
+          <tr>
+            <th>Selected Date</th>
+            <th>Actual In Time</th>
+            <th>Actual Out Time</th>
+            <th>In Time</th>
+            <th>Out Time</th>
+            <th>Comment</th>
+            <th>Approver Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="list in reglists">
+            <td>{{list['date']}}</td>
+            <td>10:00</td>
+            <td>06:30</td>
+            <td>{{list['reportInTime']}}</td>
+            <td>{{list['reportOutTime']}}</td>
+            <td>{{list['remark']}}</td>
+            <td>{{}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
  
     <!-- Basic -->
-<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">   
-<span id="include" class="center-body-false" style="height:655px;">
-<form id="newLeaveRequestForm" name="newLeaveRequestForm" method="post" action="/home.jsf?cid=2" class="colorBackground" enctype="multipart/form-data">
-<input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
+<div class="mdl-grid">  
+  <div class="mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">   
+    <span class="center-body-false" style="height:655px;">
+      <form name="newLeaveRequestForm" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
+        <div>
+          <div>
+            <div class="listing_kb">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td width="49%" align="left" class="titleTBnone">
+                      <span class="heading-style">
+                        <span title="">LEAVE HISTORY</span>
+                      </span>
+                    </td>
+                    <td width="49%" align="right"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="listing_kb_inner">
+                <span id="">
+                  <table id="" class="table-header">
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                          <div>
+                            <p class="lhpara">Regularization Code</p>
+                            <input type="text" name="" class="lhinput" ng-model="regcode">
+                          </div>  
+                        </th>
+                        <th scope="col">
+                          <div>
+                            <p class="lhpara">Application Date</p>
+                            <!-- <input type="" name="" style="border-radius: 2px; padding: 2px"> -->
+                          </div>
+                        </th>
+                        <th scope="col">
+                          <div>
+                            <p class="lhpara">Stage</p>
+                            <input type="text" name="" class="lhinput" ng-model="stage">
+                          </div>
+                        </th>
+                        <th scope="col">
+                          <div>
+                            <p class="lhpara">Status</p>
+                            <input type="text" name="" class="lhinput" ng-model="status">
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="reglist in regularizelist | filter:regcode | filter:stage">
+                        <td style="color: #6ca3d8 !important; cursor: pointer;" ng-click="regAttendance(reglist['regularizationCode'])"> {{reglist['regularizationCode']}} </td>
+                        <td> {{reglist['applicationDate']}} </td>
+                        <td> {{reglist['stage']}}  </td>
+                        <td> {{reglist['status']}}  </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </span>
+  </div>
+</div>
 
-
-    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
-    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel">
-    <div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content">
-    <div id="newLeaveRequestForm:reqFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId">
-    <div id="newLeaveRequestForm:reqFldId_content" class="ui-panel-content ui-widget-content">
-    <div id="newLeaveRequestForm:errorMessages" class="ui-messages ui-widget" aria-live="polite"></div>
-    </div>
-    </div>
-
-
-
-   
-
-        <div class="listing_kb">
-          <table width="100%">
-            <tbody><tr>
-              <td width="49%" align="left" class="titleTBnone"><span class="heading-style"><span title="">LEAVE HISTORY</span>
-              </span></td>
-              <td width="49%" align="right"></td>
-            </tr>
-          </tbody></table>
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" class="table-header" summary="Leave Quota Detail">
-<thead>
-<tr>
-<th scope="col">
-  <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Regularization Code</p>
-                        <input type="text" name="" style="border-radius: 2px;width:145px; padding: 2px">
-                      </div>  
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Application Date</p>
-                        <!-- <input type="" name="" style="border-radius: 2px; padding: 2px"> -->
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Stage</p>
-                        <input type="text" name="" style="border-radius: 2px;width:145px; padding: 2px">
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Status</p>
-                        <input type="text" name="" style="border-radius: 2px;width:145px; padding: 2px">
-                      </div>
-</th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td> EL </td>
-    <td>  </td>
-    <td>15.0  </td>
-    <td> Pending  </td>
-    
-    
-</tr>
-<tr>
-    <td> EL </td>
-    <td>  </td>
-    <td>15.0  </td>
-    <td> Pending  </td>
-    
-</tr>
-</tbody>
-</table>
-</span>
-
-         
-
-
-        </span>

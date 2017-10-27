@@ -3074,3 +3074,4 @@ tr:last-child td .ToolTip.positionLeft .TipContent::before { bottom:5px !importa
 .center-body-false .timesheet_main .ui-datatable table tr td  .ui-datatable.project_bk .ui-datatable-tablewrapper table tr.ui-datatable-empty-message > td { border:none !important;}
 .titleTBnone.plus_btn .ui-selectcheckboxmenu, .titleTBnone.plus_btn button, .titleTBnone.plus_btn .ui-commandlink { margin-left: 5px !important; }
 .leftAlignDropLabel .ui-selectcheckboxmenu-label-container label {text-align:left;}
+

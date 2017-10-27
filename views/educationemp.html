@@ -1,0 +1,170 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 95%;
+    }
+
+</style>
+
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        
+        <p class="c-black f-500 m-b-5 m-t-20">EDUCATION DETAILS</p>
+        <hr>
+
+        <br><br>
+
+        <form ng-submit="addEducationDetails()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-phone"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="educationlevel">
+                            <option value="">Education Level</option>
+                            <option value="tenth">Xth </option>
+                            <option value="pre matriculation">Pre-Matriculation </option>
+                            <option value="diploma">Diploma </option>
+                            <option value="diploma and cirtificate">Diploma & Cirtificate </option>
+                            <option value="eleventh">X/Equivalent </option>
+                            <option value="twelthequivalent">XII/Equivalent Course </option>
+                            <option value="under graduate">Under Graduate </option>
+                            <option value="graduation equivalent">Graduation/Equivalent Course</option>
+                            <option value="post graduate">Post Graduate</option>
+                            <option value="proffessional">Professional</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Course" ng-model="course">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Subject of Specialization" ng-model="specialization">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span> 
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Institute Name" ng-model="institute">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Board/University" ng-model="university">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="coursetype">
+                            <option value="">Course Type</option>
+                            <option value="fulltime">Full Time </option>
+                            <option value="parttime">Part Time </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-6">
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="gpa" ng-model="result">
+                        <i class="input-helper"></i>  
+                        GPA
+                    </label>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="percentage" ng-model="result">
+                        <i class="input-helper"></i>  
+                        Percentage
+                    </label>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="result awaited" ng-model="result">
+                        <i class="input-helper"></i>  
+                        Result Awaited
+                    </label>
+                </div>
+                
+                <div class="col-sm-4 col-sm-offset-2">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="GPA/ Percentage" ng-model="percentage">
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-event"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control date-picker" placeholder="Start Date" ng-model="startdate">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                   
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="md md-event"></i></span>
+                            <div class="dtp-container dropdown fg-line">
+                            <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="End Date" aria-expanded="false" ng-model="enddate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+        </form>
+
+        <br><br>
+
+
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    <div class="card-body card-padding">
+        <table width="100%" border="1px gray">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Institute Name</th>
+                    <th>Subject of Specialization</th>
+                    <th>GPA/ Percentage</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

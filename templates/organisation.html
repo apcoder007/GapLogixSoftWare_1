@@ -1,35 +1,26 @@
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta name="msapplication-tap-highlight" content="no" /> 
-<title>Gaplogix - Open Source HRMS</title>
-<meta http-equiv="Content-type" content="text/html; charset=UTF-8 " />
-<meta http-equiv="Content-Language" content="en-us" />
-
-<link rel="shortcut icon" href="/images/favicon.ico?v=2" />
-<link rel="stylesheet" type="text/css"  href="/adminfiles/css/select2.css"/>
-<link href="/adminfiles/css/jquery-ui-1.8.16.custom.css" media="screen" rel="stylesheet" type="text/css" >
-<link rel="stylesheet" type="text/css" href="/adminfiles/css/tablecss.css" />
-<link rel="stylesheet" href="/adminfiles/css/jquery.alert.css" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/adminfiles/css/fonts.css" />
-<link rel="stylesheet" type="text/css" href="/adminfiles/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/adminfiles/css/wizard_css.css" />
-<link rel="stylesheet" type="text/css" href="/adminfiles/css/jquery.maxlength.css" />
-
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
-<!--[if IE 9]>  
+    <meta content="no-cache" http-equiv="Pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="no" name="msapplication-tap-highlight">
+    <title>Gaplogix - Open Source HRMS</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-type">
+    <meta content="en-us" http-equiv="Content-Language">
+    <link href="/images/favicon.ico?v=2" rel="shortcut icon">
+    <link href="/adminfiles/css/select2.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery-ui-1.8.16.custom.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/tablecss.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery.alert.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/wizard_css.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/jquery.maxlength.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'><!--[if IE 9]>  
 <link rel="stylesheet" type="text/css" href="http://192.168.1.85/gaplogix/public/media/css/ie9.css">  
-<![endif]-->  
-
-<!--[if IE 8]>  
+<![endif]--><!--[if IE 8]>  
 <link rel="stylesheet" type="text/css" href="http://192.168.1.85/gaplogix/public/media/css/ie8.css">  
-<![endif]-->  
-
-<!--[if gte IE 9]>
+<![endif]--><!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
        filter: none;
@@ -37,1121 +28,428 @@
   </style>
 <![endif]-->
 
-
-
-
-<script type="text/javascript" src="/adminfiles/js/jquery-1.7.1.min.js"></script> 
-<script type="text/javascript" src="/adminfiles/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="/adminfiles/js/jquery-ui-1.10.3.custom.js"></script>
-<script type="text/javascript" src="/adminfiles/js/hrms.js"></script> 
-<script type="text/javascript" src="/adminfiles/js/hrmsv2.js"></script>
-<script type="text/javascript" language="javascript" src="/adminfiles/js/ajaxupload.3.5.js"></script>
-<!-- start of time picker -->
-<script type="text/javascript" language="javascript" src="/adminfiles/js/jquery.ui.timepicker.js?v=0.3.2"></script>
-<script type="text/javascript" language="javascript" src="/adminfiles/js/jquery.plugin.js"></script>
-<script type="text/javascript" language="javascript" src="/adminfiles/js/jquery.maxlength.js"></script>
-<script type="text/javascript" src="/adminfiles/js/jquery.simplyscroll.js"></script> 
-<script type="text/javascript" language="javascript" src="/adminfiles/js/jquery.alert.js"></script>
-<link href="/adminfiles/css/jquery.ui.timepicker.css?v=0.3.2" rel="stylesheet" type="text/css" />
-<!-- end of time picker -->
-<script  language="JavaScript" type="text/javascript" src="../js/admin/select2.js" ></script>
-<!-- <script type="text/javascript" language="javascript" src="js/facescroll.js"></script>-->
-<!--  <script type="text/javascript" language="javascript" src="js/jquery.ui.touch-punch.min.js"></script>-->
-<link rel="stylesheet" type="text/css" href="/adminfiles/css/custom.css" />
-<link rel="stylesheet" href="/adminfiles/css/uniform.css" type="text/css" media="screen" />
-
-<script type="text/javascript" charset="utf-8">
-
-function checkisactivestatus()
-{       
-    $.ajax({
-        type:"post",        
-        url:base_url+'/index/checkisactivestatus',
-        dataType:'json',
-        success: function(response)
-        {
-            if(response['result'] == 'false')
-            {
-                window.location.href = base_url+'/index/';
-            }
-        }
-    });
-}
-
-function configlater()
-{
-    var URL = '';
-            URL = base_url+'/wizard/updatewizardcompletion';
-        
-    $.ajax({
-        type:"post",        
-        url:URL,
-        dataType:'json',
-        beforeSend: function () {
-            $.blockUI({ width:'50px',message: $("#spinner").html() });
-        },
-        success: function(response)
-        {
-            if(response['result'] == 'success')
-            {
-                window.location.href = base_url+'/welcome/';
-            }
-            else
-            {
-                $.unblockUI();
-                jAlert('Something went wrong.');
-            }    
-        }
-    });
-    
-}
-
-function displayPopup(id,title)
-{
-    apply_select2();
-    $("#unit_id").val('');
-    $("#street_address").val('');
-    $("#errors-unit_id").html('');
-    $("#errors-street_address").remove();
-    $("#successdiv").hide();
-    $("#contentdiv").show();
-    $("#errors-holidaygroup").remove();
-    $("#errors-category_name").remove();
-    $("#errors-category").remove();
-    //var title = $("#"+id).html();
-    $("#category_name").val('');
-    $("#holidaygroup").val('');
-    $("#category").val('');
-    $("#description").val('');
-    $("#"+id).dialog({
-        draggable:false, 
-        resizable: false,
-        width: 500,
-        title: title,
-        modal: true,
-        close: function() {
-            closeDialogPopup('bunitdiv');
-        }
-    });
-}
-
-function closeDialogPopup(id) {
-    $("#"+id).dialog('close');
-}
-
-</script>
-<script type="text/javascript" charset="utf-8">
-$(function() {
-    setTimeout('hideMessg()',3000);
-});
-function hideMessg() {
-    if($("#dispmsgmenu").is(":visible"))
-      $('#dispmsgmenu').fadeOut('slow','swing');
-}
-// defining the project name for using in js files
-var projectPath =  '/Gaplogix/';
-var application_name = 'Gaplogix';
-
-$(document).ready(function(){
-  
-  /* Making window responsive*/
-  
-    var window_width = $(window).width();
-    
-    var content_inners_width = window_width*(99/100);
-    $('.content_inners').css("width", content_inners_width);
-    $('.wrapperdivleft').css("width", "250");
-    $('.wrapperdivright').css("width", (content_inners_width-250));
-        
-    
-    function checkmainWidth() 
-    {
-        var window_width = $(window).width();
-        var content_inners_width = window_width*(99/100);
-        $('.content_inners').css("width", content_inners_width);
-
-        $('.wrapperdivleft').css("width", "250");
-        $('.wrapperdivright').css("width", (content_inners_width-250));     
-    }   
-    $(window).resize(function() 
-    {       
-                checkmainWidth();
-
-        $("#scroller").simplyScroll({
-                       auto: false,
-                       speed: 10
-               });
-    });
-  /* End of Making window responsive */         
-    
-});//end of ready function
-
-$(document).ready(function(e){
-     $("#submitbutton").click(function(){ 
-            $.blockUI({ width:'50px',message: $("#spinner").html() });
-        });   
-     $("#prev,#next,#backtosite,.logo").click(function(e){ 
-            if(parseFloat($.trim(e.which)) != 2 && !e.ctrlKey)
-            { 
-                $.blockUI({ width:'50px',message: $("#spinner").html() });
-            } 
-            if(parseFloat($.trim(e.which)) == 2 || parseFloat($.trim(e.which)) == 0)
-            {
-                $.unblockUI();
-            } 
-        }); 
-
-     $(".wrapper ul li").click(function(e){ 
-            if(parseFloat($.trim(e.which)) != 2 && !e.ctrlKey)
-            { 
-                $.blockUI({ width:'50px',message: $("#spinner").html() });
-            } 
-            if(parseFloat($.trim(e.which)) == 2 || parseFloat($.trim(e.which)) == 0)
-            {
-                $.unblockUI();
-            } 
-        });   
-           
-    
-
-    $(document).ajaxStart(function(){       
-        checkisactivestatus();
-    });     
-    $(document).ajaxSuccess(function(event, request, settings)
-    {               
-        var response = request.responseText;
-        if(response == '{"login":"failed"}')
-        {
-            window.location.href = '/admin/trail';
-        }
-    }); 
-    $(document).ajaxStop($.unblockUI); 
-    $(document).ajaxError($.unblockUI);
-        
-    $("select:not(.not_appli)").select2({
-        formatResult: format_select,            
-        escapeMarkup: function(m) { return m; }
-    });
-    function format_select(selData) 
-    {
-    var parent_id = selData.element[0].parentElement.id;
-    
-        var sel_array = new Array('approver1','approver2','approver3','reporting_id','interviewer_id','reporting_manager','employee');
-        if(jQuery.inArray(parent_id,sel_array) >=0)
-        {
-            if(parent_id == 'employee')
-            {
-                var title = '';
-                var emp_split = selData.id.split('-');
-                var textData = selData.text;
-
-                if (selData.id == 0) return selData.text; 
-                if(emp_split[0] == 'cand')
-                {
-                    title = 'candidate-profile_pic.jpg';                    
-                }
-                else if(emp_split[0] == 'emp')
-                {
-                    title = $('#'+parent_id+' option[value="'+selData.id+'"]').attr('title');
-                }
-                else 
-                    title = '';
-                return "<img class='flag' src='" + domain_data + "public/uploads/profile/"+title+"' onerror=\"this.src='"+domain_data+"/public/uploads/profile/profile_pic.png'\" />" + "<span>" + textData + "</span><div class='seldivimg'></div>";
-            }
-            else
-            {
-                var title = $('#'+parent_id+' option[value="'+selData.id+'"]').attr('title');
-                if (!selData.id) return selData.text; 
-            
-                if(title == '')
-                    title = "profile_pic.png";
-                return "<img class='flag' src='" + domain_data + "public/uploads/profile/"+title+"' onerror=\"this.src='"+domain_data+"/public/uploads/profile/profile_pic.png'\" />" + "<span>" + selData.text + "</span><div class='seldivimg'></div>";
-            }
-        }
-        else 
-        {
-            return  "<span>" + selData.text + "</span><div class='seldivimg'></div>";
-        }            
-    }
-
-
-    });
-
-// $(document).ready(function(){
-            
-//     navigator.sayswho= (function(){
-//         var N= navigator.appName, ua= navigator.userAgent, tem;
-//         var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
-//         if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
-//         M= M? [M[1], M[2]]: [N, navigator.appVersion, '-?'];
-
-//         return M;
-//     })();
-//     var version = parseInt(navigator.sayswho[1]);
-         
-//    if(navigator.userAgent.match(/firefox/i) == 'Firefox')
-//     {
-//         if(version<5)
-//             window.location.href = "http://192.168.1.85/gaplogix/index.php/index/browserfailure";
-//     }
-//     else if(navigator.userAgent.match(/msie/i) == 'MSIE')
-//     {        
-//          if(version<8)      
-//             window.location.href = "http://192.168.1.85/gaplogix/index.php/index/browserfailure";
-//     }
-//     else if(navigator.userAgent.match(/chrome/i) == 'Chrome')
-//     {
-//        if(version<13)
-//             window.location.href = "http://192.168.1.85/gaplogix/index.php/index/browserfailure";
-//     }
-//     else if(navigator.userAgent.match(/safari/i) == 'Safari' && navigator.userAgent.match(/Android/i) != 'Android')
-//     {
-//        if(version<5)
-//             window.location.href = "http://192.168.1.85/gaplogix/index.php/index/browserfailure";
-//     }
-//     else if(navigator.userAgent.match(/opera/i) == 'Opera')
-//     {
-//        if(version<12)
-//             window.location.href = "http://192.168.1.85/gaplogix/index.php/index/browserfailure";
-//     } 
-        
-//   });
-
-</script>
-
-</head>
-
-
-<input type= "hidden" value= "/admin/trail" id = "baseurl" />
-<input type= "hidden" value= "dd MM yy" id = "dateformatjs" />
-<input type= "hidden" value= "1" id = "loginuserId" name = "loginuserId" />
-<input type= "hidden" value= "" id = "dragid" />
-<body class="wizard_bg">
-<div id="container">
-    <div id="spinner" class="ajax-loader" style="display:none;" >
-    <img id="img-spinner" src="/images/loader2.gif" alt="Loading" />               
-    </div>
-    
-    
-    
-    <div class="container">
-    <div class="top_wrapper">
-    <div id="sitediv" class="sitedivclass">
-            <div class="backtosite">
-                <a class="back-btn" href="#" id="backtosite" title="Redirect to application">Back To Site</a>
-            </div>
-            
-            <div class="configlater backtosite" style="display:none;">
-                <a href="javascript:void(0)" class="back-btn" onclick="configlater();" title="Configure wizard configuration later">Configure Later</a>
-            </div>
-    </div>
-        <div class="logo" onclick="window.location='#'"></div>
-    <div class="wizard_info">
-        Configuration Wizard allows you to configure settings that reflect requirements unique to your organization and make your application ready to use.
-    </div>
-    </div>
-    <div class="wrapper">
-                <ul class="left_steps">
-                                <li class="manage_modules inactive" id="manage_modules" onclick="window.location='/admin/trail';">
-                    <div class="circle">1</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">Modules</h4>
-                    <span>Enable the modules that are essential to your human resource process by selecting or deselecting them.</span>
-                    <div class="manage_menu progress">In Progress</div>
-                </li>
-                <li class="site_config inactive" id="site_config" onclick="window.location='/admin/configure';">
-                    <div class="circle">2</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">Site Config</h4>
-                    <span>Configure the standards used in your organization by providing the site preferences.</span>
-                     <div class="config_site progress">In Progress</div>
-                </li>
-                <li class="organization inactive" id="organization" onclick="window.location='/admin/organisation';">
-                    <div class="circle">3</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">Organization</h4>
-                    <span>Provide your organization information to get your system up and running.</span>
-                     <div class="config_organization progress">In Progress</div>
-                </li>
-                <li class="businessunit inactive" id="business_unit" onclick="window.location='/admin/bussiness';">
-                    <div class="circle">4</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">Business Units</h4>
-                    <span>Configure business unit and departments in your organization.</span>
-                     <div class="config_dept progress">In Progress</div>
-                </li>
-                <li class="servicerequest inactive" id="service_request" onclick="window.location='/admin/services';">
-                    <div class="circle">5</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">Service Request</h4>
-                    <span>Configure service request settings used in your organization.</span>
-                     <div class="config_request progress">In Progress</div>
-                </li>
-                                
-                                <!--  <li class="management_details inactive">
-                    <div class="circle">4</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">Management Details</h4>
-                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text
-                    of the printing.</span>
-                </li>
-                <li class="hr_manager inactive">
-                    <div class="circle">5</div>
-                    <div class="circle cir_completed"></div>
-                    <h4 class="step_title">HR Manager</h4>
-                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text
-                    of the printing.</span>
-                </li>-->
-            </ul>
-        <div class="content_wrapper">
-			
-
-<script type="text/javascript" language="javascript">
-            $(document).ready(function(){
-			
-                      
-
-                        $('#organisationname').blur(function(){                                   
-                            $('#errors-organisationname').remove();                                    
-                            if($.trim($(this).val()) == '')
-                             { 
-							    $(this).parent().append("<span class='errors' id='errors-organisationname'>Please enter organization name.</span>");
-                                
-                                $(this).val('');								
-                             }
-                             else 
-                             {
-                                 $('#errors-organisationname').remove();   
-                                 
-                                  $('#organisationname').trigger('keyup');
-                                $('#organisationname').trigger('change'); 
-                             }
-                             
-                            });
-							
-							
-                           
-                              
-                        $('#organisationname').keyup(function(){
-						     var expr = /^[a-zA-Z0-9.\- ?]+$/;
-                             $('#errors-organisationname').remove(); 
-                             $('.errors-organisationname').remove(); 
-                            
-                             if($(this).val() != '')
-                             { 
-                                 if(!expr.test($(this).val()))
-                                  {
-                                      $('#errors-organisationname').remove();                                    
-                                      $(this).parent().append("<span class='errors' id='errors-organisationname'>Please enter valid organization name.</span>");
-                                      
-                                  }
-                             }
-                             else
-                             {
-                                 $('#errors-organisationname').remove();                                    
-                             }
-                        }); 
-                        
-                      
-
-                        $('#website').blur(function(){                                   
-                            $('#errors-website').remove();                                    
-                            if($.trim($(this).val()) == '')
-                             { 
-							    $(this).parent().append("<span class='errors' id='errors-website'>Please enter website.</span>");
-                                
-                                $(this).val('');								
-                             }
-                             else 
-                             {
-                                 $('#errors-website').remove();   
-                                 
-                                $('#website').trigger('change'); 
-                             }
-                             
-                            });
-							
-							
-                           
-                              
-                        $('#website').blur(function(){                                                               
-                            var expr = /^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$/;
-                            if($.trim($(this).val()) != '')
-                             {                                                            
-                                 $('#errors-website').remove();                                                                 
-                                 if(!expr.test($(this).val()))                             
-                                    $(this).parent().append("<span class='errors' id='errors-website'>Please enter valid URL.</span>");
-                             }                             
-                        });                           
-            
-	
-                        $('#s2id_totalemployees').blur(function(){ 
-                            $('#errors-totalemployees').remove();
-                            
-                            if($.trim($('#totalemployees').val()) == '')
-                             {
-
-                                // To place error messages after Add Link
-                                $('#totalemployees').after("<span class='errors' id='errors-totalemployees'>Please enter total employees.</span>");
-                             }
-                             else 
-                             {
-                                 $('#errors-totalemployees').remove();   
-
-                             }
-                            });
-						
-                           
-        					
-                           $('#phonenumber').blur(function(){
-                         
-					        if($.trim($(this).val()) != '')
-                             {
-							    var minlength = 10;
-						        var maxlength = 15;	  
-							    var label = $(this).parent().parent().find('label').text();	
-								label = $.trim(label);
-								
-								if(label== 'Secondary Phone') 
-								  label = 'Secondary phone number';
-								if(label== 'Mobile') 
-								   label = 'Mobile number';
-								if(label == 'Primary Phone') 
-								   label = 'Primary phone number';
-								   
-						        label = label.substr(0, 1).toUpperCase() + label.substr(1,label.length).toLowerCase();
-								
-							    if(minlength != '')
-								{
-									if($.trim($(this).val().length) < minlength)
-									{ 								
-													 
-										$('#errors-phonenumber').remove();                                                                 
-										$(this).parent().append("<span class='errors' id='errors-phonenumber'>"+label+" must contain at least "+minlength+" characters.</span>");
-									}
-								}
-                                if(maxlength != '')
-								{ 								
-									if($.trim($(this).val().length) > maxlength)
-									{
-										$('#errors-phonenumber').remove();                                                                 
-										$(this).parent().append("<span class='errors' id='errors-phonenumber'>"+label+" must contain at most "+maxlength+" characters.</span>");
-									} 
-                                }									
-                             } 
-						});	 
-                      
-                        $('#phonenumber').keyup(function(){
-						     var expr = /^[0-9-]+$/i;
-                             $('#errors-phonenumber').remove(); 
-                             $('.errors-phonenumber').remove(); 
-                            
-                             if($(this).val() != '')
-                             { 
-                                 if(!expr.test($(this).val()))
-                                  {
-                                      $('#errors-phonenumber').remove();                                    
-                                      $(this).parent().append("<span class='errors' id='errors-phonenumber'>Please enter valid phone number.</span>");
-                                      
-                                  }
-                             }
-                             else
-                             {
-                                 $('#errors-phonenumber').remove();                                    
-                             }
-                        }); 
-                        
-					
-                           $('#secondaryphone').blur(function(){
-                         
-					        if($.trim($(this).val()) != '')
-                             {
-							    var minlength = 10;
-						        var maxlength = 15;	  
-							    var label = $(this).parent().parent().find('label').text();	
-								label = $.trim(label);
-								
-								if(label== 'Secondary Phone') 
-								  label = 'Secondary phone number';
-								if(label== 'Mobile') 
-								   label = 'Mobile number';
-								if(label == 'Primary Phone') 
-								   label = 'Primary phone number';
-								   
-						        label = label.substr(0, 1).toUpperCase() + label.substr(1,label.length).toLowerCase();
-								
-							    if(minlength != '')
-								{
-									if($.trim($(this).val().length) < minlength)
-									{ 								
-													 
-										$('#errors-secondaryphone').remove();                                                                 
-										$(this).parent().append("<span class='errors' id='errors-secondaryphone'>"+label+" must contain at least "+minlength+" characters.</span>");
-									}
-								}
-                                if(maxlength != '')
-								{ 								
-									if($.trim($(this).val().length) > maxlength)
-									{
-										$('#errors-secondaryphone').remove();                                                                 
-										$(this).parent().append("<span class='errors' id='errors-secondaryphone'>"+label+" must contain at most "+maxlength+" characters.</span>");
-									} 
-                                }									
-                             } 
-						});	 
-                      
-                        $('#secondaryphone').keyup(function(){
-						     var expr = /^[0-9-]+$/i;
-                             $('#errors-secondaryphone').remove(); 
-                             $('.errors-secondaryphone').remove(); 
-                            
-                             if($(this).val() != '')
-                             { 
-                                 if(!expr.test($(this).val()))
-                                  {
-                                      $('#errors-secondaryphone').remove();                                    
-                                      $(this).parent().append("<span class='errors' id='errors-secondaryphone'>Please enter valid phone number.</span>");
-                                      
-                                  }
-                             }
-                             else
-                             {
-                                 $('#errors-secondaryphone').remove();                                    
-                             }
-                        }); 
-                        
-					
-                           $('#faxnumber').blur(function(){
-                         
-					        if($.trim($(this).val()) != '')
-                             {
-							    var minlength = 10;
-						        var maxlength = 15;	  
-							    var label = $(this).parent().parent().find('label').text();	
-								label = $.trim(label);
-								
-								if(label== 'Secondary Phone') 
-								  label = 'Secondary phone number';
-								if(label== 'Mobile') 
-								   label = 'Mobile number';
-								if(label == 'Primary Phone') 
-								   label = 'Primary phone number';
-								   
-						        label = label.substr(0, 1).toUpperCase() + label.substr(1,label.length).toLowerCase();
-								
-							    if(minlength != '')
-								{
-									if($.trim($(this).val().length) < minlength)
-									{ 								
-													 
-										$('#errors-faxnumber').remove();                                                                 
-										$(this).parent().append("<span class='errors' id='errors-faxnumber'>"+label+" must contain at least "+minlength+" characters.</span>");
-									}
-								}
-                                if(maxlength != '')
-								{ 								
-									if($.trim($(this).val().length) > maxlength)
-									{
-										$('#errors-faxnumber').remove();                                                                 
-										$(this).parent().append("<span class='errors' id='errors-faxnumber'>"+label+" must contain at most "+maxlength+" characters.</span>");
-									} 
-                                }									
-                             } 
-						});	 
-                      
-                        $('#faxnumber').keyup(function(){
-						     var expr = /^[0-9-]+$/i;
-                             $('#errors-faxnumber').remove(); 
-                             $('.errors-faxnumber').remove(); 
-                            
-                             if($(this).val() != '')
-                             { 
-                                 if(!expr.test($(this).val()))
-                                  {
-                                      $('#errors-faxnumber').remove();                                    
-                                      $(this).parent().append("<span class='errors' id='errors-faxnumber'>Please enter valid fax number.</span>");
-                                      
-                                  }
-                             }
-                             else
-                             {
-                                 $('#errors-faxnumber').remove();                                    
-                             }
-                        }); 
-                        
-            
-	
-                        $('#s2id_country').blur(function(){ 
-                            $('#errors-country').remove();
-                            
-                            if($.trim($('#country').val()) == '')
-                             {
-
-                                // To place error messages after Add Link
-                                $('#country').after("<span class='errors' id='errors-country'>Please select country.</span>");
-                             }
-                             else 
-                             {
-                                 $('#errors-country').remove();   
-
-                             }
-                            });
-						
-                           
-                    
-	
-                        $('#s2id_state').blur(function(){ 
-                            $('#errors-state').remove();
-                            
-                            if($.trim($('#state').val()) == '')
-                             {
-
-                                // To place error messages after Add Link
-                                $('#state').after("<span class='errors' id='errors-state'>Please select state.</span>");
-                             }
-                             else 
-                             {
-                                 $('#errors-state').remove();   
-
-                             }
-                            });
-						
-                           
-                    
-	
-                        $('#s2id_city').blur(function(){ 
-                            $('#errors-city').remove();
-                            
-                            if($.trim($('#city').val()) == '')
-                             {
-
-                                // To place error messages after Add Link
-                                $('#city').after("<span class='errors' id='errors-city'>Please select city.</span>");
-                             }
-                             else 
-                             {
-                                 $('#errors-city').remove();   
-
-                             }
-                            });
-						
-                           
-                              
-                        $('#designation').keyup(function(){
-						     var expr = /^[a-zA-Z.\- ?]+$/;
-                             $('#errors-designation').remove(); 
-                             $('.errors-designation').remove(); 
-                            
-                             if($(this).val() != '')
-                             { 
-                                 if(!expr.test($(this).val()))
-                                  {
-                                      $('#errors-designation').remove();                                    
-                                      $(this).parent().append("<span class='errors' id='errors-designation'>Please enter valid designation.</span>");
-                                      
-                                  }
-                             }
-                             else
-                             {
-                                 $('#errors-designation').remove();                                    
-                             }
-                        }); 
-                        
-        }); //end of ready function.
+    <script src="/adminfiles/js/jquery-1.7.1.min.js" type="text/javascript">
     </script>
+    <script src="/adminfiles/js/jquery-1.10.2.min.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery-ui-1.10.3.custom.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/hrms.js" type="text/javascript">
+    </script>
+    <!-- <script src="/adminfiles/js/hrmsv2.js" type="text/javascript">
+    </script> -->
+    <script language="javascript" src="/adminfiles/js/ajaxupload.3.5.js" type="text/javascript">
+    </script><!-- start of time picker -->
 
-<div class="total-form-controller">
-<div id="error_message" style="display:none;"></div>
-<h3 class="step_main_title">Configure Organization Information</h3>
-<div class='add_emp_new'><a href='http://192.168.1.85/gaplogix/index.php/employee'>Add Employee</a></div><form name="organisationinfo" id="formid" action="http://192.168.1.85/gaplogix/index.php/wizard/configureorganisation" method="post" enctype="multipart/form-data" class="step_form">
-		
-<input type="hidden" name="id" value="1" id="id">		<div class="form-ui">
-		  <label class="required"> Organization <img class="tooltip" title="Name of your organization." src="../images/help.png"></label>
-		
-<input type="text" name="organisationname" id="organisationname" value="Gtrans lgoistics" maxLength="50">				</div>
-		  
-		<div class="form-ui">
-		  <label class="required">Website <img class="tooltip" title="Website of your organization." src="../images/help.png"></label>
-		
-<input type="text" name="website" id="website" value="www.g-translogistics.com" maxLength="50">		  		</div>
-		
-		<div class="form-ui">
-		  <label>Organization Started On  <img title="Day, textual month and year" title="Your organization start date."  src="/images/help.png" /> </label>
-		
-<input type="text" name="org_startdate" id="org_startdate" value="08 July 2011" readonly="readonly" onfocus="this.blur()" class="brdr_none">		  		</div>
+    <script language="javascript" src="/adminfiles/js/jquery.ui.timepicker.js?v=0.3.2" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.plugin.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.maxlength.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/jquery.simplyscroll.js" type="text/javascript">
+    </script>
+    <script language="javascript" src="/adminfiles/js/jquery.alert.js" type="text/javascript">
+    </script>
+    <link href="/adminfiles/css/jquery.ui.timepicker.css?v=0.3.2" rel="stylesheet" type="text/css"><!-- end of time picker -->
 
-		<div class="form-ui">
-		  <label class="required">Total Employees <img class="tooltip" title="Total number of employees in your organization." src="../images/help.png"></label>
-		
-<select name="totalemployees" id="totalemployees">
-    <option value="1" label="20-50">20-50</option>
-    <option value="2" label="51-100">51-100</option>
-    <option value="3" label="101-500" selected="selected">101-500</option>
-    <option value="4" label="501 -1000">501 -1000</option>
-    <option value="5" label="> 1000">> 1000</option>
-</select>		   		</div>
-		
-		<div class="form-ui">
-		  <label>Primary Phone Number <img class="tooltip" title="Primary phone number of your organization." src="../images/help.png"></label>
-			<div>
-<input type="text" name="phonenumber" id="phonenumber" value="7838850643" maxLength="15"></div>
-		   		</div>
-		
-		<div class="form-ui">
-		  <label>Secondary Phone Number <img class="tooltip" title="Secondary phone number of your organization." src="../images/help.png"> </label> 
-		<div>
-<input type="text" name="secondaryphone" id="secondaryphone" value="9931087380" maxLength="15"></div>
-		   		</div>
-		<div class="form-ui">
-		  <label>Fax Number <img class="tooltip" title="Fax number of your organization." src="../images/help.png"></label>
-			<div>
-<input type="text" name="faxnumber" id="faxnumber" value="" maxLength="15"></div>
-		  		</div>
-		
-		<div class="form-ui">
-		  <label class="required">Country <img class="tooltip" title="Select a Country in which your organization is located. Ex: India, United Kingdom" src="../images/help.png"></label>
-		
-<select name="country" id="country" onchange='displayParticularState(this,"state","state","")'>
-    <option value="" label="Select country">Select country</option>
-    <option value="100" label="India" selected="selected">India</option>
-</select>							
-                		<span class="add-coloum" onclick="displaydeptform('http://192.168.1.85/gaplogix/index.php/countries/addpopup','Country');"> Add Country</span>			
-					</div>
-		
-		<div class="form-ui">
-		  <label class="required">State <img class="tooltip" title="Select a State in which your organization is located. Ex: Alaska, Alabama" src="../images/help.png"></label>
-		
-<select name="state" id="state" class="selectoption" onchange='displayParticularCity(this,"city","city","")'>
-    <option value="" label="Select State">Select State</option>
-    <option value="516!@#Uttar Pradesh" label="Uttar Pradesh" selected="selected">Uttar Pradesh</option>
-</select>							
-                <span class="add-coloum" onclick="displaydeptform('http://192.168.1.85/gaplogix/index.php/states/addpopup','State');"> Add State</span>			
-					
-		</div>
-		
-		<div class="form-ui">
-		  <label class="required">City <img class="tooltip" title="Select a City in which your organization is located. Ex: Buffalo, New York" src="../images/help.png"></label>
-			
-<select name="city" id="city" class="selectoption" onchange="displayCityCode(this)">
-    <option value="" label="Select City">Select City</option>
-    <option value="1216!@#Noida" label="Noida" selected="selected">Noida</option>
-</select>            			
-					
-					<span class="add-coloum" onclick="displaydeptform('http://192.168.1.85/gaplogix/index.php/cities/addpopup','City');"> Add City</span>			
-							
-		</div>		
-		
-		<div class="form-ui form-ui-textarea">
-		  <label>Main Branch Address <img class="tooltip" title="Main branch address of your organization." src="../images/help.png"></label>
-		
-<textarea name="address1" id="address1" rows="10" cols="50"></textarea>		   		</div>
-		
-		<div class="form-ui form-ui-textarea">
-		  <label>Address 1 <img class="tooltip" title="Secondary address of your organization." src="../images/help.png"></label>
-		
-<textarea name="address2" id="address2" rows="10" cols="50"></textarea>		  		</div>
+    <script language="JavaScript" src="../js/admin/select2.js" type="text/javascript">
+    </script><!-- <script type="text/javascript" language="javascript" src="js/facescroll.js"></script>-->
+    <!--  <script type="text/javascript" language="javascript" src="js/jquery.ui.touch-punch.min.js"></script>-->
+    <link href="/adminfiles/css/custom.css" rel="stylesheet" type="text/css">
+    <link href="/adminfiles/css/uniform.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="/adminfiles/js/organisation/organisation1.js" type="text/javascript">
+    </script>
+    <script src="/adminfiles/js/organisation/organisation2.js" type="text/javascript">
+    </script><!-- added on 11-aug-2017 by abhay prakash -->
+    <script src="http://dinbror.dk/bpopup/assets/jquery.bpopup-0.9.4.min.js"></script>
+   <script src="http://dinbror.dk/bpopup/assets/jquery.easing.1.3.js"></script>
+    <!-- added on 21-aug-2017 by abhay prakash -->
+    <style type="text/css">
+        #element_to_pop_up { 
+            background-color:#fff;
+            border-radius:15px;
+            color:#000;
+            display:none; 
+            padding:20px;
+            min-width:400px;
+            min-height: 140px;
+        }
+        .b-close{
+                cursor: pointer;
+                position: absolute;
+                right: 180px;
+                top: 125px;
+        }
 
-		<div class="form-ui form-ui-textarea">
-		  <label>Address 2 <img class="tooltip" title=" Secondary address of your organization." src="../images/help.png"></label>
-		
-<textarea name="address3" id="address3" rows="10" cols="50"></textarea>		  		</div>
-
-		<div class="form-ui form-ui-textarea">
-		  <label>Organization Description <img class="tooltip" title="Describe your organization." src="../images/help.png"></label>
-		
-<textarea name="orgdescription" id="orgdescription" rows="10" cols="50"></textarea>		  		</div>
-		
-       
+        .b-close {
+          display: inline-block;
+          padding: 0.7em 1.5em;
+          margin-bottom: 1em;
+          border-radius: 0.4em;
+          background: #638F81;
+          text-shadow: 0 0.08em 0.08em #000;
+          border-width: 0.08em;
+          border-style: solid;
+          border-color: #4e7166 #4e7166 #39534b;
+          border-bottom-width: 0.2em;
+          box-shadow: inset 0.08em 0.08em 0.14em rgba(255, 255, 255, 0.5), 0.08em 0.14em 0.2em rgba(0, 0, 0, 0.3);
+        }
+        .b-close:hover {
+          background: #7fa69a;
+        }
         
-  
-	<div class="new-form-ui org-logo-height logo-width-org clearall form-ui-textarea">
-		<label>Upload Organization Logo <img title="Upload only .gif, .jpg, .jpeg, .png images" src="/images/help.png" /></label>
-			
-		 
-         <div class="org-img">
-									<img id="blah" class="" style="padding:0px;" src="/images/organisation_image_1498890529.png" onerror="this.src='../images/logo_default-size.jpg'" />
-							</div>
-         <span id="org_image" class="uploadbut-org">Upload Logo</span>
-			<input type="hidden" name="org_image_value" value="" id="org_image_value">
-		  	<input type="hidden" name="imgerr" value="" id="imgerr">
-			<input type="hidden" name="imgerrmsg" value="" id="imgerrmsg"><!--<span id="image_name"></span>-->
-		 			<span style="display:none;" class="errors" id="errors-org_image_value"></span>
-		 		 <div id="orgloaderimg" style="display:none;">
-         	<img src="/gaplogix/public/media/images/loaderwhite_21X21.gif" style="width:21px; height: 21px; float: none; "/>
-         </div>
-       
-	</div>
-	 <div class="form-ui form-ui-textarea">
-		  <label>Business Domain <img class="tooltip" title="Select your organization domain(s) expertise." src="../images/help.png"></label>
-	
-<select name="domain[]" id="domain" multiple="multiple">
-    <option value="11" label="Automotive">Automotive</option>
-    <option value="12" label="Construction">Construction</option>
-    <option value="13" label="Consulting">Consulting</option>
-    <option value="14" label="Education">Education</option>
-    <option value="15" label="Engineering">Engineering</option>
-    <option value="16" label="Government">Government</option>
-    <option value="17" label="Healthcare">Healthcare</option>
-    <option value="18" label="Hospitality">Hospitality</option>
-    <option value="19" label="Insurance/Finance">Insurance/Finance</option>
-    <option value="20" label="Manufacturing">Manufacturing</option>
-    <option value="21" label="Marketing/PR">Marketing/PR</option>
-    <option value="22" label="Media">Media</option>
-    <option value="23" label="Not for profit">Not for profit</option>
-    <option value="24" label="Oil/Gas/Utilities">Oil/Gas/Utilities</option>
-    <option value="25" label="Pharmaceutical">Pharmaceutical</option>
-    <option value="26" label="Real Estate">Real Estate</option>
-    <option value="27" label="Retail and Consumer">Retail and Consumer</option>
-    <option value="28" label="Technology" selected="selected">Technology</option>
-    <option value="29" label="Telecommunications">Telecommunications</option>
-    <option value="30" label="Travel and Leisure">Travel and Leisure</option>
-    <option value="31" label="Other">Other</option>
-</select>		  		</div>
-	
-	
-			
 
-        <div class="new-form-ui-submit">
-		
-<input type="submit" name="submit" id="submitbutton" value="Save">		</div>
-		
-</form>
-<div class="nxt_pre_button">
-			<button class="Prev_butt" name="prev" id="prev" type="button" onclick="window.location='/admin/configure';">Prev</button>
-			<button class="next_butt" name="next" id="next" type="button" onclick="window.location='/admin/bussiness';">Next</button>		
-			
-		</div>
-</div>
-<div id="countriesContainer"  style="display: none; overflow: auto;">
-		<div class="heading">
-			<a href="javascript:void(0)">
-			<img src="/images/close.png" name="" align="right"
-				border="0" hspace="3" vspace="5" class="closeAttachPopup"
-				style="margin: -24px 8px 0 0;"> </a>
-		</div>
+        #element_to_pop_up:after {
+            content: url('http://findicons.com/files/icons/2117/nuove/128/camera_test.png');
+            position: absolute;
+           /* background: #4dc87f;*/
+            width: 75px;
+            height: 75px;
+            z-index: 1;
+            border-radius: 45px;
+            top: -60px;
+            left: 42%;
+            margin-left: -25px;
+        }
 
-			<iframe id="countriesCont" class="business_units_iframe" frameborder="0"></iframe>
+        #popupcontent{
+                font-weight: bold;
+                text-align: center;
+                margin-top: 50px;
+                background-color: #2ecc71;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border-radius: 10px;
+        }
 
-	</div>
+    </style>
+</head>
+<body>
+    <form>
+        <input id="baseurl" type="hidden" value="/admin/trail"> <input id="dateformatjs" type="hidden" value="dd MM yy"> <input id="loginuserId" name="loginuserId" type="hidden" value="1"> <input id="dragid" type="hidden" value=""> 
+    </form>
+    <div id="container">
+        <div class="ajax-loader" id="spinner" style="display:none;"><img alt="Loading" id="img-spinner" src="/images/loader2.gif"></div>
+        <div class="container">
+            <div class="top_wrapper">
+                <div class="sitedivclass" id="sitediv">
+                    <div class="backtosite">
+                        <a class="back-btn" href="#" id="backtosite" title="Redirect to application">Back To Site</a>
+                    </div>
+                    <div class="configlater backtosite" style="display:none;">
+                        <a class="back-btn" href="javascript:void(0)" onclick="configlater();" title="Configure wizard configuration later">Configure Later</a>
+                    </div>
+                </div>
+                <div class="logo" onclick="window.location='#'"></div>
+                <div class="wizard_info">
+                    Configuration Wizard allows you to configure settings that reflect requirements unique to your organization and make your application ready to use.
+                </div>
+            </div>
+            <div class="wrapper">
+                <ul class="left_steps">
+                    <!-- <li class="manage_modules inactive" id="manage_modules" onclick="window.location='/admin/trail';"> -->
+                    <li class="manage_modules inactive" id="manage_modules" onclick="window.location='/admin/managemenu';">
+                        <div class="circle">
+                            1
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Modules</h4><span>Enable the modules that are essential to your human resource process by selecting or deselecting them.</span>
+                        <div class="manage_menu progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="site_config inactive" id="site_config" onclick="window.location='/admin/configure';">
+                        <div class="circle">
+                            2
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Site Config</h4><span>Configure the standards used in your organization by providing the site preferences.</span>
+                        <div class="config_site progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="organization inactive" id="organization" onclick="window.location='/admin/organisation';">
+                        <div class="circle">
+                            3
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Organization</h4><span>Provide your organization information to get your system up and running.</span>
+                        <div class="config_organization progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="businessunit inactive" id="business_unit" onclick="window.location='/admin/bussiness';">
+                        <div class="circle">
+                            4
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Business Units</h4><span>Configure business unit and departments in your organization.</span>
+                        <div class="config_dept progress">
+                            In Progress
+                        </div>
+                    </li>
+                    <li class="servicerequest inactive" id="service_request" onclick="window.location='/admin/services';">
+                        <div class="circle">
+                            5
+                        </div>
+                        <div class="circle cir_completed"></div>
+                        <h4 class="step_title">Service Request</h4><span>Configure service request settings used in your organization.</span>
+                        <div class="config_request progress">
+                            In Progress
+                        </div>
+                    </li>
+                </ul>
+                <div class="content_wrapper">
+                    <script src="/adminfiles/js/organisation/organisation3.js" type="text/javascript">
+                    </script> <!-- added on 11-aug-2017 by abhay prakash -->
+                    <div class="total-form-controller">
+                        <div id="error_message" style="display:none;"></div>
+                        <h3 class="step_main_title">Configure Organization Information</h3>
+                        <div class='add_emp_new'>
+                            <a href='http://192.168.1.85/gaplogix/index.php/employee'>Add Employee</a>
+                        </div>
+                        <!-- <form action="http://192.168.1.85/gaplogix/index.php/wizard/configureorganisation" class="step_form" enctype="multipart/form-data" id="formid" method="post" name="organisationinfo"> -->
+                        <form class="step_form" enctype="multipart/form-data" method="post" id="" name="organisationinfo">
+                            <input id="id" name="id" type="hidden" value="1">
+                            <div class="form-ui">
+                                <label class="required">Organization <img class="tooltip" src="../images/help.png" title="Name of your organization."></label> 
+                                <input id="organisationname" maxlength="50" name="organisationname" type="text" >
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">Website <img class="tooltip" src="../images/help.png" title="Website of your organization."></label> 
+                                <input id="website" maxlength="50" name="website" type="text">
+                            </div>
+                            <div class="form-ui">
+                                <label>Organization Started On <img src="/images/help.png" title="Your organization start date."></label> 
+                                <input class="brdr_none" id="org_startdate" name="org_startdate" onfocus="this.blur()" readonly="readonly" type="text">
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">Total Employees <img class="tooltip" src="../images/help.png" title="Total number of employees in your organization."></label> 
+                                <select id="totalemployees" name="totalemployees">
+                                    <option label="20-50" value="1">
+                                        20-50
+                                    </option>
+                                    <option label="51-100" value="2">
+                                        51-100
+                                    </option>
+                                    <option label="101-500" value="3">
+                                        101-500
+                                    </option>
+                                    <option label="501 -1000" value="4">
+                                        501 -1000
+                                    </option>
+                                    <option label="&gt; 1000" value="5">
+                                        &gt; 1000
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-ui">
+                                <label>Primary Phone Number <img class="tooltip" src="../images/help.png" title="Primary phone number of your organization."></label>
+                                <div>
+                                    <input id="phonenumber" maxlength="15" name="phonenumber" type="text">
+                                </div>
+                            </div>
+                            <div class="form-ui">
+                                <label>Secondary Phone Number <img class="tooltip" src="../images/help.png" title="Secondary phone number of your organization."></label>
+                                <div>
+                                    <input id="secondaryphone" maxlength="15" name="secondaryphone" type="text">
+                                </div>
+                            </div>
+                            <div class="form-ui">
+                                <label>Fax Number <img class="tooltip" src="../images/help.png" title="Fax number of your organization."></label>
+                                <div>
+                                    <input id="faxnumber" maxlength="15" name="faxnumber" type="text">
+                                </div>
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">Country <img class="tooltip" src="../images/help.png" title="Select a Country in which your organization is located. Ex: India, United Kingdom"></label> 
+                                <select id="country" name="country" onchange='displayParticularState(this,"","state","")'>
+                                    
+                                </select>
+                                <!-- <span class="add-coloum" onclick="displaydeptform('http://192.168.1.85/gaplogix/index.php/countries/addpopup','Country');">Add Country</span> -->
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">State <img class="tooltip" src="../images/help.png" title="Select a State in which your organization is located. Ex: Alaska, Alabama"></label> 
+                                <select class="selectoption" id="state" name="state" onchange='displayParticularCity(this,"","city","")'>
+                                    <!-- <option label="Select State" value="">
+                                        Select State
+                                    </option> -->
+                                    
+                                </select> 
+                                <!-- <span class="add-coloum" onclick="displaydeptform('http://192.168.1.85/gaplogix/index.php/states/addpopup','State');">Add State</span> -->
+                            </div>
+                            <div class="form-ui">
+                                <label class="required">City <img class="tooltip" src="../images/help.png" title="Select a City in which your organization is located. Ex: Buffalo, New York"></label> 
+                                <select class="selectoption" id="city" name="city" onchange="displayCityCode(this)">
+                                    <!-- <option label="Select City" value="">
+                                        Select City
+                                    </option> -->
+                                </select> 
+                                <!-- <span class="add-coloum" onclick="displaydeptform('http://192.168.1.85/gaplogix/index.php/cities/addpopup','City');">Add City</span> -->
+                            </div>
+                            <div class="form-ui form-ui-textarea">
+                                <label>Main Branch Address <img class="tooltip" src="../images/help.png" title="Main branch address of your organization."></label> 
+                                <textarea cols="50" id="address1" name="address1" rows="10"></textarea>
+                            </div>
+                            <div class="form-ui form-ui-textarea">
+                                <label>Address 1 <img class="tooltip" src="../images/help.png" title="Secondary address of your organization."></label> 
+                                <textarea cols="50" id="address2" name="address2" rows="10"></textarea>
+                            </div>
+                            <div class="form-ui form-ui-textarea">
+                                <label>Address 2 <img class="tooltip" src="../images/help.png" title=" Secondary address of your organization."></label> 
+                                <textarea cols="50" id="address3" name="address3" rows="10"></textarea>
+                            </div>
+                            <div class="form-ui form-ui-textarea">
+                                <label>Organization Description <img class="tooltip" src="../images/help.png" title="Describe your organization."></label> 
+                                <textarea cols="50" id="orgdescription" name="orgdescription" rows="10"></textarea>
+                            </div>
+                            <div class="new-form-ui org-logo-height logo-width-org clearall form-ui-textarea">
+                                <label>Upload Organization Logo <img src="/images/help.png" title="Upload only .gif, .jpg, .jpeg, .png images"></label>
+                                <div class="org-img">
+                                <img class="" id="blah" onerror="this.src='/adminfiles/images/logo_default-size.jpg'" src="/adminfiles/images/organisation_image_1498890529.png" style="padding:0px;">
+                                </div>
 
+                                <div class="image-upload">
+                                    <label for="file-input">
+                                        <span class="uploadbut-org" id="org_image" style="cursor: pointer;">Upload Logo</span>
+                                    </label>
 
+                                    <input name="file" id="file-input" type="file" style=" display: none;" />
+                                </div>
+                                
+                                
+                                <!-- <span class="uploadbut-org" id="org_image">Upload Logo</span>
+                                <input type="file" id="uploadlogo" style="display: none">  -->
+                                <input id="org_image_value" name="org_image_value" type="hidden" value="">
+                                <input id="imgerr" name="imgerr" type="hidden" value="">
+                                <input id="imgerrmsg" name="imgerrmsg" type="hidden" value="">
 
-<div id="statesContainer"  style="display: none; overflow: auto;">
-	<div class="heading">
-		<a href="javascript:void(0)">
-	    <img src="/images/close.png" name="" align="right" border="0" hspace="3" vspace="5" class="closeAttachPopup" style="margin: -24px 8px 0 0;"> </a>
-	</div>
-
-	<iframe id="statesCont" class="business_units_iframe" frameborder="0"></iframe>
-</div>  
-
-<div id="citiesContainer"  style="display: none; overflow: auto;">
-	<div class="heading">
-		<a href="javascript:void(0)">
-	    <img src="/images/close.png" name="" align="right" border="0" hspace="3" vspace="5" class="closeAttachPopup" style="margin: -24px 8px 0 0;"> </a>
-	</div>
-
-	<iframe id="citiesCont" class="business_units_iframe" frameborder="0"></iframe>
-</div>  
-<div id="organisationinfoContainer"  style="display: none; overflow: auto;">
-	<div class="heading">
-		<a href="javascript:void(0)">
-		<img src="/images/close.png" name="" align="right"
-			border="0" hspace="3" vspace="5" class="closeAttachPopup"
-			style="margin: -24px 8px 0 0;"> </a>
-	</div>
-
-		<iframe id="organisationinfoCont" class="business_units_iframe" frameborder="0"></iframe>
-
-</div>      
-<script type="text/javascript">
-    $(document).ready(function(){
-    	$('#description').maxlength('destroy');
-    	 var yearrange = '1900:2037';
-    //  var yearrange = '1967:2017';	  
-      $('#org_startdate').datepicker({
-					showOn:'both',
-					yearRange: yearrange,
-					dateFormat: 'dd MM yy',
-					buttonImage: "/gaplogix/public/media/images/cal.jpg",
-					buttonImageOnly: true,
-					buttonText: "",
-					changeMonth: true,
-					changeYear: true,
-                    showButtonPanel: true ,
-					onClose:function(){
-                                    if($("#errors-org_startdate").length > 0){
-                                       $("#errors-org_startdate").remove();
-                                    }
-                                    from_to_date_validation_org('org_startdate','date_of_joining',this,'Organization started on should be less than Date of joining.');
-                                }
-				});
-       
-      var yearrange = '1900:2037';
-	  
-     //  var yearrange = '1987:2017';
-    $('#date_of_joining').datepicker({
-				showOn:'both',
-				maxDate: new Date, 
-				yearRange: yearrange,
-				dateFormat: 'dd MM yy',
-				buttonImage: "/gaplogix/public/media/images/cal.jpg",
-				buttonImageOnly: true,
-				buttonText: "",
-				changeMonth: true,
-				changeYear: true, 
-                showButtonPanel: true ,
-				onClose:function(){
-                            from_to_date_validation_org('org_startdate','date_of_joining',this,'Date of joining should be greater than organization started on.');
-					$('#date_of_joining').trigger('blur');
-                    }
-		});
-
-    		
-								
-								 							$(".manage_modules").removeClass('inactive').addClass('completed inactive');
-						$(".manage_menu").removeClass('progress').addClass('completed_show');
-						$(".manage_menu").html('Completed');
-																$(".site_config").removeClass('inactive').addClass('completed inactive');
-						$(".config_site").removeClass('progress').addClass('completed_show');
-						$(".config_site").html('Completed');
-																$(".organization").removeClass('inactive').addClass('completed inactive');
-						$(".config_organization").removeClass('progress').addClass('completed_show');
-						$(".config_organization").html('Completed');
-																					$(".servicerequest").removeClass('inactive').addClass('completed inactive');
-						$(".config_request").removeClass('progress').addClass('completed_show');
-						$(".config_request").html('Completed');
-										
-											$(".organization").removeClass('inactive');
-						$("#organization").removeAttr("onclick");
-						$("#organization" ).unbind("click");
-										
-						
-	});//end of ready function			
-</script>
-<script type="text/javascript">
-			var btnUpload = $('#org_image');
-			new AjaxUpload(btnUpload, {	
-				action :  base_url+'/organisationinfo/uploadpreview',
-				name   : 'profile_photo',  //we can rename it 
-				dataType: 'json',
-				onSubmit: function(file,ext){		
-				if($("#errors-org_image_value").is(":visible"))
-				  $("#errors-org_image_value").hide();	
-				  $("#orgloaderimg").show();												 
-				},
-				onComplete: function(file, response){				
-					var result = JSON.parse(response);
-					if(result.result == 'success')
-					{						
-						$('#errors-org_image_value').html('');
-						$('#imgerr').val(result.result);						
-						$("#imgerrmsg").val(result.msg);	
-						$("#errors-org_image_value").css('display','block');
-						$("#org_image_value").val(result.img);
-						$('.org-img').html('<img src="'+base_url+'/public/uploads/preview/'+result.img+'" /><div id="org_image" class="caption uploadbut-org" style="top: -35px; display: none;">Upload Logo</div>');
-						$("#orgloaderimg").hide();						
-							
-	
-					}
-					else
-					{
-						$('.uploaderror').show();
-						$("#errors-org_image_value").css('display','block');
-						$('#errors-org_image_value').html(result.msg);
-						$('#imgerr').val(result.result);
-						$("#imgerrmsg").val(result.msg);
-						$("#orgloaderimg").hide();
-						setTimeout(function()
-						{
-						$('.uploaderror').fadeOut('slow');
-						},3000);
-					}
-				}
-			},'json');
-	
-			var domains = '28';
-			var errorMsg = "";
-			var domainsArr = domains.split(",");
-			var domainData = document.getElementById('domain');
-			for(var j = 0 ; j <= domainsArr.length ; j++)
-			{	
-				for(var i = 0 ; i <= domainData.length ; i++)
-				{
-					if(domainData.options[i] !== undefined)
-					{
-						if(domainData.options[i].value === domainsArr[j]) 
-						{
-							if(errorMsg != '' && errorMsg != 'undefined')
-							domainData.options[i].selected = false;
-							else domainData.options[i].selected = true;
-							break;
-						}
-					}
-				}
-			}
-			
-		
-		</script>
-
- 	
-					</div>		            
-		         <div style="clear: both;"></div>
-               </div>
+                                <span class="errors" id="errors-org_image_value" style="display:none;"></span>
+                                <div id="orgloaderimg" style="display:none;">
+                                <img src="/adminfiles/images/loaderwhite_21X21.gif" style="width:21px; height: 21px; float: none;">
+                                </div>
+                            </div>
+                            <div class="form-ui form-ui-textarea">
+                                <label>Business Domain <img class="tooltip" src="../images/help.png" title="Select your organization domain(s) expertise."></label> 
+                                <select id="domain" multiple="multiple" name="domain[]">
+                                    <option label="Automotive" value="11">
+                                        Automotive
+                                    </option>
+                                    <option label="Construction" value="12">
+                                        Construction
+                                    </option>
+                                    <option label="Consulting" value="13">
+                                        Consulting
+                                    </option>
+                                    <option label="Education" value="14">
+                                        Education
+                                    </option>
+                                    <option label="Engineering" value="15">
+                                        Engineering
+                                    </option>
+                                    <option label="Government" value="16">
+                                        Government
+                                    </option>
+                                    <option label="Healthcare" value="17">
+                                        Healthcare
+                                    </option>
+                                    <option label="Hospitality" value="18">
+                                        Hospitality
+                                    </option>
+                                    <option label="Insurance/Finance" value="19">
+                                        Insurance/Finance
+                                    </option>
+                                    <option label="Manufacturing" value="20">
+                                        Manufacturing
+                                    </option>
+                                    <option label="Marketing/PR" value="21">
+                                        Marketing/PR
+                                    </option>
+                                    <option label="Media" value="22">
+                                        Media
+                                    </option>
+                                    <option label="Not for profit" value="23">
+                                        Not for profit
+                                    </option>
+                                    <option label="Oil/Gas/Utilities" value="24">
+                                        Oil/Gas/Utilities
+                                    </option>
+                                    <option label="Pharmaceutical" value="25">
+                                        Pharmaceutical
+                                    </option>
+                                    <option label="Real Estate" value="26">
+                                        Real Estate
+                                    </option>
+                                    <option label="Retail and Consumer" value="27">
+                                        Retail and Consumer
+                                    </option>
+                                    <option label="Technology" selected="selected" value="28">
+                                        Technology
+                                    </option>
+                                    <option label="Telecommunications" value="29">
+                                        Telecommunications
+                                    </option>
+                                    <option label="Travel and Leisure" value="30">
+                                        Travel and Leisure
+                                    </option>
+                                    <option label="Other" value="31">
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="new-form-ui-submit">
+                                <input id="submitbutton" name="submit" type="submit" value="Save">
+                            </div>
+                        </form>
+                        <!-- Element to pop up -->
+                        <div id="element_to_pop_up">
+                            <a class="b-close">Close<a/>
+                            <!-- <button class="b-close">Close</button> -->
+                            <div id="popupcontent">
+                                <p>Content of popup</p>
+                            </div>
+                        </div>
+                        <script type="text/javascript" src="/adminfiles/js/organisation/org.js"></script>
+                        <div class="nxt_pre_button">
+                            <button class="Prev_butt" id="prev" name="prev" onclick="window.location='/admin/configure';" type="button">Prev</button> <button class="next_butt" id="next" name="next" onclick="window.location='/admin/bussiness';" type="button">Next</button>
+                        </div>
+                    </div>
+                    <div id="countriesContainer" style="display: none; overflow: auto;">
+                        <div class="heading">
+                            <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="/images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                        </div><iframe class="business_units_iframe" frameborder="0" id="countriesCont" name="countriesCont"></iframe>
+                    </div>
+                    <div id="statesContainer" style="display: none; overflow: auto;">
+                        <div class="heading">
+                            <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="/images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                        </div><iframe class="business_units_iframe" frameborder="0" id="statesCont" name="statesCont"></iframe>
+                    </div>
+                    <div id="citiesContainer" style="display: none; overflow: auto;">
+                        <div class="heading">
+                            <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="/images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                        </div><iframe class="business_units_iframe" frameborder="0" id="citiesCont" name="citiesCont"></iframe>
+                    </div>
+                    <div id="organisationinfoContainer" style="display: none; overflow: auto;">
+                        <div class="heading">
+                            <a href="javascript:void(0)"><img align="right" border="0" class="closeAttachPopup" hspace="3" name="" src="/images/close.png" style="margin: -24px 8px 0 0;" vspace="5"></a>
+                        </div><iframe class="business_units_iframe" frameborder="0" id="organisationinfoCont" name="organisationinfoCont"></iframe>
+                    </div>
+                    <script src="/adminfiles/js/organisation/organisation4.js" type="text/javascript">
+                    </script> 
+                    <script src="/adminfiles/js/organisation/organisation5.js" type="text/javascript">
+                    </script> <!-- added on 11-aug-2017 by abhay prakash -->
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+        <script src="/adminfiles/js/jquery.form_3.39.js" type="text/javascript">
+        </script> <!-- added on 11-aug-2017 by abhay prakash -->
+        <script src="/adminfiles/js/jquery.blockUI_2.64.js" type="text/javascript">
+        </script> <!-- added on 11-aug-2017 by abhay prakash -->
+        <script src="/adminfiles/js/organisation/organisation6.js" type="text/javascript">
+        </script> <!-- added on 11-aug-2017 by abhay prakash -->
+         
     </div>
-
-<script type="text/javascript" src="../js/admin/jquery.form_3.39.js"></script><!-- added on 07-aug-2013 by rama krishna -->
-<script type="text/javascript" src="../js/admin/jquery.blockUI_2.64.js"></script><!-- added on 07-aug-2013 by rama krishna -->
-<script type="text/javascript" language="javascript">
-$(document).ready(function() {
- /* Making window responsive*/
- 	var complete_empwidth = $('.emp-screen-view').width();
-	$('#displayimg').css("width", "150");
-	$('#personalDetailsDiv').css("width", (complete_empwidth-(152)));	
-		
-	 function checkempWidth() {
-        var complete_empwidth = $('.emp-screen-view').width();		
-		$('#displayimg').css("width", "150");
-		$('#personalDetailsDiv').css("width", (complete_empwidth-(152)));		
-    }
-	
-	/* Making window responsive*/
- 	var complete_width = $('.poc-ui-data-control').width();
-	$('.left-block-ui-data').css("width", "230");
-	$('.right-block-data').css("width", (complete_width-(263)));	
-		
-	 function checkWidth() {
-        var complete_width = $('.poc-ui-data-control').width();		
-		$('.left-block-ui-data').css("width", "230");
-		$('.right-block-data').css("width", (complete_width-(263)));		
-    }
-	
-	
-	function checknew1Width() {
-        var complete_width = $('.short-ui-full-1').width();		
-		$('.short-ui-full-1 label').css("width", "160");
-		$('.short-ui-full-1 .division1').css("width", (complete_width-(190)));	
-    }
-
-	/* Making window responsive*/
- 	var complete_width = $('.short-ui-full-1').width();
-	$('.short-ui-full-1 label').css("width", "160");
-	$('.short-ui-full-1 .division1').css("width", (complete_width-(190)));	
-	
-	 
-	$(window).resize(function() {
-		checkWidth();
-		checkempWidth();
-		checknew1Width();
-	});
-
-	//$('.step_form').alternateScroll({ 'horizontal-bar-class': 'styled-h-bar'});
-	
-});	
-	
-</script>
-
-
-
 </body>
 </html>

@@ -172,7 +172,7 @@ span.ui-panel-title{color:#636466;}
 .home .ui-icon {background-image:url('../../../img/ui-icons-blue.png')	!important;}
 form.colorBackground .ui-icon {background-image:url('../../../img/ui-icons-blue.png')!important;}
 .ui-datatable table .ui-sortable-column-icon.ui-icon {background-image:url('../../../img/ui-icons-wight.png')!important;}
-.ui-icon-triangle-1-s,.ui-icon-triangle-1-n,.ui-icon-carat-1-n,.ui-icon-carat-1-s,.ui-icon-search,.ui-icon-carat-2-n-s,.ui-icon-power, .ui-icon-key{background-image:url('../../../img/ui-icons-wight.png')!important;}
+/*.ui-icon-triangle-1-s,.ui-icon-triangle-1-n,.ui-icon-carat-1-n,.ui-icon-carat-1-s,.ui-icon-search,.ui-icon-carat-2-n-s,.ui-icon-power, .ui-icon-key{background-image:url('../../../img/ui-icons-wight.png')!important;}*/
 /*.home .listing_kb table tr th .ui-icon {background-image:url('../../../img/ui-icons-wight.png')!important;}*/
 .home .listing_kb .ui-paginator .ui-icon, .ui-paginator .ui-paginator-next .ui-icon, .ui-paginator .ui-paginator-prev .ui-icon, .ui-paginator .ui-paginator-first .ui-icon, .ui-paginator .ui-paginator-last .ui-icon{background-image:url('../../../img/ui-icons-gray-new.png')!important;}
 #employeeListForm  table tr th.ui-sortable-column .ui-icon {background-image:url('../../../img/ui-icons-wight.png')!important;}
@@ -605,7 +605,7 @@ overflow-y:hidden;
  .ui-dialog .ui-dialog-titlebar {
     background: #4e88c7 !important;
 }
-.active { color:#4e88c7 !important; }
+/*.active { color:#4e88c7 !important; }*/
 .center-body-false .ui-datatable.faqList table tr td.accordinHeading { color:#4e88c7 !important; }
 .center-body-true .ui-datatable table thead tr th {
     background: none repeat scroll 0 0 #4e88c7 !important;

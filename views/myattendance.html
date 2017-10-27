@@ -1,1160 +1,232 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
-    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-  <script>
+<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+   
+<script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $( ".datepicker" ).datepicker();
   } );
-  </script>
+</script>
 
 
-
-<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
-<span id="include" class="center-body-false">
-<form id="newLeaveRequestForm" name="newLeaveRequestForm" method="post" action="/home.jsf?cid=2" class="colorBackground" enctype="multipart/form-data">
-<input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
-
+<div class="mdl-grid demo-content"> 
+  <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
+    <span id="include" class="center-body-false">
+      <form method="post" class="colorBackground" enctype="multipart/form-data">
+        <input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
 
     <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
-    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel"><div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:reqFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId"><div id="newLeaveRequestForm:reqFldId_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:errorMessages" class="ui-messages ui-widget" aria-live="polite"></div></div></div><span id="newLeaveRequestForm:newLeaveRequestPanel1"><span id="newLeaveRequestForm:newLeaveRequestPanel12">
-          <div class="form_content fax_m" style="height:100px;">
-            <div class="panel_title"><span title="">PERIOD</span>
-            </div>
-
-            <div class="form_content_inner"><table>
-<tbody><!--  -->
-
-<tr>
-<td class="td_labelCol">
-<label class="redColor">
-*</label><label for="newLeaveRequestForm:leaveReasondropDown1_focus" title="">
-Start Date:</label>
-</td>
-<td class="td_outputCol">
-
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span>
-
-</td>
-<td class="td_labelCol"><label for="newLeaveRequestForm:commentsTxtId" title="">
-End Date:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span><div id="newLeaveRequestForm:j_idt1848" aria-live="polite" class="ui-message"></div></td>
-</tr>
-
-
-</tbody>
-</table>
-
-
-            </div>
-          </div></span>      <div class="NLleave" style="padding-bottom:20px;"><div id="newLeaveRequestForm:btnFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_btnFldId"><div id="newLeaveRequestForm:btnFldId_content" class="ui-panel-content ui-widget-content"><button id="newLeaveRequestForm:updateDown" name="newLeaveRequestForm:updateDown" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success"  type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">VIEW</span></button></div></div>
-      </div></div></div>
-              <div class="listing_kb">
-  <table width="100%">
-    <tbody>
-      <tr>
-        <td align="left" class="titleTBnone" width="50%"><span class="heading-style">ATTENDANCE DETAILS</span>
-        </td>
-
-        <td align="right" class="titleTBnone" width="50%">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="listing_kb_inner border_table TabTable_responsive bg_themeColor">
-
-    <div class="ui-datatable ui-widget table-header employeeAttendanceReport-dataTable" id="searchForm:attendanceDetail">
-      
-
-      <div class="ui-datatable-tablewrapper">
+        <div id="" class="ui-panel" >
+          <div id="" class="ui-panel-content">
         
+            <div id="" class="ui-panel" >
+              <div id="" class="ui-panel-content">
+                <div id="" class="ui-messages" aria-live="polite"></div>
+              </div>
+            </div>
 
-        <table role="grid">
-          <thead id="searchForm:attendanceDetail_head">
+            <div class="form_content fax_m" style="height:100px;">
+              <div class="panel_title"><span title="">PERIOD</span></div>
+              <div class="form_content_inner">
+                <table>
+                  <tbody><!--  -->
+                    <tr>
+                      <td class="td_labelCol">
+                        <label class="redColor">*</label>
+                        <label title="">Start Date:</label>
+                      </td>
+                      <td class="td_outputCol">
+                        <span id="startdate" class="leaveStartDate">
+                          <input type="text" class="datepicker" ng-model="fromdate">
+                        </span>
+                      </td>
+                      <td class="td_labelCol">
+                        <label title="">End Date:</label>
+                      </td>
+                      <td class="td_outputCol">
+                        <span class="leaveStartDate">
+                          <input type="text" class="datepicker" ng-model="todate">
+                        </span>
+                        <div aria-live="polite" class="ui-message"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+              
+            <div class="NLleave" style="padding-bottom:20px;">
+              <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+                <div class="ui-panel-content ui-widget-content">
+                  <button  class="ui-button ui-widget btn-success"  type="submit" role="button" aria-disabled="false">
+                    <span class="ui-button-text ui-c">VIEW</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+              
+      <div class="listing_kb">
+        <table width="100%">
+          <tbody>
             <tr>
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2358" role="columnheader"><span class="ui-column-title">Check Box</span>
-              </th>
-
-              <th class="ui-state-default ui-sortable-column" id="searchForm:attendanceDetail:j_idt2359" role="columnheader" tabindex="0"><span class="ui-column-title">Date</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2360" role="columnheader"><span class="ui-column-title">Shift</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2361" role="columnheader"><span class="ui-column-title">Expected IN Time</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2362" role="columnheader"><span class="ui-column-title">Actual IN Time</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2363" role="columnheader"><span class="ui-column-title">Expected Out Time</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2364" role="columnheader"><span class="ui-column-title">Actual Out Time</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2365" role="columnheader"><span class="ui-column-title">Work Hours</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2366" role="columnheader"><span class="ui-column-title">OT</span>
-              </th>
-
-              <th class="ui-state-default" id="searchForm:attendanceDetail:j_idt2368" role="columnheader"><span class="ui-column-title">Status</span>
-              </th>
-            </tr>
-          </thead>
-
-
-          <tbody class="ui-datatable-data ui-widget-content" id="searchForm:attendanceDetail_data">
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" >
-              <td role="gridcell">
-              <input type="checkbox">
-            </td>
-
-              <td role="gridcell">24 Jul 2017</td>
-
-              <td role="gridcell"><label class="redColor">Morning Shift</label>
+              <td align="left" class="titleTBnone" width="50%">
+                <span class="heading-style">ATTENDANCE DETAILS</span>
               </td>
-
-              <td role="gridcell"><label class="redColor">09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label class="redColor">NA</label></span>
-              </td>
-
-              <td role="gridcell"><label class="redColor">18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label class="redColor">NA</label></span>
-              </td>
-
-              <td role="gridcell"><label class="redColor">NA</label>
-              </td>
-
-              <td role="gridcell"><label class="redColor">0:00</label>
-              </td>
-
-              <td role="gridcell"><label class="redColor">A</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="1" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">23 Jul 2017</td>
-
-              <td role="gridcell"><label>WEEKLY OFF</label>
-              </td>
-
-              <td role="gridcell"><label>NA</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>NA</label></span>
-              </td>
-
-              <td role="gridcell"><label>NA</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>NA</label></span>
-              </td>
-
-              <td role="gridcell"><label>NA</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>WO</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="2" role="row">
-              <td role="gridcell" style="min-width:30px;">
-               <input type="checkbox">
-              </td>
-
-              <td role="gridcell">22 Jul 2017</td>
-
-              <td role="gridcell"><label class="redColor">Day (09:00-18:00)</label>
-              </td>
-
-              <td role="gridcell"><label class="redColor">09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label class="redColor">NA</label></span>
-              </td>
-
-              <td role="gridcell"><label class="redColor">18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label class="redColor">NA</label></span>
-              </td>
-
-              <td role="gridcell"><label class="redColor">NA</label>
-              </td>
-
-              <td role="gridcell"><label class="redColor">0:00</label>
-              </td>
-
-              <td role="gridcell"><label class="redColor">A</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="3" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">21 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="4" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">20 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="5" role="row">
-              <td role="gridcell" style="min-width:30px;">
-               <input type="checkbox">
-              </td>
-
-              <td role="gridcell">19 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="6" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">18 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="7" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">17 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="8" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">16 Jul 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="9" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">15 Jul 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="10" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">14 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="11" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">13 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="12" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">12 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="13" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">11 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="14" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">10 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="15" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">09 Jul 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="16" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">08 Jul 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="17" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">07 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="18" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">06 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="19" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">05 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="20" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">04 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="21" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">03 Jul 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="22" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">02 Jul 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="23" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">01 Jul 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="24" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">30 Jun 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-datatable-odd datatable-rowstyle-false" data-ri="25" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">29 Jun 2017</td>
-
-              <td role="gridcell"><label>Leave</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>L</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-datatable-even datatable-rowstyle-true" data-ri="26" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">28 Jun 2017</td>
-
-              <td role="gridcell"><label>Leave</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="27" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">27 Jun 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="28" role="row">
-              <td>
-              <input type="checkbox">
-              </td>
-
-              <td role="gridcell">26 Jun 2017</td>
-
-              <td role="gridcell"><label>DAY</label>
-              </td>
-
-              <td role="gridcell"><label>09:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>NA</label></span>
-              </td>
-
-              <td role="gridcell"><label>18:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>NA</label></span>
-              </td>
-
-              <td role="gridcell"><label>NA</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>H</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-odd datatable-rowstyle-false" data-ri="29" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">25 Jun 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
-            </tr>
-
-
-            <tr class="ui-widget-content ui-datatable-even datatable-rowstyle-true" data-ri="30" role="row">
-              <td role="gridcell" style="min-width:30px;">
-                <input type="checkbox">
-              </td>
-
-              <td role="gridcell">24 Jun 2017</td>
-
-              <td role="gridcell"><label>Weekly Off</label>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>09:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>00:00</label>
-              </td>
-
-              <td role="gridcell"><span class="ToolTip"><label>18:00</label></span>
-              </td>
-
-              <td role="gridcell"><label>08:00</label>
-              </td>
-
-              <td role="gridcell"><label>0:00</label>
-              </td>
-
-              <td role="gridcell"><label>P</label>
-              </td>
+              <td align="right" class="titleTBnone" width="50%"></td>
             </tr>
           </tbody>
         </table>
+
+        <div class="listing_kb_inner border_table TabTable_responsive">
+          <div class="ui-datatable ui-widget table-header">
+            <div class="ui-datatable-tablewrapper">
+              <table role="grid">
+                <thead>
+                  <tr>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Check Box</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Date</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Shift</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Expected IN Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Actual IN Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Expected Out Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Actual Out Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Work Hours</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Status</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="ui-datatable-data">
+                  <tr class="ui-widget-content" ng-show="!fromdate" ng-repeat="list in attendancelist">
+                    <td role="gridcell">
+                      <input type="checkbox" ng-model="selectedList[list.date]">
+                    </td>
+                    <td role="gridcell">{{list['date']}}</td>
+                    <td role="gridcell">
+                      <label>Morning Shift</label>
+                    </td>
+                    <td role="gridcell">
+                      <label>{{list['reportInTime']}}</label>
+                    </td>
+                    <td role="gridcell">
+                      <span class="ToolTip">
+                        <label>{{list['actualIn']}}</label>
+                      </span>
+                    </td>
+                    <td role="gridcell">
+                      <label>{{list['reportOutTime']}}</label>
+                    </td>
+                    <td role="gridcell">
+                      <span class="ToolTip">
+                        <label>{{list['actualOut']}}</label>
+                      </span>
+                    </td>
+                    <td role="gridcell">
+                      <label >8 Hours</label>
+                    </td>
+                    <td role="gridcell">
+                      <label ng-if="list['status']==1||list['status']==2">p</label>
+                    </td>
+                    <td role="gridcell">
+                      <label class="redColor" ng-if="!list['status']">A</label>
+                    </td>
+                    <!-- <td role="gridcell">
+                      <label class="redColor">{{list['status']}}</label>
+                    </td> -->
+                  </tr>
+                  <tr class="ui-widget-content" ng-show="fromdate" ng-repeat="list in attendancelist | dateFilter:fromdate:todate">
+                    <td role="gridcell">
+                      <input type="checkbox">
+                    </td>
+                    <td role="gridcell">{{list['date']}}</td>
+                    <td role="gridcell">
+                      <label>Morning Shift</label>
+                    </td>
+                    <td role="gridcell">
+                      <label>{{list['reportInTime']}}</label>
+                    </td>
+                    <td role="gridcell">
+                      <span class="ToolTip">
+                        <label>{{list['actualIn']}}</label>
+                      </span>
+                    </td>
+                    <td role="gridcell">
+                      <label>{{list['reportOutTime']}}</label>
+                    </td>
+                    <td role="gridcell">
+                      <span class="ToolTip">
+                        <label>{{list['actualOut']}}</label>
+                      </span>
+                    </td>
+                    <td role="gridcell">
+                      <label >8 Hours</label>
+                    </td>
+                    <td role="gridcell">
+                      <label ng-if="list['status']==1||list['status']==2">p</label>
+                    </td>
+                    <td role="gridcell">
+                      <label class="redColor" ng-if="!list['status']">A</label>
+                    </td>
+                    <!-- <td role="gridcell">
+                      <label class="redColor">{{list['status']}}</label>
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="BtnRW padt15">
+          <button aria-disabled="false" class="ui-button btn-success" title="" type="submit" ng-click="createRegularization()">
+            <span class="ui-button-text ui-c">Regularize</span>
+          </button>
+        </div>
+
+        <fieldset class="ui-fieldset ui-hidden-container attBot">
+          <div class="ui-fieldset-content">
+            <label class="fBold">Present Days:</label> 
+            <label>30</label>
+            <label class="fBold">Absent Days:</label> 
+            <label>2</label>
+            <label class="fBold">Half Days:</label> 
+            <label>0</label>
+            <label class="fBold">Miss Punch Out:</label> 
+            <label>0</label>
+            <label class="fBold">Leave:</label> 
+            <label>1</label>
+            <label class="fBold">Holiday:</label> 
+            <label>1</label>
+            <label class="fBold">Half Day Leave:</label> 
+            <label>0</label>
+            <label class="fBold">Late Arrival:</label> 
+            <label>0</label>
+            <label style="font-weight:bold;">Early Exit:</label> 
+            <label>0</label>
+          </div>
+        </fieldset>
+
       </div>
 
-
-    
-    </div>
+    </span>
   </div>
-
-
-  <div class="BtnRW padt15">
-    <button aria-disabled="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" id="searchForm:j_idt2425" name="searchForm:j_idt2425" onclick="PrimeFaces.ab({s:&quot;searchForm:j_idt2425&quot;,u:&quot;addEmpDetailsForm searchForm&quot;});return false;" role="button" title="" type="submit"><span class="ui-button-text ui-c">Regularize</span></button>
-  </div>
-
-
-  <fieldset class="ui-fieldset ui-widget ui-widget-content ui-corner-all ui-hidden-container attBot" data-widget="widget_searchForm_j_idt2428" id="searchForm:j_idt2428">
-    <div class="ui-fieldset-content">
-      <label class="fBold">Present Days:</label> <label>30</label><label class="fBold">Absent Days:</label> <label>2</label><label class="fBold">Half Days:</label> <label>0</label><label class="fBold">Miss Punch Out:</label> <label>0</label><label class="fBold">Leave:</label> <label>1</label><label class="fBold">Holiday:</label> <label>1</label><label class="fBold">Half Day Leave:</label> <label>0</label><label class="fBold">Late Arrival:</label> <label>0</label><label style="font-weight:bold;">Early Exit:</label> <label>0</label>
-    </div>
-  </fieldset>
-
-
-
 </div>
-
-        </span>

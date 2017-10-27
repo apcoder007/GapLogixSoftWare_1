@@ -1,0 +1,144 @@
+<style type="text/css">
+    #profile-main {
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+        width: 95%;
+    }
+
+    #mCSB_1_container{
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+    }
+    #mCSB_1_dragger_vertical{
+        position: absolute; 
+        min-height: 50px; 
+        display: block; 
+        height: 587px; 
+        max-height: 695px; 
+        top: 0px;
+    }
+    #mCSB_1_dragger_horizontal{
+        position: absolute; 
+        min-width: 50px; 
+        width: 0px; 
+        left: 0px;
+    }
+
+    .image-upload > input{
+        display: none;
+    }
+
+    .image-upload img{
+        width: 80px;
+        cursor: pointer;
+    }
+</style>
+
+
+<div class="card" id="profile-main">
+    <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;">
+        <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+            <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" dir="ltr">
+                <div class="pmo-pic">
+                    <div class="p-relative">
+                        <a href="">
+                            <!-- <img class="img-responsive mCS_img_loaded" src="img/profile-pics/profile-pic-2.jpg" alt=""> -->
+                            <img class="img-responsive mCS_img_loaded" src="images/Blank_profile_male.png" id="blah" alt="" ng-show="!imgsrc">
+
+                            <img class="img-responsive mCS_img_loaded" ng-src="{{imgsrc}}" id="blah" alt="" ng-show="imgsrc">
+                        </a>
+
+                        <div class="dropdown pmop-message" uib-dropdown="">
+                            <button uib-dropdown-toggle="" class="btn bgm-white btn-float dropdown-toggle waves-effect waves-circle" aria-haspopup="true" aria-expanded="false">
+                                <i class="zmdi zmdi-comment-text-alt"></i>
+                            </button>
+
+                            <div class="dropdown-menu stop-propagate">
+                                <textarea placeholder="Write something..."></textarea>
+
+                                <button class="btn bgm-green btn-float waves-effect waves-circle"><i class="zmdi zmdi-mail-send"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- <a href="" class="pmop-edit">
+                            <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
+                        </a> -->
+                        <div class="pmop-edit" style="cursor: pointer;">
+                            <div class="image-upload">
+                                <label for="file-input">
+                                    <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
+                                </label>
+
+                                <input id="file-input" type="file" name="file" onchange="readURL(this);" ng-model="imageurl" custom-on-change="uploadFile" />                                
+
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                   <!--  <div class="pmo-stat">
+                        <h2 class="m-0 c-white">1562</h2>
+                        Total Connections
+                    </div> -->
+                </div>
+
+                <div class="pmo-block pmo-contact hidden-xs">
+                    <h2>Contact</h2>
+
+                    <ul>
+                        <li class="ng-binding"><i class="zmdi zmdi-phone"></i> {{basicinfo[0]['mobile']}}</li>
+                        <li class="ng-binding"><i class="zmdi zmdi-email"></i> {{basicinfo[0]['personalEmail']}}</li>
+                        
+                    </ul>
+                </div>  
+
+            </div>
+        </div>
+
+        <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;">
+            <div class="mCSB_draggerContainer">
+                <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" oncontextmenu="return false;">
+                    <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+                </div>
+                <div class="mCSB_draggerRail"></div>
+            </div>
+        </div>
+        <div id="mCSB_1_scrollbar_horizontal" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;">
+            <div class="mCSB_draggerContainer">
+                <div id="mCSB_1_dragger_horizontal" class="mCSB_dragger" oncontextmenu="return false;">
+                    <div class="mCSB_dragger_bar"></div>
+                </div>
+                <div class="mCSB_draggerRail"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pm-body clearfix">
+        
+        <div ng-include src="'views/employees/profile-menu.html'"></div>
+
+        <!-- uiView:  -->
+        <div ui-view class="ng-scope"></div>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result);
+                    // .width(150)
+                    // .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+            
+        }
+    }
+</script>

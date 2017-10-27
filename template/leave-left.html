@@ -5,7 +5,7 @@
                 <a href="" toggle-submenu="">
                     <div class="profile-pic"><img alt="" class="" src="img/profile-pics/16.png"></div>
                     <div class="profile-info">
-                    Gagan Chaturvedi<i class="zmdi zmdi-caret-down"></i>
+                    {{logininfo[2]+" "+logininfo[3]}}<i class="zmdi zmdi-caret-down"></i>
                     </div>
                 </a>
 
@@ -23,7 +23,7 @@
                     </li>
 
                     <li>
-                        <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        <a href="" ng-click="logout()"><i class="zmdi zmdi-time-restore"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" id="mCSB_1_scrollbar_vertical">
+    <!-- <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" id="mCSB_1_scrollbar_vertical">
         <div class="mCSB_draggerContainer">
             <div class="mCSB_dragger" id="mCSB_1_dragger_vertical" oncontextmenu="return false;" style="position: absolute; min-height: 50px; display: block; height: 447px; max-height: 587px;">
                 <div class="mCSB_dragger_bar" style="line-height: 50px;">
@@ -62,10 +62,10 @@
 
             <div class="mCSB_draggerRail"></div>
         </div>
-    </div>
+    </div> -->
 
 
-    <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" id="mCSB_1_scrollbar_horizontal" >
+   <!--  <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" id="mCSB_1_scrollbar_horizontal" >
         <div class="mCSB_draggerContainer">
             <div class="mCSB_dragger" id="mCSB_1_dragger_horizontal" oncontextmenu="return false;" style="position: absolute; min-width: 50px; width: 0px; left: 0px;">
                 <div class="mCSB_dragger_bar"></div>
@@ -74,5 +74,5 @@
 
             <div class="mCSB_draggerRail"></div>
         </div>
-    </div>
+    </div> -->
 </div>

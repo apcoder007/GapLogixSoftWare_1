@@ -1,0 +1,180 @@
+{
+  "count": 948,
+  "data": [
+    {
+      "_id": "58ff69211a1b3704006043b0",
+      "name": "Daddde",
+      "nameToLower": "daddde",
+      "__v": 0,
+      "iron": {
+        "value": 3,
+        "unit": "%"
+      },
+      "calcium": {
+        "value": 3,
+        "unit": "%"
+      },
+      "sodium": {
+        "value": 2,
+        "unit": "mg"
+      },
+      "protein": {
+        "value": 3,
+        "unit": "g"
+      },
+      "carbs": {
+        "value": 2,
+        "unit": "g"
+      },
+      "fat": {
+        "value": 2,
+        "unit": "g"
+      },
+      "calories": {
+        "value": 0,
+        "unit": "Cal"
+      },
+      "serving": "100g"
+    },
+    {
+      "_id": "58fdf63ee0756804001b3093",
+      "name": "ewr",
+      "nameToLower": "ewr",
+      "__v": 0,
+      "iron": {
+        "value": 1,
+        "unit": "%"
+      },
+      "calcium": {
+        "value": 1,
+        "unit": "%"
+      },
+      "sodium": {
+        "value": 1,
+        "unit": "mg"
+      },
+      "protein": {
+        "value": 1,
+        "unit": "g"
+      },
+      "carbs": {
+        "value": 1,
+        "unit": "g"
+      },
+      "fat": {
+        "value": 1,
+        "unit": "g"
+      },
+      "calories": {
+        "value": 0,
+        "unit": "Cal"
+      },
+      "serving": "100g"
+    },
+    {
+      "_id": "58f8865a046b30040019986f",
+      "name": "tf",
+      "nameToLower": "tf",
+      "__v": 0,
+      "iron": {
+        "value": 5,
+        "unit": "%"
+      },
+      "calcium": {
+        "value": 5,
+        "unit": "%"
+      },
+      "sodium": {
+        "value": 5,
+        "unit": "mg"
+      },
+      "protein": {
+        "value": 3,
+        "unit": "g"
+      },
+      "carbs": {
+        "value": 5,
+        "unit": "g"
+      },
+      "fat": {
+        "value": 2,
+        "unit": "g"
+      },
+      "calories": {
+        "value": 0,
+        "unit": "Cal"
+      },
+      "serving": "100g"
+    },
+    {
+      "_id": "58f643fe2882b80400182e25",
+      "name": "isjdijsidjisjdijijij",
+      "nameToLower": "isjdijsidjisjdijijij",
+      "__v": 0,
+      "iron": {
+        "value": 1,
+        "unit": "%"
+      },
+      "calcium": {
+        "value": 1,
+        "unit": "%"
+      },
+      "sodium": {
+        "value": 1,
+        "unit": "mg"
+      },
+      "protein": {
+        "value": 1,
+        "unit": "g"
+      },
+      "carbs": {
+        "value": 1,
+        "unit": "g"
+      },
+      "fat": {
+        "value": 1,
+        "unit": "g"
+      },
+      "calories": {
+        "value": 0,
+        "unit": "Cal"
+      },
+      "serving": "100g"
+    },
+    {
+      "_id": "58eee3e0e6586f0400a4787c",
+      "name": "tagiiiil",
+      "nameToLower": "tagiiiil",
+      "__v": 0,
+      "iron": {
+        "value": 0,
+        "unit": "%"
+      },
+      "calcium": {
+        "value": 0,
+        "unit": "%"
+      },
+      "sodium": {
+        "value": 0,
+        "unit": "mg"
+      },
+      "protein": {
+        "value": 0,
+        "unit": "g"
+      },
+      "carbs": {
+        "value": 0,
+        "unit": "g"
+      },
+      "fat": {
+        "value": 0,
+        "unit": "g"
+      },
+      "calories": {
+        "value": 0,
+        "unit": "Cal"
+      },
+      "serving": "100g"
+    }
+  ]
+}

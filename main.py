@@ -24,6 +24,12 @@ class Main(session_handler.BaseSessionHandler):
         home = jinja_environment.get_template('managemenu.html')
         self.response.write(home.render())
 
+class resetPassword(session_handler.BaseSessionHandler):
+    def get(self):
+#       if self.session.get('name') and self.session.get('adminType')=="admin":
+        home = jinja_environment.get_template('resetPassword.html')
+        self.response.write(home.render())
+
 class Configure(session_handler.BaseSessionHandler):
     def get(self):
 #       if self.session.get('name') and self.session.get('adminType')=="admin":
@@ -32,6 +38,10 @@ class Configure(session_handler.BaseSessionHandler):
 
 class Organisation(session_handler.BaseSessionHandler):
     def get(self):
+#       if self.session.get('name') and self.session.get('adminType')=="admin":
+        home = jinja_environment.get_template('organisation.html')
+        self.response.write(home.render())
+    def post(self):
 #       if self.session.get('name') and self.session.get('adminType')=="admin":
         home = jinja_environment.get_template('organisation.html')
         self.response.write(home.render())
@@ -71,7 +81,8 @@ app = webapp2.WSGIApplication([
     ('/admin/bussiness',Bussiness),
     ('/admin/services',Services),
     ('/admin/login',Login),
-    ('/admin/popup',Popup)
+    ('/admin/popup',Popup),
+    ('/admin/reset/password', resetPassword)
     
 
 

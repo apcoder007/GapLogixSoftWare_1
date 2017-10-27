@@ -1,0 +1,126 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 95%;
+    }
+
+</style>
+
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        
+        <p class="c-black f-500 m-b-5 m-t-20">ID DETAILS</p>
+        <hr>
+
+        <br><br>
+
+        <form ng-submit="addEmployeeId()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-phone"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="idtype">
+                            <option value="">Id Types</option>
+                            <option value="Driving License">Driving License </option>
+                            <option value="Passport Number">Passport Number </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Number" ng-model="idunmber">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Name On Document" ng-model="documentname">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-event"></i></span> 
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control date-picker" placeholder="Date Of Issue" ng-model="issuedate">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <!-- <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Valid Till">
+                    </div> -->
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="md md-event"></i></span>
+                            <div class="dtp-container dropdown fg-line">
+                            <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="Valid Till" aria-expanded="false" ng-model="validtill">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Issuing Authoriy" ng-model="authority">
+                    </div>
+                </div>
+            </div>
+
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Place of Issue" ng-model="issueplace">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+        </form>
+
+        <br><br>
+
+
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    <div class="card-body card-padding">
+        <table width="100%" border="1px gray">
+            <thead>
+                <tr>
+                    <th>ID Type</th>
+                    <th>Number</th>
+                    <th>Date of Issue</th>
+                    <th>Valid Till</th>
+                    <th>Place of Issue</th>
+                    \<th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

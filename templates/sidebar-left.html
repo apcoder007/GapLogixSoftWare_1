@@ -7,7 +7,7 @@
                         <img alt="" class="" src="img/profile-pics/16.png">
                     </div>
                     <div class="profile-info">
-                        Gagan Chaturvedi<i class="zmdi zmdi-caret-down"></i>
+                        {{logininfo[2]+" "+logininfo[3]}}<i class="zmdi zmdi-caret-down"></i>
                     </div>
                 </a>
                 <ul class="main-menu">
@@ -30,10 +30,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="zmdi zmdi-time-restore"></i>
-                            Logout
-                        </a>
+                        <a href="" ng-click="logout()"><i class="zmdi zmdi-time-restore"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -109,9 +106,9 @@
                         <li>
                             <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="pages.profile.profile-about" data-ui-sref-active="active" href="#/pages/profile/profile-about">Basic Details</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="prof.employee.employee-about" data-ui-sref-active="active" href="#/prof/employee/employee-about">Employment Details</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('charts') }">

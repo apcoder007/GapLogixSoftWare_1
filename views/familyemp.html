@@ -1,0 +1,167 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 95%;
+    }
+
+</style>
+
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        <form ng-submit="addFamilyDetails()">
+            <p class="c-black f-500 m-b-5 m-t-20">FAMILY DETAILS</p>
+            <hr>
+
+            <br><br>
+
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-phone"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Dependent Name" ng-model="dependentname">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="relationship">
+                        <option value="">Relationship</option>
+                        <option value="father">Father </option>
+                        <option value="mother">Mother </option>
+                        <option value="brother">Brother </option>
+                        <option value="sister">Sister </option>
+                        <option value="son">Son </option>
+                        <option value="daughter">Daughter </option>
+                        <option value="wife">Wife </option>
+                        <option value="husband">Husband </option>
+                        <option value="father_in_law">Father in law</option>
+                        <option value="mother_in_law">Mother in law</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="gender">
+                            <option value="">Gender</option>
+                            <option value="male">Male </option>
+                            <option value="female">Female </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-event"></i></span> 
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control date-picker" placeholder="Date Of Birth" ng-model="dob">
+                    </div> 
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="maritalstatus">
+                            <option value="">Marital Status</option>
+                            <option value="single">Single </option>
+                            <option value="married">Married </option>
+                            <option value="devorced">Devorced </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="blood_group">
+                            <option value="">Blood Group</option>
+                            <option value="A+">A+ </option>
+                            <option value="B+">B+ </option>
+                            <option value="AB+">AB+ </option>
+                            <option value="o+">O+ </option>
+                            <option value="A-">A- </option>
+                            <option value="B-">B- </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Address" ng-model="address">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Mobile Number" ng-model="mobile">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="" ng-model="isdependent">
+                            <i class="input-helper"></i>
+                            Is Dependent
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+        </form>
+
+        <br><br>
+
+
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    <div class="card-body card-padding">
+        <table width="100%" border="1px gray">
+            <thead>
+                <tr>
+                    <th>Dependent Name</th>
+                    <th>Relationship</th>
+                    <th>Date of Birth</th>
+                    <th>Is Dependent</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="list in employeefamilylist">
+                    <td>{{list.dependentName}}</td>
+                    <td>{{list.relationship}}</td>
+                    <td>{{list.dob}}</td>
+                    <td>{{list.isDependent}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

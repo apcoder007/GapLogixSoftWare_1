@@ -1,98 +1,133 @@
-<data ui-view="" class="ng-scope"><div class="timeline ng-scope">
-    <div class="t-view" data-tv-type="text">
-        <div class="tv-header media">
-            <a href="" class="tvh-user pull-left">
-                <img class="img-responsive" src="img/profile-pics/profile-pic-2.jpg" alt="">
-            </a>
-            <div class="media-body p-t-5">
-                <strong class="d-block">Education Information</strong>
-                
-            </div>
+<div class="pmb-block ng-scope">
+    <div class="pmbb-header">
+        <h2><i class="zmdi zmdi-equalizer m-r-5"></i> Education Information</h2>
 
-            <ul class="actions m-t-20 hidden-xs">
-                <li class="dropdown" uib-dropdown="">
-                    <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        <i class="zmdi zmdi-more-vert"></i>
-                    </a>
+        <ul class="actions ng-scope" data-ng-if="editInfo === 0">
+            <li class="dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
 
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li>
-                            <a href="">Edit</a>
-                        </li>
-                        <li>
-                            <a href="">Delete</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- <div class="tv-body">
-            
-
-            <div class="clearfix"></div>
-
-            
-        </div> -->
-
-        <div class="tv-comments">
-            <ul class="tvc-lists">
-                <li class="media">
-                    
-                    <div class="media-body">
-                        <strong class="d-block" style="padding-bottom:8px;">Course:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GTL</strong>
-                        <strong class="d-block"style="padding-bottom:8px;" >Institute Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20/11/12</strong>
-                        <strong class="d-block"style="padding-bottom:8px;">Subject Of Specialization:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hr@gaplogix.com</strong>
-                        <strong class="d-block">GPA/Percentage:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A+</strong>
-
-                        
-
-                        
-
-                    </div>
-                </li>
-                <li class="media">
-
-                    
-                    <div class="media-body">
-                        <strong class="d-block" style="padding-bottom:8px;">Start Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HR</strong>
-                        <strong class="d-block"style="padding-bottom:8px;" >End Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gagan</strong>
-                        
-
-                        
-
-                        
-
-                    </div>
-                </li>
-                
-                <li class="media">
-                    <!-- <a href="" class="tvh-user pull-left">
-                        <img class="img-responsive" src="img/profile-pics/1.jpg" alt="">
-                    </a> -->
-                    <div class="media-body">
-                        <strong class="d-block" style="padding-bottom:8px;">LandLine Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20/11/2017</strong>
-                        <strong class="d-block"style="padding-bottom:8px;" >Email Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hr</strong>
-                        <strong class="d-block"style="padding-bottom:8px;">Contact Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Noida</strong>
-                        
-
-                        
-
-                        
-
-                    </div>
-                </li>
-
-                
-
-                
-            </ul>
-        </div>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a data-ng-click="editBasic()" href="">Edit</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
+        <div class="pmbb-body p-l-30">
+        
+        <div class="pmbb-view ng-scope" data-ng-if="editInfo === 0">
+            
+            <dl class="dl-horizontal">
+                <dt>Course</dt>
+                <dd class="ng-binding">{{educationdetail['course']}}</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Education Level</dt>
+                <dd class="ng-binding">{{educationdetail['educationlevel']}}</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Institute Name</dt>
+                <dd class="ng-binding">{{educationdetail['instituteName']}}</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Board University</dt>
+                <dd class="ng-binding">{{educationdetail['boardUniversity']}}</dd>
+            </dl>
+            <br>
+            <dl class="dl-horizontal">
+                <dt>Subject Of Specialization</dt>
+                <dd class="ng-binding">{{educationdetail['subOfSpecialization']}}</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>GPA/Percentage </dt>
+                <dd class="ng-binding">{{educationdetail['gpaPercentage']}}</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>Start Date</dt>
+                <dd class="ng-binding">{{educationdetail['startDate']}}</dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt>End Date</dt>
+                <dd class="ng-binding">{{educationdetail['endDate']}}</dd>
+            </dl>
+            
+        </div>
 
+        <form ng-submit="updateEducationInfo(course, level, institute, board, subject, gpa, startdate, enddate)" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="editInfo === 1">
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Course</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input ng-model="course" type="text" class="form-control ng-pristine ng-untouched ng-valid" >
+                    </div>
 
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Education Level</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input ng-model="level" type="text" class="form-control ng-pristine ng-untouched ng-valid">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Institute Name</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input ng-model="institute" type="text" class="form-control ng-pristine ng-untouched ng-valid" disabled="true">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Board University</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="board">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Subject Of Specialization</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="subject">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">GPA/Percentage</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="gpa">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Start Date</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="startdate">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">End Date</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="enddate">
+                    </div>
+                </dd>
+            </dl>
 
-    <div class="clearfix"></div>
+            <div class="m-t-30">
+                <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="closeBasic()">Cancel</button>
+            </div>
+        </form>
 
-
+    </div>
 </div>
-</data>

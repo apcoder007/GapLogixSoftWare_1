@@ -1,0 +1,152 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 95%;
+    }
+
+</style>
+
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        <p class="c-black f-500 m-b-5 m-t-20">BANK DETAILS</p>
+        <hr>
+
+        <br><br>
+
+        <form ng-submit="addBankDetails()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-phone"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="bankname">
+                            <option value="">Bank Name</option>
+                            <option value="Axis Bank">Axis Bank </option>
+                            <option value="ICICI Bank">ICICI Bank </option>
+                            <option value="Yes Bank">Yes Bank </option>
+                            <option value="State Bank Of India">State Bank Of India </option>
+                            <option value="HDFC Bank">HDFC Bank </option>
+                            <option value="Oriental Bank Of Commerce">Oriental Bank Of Commerce </option>
+                            <option value="Bank Of India">Bank Of India </option>
+                            <option value="Canara Bank">Canara Bank </option>
+                            <option value="Punjab National Bank">Punjab National Bank</option>
+                            <option value="UCO Bank">UCO Bank</option>
+                            <option value="Bank Of Maharashtra">Bank Of Maharashtra</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Account Holder Name" ng-model="holdername">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Bank Account Number" ng-model="accountnumber">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span> 
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="accounttype">
+                            <option value="">Account Type</option>
+                            <option value="Saving">Saving</option>
+                            <option value="Current">Current</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Branch Name" ng-model="branchname">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Branch Address" ng-model="branchaddress">
+                    </div>
+                </div>
+            </div>
+
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="IFSC Code" ng-model="ifsc_code">
+                    </div>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="Salary Account" ng-model="salaryaccount">
+                            <i class="input-helper"></i>
+                            Salary Account
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="Reimbursement Account" ng-model="reimbursement_account">
+                            <i class="input-helper"></i>
+                            Reimbursement Account
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+        </form>
+
+        <br><br>
+
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    <div class="card-body card-padding">
+        <table width="100%" border="1px gray">
+            <thead>
+                <tr>
+                    <th>Bank Name</th>
+                    <th>IFSC Code</th>
+                    <th>Account Type</th>
+                    <th>Bank Account Number</th>
+                    <th>Branch Name</th>
+                    <th>Branch Address</th>
+                    <th>Account Holder Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

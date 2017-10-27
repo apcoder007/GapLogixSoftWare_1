@@ -1,92 +1,104 @@
-
 <div class="pmb-block ng-scope">
     <div class="pmbb-header">
         <h2><i class="zmdi zmdi-person m-r-5"></i> Position Information</h2>
 
-        <!-- ngIf: pctrl.editInfo === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editInfo === 0">
+        <!-- ngIf: pctrl.editInfo === 0 -->
+        <ul class="actions ng-scope" data-ng-if="editInfo === 0">
             <li class="dropdown" uib-dropdown="">
-                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <!-- <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                     <i class="zmdi zmdi-more-vert"></i>
-                </a>
+                </a> -->
 
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
-                        <a data-ng-click="pctrl.editInfo = 1" href="">Edit</a>
+                        <a data-ng-click="editInfoForm()" href="">Edit</a>
                     </li>
                 </ul>
             </li>
         </ul><!-- end ngIf: pctrl.editInfo === 0 -->
     </div>
     <div class="pmbb-body p-l-30">
-        <!-- ngIf: pctrl.editInfo === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editInfo === 0">
+        <!-- ngIf: pctrl.editInfo === 0 -->
+        <div class="pmbb-view ng-scope" data-ng-if="editInfo === 0">
             <dl class="dl-horizontal">
                 <dt>Employee Code</dt>
-                <dd class="ng-binding">GTL-122</dd>
+                <dd class="ng-binding">{{positioninfo[0]['empCode']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Date Of Joinign</dt>
-                <dd class="ng-binding">23/06/2017</dd>
+                <dd class="ng-binding">{{positioninfo[0]['dateOfJoining']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Offica Email</dt>
-                <dd class="ng-binding">admin@g-translogistics.com</dd>
+                <dd class="ng-binding">{{positioninfo[0]['officealEmail']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Grade</dt>
-                <dd class="ng-binding">A</dd>
+                <dd class="ng-binding">{{positioninfo[0]['grade']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Designation</dt>
-                <dd class="ng-binding">Admin</dd>
+                <dd class="ng-binding">{{positioninfo[0]['designation']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>L2 MAnager</dt>
-                <dd class="ng-binding">Single</dd>
+                <dd class="ng-binding">{{positioninfo[0]['l2Manager']}}</dd>
             </dl>
 
         </div><!-- end ngIf: pctrl.editInfo === 0 -->
-        <form data-ng-submit="pctrl.submit('profileInfo', 'Profile Information')" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="pctrl.editInfo === 1">
+        <form ng-submit="updatepositionInfo(empcode, doj, officialemail, grade, designation, l2manager)" class="pmbb-edit ng-pristine ng-valid" data-ng-if="editInfo === 1">
             <dl class="dl-horizontal">
                 <dt class="p-t-10">Employee Code</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.fullName" type="text" class="form-control ng-pristine ng-untouched ng-valid" value="Mallinda Hollaway" placeholder="eg. Mallinda Hollaway">
+                        <input ng-model="empcode" type="text" class="form-control ng-pristine ng-untouched ng-valid" disabled="true">
                     </div>
-
                 </dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt class="p-t-10">Grade</dt>
+                <dt class="p-t-10">Date Of Joining</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.fullName" type="text" class="form-control ng-pristine ng-untouched ng-valid" value="Mallinda Hollaway" placeholder="eg. Mallinda Hollaway">
+                        <input ng-model="doj" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt class="p-t-10">Designation</dt>
+                <dt class="p-t-10">Official Email</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input ng-model="officialemail" type="text" class="form-control ng-pristine ng-untouched ng-valid">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">grade</dt>
                 <dd>
                     <div class="dtp-container dropdown fg-line">
-                        <input type="text" class="form-control" data-dt-picker="DD/MM/YYYY" uib-dropdown-toggle="" placeholder="eg. 23/06/1988">
+                        <input type="text" class="form-control" ng-model="grade">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">designation</dt>
+                <dd>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="designation">
                     </div>
                 </dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt class="p-t-10">L2 Manager</dt>
                 <dd>
-                    <div class="fg-line">
-                        <select class="form-control">
-                            <option value="onroll">Onroll</option>
-                            <option value="offroll">OffRoll</option>
-                            <option value="Other">Other</option>
-                        </select>
+                    <div class="dtp-container dropdown fg-line">
+                        <input type="text" class="form-control" ng-model="l2manager">
                     </div>
                 </dd>
             </dl>
 
             <div class="m-t-30">
                 <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
-                <button class="btn btn-link btn-sm waves-effect" data-ng-click="pctrl.editInfo = 0">Cancel</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="closeInfoForm()">Cancel</button>
             </div>
         </form>
 
@@ -99,50 +111,68 @@
     <div class="pmbb-header">
         
 
-        <!-- ngIf: pctrl.editContact === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editContact === 0">
+        <!-- ngIf: pctrl.editContact === 0 -->
+        <ul class="actions ng-scope" data-ng-if="editContact === 0">
             <li class="dropdown" uib-dropdown="">
-                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <!-- <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                     <i class="zmdi zmdi-more-vert"></i>
-                </a>
+                </a> -->
 
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
-                        <a data-ng-click="pctrl.editContact = 1" href="">Edit</a>
+                        <a data-ng-click="editContactForm()" href="">Edit</a>
                     </li>
                 </ul>
             </li>
         </ul><!-- end ngIf: pctrl.editContact === 0 -->
     </div>
     <div class="pmbb-body p-l-30">
-        <!-- ngIf: pctrl.editContact === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editContact === 0">
+        <!-- ngIf: pctrl.editContact === 0 -->
+        <div class="pmbb-view ng-scope" data-ng-if="editContact === 0">
             <dl class="dl-horizontal">
                 <dt>L1 Manager</dt>
-                <dd class="ng-binding">Demo</dd>
+                <dd class="ng-binding">{{positioninfo[0]['l1Manager']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Employment Status</dt>
-                <dd class="ng-binding">active</dd>
+                <dd class="ng-binding">{{positioninfo[0]['empStatus']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>HR Manager</dt>
-                <dd class="ng-binding">@malind</dd>
+                <dd class="ng-binding">{{positioninfo[0]['hrManager']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Notice Period</dt>
-                <dd class="ng-binding">malinda.hollaway</dd>
+                <dd class="ng-binding">{{positioninfo[0]['noticePeriod']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Employment Type</dt>
-                <dd class="ng-binding">Onroll</dd>
+                <dd class="ng-binding">{{positioninfo[0]['empType']}}</dd>
             </dl>
 
         </div><!-- end ngIf: pctrl.editContact === 0 -->
-        <form data-ng-submit="pctrl.submit('profileContact', 'Profile Contact Information')" class="pmbb-edit ng-pristine ng-valid ng-scope ng-valid-email" data-ng-if="pctrl.editContact === 1" style="">
+        <form ng-submit="updatepositionInfo1(l1manager, empstatus, hrmanager, notice, emptype)" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="editContact === 1" style="">
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">L1 Manager</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input ng-model="l1manager" type="text" class="form-control ng-pristine ng-untouched ng-valid">
+                    </div>
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Employment Status</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input ng-model="empstatus" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email">
+                    </div>
+                </dd>
+            </dl>
             <dl class="dl-horizontal">
                 <dt class="p-t-10">HR Manager</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.mobileNumber" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. 00971 12345678 9">
+                        <input ng-model="hrmanager" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
@@ -150,7 +180,7 @@
                 <dt class="p-t-10">Notice Period</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.emailAddress" type="email" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email" placeholder="eg. malinda.h@gmail.com">
+                        <input ng-model="notice" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
@@ -158,22 +188,14 @@
                 <dt class="p-t-10">Employment Type</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.twitter" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. @malinda">
-                    </div>
-                </dd>
-            </dl>
-            <dl class="dl-horizontal">
-                <dt class="p-t-10">Employement Status</dt>
-                <dd>
-                    <div class="fg-line">
-                        <input data-ng-model="pctrl.skype" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. malinda.hollaway">
+                        <input ng-model="emptype" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
 
             <div class="m-t-30">
                 <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
-                <button class="btn btn-link btn-sm waves-effect" data-ng-click="pctrl.editContact = 0">Cancel</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="closeContactForm()">Cancel</button>
             </div>
         </form>
 
@@ -184,81 +206,80 @@
     <div class="pmbb-header">
         
 
-        <!-- ngIf: pctrl.editContact === 0 --><ul class="actions ng-scope" data-ng-if="pctrl.editContact === 0">
+        <!-- ngIf: pctrl.editContact === 0 -->
+        <ul class="actions ng-scope" data-ng-if="editmanager === 0">
             <li class="dropdown" uib-dropdown="">
-                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                <!-- <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                     <i class="zmdi zmdi-more-vert"></i>
-                </a>
+                </a> -->
 
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
-                        <a data-ng-click="pctrl.editContact = 1" href="">Edit</a>
+                        <a data-ng-click="editManagerForm()" href="">Edit</a>
                     </li>
                 </ul>
             </li>
         </ul><!-- end ngIf: pctrl.editContact === 0 -->
     </div>
     <div class="pmbb-body p-l-30">
-        <!-- ngIf: pctrl.editContact === 0 --><div class="pmbb-view ng-scope" data-ng-if="pctrl.editContact === 0">
+        <!-- ngIf: pctrl.editContact === 0 -->
+        <div class="pmbb-view ng-scope" data-ng-if="editmanager === 0">
             <dl class="dl-horizontal">
                 <dt>Conformation Due Date</dt>
-                <dd class="ng-binding">Demo</dd>
+                <dd class="ng-binding">{{positioninfo[0]['confDueDate']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Conformation Status</dt>
-                <dd class="ng-binding">active</dd>
+                <dd class="ng-binding">{{positioninfo[0]['confirmationStatus']}}</dd>
             </dl>
-            <dl class="dl-horizontal">
-                <dt>Actual Confirmation Date</dt>
-                <dd class="ng-binding">@malind</dd>
-            </dl>
+            
             <dl class="dl-horizontal">
                 <dt>Releving Date</dt>
-                <dd class="ng-binding">malinda.hollaway</dd>
+                <dd class="ng-binding">{{positioninfo[0]['relievingDate']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Department</dt>
-                <dd class="ng-binding">Onroll</dd>
+                <dd class="ng-binding">{{positioninfo[0]['department']}}</dd>
             </dl>
 
         </div><!-- end ngIf: pctrl.editContact === 0 -->
-        <form data-ng-submit="pctrl.submit('profileContact', 'Profile Contact Information')" class="pmbb-edit ng-pristine ng-valid ng-scope ng-valid-email" data-ng-if="pctrl.editContact === 1" style="">
+        <form ng-submit="updatepositionInfo2(confduedate, confstatus, reldate, department)" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="editmanager === 1" style="">
             <dl class="dl-horizontal">
-                <dt class="p-t-10">HR Manager</dt>
+                <dt class="p-t-10">Conformation Due Date</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.mobileNumber" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. 00971 12345678 9">
+                        <input ng-model="confduedate" type="text" class="form-control ng-pristine ng-untouched ng-valid" >
                     </div>
                 </dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt class="p-t-10">Notice Period</dt>
+                <dt class="p-t-10">Conformation Status</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.emailAddress" type="email" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email" placeholder="eg. malinda.h@gmail.com">
+                        <input ng-model="confstatus" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt class="p-t-10">Employment Type</dt>
+                <dt class="p-t-10">Releving Date</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.twitter" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. @malinda">
+                        <input ng-model="reldate" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt class="p-t-10">Employement Status</dt>
+                <dt class="p-t-10">Department</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.skype" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="eg. malinda.hollaway">
+                        <input ng-model="department" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>
 
             <div class="m-t-30">
                 <button class="btn btn-primary btn-sm waves-effect" type="submit">Save</button>
-                <button class="btn btn-link btn-sm waves-effect" data-ng-click="pctrl.editContact = 0">Cancel</button>
+                <button class="btn btn-link btn-sm waves-effect" data-ng-click="closeManagerForm()">Cancel</button>
             </div>
         </form>
 

@@ -3,26 +3,118 @@
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<div ng-controller="loginController">
+<style type="text/css">
+body{
+	overflow: hidden;
+}
+
+	.highlight {
+     background: transparent !important; 
+     border: 0px solid #e0e0e0; 
+    overflow: hidden;
+    border-radius: 2px;
+    margin: 0 0 1.5em;
+}
+#bg_none .ui-autocomplete-multiple ul.ui-autocomplete-multiple-container li.ui-autocomplete-input-token textarea, input[type="text"], input[type="password"], select {
+    color: #4e88c7!important;
+    border: solid 0px #E7E7E8;
+     border-bottom: solid 1px #E7E7E8; 
+}
+#buttonSubmit{
+	width: 200px;
+	left: -20px;
+}
+
+
+@media screen and (max-width:465px){
+    .form_setup {
+    padding: 10px;
+}
+
+
+.login-page {
+    /* height: auto; */
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /* margin-left: -200px; */
+    padding-top: 20px;
+    /* left: 56%; */
+    background-color: rgba(255, 255, 255, 0.20	);
+    border-radius: 21px;
+    text-align: center;
+    right: 0;
+    width: 340px;
+    margin: auto;
+     margin-top: -150px;
+}
+}
+
+
+@media screen and (max-width:364px){
+    .form_setup {
+    padding: 0px;}
+
+    input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 228px;
+    margin: auto;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    background: transparent;
+}
+
+
+.markin{
+	left: 20px !important;
+	}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width: 38%;
+}
+
+.login-page {
+	    width: 279px;
+	    
+	}
+}
+
+
+
+</style>
+
 <div class="bacgr_image sw-toggled': mactrl.layoutType === '1'" id="loginPage">
 	<div class="login-page">
 		<!-- logo image -->
 		<div class="log_ht"><img class="log_img" src="images/logo.png"></div><!-- logo-image -->
 		<!-- login-form -->
-		<form class="form_setup" id="loginForm" method="post" name="loginForm" ng-submit="submitLogin(loginForm)">
+		<div style="text-align: center">
+			<span style="color: red; width: 100px;" ng-show="wrongpass">The username or password is incorrect.<img src=""></span>
+		</div>
+
+		<form class="form_setup" id="loginForm" method="post" name="loginForm" ng-submit="submitLogin(username, password)">
+
 			<div>
 				<div class="group">
-					<input id="email" ng-model="user.username" name="username" required type="text"> <span class="highlight"></span> <span class="bar"></span> <label>Email</label>
+					<input id="email" ng-model="username" name="username" required type="text"> <span class="highlight"></span> <span class="bar"></span> 
+					<label class="markin">Employee Code</label>
 				</div>
 			</div>
 			<div>
 				<div class="group1">
-					<input id="password" name="password" ng-model="user.password" required type="password"> <span class="highlight"></span> <span class="bar"></span> <label>Password</label>
+					<input id="password" name="password" ng-model="password" required type="password"> <span class="highlight"></span> <span class="bar"></span> <label class="markin">Password</label>
 				</div>
 			</div>
 			
-			<div class="form-actions">
-                <button type="submit" ng-disabled="form.$invalid || this.dataLoading" class="btn btn-primary">Login</button>
+			<div class="form-actions" id="buttonDiv">
+                <button type="submit" ng-disabled="form.$invalid || this.dataLoading"
+					class="btn btn-primary" id="buttonSubmit">Login</button>
+
 				<img ng-if="this.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
 				
 			</div>
@@ -37,7 +129,6 @@
 		</div>
 	</div>
 </div>
-</div>
-<script src="vendors/bower_components/jquery/dist/jquery.min.js">
-	</script>
+
+
   

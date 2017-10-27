@@ -1,0 +1,244 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 98%;
+    }
+
+</style>
+
+<style type="text/css">
+    #ctcc{
+        background-color: blue;
+        color: white;
+        width: 15%;
+        padding: 1%;
+        font-weight: bold;
+        text-align: center;
+    }
+    #salarycomponent{
+        background-color: #eceff1;
+        padding-top: 1%;
+        padding-bottom: 1%;
+    }
+    .fbp{
+        margin-right: 10%;
+    }
+    #compute{
+        background-color: blue;
+        color: white;
+    }
+    /*#compute:hover{
+        background-color: blue;
+    }*/
+    #reset{
+        background-color: #e7e7e8;
+    }
+    #reset:hover{
+        background-color: white;
+        color: black;
+    }
+
+    
+</style>
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        <p class="c-black f-500 m-b-5 m-t-20">SALARY DETAILS</p>
+        <hr>
+
+        <br>
+
+        <div id="ctcc">CTC Component</div>
+
+        <form role="form" id="salarycomponent">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4 col-sm-offset-4">
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="option1" ng-model="salarycomponent" ng-change="salaryFunc()">
+                        <i class="input-helper"></i>  
+                        Formula Based
+                    </label>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="option2" ng-model="salarycomponent" ng-change="salaryFunc()">
+                        <i class="input-helper"></i>  
+                        Free Text
+                    </label>
+                </div>
+            </div>
+        </form>
+
+        <br><br>
+
+        <form id="formulabased" ng-show="salarycomponentstatus == 'option1'" ng-submit="formulaSalary()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="currency">
+                            <option value="">Currency</option>
+                            <option value="rupees">Rupees </option>
+                            <option value="dollar">Dollar </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="paystructure">
+                            <option value="">Pay Structure</option>
+                            <option value="gtrans">G-trans </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="CTC" ng-model="ctc">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Guaranteed CTC" ng-model="guaranteedctc">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Non-Guaranteed CTC" ng-model="nonguaranteedctc">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <!-- <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Effective From Date">
+                    </div> -->
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="md md-event"></i></span>
+                            <div class="dtp-container dropdown fg-line">
+                            <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="Effective From Date" aria-expanded="false" ng-model="effectivedate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                <span class="fbp"> FBP Assigned : </span>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="yes" ng-model="fbpassigned">
+                        <i class="input-helper"></i>  
+                        Yes
+                    </label>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="no" ng-model="fbpassigned">
+                        <i class="input-helper"></i>  
+                        No
+                    </label>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float" id="compute">Compute</button>
+            <button class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float" id="reset">Reset</button>
+        </form>
+
+
+
+        <form id="freetext" ng-show="salarycomponentstatus == 'option2'" ng-submit="textSalary()">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="currency">
+                            <option value="">Currency</option>
+                            <option value="rupees">Rupees </option>
+                            <option value="dollar">Dollar </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="paystructure">
+                            <option value="">Pay Structure</option>
+                            <option value="gtrans">G-trans </option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Effective From Date">
+                    </div>
+                </div> -->
+                <div class="col-sm-4">
+                    <div class="input-group form-group">
+                        <span class="input-group-addon"><i class="md md-event"></i></span>
+                            <div class="dtp-container dropdown fg-line">
+                            <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Effective From Date" ng-model="effectivedate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                <span class="fbp"> FBP Assigned : </span>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="yes" ng-model="fbpassigned">
+                        <i class="input-helper"></i>  
+                        Yes
+                    </label>
+                    <label class="radio radio-inline m-r-20">
+                        <input type="radio" name="inlineRadioOptions" value="no" ng-model="fbpassigned">
+                        <i class="input-helper"></i>  
+                        No
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float" id="compute">Compute</button>
+            <button class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float" id="reset">Reset</button>
+        </form>
+        
+
+        
+
+        
+
+
+        <br><br>
+
+
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    
+</div>
+

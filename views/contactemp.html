@@ -1,0 +1,248 @@
+ <script>
+  $( function() {
+    $( ".date-picker" ).datepicker();
+  } );
+  </script>
+
+
+<style type="text/css">
+    .input-group-addon {
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+         background-color: white; 
+         border: 0px solid #ccc; 
+         border-radius: 0px; 
+    }
+
+    #basicinfocard{
+        width: 95%;
+    }
+
+</style>
+
+
+<div class="card" id="basicinfocard">
+
+
+    <div class="card-body card-padding">
+    
+        <form name="contactdetais" ng-submit="addContact()">
+            <p class="c-black f-500 m-b-5 m-t-20">CONTACT DETAILS</p>
+            <hr>
+
+            <br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-phone"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="addresstype">
+                        <option value="">Address Type</option>
+                        <option value="official">Official </option>
+                        <option value="permanent">Permanent </option>
+                        <option value="residence">Residence </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line select">    
+                        <select class="form-control" ng-model="whenavail">
+                            <option value="">When Available</option>
+                            <option value="24*7">24*7 </option>
+                            <option value="weekdays">Weekdays </option>
+                            <option value="weekends">Weekends </option>
+                            <option value="notavail">Not Available</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Address Line1" ng-model="address1">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Address Line2" ng-model="address2">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Country" ng-model="country">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="State" ng-model="state">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="City" ng-model="city">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Pin Code" ng-model="pincode">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Mobile Number" ng-model="mobile">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span> 
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="" ng-model="correspondaddress">
+                        <i class="input-helper"></i>
+                        Is Correspondence Address
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+
+        </form>
+
+    </div>
+
+    <hr style="border-top: dotted 1px;" />
+
+    <div class="card-body card-padding">
+       <table width="100%" border="1">
+            <thead>
+                <tr>
+                    <th>Address Type</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Mobile Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="list in contactlist">
+                    <td>{{list.addrType}}</td>
+                    <td>{{list.addrLine_1 + ", "+ list.addrLine_2}}</td>
+                    <td>{{list.city}}</td>
+                    <td>{{list.state}}</td>
+                    <td>{{list.contactMobileNo}}</td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+
+    <hr style="border-top: dotted 1px;" />
+
+    <div class="card-body card-padding">
+        <form name="emergencycontact" ng-submit="addEmergencyContact()">
+            <p class="c-black f-500 m-b-5 m-t-20">EMERGENCY CONTACT</p>
+            <hr>
+
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Contact Name" ng-model="contactname">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Contact Relationship" ng-model="relationship">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Mobile Number" ng-model="emergencymobile">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Office Number" ng-model="officenumber">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Contact Address" ng-model="contactaddress">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Landline Number" ng-model="landlinenumber">
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="col-sm-4">
+                    <div class="fg-line">    
+                        <input type="text" class="form-control" placeholder="Email" ng-model="emergencyemail">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm m-t-10 waves-effect waves-button waves-float">Submit</button>
+        </form>
+    </div>
+
+    <hr style="border-top: 1px dotted">
+
+    <div class="card-body card-padding">
+        <table width="100%" border="1px gray">
+            <thead>
+                <tr>
+                    <th>Contact Name</th>
+                    <th>Contact Relationship</th>
+                    <th>Mobile Number</th>
+                    <th>Office Number</th>
+                    <th>Landline Number</th>
+                    <th>Email Id</th>
+                    <th>Contact Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="list in emergencycontactlist">
+                    <td>{{list.name}}</td>
+                    <td>{{list.relationship}}</td>
+                    <td>{{list.mobileNo}}</td>
+                    <td>{{list.officeNo}}</td>
+                    <td>{{list.landlineNo}}</td>
+                    <td>{{list.email}}</td>
+                    <td>{{list.address}}</td>
+                    <td>{{}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>

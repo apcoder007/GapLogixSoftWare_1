@@ -7,7 +7,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <span style="font-weight:bold;padding-left:11px">Your last Punch time is  2017-07-21  11:00</span></td>
+                    <span style="font-weight:bold;padding-left:11px">Your last Punch time is  {{attendance_data[0]['reportInTime']}}</span></td>
                   </tr>
                   <tr>
                     <td>
@@ -22,21 +22,32 @@
                             </tr>
                           </tbody>
                         </table>
-                        <table style="width:500px;">
+                        <table style="width:55%;">
                           <tbody>
                             <tr>
                               <td>
-                                <span class="ToolTip">
-                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchIn"  title="" type="submit"  role="button" aria-disabled="false"><span class="ui-button-text ui-c">Punch In</span></button>
+                                <span class="ToolTip" ng-hide="attendance_data[0]['reportInTime']">
+                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchIn" title="" type="submit" role="button" aria-disabled="false" ng-click="puncIn()"><span class="ui-button-text ui-c">Punch In</span></button>
+                                </span>
+                                <span class="ToolTip" ng-show="attendance_data[0]['reportInTime']">
+                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchIn ui-state-disabled" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Punch In</span>
+                                  <p>{{attendance_data[0]['reportInTime']}}</p>
+                                  </button>
                                 </span>
                               </td>
                               <td>
-                                <span class="ToolTip">
-                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchOut"  title="" type="submit"  role="button" aria-disabled="false">
+                                <span class="ToolTip" ng-hide="attendance_data[0]['reportOutTime']">
+                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchOut"  title="" type="submit"  role="button" aria-disabled="false" ng-click="punchOut()">
                                     <span class="ui-button-text ui-c">Punch Out</span>
                                   </button>
                                 </span>
-                            </td>
+                                <span class="ToolTip" ng-show="attendance_data[0]['reportOutTime']">
+                                  <button id="tmshiftEdit:j_idt315" name="tmshiftEdit:j_idt315" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-label btn_punchOut ui-state-disabled" title="" type="submit" role="button" aria-disabled="false">
+                                    <span class="ui-button-text ui-c">Punch Out</span>
+                                    <p>{{attendance_data[0]['reportOutTime']}}</p>
+                                  </button>
+                                </span>
+                            </td> 
                         </tr>
                       </tbody>
                     </table>
