@@ -112,10 +112,385 @@ materialAdmin.controller('homeCtrl', ['$scope', '$cookies', '$rootScope', '$loca
         // console.log($scope.birthdaylist);
     }).error(function(response){
 
-    });
+	});
+	
+	$scope.lmanager = $localStorage.empcode[0]['empCode'];
+
+	Data.getAllTask($localStorage.empcode[0]['empCode'])
+	.success(function(response){
+		$scope.tasklist = response.leaveRequest_data;
+
+		var length=$scope.tasklist.length;
+		var dataArray=[];
+		
+		
+		for (var i=0; i<length; i++) {
+			var tstatus = '';
+			if($scope.tasklist[i]['status']=='open'){
+				tstatus = 'Pending';
+			}else if($scope.tasklist[i]['status']=='close'){
+				tstatus = 'Approved';
+			}
+
+				dataArray.push([$scope.tasklist[i]['empCode'], $scope.tasklist[i]['taskCode'], $scope.tasklist[i]['taskType'], tstatus,'<button class="btn btn-info" data-toggle="modal" data-target="#completeConformation" onclick="changeMargin(); getOrder(\''+$scope.tasklist[i]['empCode']+'\');"  type="submit">Complete<\/button>']);
+		} 
+		
+		$('.task_content').html('<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped" id="vehicle-table" style="font-size: 12px;"><\/table>' );
+		
+		$('#vehicle-table').dataTable( {
+			"data": dataArray,
+			 "colReorder": true,
+			 "buttons": ['copy', 'excel', 'pdf','colvis',],
+			 "dom": 'Blfrtip',
+			 "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+
+			 "responsive": true,
+			"columns": [
+				{ "title": "empCode" },
+				{ "title": "taskCode",
+				"render": function(data, type, row, meta){
+
+					// data = '<a href="' + data + '" ui-sref="home.task({id: data})">' + data + '</a>';
+					
+						data = '<a href="/#/task/' + data + '">' + data + '</a>';
+					
+					return data;
+				 } },
+				{ "title": "taskType" },
+				{ 'title': "Status"},
+			]
+		});
+
+	}).error(function(response){
+
+	});
+
+	Data.getTaskDetails($state.params.id)
+	.success(function(response){
+		if(response.taskDetails){
+			$scope.taskdetailslist = response.taskDetails;
+			console.log($scope.taskdetailslist);
+		}else{
+			$scope.taskdatalists = response.taskData;
+			console.log($scope.taskdatalists);
+		}
+		
+		
+		$scope.taskCode = response.taskCode;
+		$scope.taskType = response.taskType;
+			
+	}).error(function(response){
+
+	});
+
+
+	$scope.overlay = false;
+	$scope.omsg = '';
+
+	$scope.ApproveTask = function(){
+		
+		Data.ApproveTask($state.params.id)
+		.success(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Successfully Approved!!';
+			$timeout(function () {
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+
+		}).error(function(response){
+
+			$scope.overlay = true;
+			$scope.omsg = 'Something is Wrong!!';
+			$timeout(function () {
+				$scope.overlay = false;
+			}, 2000);
+
+		});
+		
+	}
+
+	$scope.cancelTask = function(){
+		
+		Data.CancelTask($state.params.id)
+		.success(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Successfully Rejected!!';
+			$timeout(function(){
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+		}).error(function(response){
+
+			$scope.overlay = true;
+			$scope.omsg = 'Something is Wrong!!';
+			$timeout(function(){
+				$scope.overlay = false;
+			}, 2000);
+
+		});
+	}
+
+	$scope.withDrawTask = function(){
+
+		Data.WithdrawTask($state.params.id)
+		.success(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Successfully Withdrawn!!';
+			$timeout(function(){
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+		}).error(function(response){
+
+			$scope.overlay = true;
+			$scope.omsg = 'Something is Wrong!!';
+			$timeout(function(){
+				$scope.overlay = false;
+			}, 2000);
+
+		});
+
+	}
+
+	$scope.showpop = false;
+
+	$scope.showpopup = function(){
+		$scope.showpop = true;
+
+	}
+
+	$scope.closepopup = function(){
+		$scope.showpop = false;
+	}
+
+	$scope.rdistance = '';
+	$scope.rttime = '';
+	$scope.rtembursed = '';
+	$scope.areason = '';
+
+	$scope.reSubmitReimburse = function(){
+		var json_data = {
+			"taskCode":$state.params.id,
+			"tDistance":$scope.rdistance,
+			"tTime":$scope.rttime,
+			"tReimbursed":$scope.rtembursed,
+			"reason":$scope.areason
+		}
+		Data.ResubmitReimburse(json_data)
+		.success(function(reason){
+			$scope.showpop = false;
+			$scope.overlay = true;
+			$scope.omsg = 'Successfully Resubmitted!!';
+			$timeout(function(){
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+
+		}).error(function(response){
+			$scope.showpop = false;
+			$scope.overlay = true;
+			$scope.omsg = 'Something is Wrong!!';
+			$timeout(function(){
+				$scope.overlay = false;
+			}, 2000);
+
+		});
+
+	}
+
+	$scope.withDrawReimburse = function(){
+		Data.WithDrawReimburse($state.params.id)
+		.success(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Successfully Withdrawn!!';
+			$timeout(function(){
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+
+		}).error(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Something is Wrong!!';
+			$timeout(function(){
+				$scope.overlay = false;
+			}, 2000);
+
+		});
+	}
+
+	
 
 }]);
 
+
+materialAdmin.controller('leaveCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout){
+	
+	$scope.logout = function(){
+	
+		AuthenticationService.ClearCredentials();
+		$timeout(function () {
+			$location.path('/');
+		}, 1000);
+
+		$localStorage.imgsrc = '';
+	}
+
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+	
+	$rootScope.employeeCode = $localStorage.empcode[0]['empCode'];
+	
+		// console.log($localStorage.empcode[0]['empCode']);
+		
+	$scope.imgsrc = $localStorage.imgsrc;
+	$rootScope.img_src = $localStorage.imgsrc;
+
+
+
+	$scope.leavetype = '';
+	$scope.leavereason = '';
+	$scope.leaveduration = '';
+	$scope.startdate = '';
+	$scope.enddate = '';
+	$scope.reason = '';
+	$scope.overlay = false;
+	$scope.omsg = '';
+
+	$scope.applyLeave = function(){
+		console.log($scope.leavetype+" "+$scope.leavereason+" "+$scope.leaveduration+" "+$scope.startdate+" "+$scope.enddate+" "+$scope.reason);
+		var json_data = {
+			'empCode': $localStorage.empcode[0]['empCode'],
+            'leaveType':$scope.leavetype,
+            'reason':$scope.leavereason,
+            'duration':$scope.leaveduration,
+            'startDate':$scope.startdate,
+            'endDate':$scope.enddate,
+            'message':$scope.reason,
+            'managerComment':''
+		}
+		Data.ApplyLeave(json_data)
+		.success(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Successfully Applied!!';
+			$timeout(function(response){
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+		}).error(function(response){
+			$scope.overlay = true;
+			$scope.omsg = 'Something is Wrong!!';
+			$timeout(function(response){
+				$scope.overlay = false;
+				$state.go($state.current, $state.params, {reload: true});
+			}, 2000);
+		});
+	}
+
+	Data.getLeaveDetails($localStorage.empcode[0]['empCode'])
+	.success(function(response){
+		$scope.leavelist = response.task_data;
+	}).error(function(response){
+
+	});
+	
+	}]);
+
+materialAdmin.controller('directoryCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', 'empDetailsList', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout, empDetailsList){
+	
+	$scope.logout = function(){
+	
+		AuthenticationService.ClearCredentials();
+		$timeout(function () {
+			$location.path('/');
+		}, 1000);
+
+		$localStorage.imgsrc = '';
+	}
+
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+	
+	$rootScope.employeeCode = $localStorage.empcode[0]['empCode'];
+	
+		// console.log($localStorage.empcode[0]['empCode']);
+		
+	$scope.imgsrc = $localStorage.imgsrc;
+	$rootScope.img_src = $localStorage.imgsrc;
+
+
+	$scope.empdetailslist = empDetailsList.data.configure_data;
+
+		
+	}]);
+
+	materialAdmin.controller('travelexpenseCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout){
+		
+		$scope.logout = function(){
+		
+			AuthenticationService.ClearCredentials();
+			$timeout(function () {
+				$location.path('/');
+			}, 1000);
+	
+			$localStorage.imgsrc = '';
+		}
+	
+		$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+		
+		$rootScope.employeeCode = $localStorage.empcode[0]['empCode'];
+		
+			// console.log($localStorage.empcode[0]['empCode']);
+
+		$scope.imgsrc = $localStorage.imgsrc;
+		$rootScope.img_src = $localStorage.imgsrc;
+	
+			
+	}]);
+
+	materialAdmin.controller('travelexpenselistCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', 'tripList', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout, tripList){
+
+		$scope.tripdetailslist = tripList.data.trip_data;
+
+		$localStorage.triplist = '';
+		$scope.tripDetails = function(triplist){
+			$localStorage.triplist = triplist;
+			$state.go('travelexpense.details');
+		}
+	
+			
+	}]);
+
+	materialAdmin.controller('travelexpensedetailsCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout){
+		
+		
+		// console.log($localStorage.triplist);
+		$scope.triplist = $localStorage.triplist;
+
+		Data.getLocation($scope.triplist.startLat, $scope.triplist.startLang)
+		.success(function(response){
+			$scope.startaddress = JSON.parse(response.response).display_name;
+		}).error(function(response){
+
+		});
+
+		Data.getLocation($scope.triplist.endLang, $scope.triplist.endLat)
+		.success(function(response){
+			$scope.endaddress = JSON.parse(response.response).display_name;
+		}).error(function(response){
+
+		});
+
+		$scope.reasontype = '';
+		$scope.date = '';
+		$scope.distance = '';
+		$scope.time = '';
+		$scope.reason = '';
+
+		$scope.updateTravel = function(){
+			console.log($scope.reasontype+" "+$scope.date+" "+$scope.distance+" "+$scope.time+" "+$scope.reason);
+		}
+			
+		
+	}]);
 
 materialAdmin.controller("pagesCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', '$timeout', '$location', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, $timeout, $location){
 
@@ -129,8 +504,6 @@ materialAdmin.controller("pagesCtrl", ['$scope', '$rootScope', 'Data', '$state',
 	}
 	
 	$rootScope.employeeCode = $localStorage.empcode[0]['empCode'];
-
-    // console.log($localStorage.empcode[0]['empCode']);
     
     $scope.imgsrc = $localStorage.imgsrc;
     $rootScope.img_src = $localStorage.imgsrc;
@@ -330,7 +703,7 @@ materialAdmin.controller('employeeEduCtrl', ['$scope', '$rootScope', 'Data', '$l
 	});
 	
 	$scope.updateEducationInfo = function(course, level, institute, board, subject, gpa, startdate, enddate){
-		console.log(course+" "+level+" "+institute+" "+board+" "+subject+" "+gpa+" "+startdate+" "+enddate);
+		// console.log(course+" "+level+" "+institute+" "+board+" "+subject+" "+gpa+" "+startdate+" "+enddate);
 		var json_data = {
 			"empCode":$localStorage.empcode[0]['empCode'],
 			"course"				:course,
@@ -379,7 +752,7 @@ materialAdmin.controller('bankCtrl', ['$scope', '$rootScope', 'Data', '$localSto
 
     Data.getBankDetails($localStorage.empcode[0]['empCode'])
     .success(function(response){
-		console.log(response.bank_data);
+		// console.log(response.bank_data);
 		$scope.bankdetail 	= response.bank_data[0];
 		$scope.bank			= $scope.bankdetail['bankName'];
 		$scope.account		= $scope.bankdetail['accNo']; 
@@ -984,8 +1357,49 @@ materialAdmin.controller("loginProfileConnectionCtrl", ['$scope', 'Data', '$stat
     // $localStorage.empbyidcode = '';
 
 	$scope.employeelist = empList.data.configure_data;
+	console.log($scope.employeelist);
 
 	$scope.lmanagercode = $localStorage.empcode[0]['empCode'];
+	console.log($scope.lmanagercode);
+
+	var length=$scope.employeelist.length;
+	var dataArray=[];
+	
+
+	for (var i=0; i<length; i++) {
+		if(($scope.lmanagercode == $scope.employeelist[i]['l1manager'])||($scope.lmanagercode == $scope.employeelist[i]['hrManager'])){
+			dataArray.push([$scope.employeelist[i]['id'], $scope.employeelist[i]['firstname']+" "+$scope.employeelist[i]['lastname'], $scope.employeelist[i]['personalEmail'], $scope.employeelist[i]['empCode'], $scope.employeelist[i]['empCode'], '<button class="btn btn-info" data-toggle="modal" data-target="#completeConformation" onclick="changeMargin(); getOrder(\''+$scope.employeelist[i]['empCode']+'\');"  type="submit">Complete<\/button>']);
+		}
+			
+	} 
+	
+	$('.emplist').html('<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped" id="vehicle-table" style="font-size: 12px; width:98%"><\/table>' );
+	
+	$('#vehicle-table').dataTable( {
+		"data": dataArray,
+		 "colReorder": true,
+		 "buttons": ['copy', 'excel', 'pdf','colvis',],
+		 "dom": 'Blfrtip',
+		 "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "All"]],
+
+		 "responsive": true,
+		"columns": [
+			{ "title": "Id" },
+			{ "title": "Name" },
+			{ 'title': "Email"},
+			{ 'title': 'Employee Code'},
+			{ "title": "Action",
+			"render": function(data, type, row, meta){
+
+				// data = '<a href="' + data + '" ui-sref="home.task({id: data})">' + data + '</a>';
+				
+					data = '<a href="/#/prof/employee-list/employee-list-edit/' + data + '/basic">' + data + '</a>';
+				
+				return data;
+			 } }
+			
+		]
+	});
 	
 
 
@@ -2128,7 +2542,9 @@ materialAdmin.controller("punchController", ['$scope', '$rootScope', 'Data', '$s
             $location.path('/');
         }, 1000);
 
-    }
+	}
+	
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
 
 }]);
 
@@ -2342,16 +2758,67 @@ materialAdmin.controller("myattendanceCtrl", ['$scope', '$rootScope', 'Data', '$
         $localStorage.imgsrc = '';
 
 	}
+
+	var time = new Date();
+
+	var month = time .getMonth() + 1;
+    var day = time .getDate();
+    var year = time .getFullYear();
+    
+    if(month.toString().length==1){
+        month = '0'+month.toString();
+    }
+
+    if(day.toString().length==1){
+        day = '0'+day.toString();
+	}
+	var lastDayOfMonth = new Date(time.getFullYear(), time.getMonth()+1, 0);
+
+    var punchdate =  month + "/" + day + "/" + year;
 	
+	var startdate = month+"/"+"01"+"/"+year;
+	var enddate = month+"/"+lastDayOfMonth.getDate()+"/"+year;
 
-    var empcode = $localStorage.empcode[0]['empCode'];
+	var empcode = $localStorage.empcode[0]['empCode'];
+	
+	var json_data = {
+		"empCode":empcode,
+		"startDate":startdate,
+		"endDate":punchdate		
+	}
 
-    Data.getAllAttendance(empcode)
+    Data.getAllAttendance(json_data)
     .success(function(response){
-        $scope.attendancelist = response.attendance_data;
+		$scope.attendancelist = response.attendance_data;
+		console.log($scope.attendancelist);
     }).error(function(response){
 
 	});
+
+	$scope.autmaticdate = true;
+	$scope.fromdate = '';
+	$scope.todate = '';
+	console.log($scope.autmaticdate);
+	
+
+	$scope.getDateStatus = function(){
+		$scope.autmaticdate = false;
+		var json_data = {
+			"empCode":empcode,
+			"startDate":$scope.fromdate,
+			"endDate":$scope.todate		
+		}
+
+		Data.getAllAttendance(json_data)
+		.success(function(response){
+			$scope.attendancelist = response.attendance_data;
+			console.log($scope.attendancelist);
+		}).error(function(response){
+	
+		});
+
+	}
+
 	
 	$scope.selectedList = {};
 	$scope.createRegularization = function(){
@@ -2379,9 +2846,11 @@ materialAdmin.controller('myregularizationCtrl', ['$scope', '$timeout', '$rootSc
 
 	$scope.showalert = false;
 	
+	
 		$scope.submitRegularize = function(){
 			// console.log($scope.timein+" "+$scope.datein+" "+$scope.timeout+" "+$scope.dateout);
 			var i = 0;
+			var listjsondata = [];
 			angular.forEach(commonservice.getData(), function(value, key) {
 				var json_data = {
 					'empCode':$localStorage.empcode[0]['empCode'],
@@ -2390,30 +2859,29 @@ materialAdmin.controller('myregularizationCtrl', ['$scope', '$timeout', '$rootSc
 					'reportOutTime':$scope.outtime[i],
 					'remark':$scope.message[i]
 				}
+				
+				listjsondata[i] =json_data;
 				i++;
-				var listjsondata = [json_data];
+	
+			});
 
-				console.log(json_data);
-	
-			  Data.postRegularize(listjsondata)
-			  .success(function(response){
-				$scope.showalert = true;
-				 $scope.alertmessage = 'Successfully regularized';
-	
-				 $timeout(function () {
-					$state.go('home');
-				}, 2000);
-	
-			  }).error(function(response){
-				$scope.showalert = true;
-				$scope.alertmessage = 'something wrong!!';
-	
-				$timeout(function () {
-					$state.go($state.current, $state.params, { reload: true });
-				}, 2000);
-	
-			  });
-	
+			Data.postRegularize(listjsondata)
+			.success(function(response){
+			  $scope.showalert = true;
+			   $scope.alertmessage = 'Successfully Submitted Request!!';
+  
+			   $timeout(function () {
+				  $state.go('home');
+			  }, 2000);
+  
+			}).error(function(response){
+			  $scope.showalert = true;
+			  $scope.alertmessage = 'something wrong!!';
+  
+			  $timeout(function () {
+				  $state.go($state.current, $state.params, { reload: true });
+			  }, 2000);
+  
 			});
 		}
 
@@ -2433,12 +2901,9 @@ materialAdmin.filter("dateFilter", function() {
         };
 	});
 	
+materialAdmin.controller("payCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', '$timeout', '$location', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, $timeout, $location){
 
-
-
-materialAdmin.controller("payrollController", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage){
-
- 	$scope.logout = function(){
+ 	$rootScope.logout = function(){
     
         AuthenticationService.ClearCredentials();
         $timeout(function () {
@@ -2447,8 +2912,18 @@ materialAdmin.controller("payrollController", ['$scope', '$rootScope', 'Data', '
 
         $localStorage.imgsrc = '';
 
-    }
+	}
+	
+	$rootScope.img_src = $localStorage.imgsrc;
 
+
+ 	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+
+ }]);
+
+
+
+materialAdmin.controller("payrollController", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage){
 
  	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
 

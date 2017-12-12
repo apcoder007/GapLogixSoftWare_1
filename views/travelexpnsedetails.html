@@ -1,0 +1,174 @@
+<style>
+    .sec{
+        margin-left: 6%;
+    }
+    #timesec li{
+        margin-bottom: 50%;
+    }
+    #routimg{
+        height: 60px;
+        width: auto;
+    }
+    .animateddiv{
+        cursor: auto;
+    }
+    .user_imga{
+        width: 430px;
+    }
+    #map {
+        height: 100%;
+      }
+      .formsec{
+        background: #ffffff;
+        padding: 0px 10px;
+        margin: 2px 10px;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+      button{
+          background-color: #4e88c7 !important;
+          color: white !important;
+      }
+</style>
+<div ng-controller="travelexpensedetailsCtrl">   
+    <div class="animateddiv fadeinup bg_set_cr" style="margin-bottom:30px">
+        <div class="todo-element card-vewer">
+            <div class="dipter">
+                <div class="user_imga">
+                    <div id="map"></div>
+                </div>
+                <div class="new-imga">
+                    <ul>
+                        <li><p>{{triplist.tripId}}</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dipter sec">       
+                <div class="user_imga">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <ul id="timesec">
+                                <li>{{triplist.time}}</li>
+                                <li>{{triplist.endTime}}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-1" style="margin-top: 1%;">
+                            <img id="routimg" src="images/rout.png" alt="">     
+                        </div>
+                        <div class="col-sm-9">
+                            <ul>
+                                <li>{{startaddress}}</li>
+                                <li>{{endaddress}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- form section -->
+    
+    <div class="card-vewer formsec">
+        <form class="mui-form" ng-submit="updateTravel()">
+            <legend>Update Travel</legend>
+            <div class="mui-row">
+                <div class="mui-col-md-6">
+                    <div class="mui-select">
+                        <select ng-model="reasontype">
+                            <option value="Client Meeting" ng-selected="true">Client Meeting</option>
+                            <option value="Banking Purpose">Banking Purpose</option>
+                            <option value="Purchase Official Stationary">Purchase Official Stationary</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <label>Select Reason</label>
+                    </div>
+                </div>
+                <div class="mui-col-md-6">
+                    <div class="mui-textfield">
+                        <input type="text" class="date-picker" ng-model="date" ng-value="triplist.dateNow">
+                        <label>Date</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mui-row">
+                <div class="mui-col-md-6">
+                    <div class="mui-textfield">
+                        <input type="text" ng-model="distance" ng-value="triplist.tDistance">
+                        <label>Travel Distance</label>
+                    </div>
+                </div>
+                <div class="mui-col-md-6">
+                    <div class="mui-textfield">
+                        <input type="text" ng-model="time" ng-value="triplist.time">
+                        <label>Travel Duration</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mui-row">  
+                <div class="mui-col-md-6">
+                    <div class="mui-textfield">
+                        <input type="text" ng-model="reason">
+                        <label>Any Other Reason</label>
+                    </div>
+                </div>
+            </div>     
+            <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+        </form>
+    </div>
+        
+
+</div>
+
+<script>
+    $( function() {
+        $( ".date-picker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    } );
+</script>
+
+
+        <script>
+            var tlist = JSON.parse(localStorage['ngStorage-triplist']);
+            var endLat = parseFloat(tlist.endLang) 
+            var endLang =  parseFloat(tlist.endLat);
+            var destination = {lat: endLat, lng: endLang};
+            var origin = {lat:parseFloat(tlist.startLat), lng:parseFloat(tlist.startLang)}
+            console.log(tlist);
+      function initMap() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: {lat: 28.5952, lng: 77.3281}
+        });
+        directionsDisplay.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+        // document.getElementById('mode').addEventListener('change', function() {
+        //   calculateAndDisplayRoute(directionsService, directionsDisplay);
+        // });
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var selectedMode = 'DRIVING';
+        directionsService.route({
+          origin: origin,  // Haight.
+          destination: destination,  // Ocean Beach.
+          // Note that Javascript allows us to access the constant
+          // using square brackets and a string value as its
+          // "property."
+          travelMode: google.maps.TravelMode[selectedMode]
+        }, function(response, status) {
+          if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+<!-- <script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEpyepv6imTeeJjL0yLwnWJcDGRWHeWVc&callback=initMap">
+</script> -->
+<!-- "https://maps.googleapis.com/maps/api/staticmap?&size=400x200&zoom=11&markers=color:blue%7Clabel:S%7C&markers=icon:http://www.gaplogix.com/images/pin.png|28.5974683,77.3279067&key=AIzaSyCH0JBPUc4o1KFpwjAuIQspTHXgxWC3yQQ&path=color:000000|weight:2|28.6172883,77.3895933|28.6175,77.3896|28.6173,77.3897" -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMAN6-nGmQKaNYZv6-gkgZ8MIIUrIrXPw&callback=initMap"></script>

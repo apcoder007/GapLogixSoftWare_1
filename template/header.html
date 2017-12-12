@@ -33,9 +33,7 @@
         }
         .navbar{
             margin-bottom: 1px;
-        }
-
-        
+        }    
     }
     .navbar-default .navbar-nav>li>a{
         color: #ffffff;
@@ -54,16 +52,16 @@
         padding-left: 0px;
     }
 
+
     .navbar-default .navbar-nav > li > a:hover,
      .navbar-default .navbar-nav > li > a:focus {
     color: #333333;
     background-color: rgb(255, 255, 255);
-}
+    /* margin-top: 1%; */
+    }
     .RecruterInfer{
         margin-top: -1%;
     }
-
-    
 </style>
 <div id="top">
     <div class="top-header">
@@ -98,10 +96,10 @@
           <ul class="nav navbar-nav">
             <!-- <li class="active"><a href="#">Home</a></li> -->
             <li>
-                <a ui-sref="home" ui-sref-active="active">HOME</a>
+                <a ui-sref="home" ng-class="{active: $state.includes('home') || $state.includes('task')}">HOME</a>
             </li>
             <li>
-                <a ui-sref="pages.profile.profile-about" ng-class="{active: $state.includes('pages.profile') || $state.includes('prof')}">HRIS</a>
+                <a ui-sref="pages.profile.profile-about" ng-class="{active: $state.includes('pages.profile') || $state.includes('prof') || $state.includes('pages')}">HRIS</a>
             </li>
 
             <!-- <li>
@@ -120,8 +118,17 @@
                 <a ui-sref="photo-gallery.attendance" ng-class="{active: $state.includes('photo-gallery')}">Attendance</a>
             </li>
             <li>
-                <a  ui-sref="user-interface.payslip" ui-sref-active="active">Payroll</a>
+                <a ui-sref="leave" ng-class="{active: $state.includes('leave')}">Leave</a>
             </li>
+            <li>
+                <a ui-sref="directory" ng-class="{active: $state.includes('directory')}">Directory</a>
+            </li>
+            <li>
+                <a ui-sref="travelexpense.list" ng-class="{active: $state.includes('travelexpense')}">Travel Expense</a>
+            </li>
+            <!-- <li>
+                <a  ui-sref="user-interface.payslip" ui-sref-active="active">Payroll</a>
+            </li> -->
             
             
           </ul>

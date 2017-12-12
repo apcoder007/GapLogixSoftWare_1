@@ -57,7 +57,7 @@
             <div class="NLleave" style="padding-bottom:20px;">
               <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
                 <div class="ui-panel-content ui-widget-content">
-                  <button  class="ui-button ui-widget btn-success"  type="submit" role="button" aria-disabled="false">
+                  <button  class="ui-button ui-widget btn-success" type="submit" ng-click="getDateStatus()" role="button" aria-disabled="false">
                     <span class="ui-button-text ui-c">VIEW</span>
                   </button>
                 </div>
@@ -83,7 +83,7 @@
         <div class="listing_kb_inner border_table TabTable_responsive">
           <div class="ui-datatable ui-widget table-header">
             <div class="ui-datatable-tablewrapper">
-              <table role="grid">
+              <table role="grid" ng-if="autmaticdate">
                 <thead>
                   <tr>
                     <th class="ui-state-default">
@@ -96,16 +96,16 @@
                       <span class="ui-column-title">Shift</span>
                     </th>
                     <th class="ui-state-default">
-                      <span class="ui-column-title">Expected IN Time</span>
-                    </th>
-                    <th class="ui-state-default">
                       <span class="ui-column-title">Actual IN Time</span>
                     </th>
                     <th class="ui-state-default">
-                      <span class="ui-column-title">Expected Out Time</span>
+                      <span class="ui-column-title">Expected IN Time</span>
                     </th>
                     <th class="ui-state-default">
                       <span class="ui-column-title">Actual Out Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Expected Out Time</span>
                     </th>
                     <th class="ui-state-default">
                       <span class="ui-column-title">Work Hours</span>
@@ -116,7 +116,7 @@
                   </tr>
                 </thead>
                 <tbody class="ui-datatable-data">
-                  <tr class="ui-widget-content" ng-show="!fromdate" ng-repeat="list in attendancelist">
+                  <tr class="ui-widget-content" ng-repeat="list in attendancelist">
                     <td role="gridcell">
                       <input type="checkbox" ng-model="selectedList[list.date]">
                     </td>
@@ -125,70 +125,105 @@
                       <label>Morning Shift</label>
                     </td>
                     <td role="gridcell">
+                      <span class="ToolTip">
+                        <label>10:00</label>
+                      </span>
+                    </td>
+                    <td role="gridcell">
                       <label>{{list['reportInTime']}}</label>
                     </td>
                     <td role="gridcell">
                       <span class="ToolTip">
-                        <label>{{list['actualIn']}}</label>
+                        <label>06:30</label>
                       </span>
                     </td>
                     <td role="gridcell">
                       <label>{{list['reportOutTime']}}</label>
                     </td>
                     <td role="gridcell">
-                      <span class="ToolTip">
-                        <label>{{list['actualOut']}}</label>
-                      </span>
-                    </td>
-                    <td role="gridcell">
                       <label >8 Hours</label>
                     </td>
-                    <td role="gridcell">
-                      <label ng-if="list['status']==1||list['status']==2">p</label>
+                    <td role="gridcell" ng-if="list['status']=='Present'||list['status']==2">
+                      <label>p</label>
                     </td>
-                    <td role="gridcell">
-                      <label class="redColor" ng-if="!list['status']">A</label>
+                    <td role="gridcell" ng-if="list['status']=='Absent'">
+                      <label class="redColor">A</label>
                     </td>
-                    <!-- <td role="gridcell">
-                      <label class="redColor">{{list['status']}}</label>
-                    </td> -->
+                    <td role="gridcell" ng-if="list['status']=='WeekendOff'">
+                      <label class="greenColor" style="color:green">W</label>
+                    </td>
                   </tr>
-                  <tr class="ui-widget-content" ng-show="fromdate" ng-repeat="list in attendancelist | dateFilter:fromdate:todate">
+                </tbody>
+              </table>
+              <table role="grid" ng-if="!autmaticdate">
+                <thead>
+                  <tr>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Check Box</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Date</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Shift</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Actual IN Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Expected IN Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Actual Out Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Expected Out Time</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Work Hours</span>
+                    </th>
+                    <th class="ui-state-default">
+                      <span class="ui-column-title">Status</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="ui-datatable-data">
+                  <tr class="ui-widget-content" ng-repeat="list in attendancelist">
                     <td role="gridcell">
-                      <input type="checkbox">
+                      <input type="checkbox" ng-model="selectedList[list.date]">
                     </td>
                     <td role="gridcell">{{list['date']}}</td>
                     <td role="gridcell">
                       <label>Morning Shift</label>
                     </td>
                     <td role="gridcell">
+                      <span class="ToolTip">
+                        <label>10:00</label>
+                      </span>
+                    </td>
+                    <td role="gridcell">
                       <label>{{list['reportInTime']}}</label>
                     </td>
                     <td role="gridcell">
                       <span class="ToolTip">
-                        <label>{{list['actualIn']}}</label>
+                        <label>06:30</label>
                       </span>
                     </td>
                     <td role="gridcell">
                       <label>{{list['reportOutTime']}}</label>
                     </td>
                     <td role="gridcell">
-                      <span class="ToolTip">
-                        <label>{{list['actualOut']}}</label>
-                      </span>
-                    </td>
-                    <td role="gridcell">
                       <label >8 Hours</label>
                     </td>
-                    <td role="gridcell">
-                      <label ng-if="list['status']==1||list['status']==2">p</label>
+                    <td role="gridcell" ng-if="list['status']=='Present'||list['status']==2">
+                      <label>p</label>
                     </td>
-                    <td role="gridcell">
-                      <label class="redColor" ng-if="!list['status']">A</label>
+                    <td role="gridcell" ng-if="list['status']=='Absent'">
+                      <label class="redColor">A</label>
                     </td>
-                    <!-- <td role="gridcell">
-                      <label class="redColor">{{list['status']}}</label>
-                    </td> -->
+                    <td role="gridcell" ng-if="list['status']=='WeekendOff'">
+                      <label class="greenColor" style="color:green">W</label>
+                    </td>
                   </tr>
                 </tbody>
               </table>

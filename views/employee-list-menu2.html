@@ -1,30 +1,65 @@
-<div >
+<style>
+    .emplist{
+        margin-left: 0px !important;
+        text-align: center;
+        margin-top: 3%;
+        padding: 2%;
+    }
+    .mdl-layout__header{
+    text-align: center; 
+  }
+  .emplist table{
+      width: 98%;
+  }
+  .emplist table tr{
+    line-height: 30px;
+  }
+  .emplist table tr:nth-child(even){
+    background-color: #8080803d;
+  }
+  .dataTables_wrapper .dataTables_filter{
+    margin-right: 1%;
+  }
+  #vehicle-table{
+    border-collapse: collapse;
+  }
+  #vehicle-table td, #vehicle-table th {
+    border: 1px solid #ddd !important;
+    padding: 8px !important;
+    text-align: center !important;
+}
+#vehicle-table_length>label>select {
+    left: 106px;
+    position: absolute;
+    width: 128px;
+    padding: 4px;
+    vertical-align: middle;
+    border: 1px solid black !important;
+    outline: none;
+}
+input{
+  border: 3px solid #d8dcdf;
+}
+#maincontaint{
+  margin-top: 1% !important;
+}
+</style>
+
+<!-- <div >
     <div class="row" style="text-align: center;">
-        <div class="col-md-12">
+        <div class="col-md-12 emplist">
            
-            <table class="table table-hover table-striped" id="bootstrap-table">
-                <thead>
-                    <tr>
-                        <th>#ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Employee Code</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="list in employeelist" ng-if="lmanagercode==list.l1manager">
-                        <td>{{list.id}}</td>
-                        <td>{{list.firstname}} {{list.lastname}}</td>
-                        <td>{{list.personalEmail}}</td>
-                        <td>{{list.empCode}}</td>
-                        <td><a ui-sref="prof.employeelist.edit.basic({id: list.empCode})">View</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" id="maincontaint">
+        
+        <main class="mdl-layout__content emplist">
+           
+        </main>
+      </div>
 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <!-- <script src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Bootstrap-Based-Data-Table-Bootstrap-Data-Table/js/vendor/jquery.sortelements.js"></script>

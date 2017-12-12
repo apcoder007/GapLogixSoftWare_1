@@ -1,0 +1,229 @@
+<style type="text/css">
+
+    .mdl-layout__drawer .mdl-navigation{
+        margin-top: -15px;
+    } 
+    .demo-content{
+        min-height: 500px;
+    }
+    #maincontaint{
+        padding: 10px;
+    }
+    legend{
+        background-color:#4e88c7; 
+        text-align: center;
+        color: white !important;
+        font-weight: bold;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-bottom: 2%;
+    }  
+    #overlay {
+        position: fixed;
+        display: block;
+        top: 35%;
+        left: 40%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 2;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        padding: 1%;
+        font-size: 2em;
+    }
+    #leavebalance{
+        border: solid 1px #c8c8c8!important;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .lbhead{
+        text-align: center;
+        font-weight: bold;
+    }
+    .lbcontent{
+        text-align: center;
+    }
+    .lblank{
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+    .columns {
+        columns: 2;
+    }
+    .mui-row {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        text-align: center;
+    }
+    .animateddiv{
+        background: #ffffff;
+        padding: 5px 10px;
+        margin: 2px 10px;
+        border-radius:6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .user_imga{
+        width: 100px;
+        height: 100px;
+        border: 3px solid #5b5e5f;
+        border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        /* display: inline-block; */
+    }
+    
+
+    .dipter{
+        display: inline-block;
+        float: left;
+        width: 35%;
+        margin-top: 5%;
+    }
+    .user_imga img{
+        width: 100%;
+    }
+    .right_center{
+        text-align: center;
+        padding-top: 20px;
+        display: inline-block;
+    }
+    .user_txb,.user_txn,.user_txl{
+        padding:4px;
+    }
+    .user_txn{
+        color: black;
+        font-size:14px;
+    }
+    .user_txb{ font-size: 18px;
+        font-size: 20px;
+        color: black;
+        font-weight: bold;
+    }
+    .new-imga>ul>li{
+    
+    }
+    .new-imga>ul>li:nth-child(1){
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 32px;
+        padding: 2px;
+    }
+    .new-imga>ul>li:nth-child(2){
+        /* background: url(img/icon/ic_contact.png); */
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:26px;
+    }
+.new-imga>ul>li:nth-child(3){
+   display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px;
+}
+    .new-imga>ul>li:nth-child(4){
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 32px;
+        padding: 5px;
+    }
+    .todo-element{
+        height: 200px;
+    }
+    .icimage{
+        width: 40px;
+    }
+
+    .demo-content{
+        overflow-y:scroll; 
+        position:relative;
+        height: 650px;
+    }
+    
+</style>
+    
+<!-- <div id="overlay" ng-if="overlay">
+    {{omsg}}
+</div> -->
+    
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">    
+    
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-50 mdl-color-text--blue-grey-50">
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-50">
+        <aside id="leftMenuItems" style="text-align:left;" data-ng-include="" src="'template/home-sidebar.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }" class="ng-scope">
+        </aside>
+        </nav>
+    </div>
+        
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-grid demo-content">      
+            <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+                <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" id="maincontaint">      
+                    
+                    <div id="leavebalance">
+                        <legend>Mobile Directory</legend>
+                        <div class="mui-row columns">
+                            <!-- <div class="mui-col-xs-4 mui-col-md-4 lbhead">EL</div>
+                            <div class="mui-col-xs-4 mui-col-md-4 lbhead">CL</div>
+                            <div class="mui-col-xs-4 mui-col-md-4 lbhead">SL</div> -->
+                            <div ng-repeat="list in empdetailslist">
+                                
+                                <div class="animateddiv fadeinup bg_set_cr" style="margin-bottom:50px">
+                                        <div class="todo-element card-vewer">
+                                         <div class="dipter">
+                                                <div class="user_imga">
+                                                        <img src="images/img.png" ng-if="!list.imageUrl">
+                                                        <img ng-src="{{list.imgPath+list.imageUrl}}" ng-if="list.imageUrl">
+                                                     </div>
+                                                     <div class="new-imga">
+                                                           <ul>
+                                                             <li><a href="tel:{{list['mobile']}}"><img class="icimage" src="images/ic_call.png"></a></li>
+                                                             <li><a href="sms://{{list['mobile']}}"><img class="icimage" src="images/ic_message.png"></a></li>
+                                                             <li><a href="https://api.whatsapp.com/send?phone=+91{{list['mobile']}}"><img class="icimage" src="images/ic_whatsapp.png"></a></li>
+                                                           </ul>
+                                                           </div>
+                                         </div>
+                                          <div class="right_center">
+                                            <div class="user_txb">
+                                              {{list['firstname']+" "+list['lastname']}}
+                                            </div>
+                                            <div class="user_txn">
+                                              {{list['designation']}}
+                                            </div>
+                                            <div class="user_txn">
+                                              {{list['personalEmail']}}
+                                            </div>
+                                            <div class="user_txn mang">
+                                                {{list['mobile']}}
+                                            </div>
+                                   
+                                          </div>
+                                        </div>
+                                      </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+    <!-- <script src="https://cdn.muicss.com/mui-0.9.28/js/mui.js"></script> -->
+    <script>
+        $( function() {
+            $( ".date-picker" ).datepicker();
+        } );
+    </script>

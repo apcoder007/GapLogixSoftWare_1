@@ -1,0 +1,213 @@
+
+
+<style type="text/css">
+
+    .mdl-layout__drawer .mdl-navigation{
+        margin-top: -15px;
+    }
+    
+    .demo-content{
+        min-height: 500px;
+    }
+    #maincontaint{
+        padding: 1%;
+    }
+    legend{
+        background-color:#4e88c7; 
+        text-align: center;
+        color: white !important;
+        font-weight: bold;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    } 
+    .mui-form{
+        border: solid 1px #c8c8c8!important;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }  
+    .mui-row{
+        padding: 5px !important;
+    } 
+    .mui-btn{
+        margin-left: 2%;
+    }
+    #overlay {
+        position: fixed;
+        display: block;
+        top: 35%;
+        left: 40%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 2;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        padding: 1%;
+        font-size: 2em;
+    }
+    #leavebalance{
+        margin-top: 5%;
+        border: solid 1px #c8c8c8!important;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .lbhead{
+        text-align: center;
+        font-weight: bold;
+    }
+    .lbcontent{
+        text-align: center;
+    }
+    .lblank{
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+
+</style>
+
+<div id="overlay" ng-if="overlay">
+    {{omsg}}
+</div>
+
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">    
+    
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-50 mdl-color-text--blue-grey-50">
+      <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-50">
+        <aside id="leftMenuItems" style="text-align:left;" data-ng-include="" src="'template/home-sidebar.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }" class="ng-scope">
+        </aside>
+      </nav>
+    </div>
+        
+    <main class="mdl-layout__content mdl-color--grey-100">
+      <div class="mdl-grid demo-content">      
+        <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" id="maincontaint">      
+                        
+                <form class="mui-form" ng-submit="applyLeave()">
+                    <legend>New Leave Request</legend>
+                    <div class="mui-row">
+                        <div class="mui-col-md-6">
+                            <div class="mui-select">
+                                <select ng-model="leavetype">
+                                    <option value="">Leave Type</option>
+                                    <option value="EL">CL</option>
+                                    <option value="CL">EL</option>
+                                    <option value="SL">SL</option>
+                                </select>
+                                <label>Select Leave Types</label>
+                            </div>
+                        </div>
+                        <div class="mui-col-md-6">
+                            <div class="mui-select">
+                                <select ng-model="leavereason">
+                                    <option value="">Leave Reason</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="not well">Not Well</option>
+                                    <option value="others">Others</option>
+                                </select>
+                                <label>Select Leave Reason</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mui-row">
+                        <div class="mui-col-md-6">
+                            <div class="mui-select">
+                                <select ng-model="leaveduration">
+                                    <option value="">Leave Duration</option>
+                                    <option value="full day">Full Day</option>
+                                    <option value="half day">Half Day</option>
+                                </select>
+                                <label>Select Leave Duration</label>
+                            </div>
+                        </div>
+                        <div class="mui-col-md-6">
+                            <div class="mui-textfield">
+                                <input type="text" class="date-picker" ng-model="startdate">
+                                <label>Start Date</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mui-row">
+                        <div class="mui-col-md-6">
+                            <div class="mui-textfield">
+                                <input type="text" class="date-picker" ng-model="enddate">
+                                <label>End Date</label>
+                            </div>
+                        </div>
+                        <div class="mui-col-md-6">
+                            <div class="mui-textfield">
+                                <input type="text" ng-model="reason">
+                                <label>Any Other Reason</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+                </form>
+                
+                <div id="leavebalance">
+                    <legend>Leave Balance</legend>
+                    <div class="mui-row" id="leavedetails">
+                        <div class="mui-col-xs-4 mui-col-md-4 lbhead">EL</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbhead">CL</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbhead">SL</div>
+                    </div>
+                    <div class="mui-row" id="leavedetails">
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">Annual Quota</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">Annual Quota</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">Annual Quota</div>
+                    </div>
+                    <div class="mui-row" id="leavedetails">
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">18.0</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">12.0</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">6.0</div>
+                    </div>
+                    <br>
+                    <div class="mui-row" id="leavedetails">
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">Current Balance</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">Current Balance</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">Current Balance</div>
+                    </div>
+                    <div class="mui-row" id="leavedetails">
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">12.0</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">4.0</div>
+                        <div class="mui-col-xs-4 mui-col-md-4 lbcontent">4.0</div>
+                    </div>
+                </div>
+
+                <div id="leavebalance">
+                    <legend>Leave History</legend>
+                    <div class="mui-row" id="leavedetails">
+                        <div class="mui-col-xs-2 mui-col-md-2 lbhead">Start Date</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbhead">End Date</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbhead">Leave Type</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbhead">Reason</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbhead">Duration</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbhead">Status</div>
+                    </div>
+                    <div class="mui-row" ng-repeat="list in leavelist">
+                        <div class="mui-col-xs-2 mui-col-md-2 lbcontent">{{list.startDate}}</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbcontent">{{list.endDate}}</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbcontent">{{list.leaveType}}</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbcontent">{{list.reason}}</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbcontent">{{list.duration}}</div>
+                        <div class="mui-col-xs-2 mui-col-md-2 lbcontent">{{list.status}}</div>
+                    </div>
+                    <div class="mui-row" ng-if="leavelist.length==0">
+                        <div class="mui-col-xs-12 mui-col-md-12 lblank">You have no leave data!!</div>
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- <script src="https://cdn.muicss.com/mui-0.9.28/js/mui.js"></script> -->
+  <script>
+        $( function() {
+            $( ".date-picker" ).datepicker();
+        } );
+    </script>

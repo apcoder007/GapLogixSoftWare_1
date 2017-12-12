@@ -1,0 +1,28 @@
+<div class="mui-row columns">
+        
+    <div ng-repeat="list in tripdetailslist" >
+        
+        <div class="animateddiv fadeinup bg_set_cr" style="margin-bottom:30px" ng-click="tripDetails(list)">
+            <div class="todo-element card-vewer">
+                <div class="dipter">
+                    <div class="user_imga">
+                        <img ng-src="{{list.imagePath}}">
+                    </div>
+                    <div class="new-imga-right">
+                        <ul>
+                            <li><p>{{list.tripId}}</p></li>
+                            <li><p>{{list.reimbursedAmount | currency:'&#8377;'}}</p></li>
+                        </ul>
+                    </div>
+                    <div class="new-imga">
+                        <ul>
+                            <li><p>{{list.tripId}}</p></li>
+                            <li><p>{{list.tDistance}} km</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,4 +1,4 @@
-materialAdmin.service("Data", function($http){
+materialAdmin.service("Data", function($http, $localStorage){
 	
 	// this.submitLogin = function(username, password){
 	// 	var json_data = {
@@ -383,15 +383,13 @@ materialAdmin.service("Data", function($http){
     	});
     }
 
-    this.getAllAttendance = function(empcode){
-    	var json_data = {
-    		"empCode":empcode
-    	}
+    this.getAllAttendance = function(json_data){
+    	
 
     	return $http({
     		method:'post',
     		data:json_data,
-    		url:'https://gapapi-100.appspot.com/api/total/attendance/'
+    		url:'https://gapapi-100.appspot.com/api/employee/attendance/'
     	});
     }
 
@@ -516,13 +514,153 @@ materialAdmin.service("Data", function($http){
 	}
 
 	this.postRegularize = function(json_data){
+		var j_data = {
+			'data':json_data
+		}
 		
 		return $http({
 			method:'post',
-			data:json_data,
-			url:'https://gapapi-100.appspot.com/api/regularise/attendance/'
+			data:j_data,
+			url:'https://gapapi-100.appspot.com/api/regularise/attendance/app/'
 		});
 
+	}
+
+	this.getAllTask = function(empcode){
+		var json_data = {
+			'empCode':empcode
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/task/requestinfo/'
+		});
+	}
+
+	this.getTaskDetails = function(id){
+		var json_data = {
+			'taskCode':id
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/task/request/details/'
+		});
+	}
+
+	this.ApproveTask = function(id){
+		var json_data = {
+			'taskCode':id
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/update/taskRequest/'
+		});
+	}
+
+	this.CancelTask = function(id){
+		var json_data = {
+			'taskCode':id
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/cancel/taskRequest/'
+		});
+	}
+
+	this.WithdrawTask = function(id){
+		var json_data = {
+			'taskCode':id
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/withdraw/leave/'
+		});
+	}
+
+	this.RetryTask = function(id){
+		var json_data = {
+			'taskCode':id
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/resubmit/leave/'
+		});
+	}
+
+	this.ApplyLeave = function(json_data){
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/add/leave/request/'
+		})
+	}
+
+	this.getLeaveDetails = function(empcode){
+		var json_data = {
+			'empCode':empcode
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:' https://gapapi-100.appspot.com/api/leave/requestinfo/'
+		});
+	}
+
+	this.ResubmitReimburse = function(json_data){
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/resubmit/Reimbursment/'
+		});
+	}
+
+	this.WithDrawReimburse = function(id){
+		var json_data = {
+			'taskCode':id
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/withdraw/Reimbursment/'
+		});
+	}
+
+	this.getEmpWithImageList = function(){
+        return $http({
+            method:'get',
+            url:'https://gapapi-100.appspot.com/api/get/employee/imagelist/'
+        }).success(function(response){
+            return response.configure_data;
+        }).error(function(response){
+            
+        });
+	}
+	
+	this.getTravelExpense = function(){
+		var json_data = {
+			'empCode':$localStorage.empcode[0]['empCode']
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/get/tripImage/'
+		});
+	}
+
+	this.getLocation = function(lat,long){
+		return $http({
+			method:'get',
+			url:'https://locationapi-100.appspot.com/location/reverse?lat='+lat+'&lon='+long
+		}).success(function(response){
+			return response.response;
+		}).error(function(response){
+
+		});
 	}
 
 
@@ -530,37 +668,9 @@ materialAdmin.service("Data", function($http){
 
 
 
-// login services
-
-// materialAdmin.service("dataservice", function($modal, $rootScope){
-
-// 	function assignCurrentUser (user) {
-// 	    $rootScope.currentUser = user;
-// 	    return user;
-// 	  }
-
-// 	  return function() {
-// 	    var instance = $modal.open({
-// 	      templateUrl: 'views/login.html',
-// 	      controller: 'loginController',
-// 	      controllerAs: 'loginController'
-// 	    })
-
-// 	    return instance.result.then(assignCurrentUser);
-// 	  };	
-
-// });
 
 
 
-
-// final login services
-
-// materialAdmin.factory("AuthenticationService", ['$http', '$cookies', '$rootScope', '$timeout', 'UserService', function($http, $cookies, $rootScope, $timeout, UserService){
-
-
-
-// }]);
 
 
 (function () {
@@ -582,23 +692,6 @@ materialAdmin.service("Data", function($http){
  
         function Login(username, password, callback) {
  
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-            // $timeout(function () {
-            //     var response;
-            //     UserService.GetByUsername(username)
-            //         .then(function (user) {
-            //             if (user !== null && user.password === password) {
-            //                 response = { success: true };
-            //             } else {
-            //                 response = { success: false, message: 'Username or password is incorrect' };
-            //             }
-            //             callback(response);
-            //         });
-            // }, 1000);
- 
-            /* Use this for real authentication
-             ----------------------------------------------*/
              var json_data = {
 				'username':username,
 				'password' : password

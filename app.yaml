@@ -7,6 +7,10 @@ api_version: 1
 handlers:
 # Endpoints handler
 
+- url: /\.well-known/acme-challenge/.*
+  script: letsencrypt.app
+  secure: never
+
 
 - url: /admin/.*
   script: main.app

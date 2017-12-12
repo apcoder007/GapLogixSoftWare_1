@@ -1,106 +1,323 @@
-<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
-<span id="include" class="center-body-false" style="height:666px;">
+<style>
+  .demo-graphs{
+    min-height: 600px;
+    padding: 5px;
+  }
+  .center-body-false .ui-datatable table thead tr th, .ui-datatable table thead tr th, .table-header thead tr th, .table-header tbody tr td {
+    padding: 4px 0 9px 4px;
+    border: none!important;
+}
+table tr th.ui-state-default {
+  color: #636466!important;
+}
+.ui-panel .ui-panel-content {
+  padding: 10px;
+}
+.BtnRW{
+  margin-top: 2%;
+}
+.mdl-layout__drawer .mdl-navigation{
+  margin-top: -15px;
+}
 
+#overlay {
+    position: fixed;
+    display: block;
+    top: 35%;
+    left: 40%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding: 1%;
+    font-size: 2em;
+}
+.form_content h3{
+  margin-top: 0px !important;
+}
 
+#popresubmit{
+   position: fixed;
+    display: block;
+    top: 35%;
+    left: 40%;
+    background-color: transparent;
+    z-index: 2;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    padding: 1%;
+    font-size: 2em;
+}
 
-    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
-    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel">
-    <div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content">
-
-
-
-
-   
-
-        <div class="listing_kb">
-          <table width="100%">
-            <tbody><tr>
-              <td width="49%" align="left" class="titleTBnone"><span class="heading-style"><span title="">SECTION</span>
-              </span></td>
-              <td width="49%" align="right"></td>
-            </tr>
-          </tbody></table>
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" class="table-header" summary="Leave Quota Detail">
-<thead>
-<tr>
-<th scope="col">
-  <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Code</p>
-                        <input type="text" name="" style="border-radius: 2px; width:140px; padding: 2px;">
-                      </div>  
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Employee Name</p>
-                        <input type="text" name="" style="border-radius: 2px;width:140px; padding: 2px">
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Employee Code</p>
-                        <input type="text" name="" style="border-radius: 2px;width:140px; padding: 2px">
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Approver Name</p>
-                        <input type="text" name="" style="border-radius: 2px;width:140px; padding: 2px">
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Role Name</p>
-                        <input type="text" name="" style="border-radius: 2px;width:140px; padding: 2px">
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Stage</p>
-                        <input type="text" name="" style="border-radius: 2px;width:140px; padding: 2px">
-                      </div>
-</th>
-<th scope="col">
-    <div>
-                        <p style="color: white;  margin-bottom: -0.5px;">Status</p>
-                        <input type="text" name="" style="border-radius: 2px;width:140px; padding: 2px">
-                      </div>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td> EL </td>
-    <td> 15.0 </td>
-    <td> 0.0 </td>
-    <td> 1.0  </td>
-    <td> 14.0</td>
-    <td> 1.0  </td>
-    <td> 1.0  </td>
+legend{
+        background-color:#4e88c7; 
+        text-align: center;
+        color: white !important;
+        font-weight: bold;
+        
+    } 
+    .mui-form{
+        /* border: solid 1px #c8c8c8!important; */
+        box-shadow: 2px 2px 5px #888888;
+        background-color: white;
+    }
     
-</tr>
-<tr>
-    <td> CL\SL </td>
-    <td> 12.0 </td>
-    <td>  0.0 </td>
-    <td> 0.5 </td>
-    <td> 5.5 </td>
-    <td> 1.0  </td>
-    <td> 1.0  </td>
-    
-</tr>
-</tbody>
-</table>
-</span>
+    .mui-row{
+      padding: 5px;
+    }
+    #closepop{
+      color: white;
+      text-align: center;
+      font-size: 0.6em;
+      margin-top: 0%;
+      margin-right: 0%;
+      width: 29px;
+      height: 29px;
+      font-weight: bold;
+      float: right;
+      padding-top: 2px;
+    }
+    #closepop:hover{
+      background-color: #00000042;
+      border-radius: 50%;
+      width: 29px;
+      padding-top: 2px;
+    }
 
+</style>
+
+<div id="overlay" ng-if="overlay" ng-cloak>
+  {{omsg}}
+</div>
+
+<div id="popresubmit" ng-show="showpop" ng-cloak>
+  <span id="closepop" ng-click="closepopup()">x</span>
+  <form class="mui-form" ng-submit="reSubmitReimburse()">
+    <legend>Resubmit Reimbursement</legend>
+    
+    <div class="mui-row">
+        <div class="mui-col-md-6">
+            <div class="mui-textfield">
+                <input type="text" ng-value="" ng-model="rdistance">
+                <label>Total Distance</label>
+            </div>
+        </div>
+        <div class="mui-col-md-6">
+            <div class="mui-textfield">
+                <input type="text" ng-value="" ng-model="rttime">
+                <label>Total Time</label>
+            </div>
+        </div>
+    </div>
+    <div class="mui-row">
+      <div class="mui-col-md-6">
+          <div class="mui-textfield">
+              <input type="text" ng-value="" ng-model="rtembursed">
+              <label>Total Rembursed</label>
           </div>
-        </div>  
+      </div>
+      <div class="mui-col-md-6">
+          <div class="mui-textfield">
+              <input type="text" ng-value="" ng-model="areason">
+              <label>Reason</label>
+          </div>
+      </div>
+    </div>
+    
+    <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+</form>
+</div>
+
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header" ng-cloak>    
+    
+  <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-50 mdl-color-text--blue-grey-50">
+    <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-50">
+      <aside id="leftMenuItems" style="text-align:left;" ng-include="'template/home-sidebar.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }" class="ng-scope">
+      </aside>
+    </nav>
+  </div>
+
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-grid demo-content">
+      <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col">
+
+          <span id="searchForm:employeeInfo">
+              <div class="form_content formPadding">
+                <h3>Employee Information</h3>
+                <div class="form_content_inner">
+                  <table width="100%">
+                    <tbody>
+                      <tr>
+                        <td class="td_labelCol"><label>Employee Code:</label></td>
+                        <td class="td_outputCol"><span>{{taskdetailslist.empCode || taskdatalists[0].taskDetails.empCode}}</span></td>
+                        <td class="td_labelCol"><label>Employee Name:</label></td>
+                        <td class="td_outputCol"><span>{{taskdetailslist.firstName+" "+taskdetailslist.lastName}}{{taskdatalists[0].taskDetails.firstName+" "+taskdatalists[0].taskDetails.firstName}}</span></td>
+                      </tr>
+                      <tr>
+                        <td class="td_labelCol"><label>Designation:</label></td>
+                        <td class="td_outputCol"><span>{{taskdetailslist.designation || taskdatalists[0].taskDetails.designation}}</span></td>
+                        <td class="td_labelCol"><label>Official email ID:</label></td>
+                        <td class="td_outputCol"><span>{{taskdetailslist.officialemail || taskdatalists[0].taskDetails.officialemail}}</span></td>
+                      </tr>
+                      <tr>
+                        <td class="td_labelCol"><label>Personal email ID:</label></td>
+                        <td class="td_outputCol"><span>{{taskdetailslist.personalEmail || taskdatalists[0].taskDetails.personalEmail}}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </span>
+
+            <div ng-if="taskType == 'Reimbursment'" id="searchForm" class="ui-panel ui-widget ui-widget-content ui-corner-all panel-zero-padding" data-widget="widget_searchForm_attendanceDetailPanel">
+              <div id="" class="ui-panel-content ui-widget-content">
+                <span id="" class="attendpage">
+                <div class="listing_kb">
+                  <h3>Reimbursement Detail</h3>
+                  <div class="listing_kb_inner Overflow_Width">
+                    <div id="" class="ui-datatable ui-widget attReg table-header">
+                      <div class="ui-datatable-tablewrapper">
+                        <table role="grid">
+                          <thead id="searchForm">
+                            <tr role="row">
+                              <th class=""><span class="">Task Code</span></th>
+                              <th class=""><span class="">Task Type</span></th>
+                              <th class=""><span class="">Total Time</span></th>
+                              <th class=""><span class="">Reason</span></th>
+                              <th class=""><span class="">End Date</span></th>
+                              <th class=""><span class="">Total Distance</span></th>
+                              <th class=""><span class="">Total Reimbursed</span></th>
+                            </tr>
+                          </thead>
+                          <tbody id="" class="ui-datatable-data ui-widget-content">
+                            <tr data-ri="0" class="ui-widget-content ui-datatable-even datatable-rowstyle-true" role="row">
+                              <td role="gridcell">{{taskCode}}</td>
+                              <td role="gridcell">{{taskType}}</td>
+                              <td role="gridcell">{{taskdetailslist.tTime}}</td>
+                              <td role="gridcell" style="width:50px;">{{taskdetailslist.reason}}</td>
+                              <td role="gridcell">{{taskdetailslist.endDate}}</td>
+                              <td role="gridcell">{{taskdetailslist.tDistance}}</td>
+                              <td role="gridcell">{{taskdetailslist.tReimbursed}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </span>
+    
+              <div class="BtnRW" ng-if="lmanager==taskdetailslist.l1Manager">
+                <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" ng-click="ApproveTask()" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Approve</span></button>
+                <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-extraLarge" ng-click="cancelTask()" title="Reject" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Reject</span></button>
+              </div>
+              <div class="BtnRW" ng-if="lmanager!=taskdetailslist.l1Manager">
+                <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" ng-click="withDrawReimburse()" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Withdraw</span></button>
+                <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-extraLarge" ng-click="showpopup()" title="Reject" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Resubmit</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div ng-if="taskType == 'Leave'" id="searchForm" class="ui-panel ui-widget ui-widget-content ui-corner-all panel-zero-padding" data-widget="widget_searchForm_attendanceDetailPanel">
+            <div id="" class="ui-panel-content ui-widget-content">
+              <span id="" class="attendpage">
+              <div class="listing_kb">
+                <h3>Leave Detail</h3>
+                <div class="listing_kb_inner Overflow_Width">
+                  <div id="searchForm:attendanceDetail" class="ui-datatable ui-widget attReg table-header">
+                    <div class="ui-datatable-tablewrapper">
+                      <table role="grid">
+                        <thead id="searchForm">
+                          <tr role="row">
+                            <th class=""><span class="">Task Code</span></th>
+                            <th class=""><span class="">Task Type</span></th>
+                            <th class=""><span class="">Duration</span></th>
+                            <th class=""><span class="">Reason</span></th>
+                            <th class=""><span class="">End Date</span></th>
+                            <th class=""><span class="">Leave Type</span></th>
+                          </tr>
+                        </thead>
+                        <tbody id="" class="ui-datatable-data ui-widget-content">
+                          <tr data-ri="0" class="ui-widget-content ui-datatable-even datatable-rowstyle-true" role="row">
+                            <td role="gridcell">{{taskCode}}</td>
+                            <td role="gridcell">{{taskType}}</td>
+                            <td role="gridcell">{{taskdetailslist.duration}}</td>
+                            <td role="gridcell" style="width:50px;">{{taskdetailslist.reason}}</td>
+                            <td role="gridcell">{{taskdetailslist.endDate}}</td>
+                            <td role="gridcell">{{taskdetailslist.LeaveType}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+  
+            <div class="BtnRW" ng-if="lmanager==taskdetailslist.l1Manager">
+              <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" ng-click="ApproveTask()" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Approve</span></button>
+              <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-extraLarge" ng-click="cancelTask()" title="Reject" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Reject</span></button>
+            </div>
+            <div class="BtnRW" ng-if="lmanager!=taskdetailslist.l1Manager">
+              <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" ng-click="withDrawTask()" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Withdraw</span></button>
+              <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-extraLarge" ng-click="retryTask()" title="Reject" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Resubmit</span></button>
+            </div>
+          </div>
+        </div>
 
 
+        <div ng-if="taskdatalists[0].taskType == 'Regular'" id="searchForm" class="ui-panel ui-widget ui-widget-content ui-corner-all panel-zero-padding" data-widget="widget_searchForm_attendanceDetailPanel">
+          <div id="" class="ui-panel-content ui-widget-content">
+            <span id="" class="attendpage">
+            <div class="listing_kb">
+              <h3>Regular Detail</h3>
+              <div class="listing_kb_inner Overflow_Width">
+                <div id="searchForm:attendanceDetail" class="ui-datatable ui-widget attReg table-header">
+                  <div class="ui-datatable-tablewrapper">
+                    <table role="grid">
+                      <thead id="searchForm">
+                        <tr role="row">
+                          <th class=""><span class="">Task Code</span></th>
+                          <th class=""><span class="">Task Type</span></th>
+                          <th class=""><span class="">Date</span></th>
+                          <th class=""><span class="">Reason</span></th>
+                          <th class=""><span class="">Report In Time</span></th>
+                          <th class=""><span class="">Report Out Time</span></th>
+                        </tr>
+                      </thead>
+                      <tbody id="" class="ui-datatable-data ui-widget-content">
+                        <tr data-ri="0" class="ui-widget-content ui-datatable-even datatable-rowstyle-true" role="row" ng-repeat="list in taskdatalists">
+                          <td role="gridcell">{{list.taskCode}}</td>
+                          <td role="gridcell">{{list.taskType}}</td>
+                          <td role="gridcell">{{list.taskDetails.Date}}</td>
+                          <td role="gridcell" style="width:50px;">{{list.taskDetails.reason}}</td>
+                          <td role="gridcell">{{list.taskDetails.reportInTime}}</td>
+                          <td role="gridcell">{{list.taskDetails.reportOutTime}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
 
-
-
-
+          <div class="BtnRW" ng-if="lmanager==taskdetailslist.l1Manager">
+            <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" ng-click="ApproveTask()" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Approve</span></button>
+            <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-extraLarge" ng-click="cancelTask()" title="Reject" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Reject</span></button>
+          </div>
+          <div class="BtnRW" ng-if="lmanager!=taskdetailslist.l1Manager">
+            <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success" ng-click="" title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Withdraw</span></button>
+            <button id="" name="" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only button-extraLarge" ng-click="" title="Reject" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">Resubmit</span></button>
+          </div>
+        </div>
+      </div>
         
 
-
-        </span>
+        </div>
+      </div>
+  </main>
+</div>

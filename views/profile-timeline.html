@@ -25,11 +25,11 @@
                 <dd class="ng-binding">{{positioninfo[0]['empCode']}}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>Date Of Joinign</dt>
+                <dt>Date Of Joining</dt>
                 <dd class="ng-binding">{{positioninfo[0]['dateOfJoining']}}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>Offica Email</dt>
+                <dt>Official Email</dt>
                 <dd class="ng-binding">{{positioninfo[0]['officealEmail']}}</dd>
             </dl>
             <dl class="dl-horizontal">
@@ -41,12 +41,12 @@
                 <dd class="ng-binding">{{positioninfo[0]['designation']}}</dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt>L2 MAnager</dt>
-                <dd class="ng-binding">{{positioninfo[0]['l2Manager']}}</dd>
+                <dt>L1 Manager</dt>
+                <dd class="ng-binding">{{positioninfo[0]['l1Manager']}}</dd>
             </dl>
 
         </div><!-- end ngIf: pctrl.editInfo === 0 -->
-        <form ng-submit="updatepositionInfo(empcode, doj, officialemail, grade, designation, l2manager)" class="pmbb-edit ng-pristine ng-valid" data-ng-if="editInfo === 1">
+        <form ng-submit="updatepositionInfo(empcode, doj, officialemail, grade, designation, l1manager)" class="pmbb-edit ng-pristine ng-valid" data-ng-if="editInfo === 1">
             <dl class="dl-horizontal">
                 <dt class="p-t-10">Employee Code</dt>
                 <dd>
@@ -88,10 +88,10 @@
                 </dd>
             </dl>
             <dl class="dl-horizontal">
-                <dt class="p-t-10">L2 Manager</dt>
+                <dt class="p-t-10">L1 Manager</dt>
                 <dd>
                     <div class="dtp-container dropdown fg-line">
-                        <input type="text" class="form-control" ng-model="l2manager">
+                        <input type="text" class="form-control" ng-model="l1manager">
                     </div>
                 </dd>
             </dl>
@@ -130,8 +130,8 @@
         <!-- ngIf: pctrl.editContact === 0 -->
         <div class="pmbb-view ng-scope" data-ng-if="editContact === 0">
             <dl class="dl-horizontal">
-                <dt>L1 Manager</dt>
-                <dd class="ng-binding">{{positioninfo[0]['l1Manager']}}</dd>
+                <dt>L2 Manager</dt>
+                <dd class="ng-binding">{{positioninfo[0]['l2Manager']}}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>Employment Status</dt>
@@ -151,12 +151,12 @@
             </dl>
 
         </div><!-- end ngIf: pctrl.editContact === 0 -->
-        <form ng-submit="updatepositionInfo1(l1manager, empstatus, hrmanager, notice, emptype)" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="editContact === 1" style="">
+        <form ng-submit="updatepositionInfo1(l2manager, empstatus, hrmanager, notice, emptype)" class="pmbb-edit ng-pristine ng-valid ng-scope" data-ng-if="editContact === 1" style="">
             <dl class="dl-horizontal">
-                <dt class="p-t-10">L1 Manager</dt>
+                <dt class="p-t-10">L2 Manager</dt>
                 <dd>
                     <div class="fg-line">
-                        <input ng-model="l1manager" type="text" class="form-control ng-pristine ng-untouched ng-valid">
+                        <input ng-model="l2manager" type="text" class="form-control ng-pristine ng-untouched ng-valid">
                     </div>
                 </dd>
             </dl>

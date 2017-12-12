@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="css/material.cyan-light_blue.min.css">
 <link rel="stylesheet" href="css/new.css">
 <style type="text/css">
-  #headingpara{
+ 
+   #headingpara{
     margin: 0 0 0px;
     font-weight: bold;
     font-size: 16px;
@@ -14,8 +15,6 @@
     padding: 12px;
     text-align: center;
   }
-</style>
-<style type="text/css">
   .ui-datepicker td.holiday a, .ui-datepicker td.holiday a:hover {
     background: url(../images/holiday.png);
     background-size: 25px;
@@ -23,6 +22,42 @@
     color: transparent !important;
     background-repeat: no-repeat;
     border-radius: 0 !important;
+}
+
+  .task_content{
+    margin-left: 0px !important;
+    text-align: center;
+  }
+  .mdl-layout__header{
+    text-align: center; 
+  }
+  .task_content table tr{
+    line-height: 30px;
+  }
+  .task_content table tr:nth-child(even){
+    background-color: #8080803d;
+  }
+  .dataTables_wrapper .dataTables_filter{
+    margin-right: 1%;
+  }
+  #vehicle-table{
+    border-collapse: collapse;
+  }
+  #vehicle-table td, #vehicle-table th {
+    border: 1px solid #ddd !important;
+    padding: 8px !important;
+}
+#vehicle-table_length>label>select {
+    left: 106px;
+    position: absolute;
+    width: 128px;
+    padding: 4px;
+    vertical-align: middle;
+    border: 1px solid black !important;
+    outline: none;
+}
+input{
+  border: 3px solid #d8dcdf;
 }
  </style>
 
@@ -46,35 +81,9 @@
         </label>
 
 			  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-          <header class="mdl-layout__header mdl-color--blue-800">
-            <div id="searchHead" style="padding:10px;">
-              <div>
-
-                <div class="mdl-cell--3-col widthsec" style="display: inline-block;">
-                  <p style="color: white; text-align: center; margin-bottom: -0.5px;">Task Code</p>
-                  <input type="text" name="" style="border-radius: 2px; padding: 2px; margin: auto;">
-                </div>
-
-                <div class="mdl-cell--3-col widthsec" style="display: inline-block;">
-                  <p style="color: white; text-align: center; margin-bottom: -0.5px">Employee Name</p>
-                  <input type="text" name="" style="border-radius: 2px; padding: 2px; margin: auto;">
-                </div>
-
-                <div class="mdl-cell--3-col widthsec" style="display: inline-block;">
-                  <p style="color: white; text-align: center; margin-bottom: -0.5px">Stage</p>
-                  <input type="text" name="" style="border-radius: 2px; padding: 2px; margin: auto;">
-                </div>
-
-                <div class="mdl-cell--3-col widthsec" style="display: inline-block;">
-                  <p style="color: white; text-align: center; margin-bottom: -0.5px">Status</p>
-                  <input type="text" name="" style="border-radius: 2px; padding: 2px; margin: auto;">
-                </div>
-
-              </div>
-            </div>
-          </header>
-          <main class="mdl-layout__content">
-             <div class="page-content">You have no open task</div>
+          
+          <main class="mdl-layout__content task_content">
+             <div class="page-content" ng-if="!tasklist">You have no open task</div>
           </main>
         </div>
 
@@ -160,27 +169,6 @@ $.ajax({
       });
         
     }});
-
-
-
-  // $(function(){
-  //     $('#datepicker').datepicker({ 
-  //       // beforeShowDay: setHoliDays,
-  //       onSelect: function(dt){
-  //           // window.open("http://www.google.com?dt=" + dt);
-
-  //           $("#calcontents").text(dt);
-  //       }
-
-  //    });
-
-
-  // });
-
-
-
-
-
 
 </script>
 

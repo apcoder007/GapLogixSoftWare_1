@@ -35,6 +35,62 @@ materialAdmin
                 controller:'homeCtrl'
                 
             })
+            .state ('task', {
+                url: '/task/:id',
+                templateUrl: 'views/task.html',
+                controller:'homeCtrl'
+                
+            })
+
+            .state ('leave', {
+                url: '/leave',
+                templateUrl: 'views/leave.html',
+                controller:'leaveCtrl'
+            })
+
+            .state ('directory', {
+                url: '/directory',
+                templateUrl: 'views/directory.html',
+                controller:'directoryCtrl',
+                resolve:{
+                    empDetailsList: function(Data){
+                    return Data.getEmpWithImageList();
+                    }
+                }
+            })
+
+            .state ('travelexpense', {
+                url: '/travelexpense',
+                templateUrl: 'views/travelexpense.html',
+                controller:'travelexpenseCtrl',
+                resolve:{
+                    tripList: function(Data){
+                    return Data.getTravelExpense();
+                    }
+                }
+            })
+
+            .state ('travelexpense.list', {
+                url: '/list',
+                templateUrl: 'views/travelexpnselist.html',
+                controller:'travelexpenselistCtrl',
+                resolve:{
+                    tripList: function(Data){
+                    return Data.getTravelExpense();
+                    }
+                }
+            })
+
+            .state ('travelexpense.details', {
+                url: '/details',
+                templateUrl: 'views/travelexpnsedetails.html',
+                controller:'travelexpensedetailsCtrl',
+                resolve:{
+                    tripList: function(Data){
+                    return Data.getTravelExpense();
+                    }
+                }
+            })
 
 
             //------------------------------
@@ -65,10 +121,10 @@ materialAdmin
             // TYPOGRAPHY
             //------------------------------
         
-            .state ('typography', {
-                url: '/typography',
-                templateUrl: 'views/typography.html'
-            })
+            // .state ('typography', {
+            //     url: '/typography',
+            //     templateUrl: 'views/typography.html'
+            // })
 
 
             //------------------------------
@@ -124,7 +180,8 @@ materialAdmin
         
             .state ('user-interface', {
                 url: '/user-interface',
-                templateUrl: 'views/common3.html'
+                templateUrl: 'views/common3.html',
+                controller:'payCtrl'
             })
         
             .state ('user-interface.ui-bootstrap', {
@@ -360,12 +417,18 @@ materialAdmin
             
         
             //Profile
+
+            .state ('pages.typography', {
+                url: '/typography',
+                templateUrl: 'views/typography.html'
+            })
         
             .state ('pages.profile', {
                 url: '/profile',
                 templateUrl: 'views/profile.html',
                 controller:'profileCtrl'
             })
+
         
             .state ('pages.profile.profile-about', {
                 url: '/profile-about',
