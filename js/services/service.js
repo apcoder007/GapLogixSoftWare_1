@@ -1,16 +1,4 @@
 materialAdmin.service("Data", function($http, $localStorage){
-	
-	// this.submitLogin = function(username, password){
-	// 	var json_data = {
-	// 		'username':username,
-	// 		'password' : password
-	// 	}
-	// 	return $http({
-	// 		method:'POST',
-	// 		data:json_data,
-	// 		url:'https://gapapi-100.appspot.com/api/post/login/'
-	// 	});
-	// }
 
 	this.resetPassword = function(empcode, pass){
 		var json_data = {
