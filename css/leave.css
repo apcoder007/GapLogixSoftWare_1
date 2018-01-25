@@ -3648,7 +3648,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple, .m
 	display: none
 }
 .mdl-layout__container {
-	position: absolute;
+	position:relative;
 	width: 100%;
 	height: 100%
 }

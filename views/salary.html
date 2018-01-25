@@ -1,0 +1,256 @@
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+<script>
+  $( function() {
+    $( ".datepicker" ).datepicker();
+  } );
+</script>
+<style>
+  .NLleave{
+    padding-bottom: 20px !important;
+  }
+  #payslip{
+    padding: 2px;
+  }
+  .payslip{
+    float: none !important;
+  }
+  .payhead{
+    border-bottom: 2px solid black;
+    display: inline-block;
+  }
+   .btmborder{
+    border-bottom: 2px solid black !important;
+    width: 100%;
+  }
+  .paydiv{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .lefttd{
+    text-align: left !important;
+  }
+  .paytable tr td{
+    padding: 5px;
+  }
+  .salarytable thead tr th{
+      width: 50%;
+  }
+  .salarytable{
+    border-collapse: collapse;
+  }
+  .salarytable, .salarytable thead tr th, .salarytable tbody tr td{
+    border: 0.1px solid #ddd;
+  }
+  .salarytable thead tr th, .salarytable tbody tr td{
+      padding: 1%;
+  }
+  .righttd{
+      text-align: right !important;
+  }
+  .salaryform{
+    padding-left: 6%;
+    padding-right: 6%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    background-color: #eff5f7;
+    border: 1px solid #abcde8;
+    border-radius: 5px;
+  }
+  .datalistinput{
+    border: 1px solid rgba(0, 0, 0, 0.26) !important; 
+  }
+  .mui-btn{
+    background-color: #4e88c7 !important;
+  }
+  #overlay {
+    position: fixed;
+    display: block;
+    top: 35%;
+    left: 40%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding: 1%;
+    font-size: 2em;
+    }
+    
+</style>
+
+<div id="overlay" ng-if="overlay">
+  {{omsg}}
+</div>
+
+<div class="mdl-grid demo-content"> 
+  <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col"> 
+    <span id="include" class="center-body-false" style="height:865px;">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all" >
+        <div class="ui-panel-content ui-widget-content">
+          
+          <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+            <div class="ui-panel-content ui-widget-content">
+              <div class="ui-messages ui-widget" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <span>
+            <div class="form_content fax_m" style="height:auto;">
+              <div class="panel_title"><span title="">ADD SALARY</span></div>
+              <div class="form_content_inner">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td class="td_labelCol">
+                        <label class="redColor">*</label>
+                        <label for="" title="">Employee Code:</label>
+                      </td>
+                      <td class="td_outputCol">
+                        <div class="mui-select">
+                            <input list="empcodelist" name="browser" ng-model="selecteditem" ng-change="changeFun()" class="datalistinput">
+                            <datalist style="width:231px;height:30px;margin-left:2%" tabindex="-1" id="empcodelist">
+                                <option value="" ng-selected="true">--Select Employee Code--</option>
+                            </datalist>
+                        </div>
+                      </td>
+                      <td class="td_labelCol">
+                        <label for="" title="">Employee Name:</label>
+                      </td>
+                      <td class="td_outputCol">
+                        <div class="mui-textfield">
+                            <input type="text" disabled ng-model="empname">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="td_labelCol">
+                            <label for="" title="">Joining Date:</label>
+                        </td>
+                        <td class="td_outputCol">
+                            <div class="mui-textfield">
+                                <input type="text" disabled ng-model="joiningdate">
+                            </div>
+                        </td>
+                        <td class="td_labelCol">
+                            <label for="" title="">Designation:</label>
+                        </td>
+                        <td class="td_outputCol">
+                            <div class="mui-textfield">
+                                <input type="text" disabled ng-model="designation">
+                            </div>
+                            <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <form class="salaryform">
+                    <table class="salarytable">
+                        <thead>
+                            <tr>
+                                <th>Salary Item</th>
+                                <th class="righttd">Current Salary</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>FULL BASIC</td>
+                                <td class="righttd">Rs {{full_basic}}</td>
+                            </tr>
+                            <tr>
+                                <td>FULL HRA</td>
+                                <td class="righttd">Rs {{full_hra}}</td>
+                            </tr>
+                            <tr>
+                                <td>FULL CONVEYANCE</td>
+                                <td class="righttd">Rs {{full_conv}}</td>
+                            </tr>
+                            <tr>
+                                <td>FULL DA</td>
+                                <td class="righttd">Rs {{full_da}}</td>
+                            </tr>
+                            <tr>
+                                <td>FULL SPECIAL ALLOWANCE</td>
+                                <td class="righttd">Rs {{full_sp_all}}</td>
+                            </tr>
+                            <tr>
+                                <td>MONTHLY CTC</td>
+                                <td class="righttd">Rs {{m_ctc}}</td>
+                            </tr>
+                            <tr>
+                                <td>ANNUAL CTC</td>
+                                <td class="righttd" style="padding:0% !important"><input type="text" ng-model="salary" style="height: 32px;text-align: right;" ng-change="changeSalary()"> </td>
+                            </tr>
+                            <tr>
+                                <td>MEDICAL MONTHLY ENTITLEMENT</td>
+                                <td class="righttd">Rs {{midic_mo_ent}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td class="td_labelCol">
+                              <label for="" title="">Effective From:</label>
+                          </td>
+                          <td class="td_outputCol">
+                              <div class="mui-textfield">
+                                  <input type="text" ng-model="effectivedate" class="date-picker">
+                              </div>
+                          </td>
+                          <td class="td_labelCol">
+                              <label for="" title="">Payout Month:</label>
+                          </td>
+                          <td class="td_outputCol">
+                            <div class="mui-select">
+                              <input list="payoutmonth" name="browser" ng-model="paymonth" class="datalistinput">
+                              <datalist style="width:231px;height:30px;margin-left:2%" id="payoutmonth">
+                                  <option value="Jan 2018">Jan 2018</option>
+                                  <option value="Feb 2018">Feb 2018</option>
+                                  <option value="Mar 2018">Mar 2018</option>
+                                  <option value="April 2018">April 2018</option>
+                              </datalist>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="td_labelCol">
+                            <label for="" title="">Remarks</label>
+                          </td>
+                          <td class="td_outputCol ">
+                            <div class="mui-textfield">
+                              <textarea ng-model="remarks"></textarea>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="td_labelCol"></td>
+                          <td class="td_outputCol ">
+                            <div class="mui-textfield" style="margin-bottom: 0px !important">
+                              <button type="submit" class="mui-btn mui-btn--raised" ng-click="saveSalary()">Save</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </form>
+
+              </div>
+            </div>
+          </span>
+
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<script>
+  $( function() {
+      $( ".date-picker" ).datepicker();
+  } );
+</script>

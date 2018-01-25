@@ -1,1050 +1,319 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
-  <script>
+<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+<script>
   $( function() {
     $( ".datepicker" ).datepicker();
   } );
-  </script>
-  <div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
-<span id="include" class="center-body-false">
-<form id="newLeaveRequestForm" name="newLeaveRequestForm" method="post" action="/home.jsf?cid=2" class="colorBackground" enctype="multipart/form-data">
-<input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
+</script>
 
+<style>
+  .sectionfirst{
+    margin: 0px 0 15px 0;
+    font-size: 14px;
+    color: #636466;
+    font-weight: bold;
+  }
+  .table-header thead tr th span{
+    font-size: 12px;
+    color: #636466!important;
+  }
+  .table-header tbody tr td{
+    font-size: 12px;
+  }
+  .demo-graphs{
+    padding: 0px 0px !important;
+  }
+  .table-header{
+    border: 1px solid #dddddd;
+  }
+  textarea{
+    height: 50px;
+    resize: none;
+  }
+  input{
+    padding: 3px !important;
+    padding-left: 0px !important;
+  }
+</style>
 
-    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
-    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel"><div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:reqFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId"><div id="newLeaveRequestForm:reqFldId_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:errorMessages" class="ui-messages ui-widget" aria-live="polite"></div></div></div><span id="newLeaveRequestForm:newLeaveRequestPanel1"><span id="newLeaveRequestForm:newLeaveRequestPanel12">
-          <div class="form_content fax_m">
-            <div class="panel_title"><span title="">EMPLOYEE INFORMATION</span>
+<div class="mdl-grid demo-content"> 
+  <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col"> 
+    <span id="include" class="center-body-false">
+
+      <!-- Section Start -->
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+        <div class="ui-panel-content ui-widget-content">
+          <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+            <div class="ui-panel-content ui-widget-content">
+              <div class="ui-messages ui-widget" aria-live="polite"></div>
             </div>
+          </div>
 
-            <div class="form_content_inner"><table>
-<tbody>
-<tr>
-<td class="td_labelCol"><label title="">
-Employee Code:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:applicationdate">DN11117</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-<td class="td_labelCol"><label class="redColor">
-*</label><label for="newLeaveRequestForm:leaveReasondropDown2_focus" title="">
-Employee Name:</label></td>
-<td class="td_outputCol">
-  <span id="newLeaveRequestForm:applicationdate">Dileep Kumar</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div>
+          <span>
+            <span>
+              <div class="form_content fax_m">
+                <div class="panel_title">
+                  <span title="">EMPLOYEE INFORMATION</span>
+                </div>
+                <div class="form_content_inner">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td class="td_labelCol"><label title="">Employee Code:</label></td>
+                        <td class="td_outputCol">
+                          <span>{{paydetails.empCode}}</span>
+                          <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                        <td class="td_labelCol">
+                          <label class="redColor">*</label>
+                          <label for="newLeaveRequestForm:leaveReasondropDown2_focus" title="">Employee Name:</label>
+                        </td>
+                        <td class="td_outputCol">
+                          <span>{{paydetails.name}}</span>
+                          <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="td_labelCol">
+                          <label class="redColor">*</label>
+                          <label for="newLeaveRequestForm:startdate_input" title="">Date Of Joining</label>
+                        </td>
+                        <td class="td_outputCol">
+                          <span>{{paydetails.dateofjoining}}</span>
+                          <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                        <td class="td_labelCol">
+                          <label class="redColor">*</label>
+                          <label for="newLeaveRequestForm:enddate_input" title="">Designation:</label>
+                        </td>
+                        <td class="td_outputCol">
+                          <span>{{paydetails.designation}}</span>
+                          <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="td_labelCol">
+                          <label class="redColor">*</label>
+                          <label for="newLeaveRequestForm:leaveReasondropDown1_focus" title="">Grade:</label>
+                        </td>
+                        <td class="td_outputCol">
+                          <span>{{paydetails.grade}}</span>
+                          <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                        <td class="td_labelCol">
+                          <label for="newLeaveRequestForm:commentsTxtId" title="">Location:</label>
+                        </td>
+                        <td class="td_outputCol">
+                          <span>Noida.Delhi</span>
+                          <div aria-live="polite" class="ui-message"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="td_labelCol">
+                          <label title="">Organisation Unit:</label>
+                        </td>
+                        <td class="td_outputCol"><span>1.0</span></td>
+                        <td class="td_labelCol"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </span>
+          </span>
 
-
-
-
-</td>
-</tr>
-<tr>
-
-<td class="td_labelCol"><label class="redColor">
-*</label><label for="newLeaveRequestForm:startdate_input" title="">
-Date Of Joining</label>
-</td>
-<td class="td_outputCol">
-
-<span id="newLeaveRequestForm:applicationdate">20/9/2017</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-
-<td class="td_labelCol"><label class="redColor">
-*</label><label for="newLeaveRequestForm:enddate_input" title="">
-Designation:</label>
-</td>
-<td class="td_outputCol">
-<span id="newLeaveRequestForm:applicationdate">Developer</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div>
-</td>
-</tr>
-
-<tr>
-<td class="td_labelCol">
-<label class="redColor">
-*</label><label for="newLeaveRequestForm:leaveReasondropDown1_focus" title="">
-Grade:</label>
-</td>
-<td class="td_outputCol">
-
-<span id="newLeaveRequestForm:applicationdate">A</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div>
-
-</td>
-<td class="td_labelCol"><label for="newLeaveRequestForm:commentsTxtId" title="">
-Location:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:applicationdate">Noida.Delhi</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-</tr>
-
-<tr>
-<td class="td_labelCol"><label title="">
-Organisation Unit:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:numberofdays">1.0</span></td>
-<td class="td_labelCol"></td>
-</tr>
-</tbody>
-</table>
-
-
+          <div class="listing_kb">
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td width="50%" align="left" class="titleTBnone">
+                    <span class="heading-style">
+                      <h3 class="sectionfirst">VIA</h3>
+                    </span>
+                  </td>
+                  <td width="50%" align="right"></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="listing_kb_inner">
+              <span>
+                <table class="table-header" summary="Leave Quota Detail">
+                  <thead>
+                    <tr>
+                      <th scope="col"><span title="">Section Name</span></th>
+                      <th scope="col"><span title="">Maximum Amount</span></th>
+                      <th scope="col"><span title="">Declared amount</span></th>
+                      <th><span>Actual Amount</span></th>
+                      <th><span>Approved Amount</span></th>
+                      <th><span>Document</span></th>
+                      <th><span>Approver Remarks</span></th>
+                    </tr>
+                  </thead>
+                    <tbody>
+                      <tr ng-repeat="list in taxdata" ng-if="list.taxType=='VIA'">
+                        <td style="width:35%">{{list.sectionName}}</td>
+                        <td>{{list.maxAmount}}</td>
+                        <td><input type="text" ng-value="list.declaredAmount"></td>
+                        <td><input type="text" ng-value="list.actualAmount"></td>
+                        <td><input type="text" ng-value="list.approvedAmount"></td>
+                        <td><a href="">attach</a></td>
+                        <td style="padding-right:5px"><textarea name="" id="" cols="30" rows="5"></textarea></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </span>
+              </div>
             </div>
-          </div></span></span>
-        <div class="listing_kb">
-          
-
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:newLeaveRequestLeaveDetails"><div id="newLeaveRequestForm:locholidaysDetail" class="ui-datatable ui-widget table-header"><div class="ui-datatable-tablewrapper"><table role="grid" summary="New Leave Request Leave Details">
-          </table>
-          </div>
-          </div></span>
-
           </div>
         </div>
-        <div class="listing_kb">
-          <table width="100%">
-            <tbody><tr>
-              <td width="50%" align="left" class="titleTBnone"><span class="heading-style"><span title="">CHAPTER VIA - SECTION 80D TO 80U</span>
-              </span></td>
-              <td width="50%" align="right"></td>
-            </tr>
-          </tbody></table>
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" class="table-header" summary="Leave Quota Detail">
-<thead>
-<tr>
-<th scope="col"><span title="">Section Name</span></th>
-<th scope="col"><span title="">Maximum Amount</span></th>
-<th scope="col"><span title="">Declared amount</span></th>
+        <!-- section ending -->
 
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-    80D: Mediclaim Premium of Self, Spouse and Children (Limit is 25000 if Age is less than 60 years and Limit is 30000 when age is greater than 60 years)  
-</td>
-<td>
-    30000 
- </td>
-<td>
-    <input type="text" value="00.0">
-</td>
-</tr>
-<tr>
-<td>
-    Medical treatment of handicapped Dependent < 80%(80DD)  
-</td>
-<td>
-    75000.0 
-</td>
-<td>
-    <input type="text" value="00.0">
-</td>
-</tr>
-<tr>
-<td>
-    Medical treatment of handicapped Dependent > 80%(80DD)  
-</td>
-<td>
-    125000.0 
-</td>
-<td>
-    <input type="text" value="00.0">
-</td>
-</tr>
-<tr>
-<td>
-Medical treatment of handicapped self < 80%(80U)    
-</td>
-<td>
-    75000.0 
-</td>
-<td>
-    <input type="text" value="00.0">
-</td>
-</tr>
-<tr>
-<td>
-   Medical treatment of handicapped self > 80%(80U) 
-</td>
-<td>
-    125000.0 
-</td>
-<td>
-    <input type="text" value="00.0">
-</td>
-</tr>
-<tr>
-<td>
-    Medical treatment of specified Diseases of Self & Dependents<=60yrs(80DDB)  
-</td>
-<td>
-    40000.0 
-</td>
-<td>
-    <input type="text" value="00.0">
-</td>
-</tr>
-<tr>
-<td>
-    Medical treatment of specified Diseases of Self & Dependents>=60yrs(80DDB) 
-</td>
-<td>
-    60000.0 
-</td>
-<td>
-  <input type="text" value="00.0">
-                
-
-              </td>
-
-</tr>
-<tr>
-<td>
-        Interest of Education Loan(80E)  
-  
+        <!-- section start -->
+        <div class="listing_kb_inner">
+          <span>
+            <table class="table-header" summary="Leave Quota Detail">
+               <h3 class="sectionfirst">80C</h3>
+              <thead>
+                <tr>
+                  <th scope="col"><span title="">Section Name</span></th>
+                  <th scope="col"><span title="">Maximum Amount</span></th>
+                  <th scope="col"><span title="">Declared amount</span></th>
+                  <th scope="col"><span title="">Actual amount</span></th>
+                  <th scope="col"><span title="">Approved amount</span></th>
+                  <th scope="col"><span title="">Document</span></th>
+                  <th scope="col"><span title="">Approver Remarks</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="list in taxdata" ng-if="list.taxType=='80C'">
+                  <td style="width:35%">{{list.sectionName}}</td>
+                  <td>{{list.maxAmount}}</td>
+                  <td><input type="text" ng-value="list.declaredAmount"></td>
+                  <td><input type="text" ng-value="list.actualAmount"></td>
+                  <td><input type="text" ng-value="list.approvedAmount"></td>
+                  <td><a href="">attach</a></td>
+                  <td style="padding-right:5px"><textarea name="" id="" cols="30" rows="5"></textarea></td>
+                </tr>
+              </tbody>
+            </table>
+          </span>
+        </div>
+        <!-- section end -->
+        <!-- section start -->
+        <div class="listing_kb_inner" style="padding-top:30px;">
+          <span>
+            <table style="overflow-x:auto; display:inline-block" class="table-header" summary="Leave Quota Detail"> 
+              <h3 class="sectionfirst">HOUSE RENT DETAILS</h3>
+              <thead>
+                <tr>
+                  <th scope="col"><span title="">S.No</span></th>
+                  <th scope="col"><span title="">From Date</span></th>
+                  <th scope="col"><span title="">To Date</span></th>
+                  <th scope="col"><span title="">City</span></th>
+                  <th scope="col"><span title="">Landlord Name</span></th>
+                  <th scope="col"><span title="">Address</span></th>
+                  <th scope="col"><span title="">PAN No</span></th>
+                  <th scope="col"><span title="">Declared Amount</span></th>
+                  <th scope="col"><span title="">Actual Amount</span></th>
+                  <th scope="col"><span title="">Approved Amount</span></th>
+                  <th scope="col"><span title="">Document</span></th>
+                  <th scope="col"><span title="">Approver Remarks</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <span id="newLeaveRequestForm:startdate" class="leaveStartDate">
+                      <input type="text" class="datepicker">
+                    </span>
                   </td>
-<td>
-                  No Limit   
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-
-</tr>
-<tr>
-<td>
-80TTA (Interest of Saving Account)    
+                  <td>
+                    <span id="newLeaveRequestForm:startdate" class="leaveStartDate">
+                      <input type="text" class="datepicker">
+                    </span>
                   </td>
-<td>
-10000.00
-                  
-                
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
+                  <td>
+                    <select id="city">
+                      <option> delhi</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input type="text" style="width:95px;">
+                  </td>
+                  <td>
+                    <input type="text" style="width:95px;">
+                  </td>
+                  <td>
+                    <input type="text" style="width:95px;">
+                  </td>
+                  <td>
+                    <input type="text" style="width:95px;" value="0.00">
+                  </td>
+                  <td>
+                    <a href="#">Attached</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- section end -->
+          <div class="listing_kb_inner" style="padding-top:30px;">
+            <span>
+              <table class="table-header" summary="Leave Quota Detail">
+                 <h3 class="sectionfirst">OTHER INCOME</h3>
+                <thead>
+                  <tr>
+                    <th scope="col"><span title="">Section Name</span></th>
+                    <th scope="col"><span title="">Maximum Amount</span></th>
+                    <th scope="col"><span title="">Declared amount</span></th>
+                    <th scope="col"><span title="">Actual amount</span></th>
+                    <th scope="col"><span title="">Approved amount</span></th>
+                    <th scope="col"><span title="">Document</span></th>
+                    <th scope="col"><span title="">Approver Remarks</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="list in taxdata" ng-if="list.taxType=='OTHER INCOME'">
+                    <td style="width:35%">{{list.sectionName}}</td>
+                    <td>{{list.maxAmount}}</td>
+                    <td><input type="text" ng-value="list.declaredAmount"></td>
+                    <td><input type="text" ng-value="list.actualAmount"></td>
+                    <td><input type="text" ng-value="list.approvedAmount"></td>
+                    <td><a href="">attach</a></td>
+                    <td style="padding-right:5px"><textarea name="" id="" cols="30" rows="5"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </span>
+          </div>
 
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-80CCG                   </td>
-<td>
-50000 
-                  
-                
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-80CCD1-NPS– Employee Contribution upto 10% of Basic salary(subject to 1.50 lakhs)</td>
-<td>
-50000 
-                  
-                
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-80EE:For first time home buyers with additional deduction up to 50,000/-(over and above Section 24B)  </td>
-<td>
-50000.00                 
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-80GGA </td>
-<td>
-No Limit </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-UTP_R_PLAN  </td>
-<td>
-No Limit </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-Additional Contribution u/s 80CCD(1B)-NPS  </td>
-<td>
-50000  </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-</tbody>
-</table>
-</span>
-
+          <div class="NLleave" style="margin-top:10px">
+            <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+              <div class="ui-panel-content ui-widget-content">
+                <button name="newLeaveRequestForm:updateDown" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success"  title="" type="submit" role="button" aria-disabled="false">
+                  <span class="ui-button-text ui-c">SAVE</span>
+                </button>
+                <button name="newLeaveRequestForm:done" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false">
+                  <span class="ui-button-text ui-c">SUBMIT</span>
+                </button>
+                <button name="newLeaveRequestForm:done" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false">
+                  <span class="ui-button-text ui-c">CANCEL</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" class="table-header" summary="Leave Quota Detail">
-            CHAPTER VIA - SECTION 80C (MAXIMUM OF RS. 1,50,000 )
-
-<thead>
-<tr>
-<th scope="col"><span title="">Section Name</span></th>
-<th scope="col"><span title="">Maximum Amount</span></th>
-<th scope="col"><span title="">Declared amount</span></th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-        Contribution to(80CCC)   
-  
-                  </td>
-<td>
-                  150000.00 
- 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-
-</tr>
-<tr>
-  <tr>
-<td>
-        Children-Tuition Fee(EDU) 
-  
-                  </td>
-<td>
-                  150000.0 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-
-</tr>
-<tr>
-<td>
-Fixed Deposit (5years & Above)(FD)    
-                  </td>
-<td>
-                  150000.0 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-</tr>
-<tr>
-<td>
-Life Insurance Premium                    </td>
-<td>
-                  150000.0 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-
-</tr>
-<tr>
-<td>
-Mutual Fund   
-                  </td>
-<td>
-                  150000.0 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-</tr>
-<tr>
-<td>
-        Deposit in NSC    
-  
-                  </td>
-<td>
-                  150000.0 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-</tr>
-<tr>
-<td>
-        Accrued NSC Interest   
-  
-                  </td>
-<td>
-                  150000.0 
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-</tr>
-<tr>
-<td>
-        Public Provident Fund   
-  
-                  </td>
-<td>
-                  150000.0   
-                  
-                
-              </td>
-<td>
-                  <input type="text" value="00.0">
-                
-
-              </td>
-
-
-</tr>
-<tr>
-<td>
-Repayment of Housing Loan - 100000    
-                  </td>
-<td>
-150000.00
-                  
-                
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-ULIP/ELSS                    </td>
-<td>
-150000 
-                  
-                
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-Sukanya Samriddhi Yojana (for Girl Child) </td>
-<td>
-150000 
-                  
-                
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-Senior Citizen Saving Scheme  </td>
-<td>
-150000.00                 
-              </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-              </td>
-</tr>
-<tr>
-<td>
-Post of Deposit  </td>
-<td>
-150000.00 </td>
-<td>
-                <input type="text" value="0.00">
-                
-
-              </td>
-              <td>
-                <td class="td_outputCol">
-
-
-              </td>
-</tr>
-
-</tbody>
-</table>
-
-</span>
-
-          </div>
-        </div>
-        <div class="listing_kb_inner" style="padding-top:30px;"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" style="padding-top:21px;" class="table-header" summary="Leave Quota Detail">
-            
-
-<thead>
-  HOUSE RENT DETAILS
-<tr>
-<th scope="col"><span title="">S.No</span></th>
-<th scope="col"><span title="">From Date</span></th>
-<th scope="col"><span title="">To Date</span></th>
-<th scope="col"><span title="">City</span></th>
-<th scope="col"><span title="">Landlord Name</span></th>
-<th scope="col"><span title="">Address</span></th>
-<th scope="col"><span title="">Landlord PAN No</span></th>
-<th scope="col"><span title="">Declared Amount</span></th>
-<th scope="col"><span title="">Document</span></th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-
-<tr>
-<td>
-  1
-</td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<span id="newLeaveRequestForm:startdate" class="leaveStartDate">
-<input type="text" class="datepicker">
-</span></td>
-<td>
-<select id="city">
-<option> delhi</option>
-</select>
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-<input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;">
-</td>
-<td>
-  <input type="text" style="width:95px;" value="0.00">
-</td>
-<td>
-<a href="#">Attached</a>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
 
-        <div class="listing_kb_inner" style="padding-top:30px;"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" style="padding-top:21px;" class="table-header" summary="Leave Quota Detail">
-            
+<script>
+  var c = 0;
+  myFunc();
+  function myFunc(){
+    c=10;
+    console.log(c);
+  }
+ 
+  
+</script>
 
-<thead>
-  HOUSE RENT DETAILS
-<tr>
-<th scope="col"><span title="">Selection Name</span></th>
-<th scope="col"><span title="">Maximum Amount</span></th>
-<th scope="col"><span title="">Declared Amount</span></th>
-
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-  Income from other than Salary 
-</td>
-<td>
-  No Limit  
-</td>
-<td>
-  <input type="text" value="0.0">
-</td>
-</tr>
-<tr>
-  <td>
-    Interest on Housing Loan (Letout) </td>
-    <td>200000  
-</td>
-<td>
-  <input type="text" value="0.0"></td>
-</tr>
-<tr>
-  <td>
-    Interest on housing loan(Self)  
-  </td>
-  <td>
-    200000</td>
-    <td>
-      <input type="text" value="0.0">
-    </td>
-  </tr>
-</tbody>
-
-</table>
-
-</span>
-
-        <div id="fbpStructureForm:j_idt14338" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="border:0px;" data-widget="widget_fbpStructureForm_j_idt14338"><div id="fbpStructureForm:j_idt14338_content" class="ui-panel-content ui-widget-content"></div></div>
-        <div id="fbpStructureForm:conditionPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all listing_content" style="border:0px;" data-widget="widget_fbpStructureForm_conditionPanel"><div id="fbpStructureForm:conditionPanel_content" class="ui-panel-content ui-widget-content">
-
-          <span class="heading-style"><label title="">
-DISCLAIMER</label></span><div id="fbpStructureForm:j_idt14355" class="ui-panel ui-widget ui-widget-content ui-corner-all listing_content_inner declaration_align" style="border:0px;" data-widget="widget_fbpStructureForm_j_idt14355"><div id="fbpStructureForm:j_idt14355_content" class="ui-panel-content ui-widget-content"><input id="fbpStructureForm:disclaimer" type="checkbox" name="fbpStructureForm:disclaimer" checked="checked" class="margin_r10 check_bk"><label class="label_bk">
-I hereby declare that all the declarations submitted by me are correct and accurate and        I am solely responsible for any income tax liability arising out of a wrong        declaration. Further, any Incorrect bills/tampered documents submitted shall considered as violation        of the code of conduct and will attract disciplinary actions against me.</label></div></div></div></div>
-
-
-
-      <div class="NLleave"><div id="newLeaveRequestForm:btnFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_btnFldId"><div id="newLeaveRequestForm:btnFldId_content" class="ui-panel-content ui-widget-content"><button id="newLeaveRequestForm:updateDown" name="newLeaveRequestForm:updateDown" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">SAVE</span></button><button id="newLeaveRequestForm:done" name="newLeaveRequestForm:done" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">SUBMIT</span></button>
-      <button id="newLeaveRequestForm:done" name="newLeaveRequestForm:done" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">CANCEL</span></button></div></div>
-      </div></div></div>
-        </span>

@@ -1,3 +1,13 @@
+<style>
+    a:focus, a:hover{
+        text-decoration: none !important;
+    }
+    .sub-menu ul > li > a.active, .sub-menu ul > li > a:hover {
+        background-color: rgb(255, 255, 255) !important;
+    }
+    
+</style>
+
 <div class="sidebar-inner c-overflow ng-scope mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;">
     <div class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" id="mCSB_1" tabindex="0">
         <div class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" dir="ltr" id="mCSB_1_container" style="position: relative; top: 0px; left: 0px; width: 100%;">
@@ -34,51 +44,48 @@
                     <a href="" toggle-submenu=""><i class="zmdi zmdi-trending-up"></i>PAYROLL</a>
                 <ul>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.payslip" data-ui-sref-active="active" href="#/user-interface/payslip">Payslip</a>
-                    </li>
-                    <li><a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.fbpplanner" data-ui-sref-active="active" href="#/user-interface/fbpplanner">FBP Planner</a>
+                        <a data-ui-sref="user-interface.payslip" ng-class="{active: $state.includes('user-interface.payslip')}">Payslip</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.investment" data-ui-sref-active="active" href="#/user-interface/investment">Investment Declaration</a>
+                        <a data-ui-sref="user-interface.salary" ng-class="{active: $state.includes('user-interface.salary')}">Salary</a>
+                    </li>
+                    <li><a data-ui-sref="user-interface.fbpplanner" ng-class="{active: $state.includes('user-interface.fbpplanner')}">FBP Planner</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.ctcclaim" data-ui-sref-active="active" href="#/user-interface/ctcclaim">New CTC Claim</a>
+                        <a data-ui-sref="user-interface.investment" ng-class="{active: $state.includes('user-interface.investment')}">Investment Declaration</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.myclaims" data-ui-sref-active="active" href="#/user-interface/myclaims">My Claims</a>
+                        <a data-ui-sref="user-interface.ctcclaim" ng-class="{active: $state.includes('user-interface.ctcclaim')}">New CTC Claim</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.simulator" data-ui-sref-active="active" href="#/user-interface/simulator">Tax Simulator</a>
+                        <a data-ui-sref="user-interface.myclaims" ng-class="{active: $state.includes('user-interface.myclaims')}">My Claims</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.submission" data-ui-sref-active="active" href="#/user-interface/submission">Investment Submission</a>
+                        <a data-ui-sref="user-interface.simulator" ng-class="{active: $state.includes('user-interface.simulator')}">Tax Simulator</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.form16" data-ui-sref-active="active" href="#/user-interface/form16">Form 16</a>
+                        <a data-ui-sref="user-interface.submission" ng-class="{active: $state.includes('user-interface.submission')}">Investment Submission</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.voluntry" data-ui-sref-active="active" href="#/user-interface/voluntry">Voluntary Contribution</a>
+                        <a data-ui-sref="user-interface.form16" ng-class="{active: $state.includes('user-interface.form16')}">Form 16</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.slip" data-ui-sref-active="active" href="#/user-interface/slip">Reimbursement Slip</a>
+                        <a data-ui-sref="user-interface.voluntry" ng-class="{active: $state.includes('user-interface.voluntry')}">Voluntary Contribution</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.hire" data-ui-sref-active="active" href="#/user-interface/hire">Car Hire</a>
+                        <a data-ui-sref="user-interface.slip" ng-class="{active: $state.includes('user-interface.slip')}">Reimbursement Slip</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.my12bb" data-ui-sref-active="active" href="#/user-interface/my12bb">My 12BB</a>
+                        <a data-ui-sref="user-interface.my12bb" ng-class="{active: $state.includes('user-interface.my12bb')}">My 12BB</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.payrollreport" data-ui-sref-active="active" href="#/user-interface/payrollreport">Payroll Report</a>
+                        <a data-ui-sref="user-interface.payrollreport" ng-class="{active: $state.includes('user-interface.payrollreport')}">Payroll Report</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.viewpayslip" data-ui-sref-active="active" href="#/user-interface/viewpayslip">View PaySlip</a>
+                        <a data-ui-sref="user-interface.viewpayslip" ng-class="{active: $state.includes('user-interface.viewpayslip')}">View PaySlip</a>
                     </li>
                     <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.16admin" data-ui-sref-active="active" href="#/user-interface/16admin">Form 16Admin</a>
-                    </li>
-                    <li>
-                        <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="user-interface.carlease" data-ui-sref-active="active" href="#/user-interface/carlease">Car Lease</a>
+                        <a data-ui-sref="user-interface.16admin" ng-class="{active: $state.includes('user-interface.16admin')}">Form 16Admin</a>
                     </li>
                 </ul>
             </li>

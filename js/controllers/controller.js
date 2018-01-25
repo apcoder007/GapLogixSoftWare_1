@@ -464,6 +464,7 @@ materialAdmin.controller('directoryCtrl', ['$scope', '$cookies', '$rootScope', '
 		
 		// console.log($localStorage.triplist);
 		$scope.triplist = $localStorage.triplist;
+		$scope.overlay = false;
 
 		Data.getLocation($scope.triplist.startLat, $scope.triplist.startLang)
 		.success(function(response){
@@ -478,15 +479,42 @@ materialAdmin.controller('directoryCtrl', ['$scope', '$cookies', '$rootScope', '
 		}).error(function(response){
 
 		});
-
-		$scope.reasontype = '';
-		$scope.date = '';
-		$scope.distance = '';
-		$scope.time = '';
+		
+		$scope.reasontype = 'Client Meeting';
+		$scope.date = $scope.triplist.dateNow;
+		$scope.distance = $scope.triplist.tDistance;
+		$scope.time = $scope.triplist.time;
 		$scope.reason = '';
+		$rootScope.employeeCode = $localStorage.empcode[0]['empCode'];
+		
 
 		$scope.updateTravel = function(){
-			console.log($scope.reasontype+" "+$scope.date+" "+$scope.distance+" "+$scope.time+" "+$scope.reason);
+			// console.log($scope.reasontype+" "+$scope.date+" "+$scope.distance+" "+$scope.time+" "+$scope.reason);
+			
+			var json_data = {
+				'empCode': $rootScope.employeeCode,
+				'tDistance': $scope.distance, 
+				'tTime': $scope.time,
+				'tripId': $scope.triplist.tripId, 
+				'reason': $scope.reasontype
+			}
+			
+			Data.updateTravel(json_data)
+			.success(function(response){
+				$scope.overlay = true;
+				$scope.omsg = 'Successfully updated travel!!';
+				$timeout(function(){
+					$scope.overlay = false;
+					$state.go($state.current, $state.params, { reload: true });
+				},2000);
+			}).error(function(response){
+				$scope.overlay = true;
+				$scope.omsg = 'Something is wrong!!';
+				$timeout(function(){
+					$scope.overlay = false;
+					$state.go($state.current, $state.params, { reload: true });
+				},2000);
+			});
 		}
 			
 		
@@ -2901,7 +2929,7 @@ materialAdmin.filter("dateFilter", function() {
         };
 	});
 	
-materialAdmin.controller("payCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', '$timeout', '$location', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, $timeout, $location){
+materialAdmin.controller("payCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', '$timeout', '$location', 'payDetails', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, $timeout, $location, payDetails){
 
  	$rootScope.logout = function(){
     
@@ -2917,7 +2945,12 @@ materialAdmin.controller("payCtrl", ['$scope', '$rootScope', 'Data', '$state', '
 	$rootScope.img_src = $localStorage.imgsrc;
 
 
- 	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+	 $rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+	 
+	 $scope.empcode = $localStorage.empcode[0]['empCode'];
+
+	$rootScope.paydetails = payDetails.data.pay_data[0];
+
 
  }]);
 
@@ -2929,4 +2962,323 @@ materialAdmin.controller("payrollController", ['$scope', '$rootScope', 'Data', '
 
  }]);
 
+ materialAdmin.controller("salaryController", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', 'empDetailsList', '$timeout', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, empDetailsList, $timeout){
+
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+
+	var select = document.getElementById("empcodelist");
+
+	$scope.overlay = false;
+
+	$scope.full_basic = "0.00";
+	$scope.full_hra = "0.00";
+	$scope.full_conv = "0.00";
+	$scope.full_da = "0.00";
+	$scope.full_sp_all = "0.00";
+	$scope.m_ctc = "0.00";
+	$scope.a_ctc = "0.00";
+	$scope.midic_mo_ent = "0.00";
+
+	var emplist = empDetailsList.data.configure_data;
+	angular.forEach(emplist, function(value, key){
+		var option = document.createElement("option");
+		option.text = value.empCode;
+		option.value = value.empCode;
+		select.appendChild(option);
+	});
+
+	$scope.changeFun = function(){
+		Data.getsalaryDetail($scope.selecteditem)
+		.success(function(response){
+			if(response.emp_data[0]){
+				$scope.empname = response.emp_data[0]['name'];
+				$scope.joiningdate = response.emp_data[0]['dateOfJoining'];
+				$scope.designation = response.emp_data[0]['designation'];
+				$scope.salary = response.emp_data[0]['Salary'];
+
+				$scope.full_conv = "1,600.00";
+				$scope.midic_mo_ent = "1,250.00";
+			}else{
+				$scope.empname = '';
+				$scope.joiningdate = '';
+				$scope.designation = '';
+				$scope.salary = '';
+
+				$scope.full_basic = "0.00";
+				$scope.full_hra = "0.00";
+				$scope.full_conv = "0.00";
+				$scope.full_da = "0.00";
+				$scope.full_sp_all = "0.00";
+				$scope.m_ctc = "0.00";
+				$scope.a_ctc = "0.00";
+				$scope.midic_mo_ent = "0.00";
+			}
+		}).error(function(){
+
+		});
+	}
+
+	$scope.changeSalary = function(){
+		$scope.full_basic = parseInt($scope.salary * 0.0333);
+		$scope.full_hra = parseInt($scope.salary * 0.0133);
+		$scope.full_conv = 1600.00;
+		$scope.full_da =  ($scope.full_basic+$scope.full_hra)-$scope.full_conv;
+		$scope.full_sp_all = 0;
+		$scope.m_ctc = $scope.salary/12;
+		$scope.a_ctc = "0.00";
+		$scope.midic_mo_ent = 1250;
+	}
+
+	$scope.saveSalary = function(){
+		if($scope.selecteditem){
+			var json_data = {
+				"empCode":$scope.selecteditem,
+				"basic":$scope.full_basic,
+				"houseRent":"1200",
+				"netSalary":$scope.m_ctc,
+				"cca":$scope.full_da,
+				"fullDA":$scope.full_da,
+				"specialAllowance":$scope.full_sp_all,
+				"monthlyCtc":$scope.m_ctc,
+				"annualCtc":$scope.salary,
+				"medical":$scope.midic_mo_ent,
+				"effectiveForm":$scope.effectivedate,
+				"payoutMonth":$scope.paymonth,
+				"remarks":$scope.remarks
+			}
+			Data.saveSalary(json_data)
+			.success(function(response){
+				$scope.overlay = true;
+				$scope.omsg = "successfully claimed";
+				$timeout(function(){
+					$scope.overlay = false;
+				},2000);
+				
+			}).error(function(response){
+				$scope.overlay = true;
+				$scope.omsg = "Something is wrong!!"
+				$timeout(function(){
+					$scope.overlay = false;
+				},2000);
+			});
+		}else{
+			alert('please input employee code');
+		}
+	}
+
+
+}]);
+
+materialAdmin.controller("ctcclaimCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', 'claimData', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, claimData){
+
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+
+	
+		$scope.tasklist = claimData.data.emp_data;
+
+		var length=$scope.tasklist.length;
+		var dataArray=[];
+		
+		
+		for (var i=0; i<length; i++) {
+				dataArray.push(['<input class="selectemp" type="checkbox" value="'+$scope.tasklist[i]['empCode']+'">',$scope.tasklist[i]['empCode'], $scope.tasklist[i]['name'], $scope.tasklist[i]['revisedSalary'], $scope.tasklist[i]['effectiveForm'], $scope.tasklist[i]['PayoutDate'], $scope.tasklist[i]['payoutMonth'], $scope.tasklist[i]['Status']]);
+		} 
+		
+		$('.form_content_inner').html('<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped" id="vehicle-table" style="font-size: 12px;"><\/table>' );
+		
+		$('#vehicle-table').dataTable( {
+			"data": dataArray,
+			 "colReorder": true,
+			//  "buttons": ['copy', 'excel', 'pdf','colvis',],
+			 "dom": 'Blfrtip',
+			 "lengthMenu": [[10, 15, 20, -1], [10, 15, 20, "All"]],
+			 "responsive": true,
+			"columns": [
+				{ "title": "Select" },
+				{ "title": "empCode" },
+				{ "title": "name"},
+				{ "title": "revisedSalary"},
+				{ "title": "effectiveFrom"},
+				{ "title": "payoutDate" },
+				{ "title": "payoutMonth" },
+				{ 'title': "status"}
+			]
+		});
+
+	var selectedemp = [];
+	
+	$('.selectemp').on("change", function(){
+		selectedemp.push(this.value);
+	});
+
+	$scope.approveSalary = function(){
+		console.log(selectedemp);
+	}
+
+
+}]);
+
+materialAdmin.controller("fbpCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', 'fbpDetails', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, fbpDetails){
+
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+
+	$scope.fbpdetails = fbpDetails.data.fbp_data;
+
+	console.log($scope.fbpdetails);
+
+}]);
+
+materialAdmin.controller("investCtrl", ['$scope', '$rootScope', 'Data', '$state', '$stateParams', 'AuthenticationService', '$cookies', '$localStorage', 'taxdata', function($scope, $rootScope, Data, $state, $stateParams, AuthenticationService, $cookies, $localStorage, taxdata){
+
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+
+	$scope.taxdata = taxdata.data.tax_data;
+
+	console.log($scope.taxdata);
+
+}]);
+
+materialAdmin.controller('reportCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout){
+	
+	$rootScope.logininfo = $cookies.getObject('globals').currentUser.id;
+	
+	$rootScope.employeeCode = $localStorage.empcode[0]['empCode'];
+	
+		// console.log($localStorage.empcode[0]['empCode']);
+		
+	$scope.imgsrc = $localStorage.imgsrc;
+	$rootScope.img_src = $localStorage.imgsrc;
+
+		
+	}]);
+
+materialAdmin.controller('payreportCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout){
+
+	$scope.overlay = true;
+	$scope.paytable = false;
+
+	function daysInMonth(month, year) {
+		return new Date(year, month, 0).getDate();
+	}
+
+	var dt = new Date();
+	
+	
+
+	// $scope.months = '';
+	$scope.selectMonth = function(months){
+		$scope.overlay = false;
+		$scope.paytable = true;
+		
+		var days = daysInMonth(months, dt.getFullYear());
+		
+		Data.getpayrollattendance(months)
+		.success(function(response){
+			$scope.tasklist = response.attendance_data;
+
+			var length=$scope.tasklist.length;
+			var dataArray=[];
+			
+			
+			for (var i=0; i<length; i++) {
+
+					dataArray.push([$scope.tasklist[i]['empCode'], days, $scope.tasklist[i]['presentDay'], $scope.tasklist[i]['takenCI'], $scope.tasklist[i]['takenPI'], $scope.tasklist[i]['takenSI']]);
+			} 
+			
+			$('.reportcontent').html('<table cellpadding="0" cellspacing="0" border="0" class="display table table-striped" id="vehicle-table" style="font-size: 12px;"><\/table>' );
+			
+			$('#vehicle-table').dataTable( {
+				"data": dataArray,
+				"colReorder": true,
+				"buttons": ['copy', 'excel', 'pdf','colvis',],
+				"dom": 'Blfrtip',
+				"lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+
+				"responsive": true,
+				"columns": [
+					{ "title": "empCode" },
+					{ "title": "WorkingDays" },
+					{ "title": "PresentDay" },
+					{ 'title': "CL"},
+					{ "title": "PL" },
+					{ 'title': "SL"}
+				]
+			});
+
+		}).error(function(response){
+
+		});
+	}
+
+	
+}]);
+
+materialAdmin.controller('salaryreportCtrl', ['$scope', '$cookies', '$rootScope', '$localStorage', 'Data', 'AuthenticationService', '$state', '$location', '$timeout', function($scope, $cookies, $rootScope, $localStorage, Data, AuthenticationService, $state, $location, $timeout){
+
+	$scope.overlay = true;
+	$scope.paytable = false;
+
+	function daysInMonth(month, year) {
+		return new Date(year, month, 0).getDate();
+	}
+
+	var dt = new Date();
+	
+	
+
+	// $scope.months = '';
+	$scope.selectMonth = function(months){
+		$scope.overlay = false;
+		$scope.paytable = true;
+		
+		var days = daysInMonth(months, dt.getFullYear());
+		
+		Data.getsalaryReport(months)
+		.success(function(response){
+			$scope.tasklist = response.salary_data;
+
+			var length=$scope.tasklist.length;
+			var dataArray=[];
+			
+			
+			for (var i=0; i<length; i++) {
+
+					dataArray.push([$scope.tasklist[i]['empCode'], $scope.tasklist[i]['ctc'], $scope.tasklist[i]['netSalary'], $scope.tasklist[i]['bonus'], $scope.tasklist[i]['basic'], $scope.tasklist[i]['cca'], $scope.tasklist[i]['Accurate'], $scope.tasklist[i]['houseRent'], $scope.tasklist[i]['medical'], days, $scope.tasklist[i]['PresentDay'], $scope.tasklist[i]['takenCl'], $scope.tasklist[i]['takenPI'], $scope.tasklist[i]['takenSI']]);
+			} 
+			
+			$('.reportcontent').html('<table cellpadding="0" cellspacing="0" width="100%" border="0" class="display table table-striped" id="vehicle-table" style="font-size: 12px;"><\/table>' );
+			
+			$('#vehicle-table').dataTable( {
+				"scrollX": true,
+				"data": dataArray,
+				"colReorder": true,
+				"buttons": ['copy', 'excel', 'pdf','colvis',],
+				"dom": 'Blfrtip',
+				"lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+				"responsive": true,
+				"columns": [
+					{ "title": "empCode" },
+					{ "title": "ctc" },
+					{ "title": "netSalary" },
+					{ "title": "bonus" },
+					{ "title": "basic" },
+					{ "title": "cca" },
+					{ "title": "accurate" },
+					{ "title": "houserent" },
+					{ "title": "medical" },
+					{ "title": "WorkingDays" },
+					{ "title": "PresentDay" },
+					{ 'title': "CL"},
+					{ "title": "PL" },
+					{ 'title': "SL"}
+				]
+			});
+
+		}).error(function(response){
+
+		});
+	}
+
+	
+}]);
 

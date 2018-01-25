@@ -663,6 +663,110 @@ materialAdmin.service("Data", function($http, $localStorage){
 		});
 	}
 
+	this.updateTravel = function(json_data){
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/request/update/trip/'
+		});
+	}
+
+	this.getPayDeatils = function(){
+		var json_data = {
+			'empCode':$localStorage.empcode[0]['empCode']
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/employee/payslip/'
+		}).success(function(response){
+			return response;
+		}).error(function(response){
+
+		})
+	}
+
+	this.getFbpDetails = function(){
+		var json_data = {
+			'empCode':$localStorage.empcode[0]['empCode']
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/fbp/planeer/'
+		}).success(function(response){
+			return response;
+		}).error(function(response){
+			
+		})
+	}
+
+	this.getTaxData = function(){
+		var json_data = {
+			'empCode':$localStorage.empcode[0]['empCode']
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/tax/declair/'
+		}).success(function(response){
+			return response;
+		}).error(function(response){
+			
+		})
+	}
+
+	this.getpayrollattendance = function(month){
+		var json_data = {
+			'month':month
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/pyroll/attendance/'
+		});
+	}
+
+	this.getsalaryReport = function(month){
+		var json_data = {
+			'month':month
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:' https://gapapi-100.appspot.com/api/payroll/salary/'
+		});
+	}
+
+	this.getsalaryDetail = function(empcode){
+		var json_data = {
+			'empCode':empcode
+		}
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/payroll/empInfo/'
+		});
+	}
+
+	this.saveSalary = function(json_data){
+		return $http({
+			method:'post',
+			data:json_data,
+			url:'https://gapapi-100.appspot.com/api/update/employee/salary/'
+		});
+	}
+
+	this.ctcclaimData = function(){
+		 return $http({
+			method:'post',
+			url:'https://gapapi-100.appspot.com/api/payroll/revisedSalary/'
+		}).success(function(response){
+			return response.emp_data;
+		}).error(function(response){
+
+		})
+	}
 
 });
 

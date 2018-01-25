@@ -10,6 +10,30 @@ materialAdmin
 
 
         $stateProvider
+
+            // -----------------------------
+            // REPORT GENERATE
+            // -----------------------------
+
+            .state ('report', {
+                url: '/report',
+                templateUrl: 'views/report.html',
+                controller:'reportCtrl'
+            })
+            .state ('report.index', {
+                url: '/index',
+                templateUrl: 'views/report_index.html'
+            })
+            .state ('report.payroll', {
+                url: '/payroll',
+                templateUrl: 'views/report_payroll.html',
+                controller:'payreportCtrl'
+            })
+            .state ('report.salary', {
+                url: '/salary',
+                templateUrl: 'views/report_salary.html',
+                controller:'salaryreportCtrl'
+            })
         
             //------------------------------
             // HOME
@@ -181,7 +205,12 @@ materialAdmin
             .state ('user-interface', {
                 url: '/user-interface',
                 templateUrl: 'views/common3.html',
-                controller:'payCtrl'
+                controller:'payCtrl',
+                resolve:{
+                    payDetails: function(Data){
+                    return Data.getPayDeatils();
+                    }
+                }
             })
         
             .state ('user-interface.ui-bootstrap', {
@@ -195,19 +224,48 @@ materialAdmin
                 controller: 'payrollController'
             })
 
+            .state ('user-interface.salary', {
+                url: '/salary',
+                templateUrl: 'views/salary.html',
+                controller: 'salaryController',
+                resolve:{
+                    empDetailsList: function(Data){
+                    return Data.getEmpWithImageList();
+                    }
+                }
+            })
+
             .state ('user-interface.fbpplanner', {
                 url: '/fbpplanner',
-                templateUrl: 'views/fbpplanner.html'
+                templateUrl: 'views/fbpplanner.html',
+                controller:'fbpCtrl',
+                resolve:{
+                    fbpDetails:function(Data){
+                        return Data.getFbpDetails();
+                    }
+                }
             })
         
             .state ('user-interface.investment', {
                 url: '/investment',
-                templateUrl: 'views/investment.html'
+                templateUrl: 'views/investment.html',
+                controller:'investCtrl',
+                resolve:{
+                    taxdata:function(Data){
+                        return Data.getTaxData();
+                    }
+                }
             })
         
             .state ('user-interface.ctcclaim', {
                 url: '/ctcclaim',
-                templateUrl: 'views/ctcclaim.html'
+                templateUrl: 'views/ctcclaim.html',
+                controller:'ctcclaimCtrl',
+                resolve:{
+                    claimData:function(Data){
+                        return Data.ctcclaimData();
+                    }
+                }
             })
         
             .state ('user-interface.myclaims', {
@@ -751,6 +809,8 @@ materialAdmin
                     }
                 }
             })
+
+            
             
             //------------------------------
             // BREADCRUMB DEMO

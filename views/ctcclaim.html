@@ -1,321 +1,68 @@
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
-  <script>
+<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css"> -->
+<script>
   $( function() {
     $( ".datepicker" ).datepicker();
   } );
-  </script>
+</script>
+<style>
+  .form_content_inner{
+    min-height: 550px;
+  }
+  .dt-buttons{
+    display: none;
+  }
+  #vehicle-table{
+    width: 100% !important;
+  }
+  #vehicle-table thead tr th, #vehicle-table tbody tr td{
+    width: auto !important;
+  }
+  .sorting_asc{
+    padding-left: 0px !important;
+  } 
+  .sorting_1{
+    padding-left: 15px !important;
+  }
+  .btn-group-div{
+    width: 20%;
+    float: right;
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: -4%;
+  }
+  .btn-group-div .btn{
+    margin-left: 3%;
+    background-color: #4e88c7;
+  }
+</style>
 
-<div class="mdl-grid demo-content"> <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col"> 
+<div class="mdl-grid demo-content"> 
+  <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--12-col"> 
+    <span class="center-body-false" >
 
-<span id="include" class="center-body-false" >
-<form id="newLeaveRequestForm" name="newLeaveRequestForm" method="post" action="/home.jsf?cid=2" class="colorBackground" enctype="multipart/form-data">
-<input type="hidden" name="newLeaveRequestForm" value="newLeaveRequestForm">
+      <div class="ui-panel ui-widget ui-widget-content ui-corner-all">
+        <div class="ui-panel-content ui-widget-content">
 
+          <span>
+            <span>
+              <div class="form_content fax_m">
+                <div class="panel_title">
+                  <span title="">NEW CTC CLAIM</span>
+                </div>
+                <div class="btn-group-div">
+                  <button type="button" class="btn btn-secondary" ng-click="approveSalary()">Approve</button>
+                  <button type="button" class="btn btn-secondary">Reject</button>
+                </div>
+                <div class="form_content_inner">
+                  
+                </div>
+              </div>
+            </span>
+          </span>
 
-    <!-- <label title="WCAG guidelines label" styleclass="display_none"></label> -->
-    <div id="newLeaveRequestForm:mainPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_mainPanel"><div id="newLeaveRequestForm:mainPanel_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:reqFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_reqFldId"><div id="newLeaveRequestForm:reqFldId_content" class="ui-panel-content ui-widget-content"><div id="newLeaveRequestForm:errorMessages" class="ui-messages ui-widget" aria-live="polite"></div></div></div><span id="newLeaveRequestForm:newLeaveRequestPanel1"><span id="newLeaveRequestForm:newLeaveRequestPanel12">
-          <div class="form_content fax_m">
-            <div class="panel_title"><span title="">EMPLOYEE INFORMATION</span>
-            </div>
-
-            <div class="form_content_inner"><table>
-<tbody>
-<tr>
-<td class="td_labelCol"><label title="">
-Employee Code:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:applicationdate">DN11117</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-<td class="td_labelCol"><label class="redColor">
-*</label><label for="newLeaveRequestForm:leaveReasondropDown2_focus" title="">
-Employee Name:</label></td>
-<td class="td_outputCol">
-  <span id="newLeaveRequestForm:applicationdate">Dileep Kumar</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div>
-
-
-
-
-</td>
-</tr>
-<tr>
-
-<td class="td_labelCol"><label class="redColor">
-*</label><label for="newLeaveRequestForm:startdate_input" title="">
-Date Of Joining</label>
-</td>
-<td class="td_outputCol">
-
-<span id="newLeaveRequestForm:applicationdate">20/9/2017</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-
-<td class="td_labelCol"><label class="redColor">
-*</label><label for="newLeaveRequestForm:enddate_input" title="">
-Designation:</label>
-</td>
-<td class="td_outputCol">
-<span id="newLeaveRequestForm:applicationdate">Developer</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div>
-</td>
-</tr>
-
-<tr>
-<td class="td_labelCol">
-<label class="redColor">
-*</label><label for="newLeaveRequestForm:leaveReasondropDown1_focus" title="">
-Grade:</label>
-</td>
-<td class="td_outputCol">
-
-<span id="newLeaveRequestForm:applicationdate">A</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div>
-
-</td>
-<td class="td_labelCol"><label for="newLeaveRequestForm:commentsTxtId" title="">
-Location:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:applicationdate">Noida.Delhi</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-</tr>
-
-<tr>
-<td class="td_labelCol"><label title="">
-Organisation Unit:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:numberofdays">1.0</span></td>
-<td class="td_labelCol"><label for="newLeaveRequestForm:commentsTxtId" title="">
-Offical Email Id:</label></td>
-<td class="td_outputCol"><span id="newLeaveRequestForm:applicationdate">admin@g-translogistics.com</span><div id="newLeaveRequestForm:j_idt1821" aria-live="polite" class="ui-message"></div></td>
-</tr>
-</tbody>
-</table>
-
-
-            </div>
-          </div></span></span>
-        <div class="listing_kb">
-          
-
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:newLeaveRequestLeaveDetails"><div id="newLeaveRequestForm:locholidaysDetail" class="ui-datatable ui-widget table-header"><div class="ui-datatable-tablewrapper"><table role="grid" summary="New Leave Request Leave Details">
-          </table>
-          </div>
-          </div></span>
-
-          </div>
         </div>
-        <div class "month" style="padding-bottom:23px;font-size:16px;">Claim Month: Janurary</div>
-        <div class="listing_kb">
-          <table width="100%">
-            <tbody><tr>
-              <td width="50%" align="left" class="titleTBnone"><span class="heading-style"><span title="">FLEXIBLE COMPONENT</span>
-              </span></td>
-              <td width="50%" align="right"></td>
-            </tr>
-          </tbody></table>
-          <div class="listing_kb_inner"><span id="newLeaveRequestForm:entitlementPanel22"><table id="newLeaveRequestForm:leaveQuotaDetail" class="table-header" summary="Leave Quota Detail">
-<thead>
-<tr>
-<th scope="col"><span title="">Claim Type</span></th>
-<th scope="col"><span title="">Opening Balance</span></th>
-<th scope="col"><span title="">Yearly Entitlement</span></th>
-<th scope="col"><span title="">Prorated Entitlement</span></th>
-<th scope="col"><span title="">YTD Eligibility</span></th>
-<th scope="col"><span title="">Ytd Paid</span></th>
-<th scope="col"><span title="">Claim Limit</span></th>
-<th scope="col"><span title="">Carry Forward</span></th>
-<th scope="col"><span title="">Claim Amount</span></th>
-<th scope="col"><span title="">Document</span></th>
-
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-        FOOD Allowance 
-  
-                  </td>
-<td>
-                  0.0 
-                  
-                
-              </td>
-<td>
-                  42000.0 
-                
-
-              </td>
-<td>              42000.0            
-            </td>
-            <td>42000.0 </td>
-            <td>0.0 </td>
-            <td>42000.0 </td>
-            <td>0.0 </td>
-            <td><input type="text" style="width:80px;" >
-              <td><a href="">Attachment</a>
-          </td>
-
-</tr>
-<tr>
-<td>
-        Fuel and Driver  
-  
-                  </td>
-<td>
-                  0.0 
-                  
-                
-              </td>
-<td>
-                  300000.0 
-                
-
-              </td>
-<td>              283935.0           
-            </td>
-            <td>283935.0</td>
-            <td>0.0 </td>
-            <td>283935.0 </td>
-            <td>0.0 </td>
-            <td><input type="text" style="width:80px;" >
-              <td><a href="">Attachment</a>
-          </td>
-
-</tr>
-<tr>
-<td>
-House Rent Allowance    
-                  </td>
-<td>
-                  0.0 
-                  
-                
-              </td>
-<td>
-                  0.0 
-                
-
-              </td>
-<td>              8200.0            
-            </td>
-            <td>8200.0</td>
-            <td>0.0 </td>
-            <td>8200.0 </td>
-            <td>0.0 </td>
-            <td><input type="text" style="width:80px;" >
-              <td><a href="">Attachment</a>
-          </td>
-
-</tr>
-<tr>
-<td>
-LTA   
-                  </td>
-<td>
-                  0.0 
-                  
-                
-              </td>
-<td>
-                  0.0 
-                
-
-              </td>
-<td>              1500.0            
-            </td>
-            <td>1500.0</td>
-            <td>0.0 </td>
-            <td>1500.0 </td>
-            <td>0</td>
-            <td>Enter LTA Details</td>
-            <td>
-            <a href="">Attachment</a>
-          </td>
-
-</tr>
-<tr>
-<td>
-Medical    
-                  </td>
-<td>
-                  0.0 
-                  
-                
-              </td>
-<td>
-15000.0 
-                
-
-              </td>
-<td>              15000.0            
-            </td>
-            <td>15000.0 </td>
-            <td>0.0 </td>
-            <td>15000.0 </td>
-            <td>0.0</td>
-            <td><a href="#">Enter Medical details</a></td>
-              <td><a href="">Attachment</a>
-          </td>
-
-</tr>
-<tr>
-<td>Vehicle Maintenance    
-                  </td>
-<td>
-                  0.0 
-                  
-                
-              </td>
-<td>
-257896.0  
-                
-
-              </td>
-<td>              257896.0              
-            </td>
-            <td>257896.0  </td>
-            <td>0.0 </td>
-            <td>257896.0  </td>
-            <td>0.0</td>
-            <td><input type="text" style="width:75px;"></td>
-              <td><a href="">Attachment</a>
-          </td>
-
-</tr>
-
-
-
-
-
-
-
-</tbody>
-</table>
-</span>
-<span id="ctcReimbursement:claimSummaryDetail">
-        <div class="form_content">
-
-          <div class="panel_title"><span title="">Claim Summary</span>
-          </div>
-
-          <div class="form_content_inner"><table id="ctcReimbursement:claimSummaryDetailid">
-<tbody>
-<tr>
-<td class="td_labelCol"><label title="">
-Total Claimed Amount:</label></td>
-<td class=" auto"><span id="ctcReimbursement:totalCliamAmtID">0.0</span></td>
-<td><input id="ctcReimbursement:hiddenValue" type="hidden" name="ctcReimbursement:hiddenValue" value="false"></td>
-</tr>
-</tbody>
-</table>
-
-
-          </div>
-        </div></span>
-
-          </div>
-        </div>
-        <div id="fbpStructureForm:j_idt14338" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="border:0px;" data-widget="widget_fbpStructureForm_j_idt14338"><div id="fbpStructureForm:j_idt14338_content" class="ui-panel-content ui-widget-content"></div></div>
-        <div id="fbpStructureForm:conditionPanel" class="ui-panel ui-widget ui-widget-content ui-corner-all listing_content" style="border:0px;" data-widget="widget_fbpStructureForm_conditionPanel"><div id="fbpStructureForm:conditionPanel_content" class="ui-panel-content ui-widget-content">
-
-          <span class="heading-style"><label title="">
-DISCLAIMER</label></span><div id="fbpStructureForm:j_idt14355" class="ui-panel ui-widget ui-widget-content ui-corner-all listing_content_inner declaration_align" style="border:0px;" data-widget="widget_fbpStructureForm_j_idt14355"><div id="fbpStructureForm:j_idt14355_content" class="ui-panel-content ui-widget-content"><input id="fbpStructureForm:disclaimer" type="checkbox" name="fbpStructureForm:disclaimer" checked="checked" class="margin_r10 check_bk"><label class="label_bk">
-I hereby declare that all the declarations submitted by me are correct and accurate and        I am solely responsible for any income tax liability arising out of a wrong        declaration. Further, any Incorrect bills/tampered documents submitted shall considered as violation        of the code of conduct and will attract disciplinary actions against me.</label></div></div></div></div>
-
-
-
-      <div class="NLleave"><div id="newLeaveRequestForm:btnFldId" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_newLeaveRequestForm_btnFldId"><div id="newLeaveRequestForm:btnFldId_content" class="ui-panel-content ui-widget-content"><button id="newLeaveRequestForm:updateDown" name="newLeaveRequestForm:updateDown" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only btn-success"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">SAVE</span></button><button id="newLeaveRequestForm:done" name="newLeaveRequestForm:done" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">SUBMIT</span></button>
-      <button id="newLeaveRequestForm:done" name="newLeaveRequestForm:done" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"  title="" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">CANCEL</span></button></div></div>
-      </div></div></div>
-        </span>
+      </div>
+    </span>
+  </div>
+</div>

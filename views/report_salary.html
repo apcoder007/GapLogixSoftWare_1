@@ -1,0 +1,152 @@
+<style>
+    .demo-graphs{
+        width: 1250px !important;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 2%;
+    }
+    .header{
+        text-align: center;
+    }
+    .header h1{
+        color: white;
+        text-shadow: 2px 2px 2px blue;
+        font-size: 42px;
+        font-weight: bolder;
+    }
+    .pay_content{
+        text-align: center;
+    }
+    #overlay {
+        width: 805px;
+        text-align: center;
+        position: absolute;
+        left: 18.7%;
+        height: 78%;
+        z-index: 10;
+        background-color: #f3f3f3ad;
+    }
+    .mui-select__menu{
+        top:auto !important;
+    }
+    .mui-select__menu > div{
+        height: 33px !important;
+    }
+    .mui-select > label{
+        font-size: 14px;
+        font-weight: bolder;
+    }
+    .reportcontent{
+        text-align: left;
+    }
+    .reportcontent select{
+        border: solid 0px #E7E7E8 !important; 
+    }
+    ol, ul {
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+    }
+    .pagination>li:first-child>a, .pagination>li:first-child>span {
+        margin-left: 0 !important;
+        border-top-left-radius: 4px !important;
+        border-bottom-left-radius: 4px !important;
+    }
+    .btn-group, .btn-group-vertical {
+        position: relative !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+    }
+    .btn-group a{
+        color: #337ab7 !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate {
+        margin: 0 !important;
+        white-space: nowrap !important;
+        text-align: right !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+        margin: 2px 0 !important;
+        white-space: nowrap !important;
+    }
+    div.dataTables_wrapper div.dataTables_paginate {
+        text-align: right !important;
+    }
+    .form-control:not(.fc-alt) {
+        border: 1px solid #ccc !important;
+    }
+    .table-striped>tbody>tr:nth-of-type(odd) {
+        background-color: #f9f9f9 !important;
+    }
+    .table>thead>tr>th {
+        vertical-align: bottom !important;
+        border-bottom: 2px solid #ddd !important;
+    }
+    .table>tbody>tr>td{
+        border-top: 1px solid #ddd !important;
+    }
+    .pagination > li > a, .pagination > li > span {
+        border-radius: 0% !important;
+    }
+    .pagination>li:last-child>a{
+        width: 55px !important;
+    }
+    .pagination>li:first-child>a{
+        width: 70px !important;
+    }
+    .pagination>li>a{
+        height: 35px !important;
+    }
+    .btn-group:not(.bootstrap-select), .btn-group-vertical:not(.bootstrap-select) {
+        box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 1.0) !important;
+    }
+    .btn-default:hover {
+        color: #333 !important;
+        background-color: #e6e6e6 !important;
+        border-color: #adadad !important;
+    }
+    #vehicle-table{
+        min-width: 100% !important;
+        overflow-x: auto !important;
+    }
+    
+</style>
+
+<div>
+    <div class="header">
+        <h1>Generate Payslip</h1>
+    </div>
+    <div class="pay_content">
+        <div id="overlay" ng-if="overlay">
+            <div class="mui-col-md-6" style="margin-left: 25%;">
+                <div class="mui-select">
+                    <select ng-model="months" ng-change="selectMonth(months)">
+                        <option value="">Select Month</option>
+                        <option value="01">January</option>
+                        <option value="02">Ferbuary</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <label>Select Month</label>
+                </div>
+            </div>
+        </div>
+        <video width="800" autoplay loop ng-if="overlay">
+            <source src="images/Payroll.mov" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="reportcontent" >
+
+        </div>
+    </div>
+</div>
+
+
+

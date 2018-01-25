@@ -62,6 +62,11 @@
     .RecruterInfer{
         margin-top: -1%;
     }
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+        border: 1px solid #4e88c7;
+        background: #4e88c7;
+        font-weight: normal;
+    }
 </style>
 <div id="top">
     <div class="top-header">
@@ -102,18 +107,7 @@
                 <a ui-sref="pages.profile.profile-about" ng-class="{active: $state.includes('pages.profile') || $state.includes('prof') || $state.includes('pages')}">HRIS</a>
             </li>
 
-            <!-- <li>
-                <a ui-sref="charts.flot-charts" ui-sref-active="active">Leave</a>
-            </li>
-            <li>
-                <a ui-sref="photo-gallery.attendance" ui-sref-active="active">Attendance</a>
-            </li>
-            <li>
-                <a  ui-sref="user-interface.payslip" ui-sref-active="active">Payroll</a>
-            </li> -->
-            <!-- <li>
-                <a ui-sref="photo-gallery.attendance" ng-class="{active: $state.includes('photo-gallery')}">Attendance</a>
-            </li> -->
+            
             <li>
                 <a ui-sref="photo-gallery.attendance" ng-class="{active: $state.includes('photo-gallery')}">Attendance</a>
             </li>
@@ -126,9 +120,9 @@
             <li>
                 <a ui-sref="travelexpense.list" ng-class="{active: $state.includes('travelexpense')}">Travel Expense</a>
             </li>
-            <!-- <li>
-                <a  ui-sref="user-interface.payslip" ui-sref-active="active">Payroll</a>
-            </li> -->
+            <li>
+                <a  ui-sref="user-interface.payslip" ng-class="{active: $state.includes('user-interface')}">Payroll</a>
+            </li>
             
             
           </ul>

@@ -29,7 +29,26 @@
           background-color: #4e88c7 !important;
           color: white !important;
       }
+      #overlay {
+        position: fixed;
+        display: block;
+        top: 35%;
+        left: 40%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 2;
+        cursor: pointer;
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        padding: 1%;
+        font-size: 2em;
+    }
 </style>
+
+<div id="overlay" ng-if="overlay">
+        {{omsg}}
+</div>
+
 <div ng-controller="travelexpensedetailsCtrl">   
     <div class="animateddiv fadeinup bg_set_cr" style="margin-bottom:30px">
         <div class="todo-element card-vewer">
